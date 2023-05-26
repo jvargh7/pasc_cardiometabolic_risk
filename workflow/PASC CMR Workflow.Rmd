@@ -1,0 +1,103 @@
+---
+title: "Data Management Workflow"
+author: "Varghese, Jithin Sam"
+date: "`r Sys.Date()`"
+output: 
+  slidy_presentation:
+    toc: true
+    toc_float: true
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,results = TRUE)
+```
+
+# Introduction
+This code and data management workflow is intended to be used along with the secure shared folder that contains Raw data.   
+
+Analytic code: [https::/github.com/jvargh7/pasc_cardiometabolic_risk](https::/github.com/jvargh7/pasc_cardiometabolic_risk)   
+
+## Folder Structure
+
+- **repo**: pasc_cardiometabolic_risk
+    - data
+    - workflow
+    - preprocessing
+    - analysis
+    - functions
+    - paper
+
+- **shared**: Papers/PASC Cardiometabolic Risk 
+    - working
+        - raw
+        - cleaned
+    - writing
+    - references
+    - figures
+
+
+## Workflow
+
+The workflow can be divided into **3 steps**, with the final output being tables and figures for the manuscript. The current presentation is generated separately for each of the steps in a vertical scroll. You can navigate between the steps using the 'Contents' option on the bottom left or by clicking the alphabet **C** on your keyboard.  
+
+- PREPROCESSING: *Reading data, cleaning variables*  
+- ANALYSIS: *Descriptive and inferential statistics*  
+- PAPER: *Figures and Tables for manuscript*  
+
+# PREPROCESSING
+
+## Flowchart
+This step can be divided into sub-components
+
+```{r}
+DiagrammeR::grViz("digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = rectangle]        
+  rec1 [label = 'Step 1. Read and clean separately']
+  rec2 [label = 'Step 2. Merge linked datasets']
+  rec3 [label =  'Step 3. Clean merged datasets']
+  rec4 [label = 'Step 4. Create analytic dataset']
+  
+  # edge definitions with the node IDs
+  rec1 -> rec2 -> rec3 -> rec4
+  }",
+  height = 300)
+```
+
+## Step 1. Read and clean separately
+The raw data consists of 15 datasets. Majority of datasets are in a **long** format to reflect the longitudinal nature of the data.   
+
+Datasets in **long** format: 
+
+- CONDITION: diagnosed and self-reported health conditions/diseases
+- DIAGNOSIS: diagnosis codes from healthcare-mediated processes and reimbursement drivers  
+- DISPENSING: prescriptions filled (community, mail-order, hospital pharmacy but not OP dispensing)
+- ENCOUNTER: interactions between patients and providers
+- ENROLLMENT: periods of time when expected to have complete data capture
+- LAB_RESULT_CM: blood and body speciments measurement
+- LDS_ADDRESS_HISTORY: longitudinal limited data series of addresses
+- MED_ADMIN: medications administered by providers in any (IP, OP, home health) setting
+- PRESCRIBING: provider orders for medication dispensing/administration
+- PRO_CM: patient-reported outcome measures or questionnaires
+- PROCEDURES: procedure codes for discrete medical interventions and diagnostic testing
+- PROVIDER: providers involved in care processes
+- VITAL: vital signs
+
+**Cross-sectional** datasets:
+
+- DEATH: mortality information
+- DEMOGRAPHIC: direct attributes of individual patient
+
+### Data cleaning files
+
+This sub-step in the **PREPROCESSING** workflow consists of 2 analytic files.
+
+- repo/preprocessing/pcrpre01_reading raw data: *All files in .csv format would be read and column names renamed according to /data/PASC CMR Variable List.xlsx --> shared/working/raw/<filename>.RDS*
+- repo/preprocessing/pcrpre02_cleaning raw data: *All files in .RDS format would be cleaned and deposited into a shared/working/cleaned/<filename>.RDS folder*
+
+# ANALYSIS
+
+
+# PAPER
