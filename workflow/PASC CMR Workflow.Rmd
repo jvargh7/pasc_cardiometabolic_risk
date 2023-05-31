@@ -20,6 +20,31 @@ Analytic code: [https::/github.com/jvargh7/pasc_cardiometabolic_risk](https::/gi
 
 ## Folder Structure
 
+- **source**: Proposals/R01S COVID x Post Acute Diabetes Diagnosis/working/raw
+    - demo_other_\<version\>
+        - address_history_\<version\>.csv
+        - condition_\<version\>.csv
+        - death_\<version\>.csv
+        - demographic_\<version\>.csv
+        - dispensing_\<version\>.csv
+        - encounter_\<version\>.csv
+        - enrollment_\<version\>.csv
+        - pros_\<version\>.csv
+        - provider_\<version\>.csv
+    - diagnosis_\<version\>
+        - diagnosis_\<version\>.csv
+    - lab_\<version\>
+        - lab_\<version\>.csv
+    - med_admin_\<version\>
+        - med_admin_\<version\>.csv
+    - obsclin_\<version\>
+        - obsclin_\<version\>.csv
+    - prescribing_\<version\>
+        - prescribing_\<version\>.csv
+    - px_vital_\<version\>
+        - procedures_\<version\>.csv
+        - vital_\<version\>.csv
+
 - **repo**: pasc_cardiometabolic_risk
     - data
     - workflow
@@ -32,6 +57,7 @@ Analytic code: [https::/github.com/jvargh7/pasc_cardiometabolic_risk](https::/gi
     - working
         - raw
         - cleaned
+        - dictionaries
     - writing
     - references
     - figures
@@ -69,33 +95,41 @@ DiagrammeR::grViz("digraph {
 ## Step 1. Read and clean separately
 The raw data consists of 15 datasets. Majority of datasets are in a **long** format to reflect the longitudinal nature of the data.   
 
-Datasets in **long** format: 
-
-- CONDITION: diagnosed and self-reported health conditions/diseases
-- DIAGNOSIS: diagnosis codes from healthcare-mediated processes and reimbursement drivers  
-- DISPENSING: prescriptions filled (community, mail-order, hospital pharmacy but not OP dispensing)
-- ENCOUNTER: interactions between patients and providers
-- ENROLLMENT: periods of time when expected to have complete data capture
-- LAB_RESULT_CM: blood and body speciments measurement
-- LDS_ADDRESS_HISTORY: longitudinal limited data series of addresses
-- MED_ADMIN: medications administered by providers in any (IP, OP, home health) setting
-- PRESCRIBING: provider orders for medication dispensing/administration
-- PRO_CM: patient-reported outcome measures or questionnaires
-- PROCEDURES: procedure codes for discrete medical interventions and diagnostic testing
-- PROVIDER: providers involved in care processes
-- VITAL: vital signs
+Datasets in **long** format (*\<dataset_name\>_\<version\>*): 
+- **address_history**: longitudinal limited data series of addresses  
+- **condition**: diagnosed and self-reported health conditions/diseases  
+- **diagnosis**: diagnosis codes from healthcare-mediated processes and reimbursement drivers    
+- **dispensing**: prescriptions filled (community, mail-order, hospital pharmacy but not OP dispensing)  
+- **encounter**: interactions between patients and providers  
+- **enrollment**: periods of time when expected to have complete data capture  
+- **lab**: blood and body speciments measurement  
+    + lab_RAW: Raw values
+    + lab_RESULT: Harmonized values
+- **med_admin**: medications administered by providers in any (IP, OP, home health) setting  
+- **obs_clin**: clinical observations  
+- **prescribing**: provider orders for medication dispensing/administration  
+- **pros**: patient-reported outcome measures or questionnaires  
+- **procedures**: procedure codes for discrete medical interventions and diagnostic testing  
+- **provider**: providers involved in care processes  
+- **vital**: vital signs  
 
 **Cross-sectional** datasets:
 
-- DEATH: mortality information
-- DEMOGRAPHIC: direct attributes of individual patient
+- **death**: mortality information
+- **demographic**: direct attributes of individual patient
 
 ### Data cleaning files
 
 This sub-step in the **PREPROCESSING** workflow consists of 2 analytic files.
 
-- repo/preprocessing/pcrpre01_reading raw data: *All files in .csv format would be read and column names renamed according to /data/PASC CMR Variable List.xlsx --> shared/working/raw/<filename>.RDS*
-- repo/preprocessing/pcrpre02_cleaning raw data: *All files in .RDS format would be cleaned and deposited into a shared/working/cleaned/<filename>.RDS folder*
+- repo/data/pcrd02_saving data from csv to RDS.R: *All files in .csv format would be read from the source folder and saved --\> shared/working/raw/\<filename\>.RDS*
+- repo/preprocessing/pcrpre01_cleaning raw data.R: *All files in .RDS format would be cleaned and deposited into a shared/working/cleaned/\<filename\>.RDS folder*
+    + Each dataset has its own cleaning file of the format pcrpre_\<dataset_name\>.R
+    + Cleaning would be specific to pasc_cardiometabolic_risk paper's requirements
+        - longitudinal dataset of cardiometabolic trajectories
+        - baseline confounding adjustment
+        - loss to follow-up or death
+    + Cleaning for pasc_diabetes paper would be done separately
 
 # ANALYSIS
 

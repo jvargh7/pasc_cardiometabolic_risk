@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Varghese, Jithin Sam" />
-  <meta name="date" content="2023-03-27" />
+  <meta name="date" content="2023-05-30" />
   <title>Data Management Workflow</title>
   <style type="text/css">
 code{white-space: pre-wrap;}
@@ -1614,7 +1614,7 @@ color: #333333;
   <p class="author">
 Varghese, Jithin Sam
   </p>
-  <p class="date">2023-03-27</p>
+  <p class="date">2023-05-30</p>
 </div>
 <div id="introduction" class="slide section level1">
 <h1>Introduction</h1>
@@ -1623,6 +1623,47 @@ with the secure shared folder that contains Raw data.</p>
 <p>Analytic code: <a href="https::/github.com/jvargh7/pasc_cardiometabolic_risk">https::/github.com/jvargh7/pasc_cardiometabolic_risk</a></p>
 <h2 id="folder-structure">Folder Structure</h2>
 <ul>
+<li><strong>source</strong>: Proposals/R01S COVID x Post Acute Diabetes
+Diagnosis/working/raw
+<ul>
+<li>demo_other_&lt;version&gt;
+<ul>
+<li>address_history_&lt;version&gt;.csv</li>
+<li>condition_&lt;version&gt;.csv</li>
+<li>death_&lt;version&gt;.csv</li>
+<li>demographic_&lt;version&gt;.csv</li>
+<li>dispensing_&lt;version&gt;.csv</li>
+<li>encounter_&lt;version&gt;.csv</li>
+<li>enrollment_&lt;version&gt;.csv</li>
+<li>pros_&lt;version&gt;.csv</li>
+<li>provider_&lt;version&gt;.csv</li>
+</ul></li>
+<li>diagnosis_&lt;version&gt;
+<ul>
+<li>diagnosis_&lt;version&gt;.csv</li>
+</ul></li>
+<li>lab_&lt;version&gt;
+<ul>
+<li>lab_&lt;version&gt;.csv</li>
+</ul></li>
+<li>med_admin_&lt;version&gt;
+<ul>
+<li>med_admin_&lt;version&gt;.csv</li>
+</ul></li>
+<li>obsclin_&lt;version&gt;
+<ul>
+<li>obsclin_&lt;version&gt;.csv</li>
+</ul></li>
+<li>prescribing_&lt;version&gt;
+<ul>
+<li>prescribing_&lt;version&gt;.csv</li>
+</ul></li>
+<li>px_vital_&lt;version&gt;
+<ul>
+<li>procedures_&lt;version&gt;.csv</li>
+<li>vital_&lt;version&gt;.csv</li>
+</ul></li>
+</ul></li>
 <li><strong>repo</strong>: pasc_cardiometabolic_risk
 <ul>
 <li>data</li>
@@ -1638,6 +1679,7 @@ with the secure shared folder that contains Raw data.</p>
 <ul>
 <li>raw</li>
 <li>cleaned</li>
+<li>dictionaries</li>
 </ul></li>
 <li>writing</li>
 <li>references</li>
@@ -1659,64 +1701,78 @@ your keyboard.</p>
 <li>PAPER: <em>Figures and Tables for manuscript</em></li>
 </ul>
 </div>
-<div id="preprocessing" class="slide section level1 tabset">
-<h1 class="tabset">PREPROCESSING</h1>
+<div id="preprocessing" class="slide section level1">
+<h1>PREPROCESSING</h1>
 <h2 id="flowchart">Flowchart</h2>
 <p>This step can be divided into sub-components</p>
-<div id="htmlwidget-265f0b1c68123ab0c98f" style="width:768px;height:300px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-265f0b1c68123ab0c98f">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Step 1. Read and clean separately\"]\n  rec2 [label = \"Step 2. Merge linked datasets\"]\n  rec3 [label =  \"Step 3. Clean merged datasets\"]\n  rec4 [label = \"Step 4. Create analytic dataset\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 -> rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1320db8f8ffa4eaf1f73" style="width:768px;height:300px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1320db8f8ffa4eaf1f73">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Step 1. Read and clean separately\"]\n  rec2 [label = \"Step 2. Merge linked datasets\"]\n  rec3 [label =  \"Step 3. Clean merged datasets\"]\n  rec4 [label = \"Step 4. Create analytic dataset\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 -> rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <h2 id="step-1.-read-and-clean-separately">Step 1. Read and clean
 separately</h2>
 <p>The raw data consists of 15 datasets. Majority of datasets are in a
 <strong>long</strong> format to reflect the longitudinal nature of the
 data.</p>
-<p>Datasets in <strong>long</strong> format:</p>
-<ul>
-<li>CONDITION: diagnosed and self-reported health
-conditions/diseases</li>
-<li>DIAGNOSIS: diagnosis codes from healthcare-mediated processes and
-reimbursement drivers<br />
-</li>
-<li>DISPENSING: prescriptions filled (community, mail-order, hospital
-pharmacy but not OP dispensing)</li>
-<li>ENCOUNTER: interactions between patients and providers</li>
-<li>ENROLLMENT: periods of time when expected to have complete data
-capture</li>
-<li>LAB_RESULT_CM: blood and body speciments measurement</li>
-<li>LDS_ADDRESS_HISTORY: longitudinal limited data series of
-addresses</li>
-<li>MED_ADMIN: medications administered by providers in any (IP, OP,
-home health) setting</li>
-<li>PRESCRIBING: provider orders for medication
-dispensing/administration</li>
-<li>PRO_CM: patient-reported outcome measures or questionnaires</li>
-<li>PROCEDURES: procedure codes for discrete medical interventions and
-diagnostic testing</li>
-<li>PROVIDER: providers involved in care processes</li>
-<li>VITAL: vital signs</li>
-</ul>
+<p>Datasets in <strong>long</strong> format
+(*&lt;dataset_name&gt;_&lt;version&gt;*): -
+<strong>address_history</strong>: longitudinal limited data series of
+addresses<br />
+- <strong>condition</strong>: diagnosed and self-reported health
+conditions/diseases<br />
+- <strong>diagnosis</strong>: diagnosis codes from healthcare-mediated
+processes and reimbursement drivers<br />
+- <strong>dispensing</strong>: prescriptions filled (community,
+mail-order, hospital pharmacy but not OP dispensing)<br />
+- <strong>encounter</strong>: interactions between patients and
+providers<br />
+- <strong>enrollment</strong>: periods of time when expected to have
+complete data capture<br />
+- <strong>lab</strong>: blood and body speciments measurement<br />
+- <strong>med_admin</strong>: medications administered by providers in
+any (IP, OP, home health) setting<br />
+- <strong>obs_clin</strong>: clinical observations<br />
+- <strong>prescribing</strong>: provider orders for medication
+dispensing/administration<br />
+- <strong>pros</strong>: patient-reported outcome measures or
+questionnaires<br />
+- <strong>procedures</strong>: procedure codes for discrete medical
+interventions and diagnostic testing<br />
+- <strong>provider</strong>: providers involved in care processes<br />
+- <strong>vital</strong>: vital signs</p>
 <p><strong>Cross-sectional</strong> datasets:</p>
 <ul>
-<li>DEATH: mortality information</li>
-<li>DEMOGRAPHIC: direct attributes of individual patient</li>
+<li><strong>death</strong>: mortality information</li>
+<li><strong>demographic</strong>: direct attributes of individual
+patient</li>
 </ul>
 <h3 id="data-cleaning-files">Data cleaning files</h3>
 <p>This sub-step in the <strong>PREPROCESSING</strong> workflow consists
 of 2 analytic files.</p>
 <ul>
-<li>repo/preprocessing/pcrpre01_reading raw data: <em>All files in .csv
-format would be read and column names renamed according to /data/PASC
-CMR Variable List.xlsx –&gt; shared/working/raw/<filename>.RDS</em></li>
-<li>repo/preprocessing/pcrpre02_cleaning raw data: <em>All files in .RDS
-format would be cleaned and deposited into a
-shared/working/cleaned/<filename>.RDS folder</em></li>
+<li>repo/data/pcrd02_saving data from csv to RDS.R: <em>All files in
+.csv format would be read from the source folder and saved –&gt;
+shared/working/raw/&lt;filename&gt;.RDS</em></li>
+<li>repo/preprocessing/pcrpre01_cleaning raw data.R: <em>All files in
+.RDS format would be cleaned and deposited into a
+shared/working/cleaned/&lt;filename&gt;.RDS folder</em>
+<ul>
+<li>Each dataset has its own cleaning file of the format
+pcrpre_&lt;dataset_name&gt;.R</li>
+<li>Cleaning would be specific to pasc_cardiometabolic_risk paper’s
+requirements
+<ul>
+<li>longitudinal dataset of cardiometabolic trajectories</li>
+<li>baseline confounding adjustment</li>
+<li>loss to follow-up or death</li>
+</ul></li>
+<li>Cleaning for pasc_diabetes paper would be done separately</li>
+</ul></li>
 </ul>
 </div>
-<div id="analysis" class="slide section level1 tabset">
-<h1 class="tabset">ANALYSIS</h1>
+<div id="analysis" class="slide section level1">
+<h1>ANALYSIS</h1>
 </div>
-<div id="paper" class="slide section level1 tabset">
-<h1 class="tabset">PAPER</h1>
+<div id="paper" class="slide section level1">
+<h1>PAPER</h1>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->
