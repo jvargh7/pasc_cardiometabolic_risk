@@ -2,13 +2,9 @@ rm(list=ls());gc();source(".Rprofile")
 
 source("functions/month_replace.R")
 
-encounter <- readRDS(paste0(path_pasc_cmr_folder,"/working/raw/encounter_",version,".RDS"))%>% 
-  mutate(admit_date = ymd(month_replace(ADMIT_DATE)),
-         discharge_date = ymd(month_replace(DISCHARGE_DATE))) 
-
-encounter %>% 
-  dplyr::select(ID,ENCOUNTERID,ENC_TYPE,admit_date,discharge_date,LOOKBACK1,LOOKBACK2,FOLLOWUP1) %>% 
-  saveRDS(.,paste0(path_pasc_cmr_folder,"/working/cleaned/encounter.RDS"))
+# read_parquet(paste0(path_pasc_cmr_folder,"/working/raw/encounter_",version,".parquet")) %>% 
+#   dplyr::select(ID,ENCOUNTERID,ENC_TYPE,admit_date,discharge_date,LOOKBACK1,LOOKBACK2,FOLLOWUP1) %>% 
+#   write_parquet(.,paste0(path_pasc_cmr_folder,"/working/cleaned/encounter.parquet"))
 
 # encounter %>%  
 #   dplyr::select(ID,admit_date,discharge_date,ENCOUNTERID,LOOKBACK1,FOLLOWUP1) %>% 

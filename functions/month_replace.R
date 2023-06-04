@@ -1,6 +1,10 @@
 
 month_replace <- function(v){
   
+  if(class(v) == "Date"){
+    return(v_replace)
+  }
+  
   day_extract = str_extract(v,pattern = "^[0-9]+")
   year_extract = str_extract(v,pattern="[0-9]+$")
   month_extract = str_extract(v,pattern=paste0("(",paste0(str_to_upper(month.abb),collapse="|"),")")) 

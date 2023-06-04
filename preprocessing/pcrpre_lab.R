@@ -2,13 +2,7 @@ rm(list=ls());gc();source(".Rprofile")
 
 source("functions/month_replace.R")
 
-lab_RESULT <- readRDS(paste0(path_pasc_cmr_folder,"/working/raw/lab_RESULT_",version,".RDS")) %>% 
-  mutate(specimen_date = ymd(month_replace(SPECIMEN_DATE)),
-         lab_order_date = ymd(month_replace(LAB_ORDER_DATE)))
-
-
-
-lab_RESULT %>% 
+open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,".parquet")) %>% 
   dplyr::filter(LAB_LOINC %in% c("94500-6","94309-2",
                                  "94558-4","94534-5",
                                  "94759-8","95209-3",
@@ -18,5 +12,15 @@ lab_RESULT %>%
                                  "94756-4","94642-6",
                                  "94306-8","95406-5",
                                  "95425-5","87635")) %>% 
+  collect() %>% 
   saveRDS(.,paste0(path_pasc_cmr_folder,"/working/cleaned/lab_RESULT_covidtests.RDS"))
-  
+
+open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,".parquet")) %>% 
+  group_by(LAB_LOINC,RAW_LAB_NAME) %>% 
+  tally() %>% 
+  collect() %>% 
+  write_csv(.,"preprocessing/pcpre_lab LAB_LOINC counts.csv") 
+
+
+
+ 

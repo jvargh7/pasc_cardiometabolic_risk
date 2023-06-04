@@ -1,7 +1,7 @@
 rm(list=ls());gc();source(".Rprofile")
 
-demographic <- readRDS(paste0(path_pasc_cmr_folder,"/working/raw/demographic_",version,".RDS")) %>% 
-  mutate(nhwhite = case_when(HISPANIC %in% c("N","NI","OT","R","UN") & RACE == "05" ~ 1,
+demographic <- read_parquet(paste0(path_pasc_cmr_folder,"/working/raw/demographic_",version,".parquet")) %>% 
+  dplyr::mutate(nhwhite = case_when(HISPANIC %in% c("N","NI","OT","R","UN") & RACE == "05" ~ 1,
                              TRUE ~ 0),
          nhblack = case_when(HISPANIC %in% c("N","NI","OT","R","UN") & RACE == "03" ~ 1,
                              TRUE ~ 0),
@@ -12,10 +12,11 @@ demographic <- readRDS(paste0(path_pasc_cmr_folder,"/working/raw/demographic_",v
          female = case_when(SEX == "F" ~ 1,
                             TRUE ~ 0),
          age = case_when(AGE > 99 ~ 99,
-                         TRUE ~ AGE)) %>% 
+                         TRUE ~ as.numeric(AGE))) %>% 
   dplyr::select(ID,female,
                 nhwhite,nhblack,hispanic,
-                nhother,age,COHORT,matchid)
+                nhother,age,COHORT,matchid) %>% 
+  collect()
 
 
 saveRDS(demographic,paste0(path_pasc_cmr_folder,"/working/cleaned/demographic.RDS"))

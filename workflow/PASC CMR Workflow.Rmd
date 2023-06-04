@@ -18,7 +18,7 @@ This code and data management workflow is intended to be used along with the sec
 
 Analytic code: [https::/github.com/jvargh7/pasc_cardiometabolic_risk](https::/github.com/jvargh7/pasc_cardiometabolic_risk)   
 
-## Folder Structure
+# Folder Structure
 
 - **source**: Proposals/R01S COVID x Post Acute Diabetes Diagnosis/working/raw
     - demo_other_\<version\>
@@ -48,9 +48,10 @@ Analytic code: [https::/github.com/jvargh7/pasc_cardiometabolic_risk](https::/gi
 - **repo**: pasc_cardiometabolic_risk
     - data
     - workflow
+    - functions
     - preprocessing
     - analysis
-    - functions
+    - sensitivity
     - paper
 
 - **shared**: Papers/PASC Cardiometabolic Risk 
@@ -63,7 +64,7 @@ Analytic code: [https::/github.com/jvargh7/pasc_cardiometabolic_risk](https::/gi
     - figures
 
 
-## Workflow
+# Workflow
 
 The workflow can be divided into **3 steps**, with the final output being tables and figures for the manuscript. The current presentation is generated separately for each of the steps in a vertical scroll. You can navigate between the steps using the 'Contents' option on the bottom left or by clicking the alphabet **C** on your keyboard.  
 
@@ -82,12 +83,11 @@ DiagrammeR::grViz("digraph {
   
   node [shape = rectangle]        
   rec1 [label = 'Step 1. Read and clean separately']
-  rec2 [label = 'Step 2. Merge linked datasets']
+  rec2 [label = 'Step 2. Create important variables']
   rec3 [label =  'Step 3. Clean merged datasets']
-  rec4 [label = 'Step 4. Create analytic dataset']
   
   # edge definitions with the node IDs
-  rec1 -> rec2 -> rec3 -> rec4
+  rec1 -> rec2 -> rec3
   }",
   height = 300)
 ```
@@ -96,6 +96,7 @@ DiagrammeR::grViz("digraph {
 The raw data consists of 15 datasets. Majority of datasets are in a **long** format to reflect the longitudinal nature of the data.   
 
 Datasets in **long** format (*\<dataset_name\>_\<version\>*): 
+
 - **address_history**: longitudinal limited data series of addresses  
 - **condition**: diagnosed and self-reported health conditions/diseases  
 - **diagnosis**: diagnosis codes from healthcare-mediated processes and reimbursement drivers    
@@ -103,8 +104,8 @@ Datasets in **long** format (*\<dataset_name\>_\<version\>*):
 - **encounter**: interactions between patients and providers  
 - **enrollment**: periods of time when expected to have complete data capture  
 - **lab**: blood and body speciments measurement  
-    + lab_RAW: Raw values
-    + lab_RESULT: Harmonized values
+    + lab_RAW: Raw values  
+    + lab_RESULT: Harmonized values  
 - **med_admin**: medications administered by providers in any (IP, OP, home health) setting  
 - **obs_clin**: clinical observations  
 - **prescribing**: provider orders for medication dispensing/administration  
@@ -122,16 +123,121 @@ Datasets in **long** format (*\<dataset_name\>_\<version\>*):
 
 This sub-step in the **PREPROCESSING** workflow consists of 2 analytic files.
 
-- repo/data/pcrd02_saving data from csv to RDS.R: *All files in .csv format would be read from the source folder and saved --\> shared/working/raw/\<filename\>.RDS*
+- repo/data/pcrd02_saving data from csv to RDS.R: *All files in .csv format would be read from the source folder and saved --\> shared/working/raw/RDS/\<filename\>.RDS*
+- repo/data/pcrd02_saving data from csv to parquet.R: *All files in .csv format would be read from the source folder and saved --\> shared/working/raw/\<filename\>.parquet*
+    + This file is better for storing and querying large datasets
 - repo/preprocessing/pcrpre01_cleaning raw data.R: *All files in .RDS format would be cleaned and deposited into a shared/working/cleaned/\<filename\>.RDS folder*
     + Each dataset has its own cleaning file of the format pcrpre_\<dataset_name\>.R
     + Cleaning would be specific to pasc_cardiometabolic_risk paper's requirements
         - longitudinal dataset of cardiometabolic trajectories
         - baseline confounding adjustment
         - loss to follow-up or death
-    + Cleaning for pasc_diabetes paper would be done separately
+    + Additional cleaning files for pasc_diabetes paper are in the corresponding repo: [https::/github.com/jvargh7/pasc_diabetes](https::/github.com/jvargh7/pasc_diabetes)  
+
+## Step 2. Creating important variables
+
+This sub-step in the **PREPROCESSING** workflow consists of 4 analytic files.
+
+- repo/preprocessing/pcrpre02_generating index date from diagnosis and lab.R: Replication code for index date
+    + Verifying if diagnosis codes and test positive results for Exposed can be replicated
+    + Verifying if test negative results for Unexposed can be replicated
+- repo/preprocessing/pcrpre03_identifying new-onset diabetes.R: Identifying incident T2DM cases using CPiT2DM
+    + Source: [Weise, Performance of a computable phenotype for identification of patients with diabetes within PCORnet: The Patient‐Centered Clinical Research Network, 2018](https://onlinelibrary.wiley.com/doi/abs/10.1002/pds.4718)
+    + (1) inpatient/outpatient ICD-9/10 diagnosis for T2DM and an antidiabetic medication prescription within 90 days before or after the diagnosis date or 
+    + (2) inpatient/outpatient ICD-9/10 diagnosis for T2DM and an outpatient glycolated hemoglobin (HbA1C) value ≥6.5% within 90 days before or after the diagnosis date or
+    + (3) any outpatient HbA1C value ≥6.5%within 90 days before or after an antidiabetic medication prescription
+- repo/preprocessing/pcrpre04_index date characteristics.R:
+    + Facility
+    + Insurance Type
+    + Hospitalization (Not Hospitalized, Hospitalized, ICU admission)
+    + Severity of Hyperglycemia between index date and origin date (percentage of blood glucose measurements > 200 mg/dL: <25, 25-50, >50)
+- repo/preprocessing/pcrpre05_clinical characteristics prior to infection.R: Within 1 year of index date [T0-365, T0): 
+    + Smoking status (never, former, current)
+    + Comorbidities (obesity, cardiovascular disease, chronic lung disease, cerebrovascular diseae, hyperlipidemia): Use grouped ICD-10 codes
+    + Medication classes (immunosuppressants, antihypertensives, statins, antipsychotics)
+    + Laboratory parameters (blood glucose, serum creatinine, HbA1c, LDLc, HDLc, AST, ALT)
+- repo/preprocessing/pcrpre06_healthcare utilization during followup.R: 
+    + Number of outpatient visits
+    + Number of telehealth encounters
+    + Number of hospitalizations
+    + Number of lab visits
+    + Number of HbA1c measurements
+- repo/data/pcrpre07_community characteristics.R
+- repo/data/pcrpre08_negative control outcomes.R: Unrelated to exposure and expected to occur at all ages in the study population
+    + incidence of fractures: Grouped ICD-10 codes () and procedure codes ()
+    + eye infections: Grouped ICD-10 codes () and procedure codes ()
+
+
+## Step 3. Clean merged datasets
+
+
 
 # ANALYSIS
 
+
+## Flowchart
+This step can be divided into sub-components
+
+```{r}
+DiagrammeR::grViz("digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = rectangle]        
+  rec1 [label = 'Step 1. Analytic Dataset']
+  rec2 [label = 'Step 2. Missing Data and Participants']
+  rec3 [label = 'Step 3. Main analysis']
+  rec3 [label =  'Step 4. Sensitivity analysis']
+  
+  # edge definitions with the node IDs
+  rec1 -> rec2 -> rec3 -> rec4
+  }",
+  height = 300)
+```
+
+This sub-step in the **ANALYSIS** workflow consists of 4 sets of files. All files start with prefix *pcra*, followed by a number indicating file set. 
+
+## Step 1. Analytic Dataset Creation
+
+- repo/analysis/pcra101_creating follow-up dataset.R: This is the longitudinal dataset in **long** format after index date.
+    + We set all anthropometric observations beyond the below ranges to missing
+    + *Height (inches)*: [48, 90]
+    + *Weight (lbs)*: [50, 500]
+    + *BMI (kg/m2)*: [12, 50]
+- repo/analysis/pcra102_creating lookback dataset.R: This is the cross-sectional dataset before index date.
+    + We set all laboratory values beyond the below ranges to missing
+    + *HbA1c (%)*: [3, 20]
+- repo/analysis/pcra103_estimating individual susceptibility score: Susceptibility for T2DM prior to infection using
+prediction model developed on historical control cohort
+    + *This analysis is pending*
+
+
+## Step 2. Accounting for Missing Data and Missing Participants
+
+- repo/analysis/pcra201_missing data in covariates: Multiple imputation by chained equations using predictive mean matching
+- repo/analysis/pcra202_ipw multiple exposure.R: Using multinomial model for estimating propensity of membership in each cohort
+- repo/analysis/pcra203_ipw missing index date.R: Using logistic model for estimating propensity of having an index date
+    + This would be deprecated once we get the actual index date
+    + Currently we are using a derived index date 
+    + Source: repo/preprocessing/pcrpre02_generating index date from diagnosis and lab.R
+- repo/analysis/pcra204_estimating and assessing missing outcome.R: Using logistic model for estimating propensity of having at least one outcome observation
+- repo/analysis/pcra105_non informative censoring: Assess if censoring was non-informative by comparing characteristics
+
+### Support files:
+
+- pcra_analytic dataset for change in indicators.R: Identifies which observations are available at each step of missingness 
+
+## Step 3. Main Analysis  
+
+- repo/analysis/pcra301_change in cardiometabolic indicators.R:IPW only
+- repo/analysis/pcra302_excess burden in exposed and unexposed cohorts.R: 
+    + *Pending*
+- repo/analysis/pcra303_covariate adjustment for change in cardiometabolic indicators.R: Doubly-robust
+
+## Step 4. Sensitivity Analysis
+
+- repo/sensitivity/pcrs201_excluding less than 6mo followup.R: censoring or death as possible reasons
+- repo/sensitivity/pcrs202_adjusting for pandemic healthcare utilization.R: account for differences in diabetes diagnosis due to disruptions in care seeking
+- repo/sensitivity/pcrs203_restricting to exposed and unexposed.R: include rates of testing as confounding variable
+- repo/sensitivity/pcrs204_different pandemic start.R: June 1, 2020 when testing was more widely available
 
 # PAPER

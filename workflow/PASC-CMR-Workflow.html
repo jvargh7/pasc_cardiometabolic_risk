@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Varghese, Jithin Sam" />
-  <meta name="date" content="2023-05-30" />
+  <meta name="date" content="2023-06-01" />
   <title>Data Management Workflow</title>
   <style type="text/css">
 code{white-space: pre-wrap;}
@@ -1614,14 +1614,16 @@ color: #333333;
   <p class="author">
 Varghese, Jithin Sam
   </p>
-  <p class="date">2023-05-30</p>
+  <p class="date">2023-06-01</p>
 </div>
 <div id="introduction" class="slide section level1">
 <h1>Introduction</h1>
 <p>This code and data management workflow is intended to be used along
 with the secure shared folder that contains Raw data.</p>
 <p>Analytic code: <a href="https::/github.com/jvargh7/pasc_cardiometabolic_risk">https::/github.com/jvargh7/pasc_cardiometabolic_risk</a></p>
-<h2 id="folder-structure">Folder Structure</h2>
+</div>
+<div id="folder-structure" class="slide section level1">
+<h1>Folder Structure</h1>
 <ul>
 <li><strong>source</strong>: Proposals/R01S COVID x Post Acute Diabetes
 Diagnosis/working/raw
@@ -1668,9 +1670,10 @@ Diagnosis/working/raw
 <ul>
 <li>data</li>
 <li>workflow</li>
+<li>functions</li>
 <li>preprocessing</li>
 <li>analysis</li>
-<li>functions</li>
+<li>sensitivity</li>
 <li>paper</li>
 </ul></li>
 <li><strong>shared</strong>: Papers/PASC Cardiometabolic Risk
@@ -1686,7 +1689,9 @@ Diagnosis/working/raw
 <li>figures</li>
 </ul></li>
 </ul>
-<h2 id="workflow">Workflow</h2>
+</div>
+<div id="workflow" class="slide section level1">
+<h1>Workflow</h1>
 <p>The workflow can be divided into <strong>3 steps</strong>, with the
 final output being tables and figures for the manuscript. The current
 presentation is generated separately for each of the steps in a vertical
@@ -1705,39 +1710,60 @@ your keyboard.</p>
 <h1>PREPROCESSING</h1>
 <h2 id="flowchart">Flowchart</h2>
 <p>This step can be divided into sub-components</p>
-<div id="htmlwidget-1320db8f8ffa4eaf1f73" style="width:768px;height:300px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1320db8f8ffa4eaf1f73">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Step 1. Read and clean separately\"]\n  rec2 [label = \"Step 2. Merge linked datasets\"]\n  rec3 [label =  \"Step 3. Clean merged datasets\"]\n  rec4 [label = \"Step 4. Create analytic dataset\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 -> rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d1a1a69ee64892496d84" style="width:768px;height:300px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d1a1a69ee64892496d84">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Step 1. Read and clean separately\"]\n  rec2 [label = \"Step 2. Create important variables\"]\n  rec3 [label =  \"Step 3. Clean merged datasets\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 -> rec3\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <h2 id="step-1.-read-and-clean-separately">Step 1. Read and clean
 separately</h2>
 <p>The raw data consists of 15 datasets. Majority of datasets are in a
 <strong>long</strong> format to reflect the longitudinal nature of the
 data.</p>
 <p>Datasets in <strong>long</strong> format
-(*&lt;dataset_name&gt;_&lt;version&gt;*): -
-<strong>address_history</strong>: longitudinal limited data series of
-addresses<br />
-- <strong>condition</strong>: diagnosed and self-reported health
+(*&lt;dataset_name&gt;_&lt;version&gt;*):</p>
+<ul>
+<li><strong>address_history</strong>: longitudinal limited data series
+of addresses<br />
+</li>
+<li><strong>condition</strong>: diagnosed and self-reported health
 conditions/diseases<br />
-- <strong>diagnosis</strong>: diagnosis codes from healthcare-mediated
+</li>
+<li><strong>diagnosis</strong>: diagnosis codes from healthcare-mediated
 processes and reimbursement drivers<br />
-- <strong>dispensing</strong>: prescriptions filled (community,
+</li>
+<li><strong>dispensing</strong>: prescriptions filled (community,
 mail-order, hospital pharmacy but not OP dispensing)<br />
-- <strong>encounter</strong>: interactions between patients and
+</li>
+<li><strong>encounter</strong>: interactions between patients and
 providers<br />
-- <strong>enrollment</strong>: periods of time when expected to have
+</li>
+<li><strong>enrollment</strong>: periods of time when expected to have
 complete data capture<br />
-- <strong>lab</strong>: blood and body speciments measurement<br />
-- <strong>med_admin</strong>: medications administered by providers in
+</li>
+<li><strong>lab</strong>: blood and body speciments measurement
+<ul>
+<li>lab_RAW: Raw values<br />
+</li>
+<li>lab_RESULT: Harmonized values<br />
+</li>
+</ul></li>
+<li><strong>med_admin</strong>: medications administered by providers in
 any (IP, OP, home health) setting<br />
-- <strong>obs_clin</strong>: clinical observations<br />
-- <strong>prescribing</strong>: provider orders for medication
+</li>
+<li><strong>obs_clin</strong>: clinical observations<br />
+</li>
+<li><strong>prescribing</strong>: provider orders for medication
 dispensing/administration<br />
-- <strong>pros</strong>: patient-reported outcome measures or
+</li>
+<li><strong>pros</strong>: patient-reported outcome measures or
 questionnaires<br />
-- <strong>procedures</strong>: procedure codes for discrete medical
+</li>
+<li><strong>procedures</strong>: procedure codes for discrete medical
 interventions and diagnostic testing<br />
-- <strong>provider</strong>: providers involved in care processes<br />
-- <strong>vital</strong>: vital signs</p>
+</li>
+<li><strong>provider</strong>: providers involved in care
+processes<br />
+</li>
+<li><strong>vital</strong>: vital signs</li>
+</ul>
 <p><strong>Cross-sectional</strong> datasets:</p>
 <ul>
 <li><strong>death</strong>: mortality information</li>
@@ -1750,7 +1776,13 @@ of 2 analytic files.</p>
 <ul>
 <li>repo/data/pcrd02_saving data from csv to RDS.R: <em>All files in
 .csv format would be read from the source folder and saved –&gt;
-shared/working/raw/&lt;filename&gt;.RDS</em></li>
+shared/working/raw/RDS/&lt;filename&gt;.RDS</em></li>
+<li>repo/data/pcrd02_saving data from csv to parquet.R: <em>All files in
+.csv format would be read from the source folder and saved –&gt;
+shared/working/raw/&lt;filename&gt;.parquet</em>
+<ul>
+<li>This file is better for storing and querying large datasets</li>
+</ul></li>
 <li>repo/preprocessing/pcrpre01_cleaning raw data.R: <em>All files in
 .RDS format would be cleaned and deposited into a
 shared/working/cleaned/&lt;filename&gt;.RDS folder</em>
@@ -1764,12 +1796,141 @@ requirements
 <li>baseline confounding adjustment</li>
 <li>loss to follow-up or death</li>
 </ul></li>
-<li>Cleaning for pasc_diabetes paper would be done separately</li>
+<li>Additional cleaning files for pasc_diabetes paper are in the
+corresponding repo: <a href="https::/github.com/jvargh7/pasc_diabetes">https::/github.com/jvargh7/pasc_diabetes</a></li>
 </ul></li>
 </ul>
+<h2 id="step-2.-creating-important-variables">Step 2. Creating important
+variables</h2>
+<p>This sub-step in the <strong>PREPROCESSING</strong> workflow consists
+of 4 analytic files.</p>
+<ul>
+<li>repo/preprocessing/pcrpre02_generating index date from diagnosis and
+lab.R: Replication code for index date
+<ul>
+<li>Verifying if diagnosis codes and test positive results for Exposed
+can be replicated</li>
+<li>Verifying if test negative results for Unexposed can be
+replicated</li>
+</ul></li>
+<li>repo/preprocessing/pcrpre03_identifying new-onset diabetes.R:
+Identifying incident T2DM cases using CPiT2DM
+<ul>
+<li>Source: <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/pds.4718">Weise,
+Performance of a computable phenotype for identification of patients
+with diabetes within PCORnet: The Patient‐Centered Clinical Research
+Network, 2018</a></li>
+<li><ol style="list-style-type: decimal">
+<li>inpatient/outpatient ICD-9/10 diagnosis for T2DM and an antidiabetic
+medication prescription within 90 days before or after the diagnosis
+date or</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>inpatient/outpatient ICD-9/10 diagnosis for T2DM and an outpatient
+glycolated hemoglobin (HbA1C) value ≥6.5% within 90 days before or after
+the diagnosis date or</li>
+</ol></li>
+<li><ol start="3" style="list-style-type: decimal">
+<li>any outpatient HbA1C value ≥6.5%within 90 days before or after an
+antidiabetic medication prescription</li>
+</ol></li>
+</ul></li>
+<li>repo/preprocessing/pcrpre04_index date characteristics.R:
+<ul>
+<li>Facility</li>
+<li>Insurance Type</li>
+<li>Hospitalization (Not Hospitalized, Hospitalized, ICU admission)</li>
+<li>Severity of Hyperglycemia between index date and origin date
+(percentage of blood glucose measurements &gt; 200 mg/dL: &lt;25, 25-50,
+&gt;50)</li>
+</ul></li>
+<li>repo/preprocessing/pcrpre05_clinical characteristics prior to
+infection.R: Within 1 year of index date [T0-365, T0):
+<ul>
+<li>Smoking status (never, former, current)</li>
+<li>Comorbidities (obesity, cardiovascular disease, chronic lung
+disease, cerebrovascular diseae, hyperlipidemia): Use grouped ICD-10
+codes</li>
+<li>Medication classes (immunosuppressants, antihypertensives, statins,
+antipsychotics)</li>
+<li>Laboratory parameters (blood glucose, serum creatinine, HbA1c, LDLc,
+HDLc, AST, ALT)</li>
+</ul></li>
+<li>repo/preprocessing/pcrpre06_healthcare utilization during
+followup.R:
+<ul>
+<li>Number of outpatient visits</li>
+<li>Number of telehealth encounters</li>
+<li>Number of hospitalizations</li>
+<li>Number of lab visits</li>
+<li>Number of HbA1c measurements</li>
+</ul></li>
+<li>repo/data/pcrpre07_community characteristics.R</li>
+<li>repo/data/pcrpre08_negative control outcomes.R: Unrelated to
+exposure and expected to occur at all ages in the study population
+<ul>
+<li>incidence of fractures: Grouped ICD-10 codes () and procedure codes
+()</li>
+<li>eye infections: Grouped ICD-10 codes () and procedure codes ()</li>
+</ul></li>
+</ul>
+<h2 id="step-3.-clean-merged-datasets">Step 3. Clean merged
+datasets</h2>
 </div>
 <div id="analysis" class="slide section level1">
 <h1>ANALYSIS</h1>
+<h2 id="flowchart-1">Flowchart</h2>
+<p>This step can be divided into sub-components</p>
+<div id="htmlwidget-c68d3901260b04a5e99c" style="width:768px;height:300px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c68d3901260b04a5e99c">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Step 1. Variable preprocessing\"]\n  rec2 [label = \"Step 2. Main analysis\"]\n  rec3 [label =  \"Step 3. Sensitivity analysis\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 -> rec3\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p>This sub-step in the <strong>ANALYSIS</strong> workflow consists of 3
+sets of files.</p>
+<ul>
+<li>All files start with prefix <em>pcra</em>, followed by a number
+indicating file set
+<ul>
+<li>0: Creating variables</li>
+<li>2: Aim 2 analysis</li>
+<li>We skipped 1 (Aim 1 analysis)</li>
+</ul></li>
+</ul>
+<h2 id="step-1.-variable-preprocessing">Step 1. Variable
+Preprocessing</h2>
+<ul>
+<li>repo/analysis/pcra001_creating follow-up dataset.R: This is the
+longitudinal dataset in <strong>long</strong> format after index
+date.</li>
+<li>repo/analysis/pcra002_creating lookback dataset.R: This is the
+cross-sectional dataset before index date.</li>
+<li>repo/analysis/pcra003_estimating individual susceptibility score:
+Susceptibility for T2DM prior to infection using prediction model
+developed on historical control cohort</li>
+<li>repo/analysis/pcra004_missing data in covariates: Multiple
+imputation by chained equations using predictive mean matching</li>
+<li>repo/analysis/pcra005_estimating and assessing propensity scores.R:
+Using multinomial model for estimating propensity of membership in each
+cohort</li>
+<li>repo/analysis/pcra006_non informative censoring: Assess if censoring
+was non-informative by comparing characteristics</li>
+</ul>
+<h2 id="step-2.-main-analysis">Step 2. Main Analysis</h2>
+<ul>
+<li>repo/analysis/pcra201_change in cardiometabolic indicators.R:</li>
+<li>repo/analysis/pcra202_excess burden in exposed and unexposed
+cohorts.R:</li>
+</ul>
+<h2 id="step-3.-sensitivity-analysis">Step 3. Sensitivity Analysis</h2>
+<ul>
+<li>repo/sensitivity/pcrs201_excluding less than 6mo followup.R:
+censoring or death as possible reasons</li>
+<li>repo/sensitivity/pcrs202_adjusting for pandemic healthcare
+utilization.R: account for differences in diabetes diagnosis due to
+disruptions in care seeking</li>
+<li>repo/sensitivity/pcrs203_restricting to exposed and unexposed.R:
+include rates of testing as confounding variable</li>
+<li>repo/sensitivity/pcrs204_different pandemic start.R: June 1, 2020
+when testing was more widely available</li>
+</ul>
 </div>
 <div id="paper" class="slide section level1">
 <h1>PAPER</h1>

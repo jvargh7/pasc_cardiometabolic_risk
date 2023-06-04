@@ -14,7 +14,7 @@ map(folder_names,
       
       unzipped_files <- list.files(unzip_dir,pattern="\\.csv$",full.names = TRUE)
       
-      paper_dir <- paste0(path_pasc_cmr_folder,"/working/raw/")
+      paper_dir <- paste0(path_pasc_cmr_folder,"/working/raw/RDS/")
       if(!dir.exists(paper_dir)){
         dir.create(paper_dir)
       }
@@ -35,14 +35,14 @@ map(folder_names,
 rm(list=ls());gc();source(".Rprofile")
 data.table::fread(file=paste0(path_pasc_proposal_folder,"/working/source/lab_",version,"/","lab_",version,".csv"),
                   select = c("ID","ENCOUNTERID","LAB_ORDER_DATE","LAB_LOINC","SPECIMEN_DATE","RAW_LAB_NAME","RAW_RESULT","RAW_UNIT")) %>% 
-  saveRDS(.,paste0(path_pasc_cmr_folder,"/working/raw/lab_RAW_",version,".RDS"))
+  saveRDS(.,paste0(path_pasc_cmr_folder,"/working/raw/RDS/lab_RAW_",version,".RDS"))
 
 
 rm(list=ls());gc();source(".Rprofile")
 data.table::fread(file=paste0(path_pasc_proposal_folder,"/working/source/lab_",version,"/","lab_",version,".csv"),
                    select = c("ID","ENCOUNTERID","LAB_ORDER_DATE","LAB_LOINC","SPECIMEN_DATE","RESULT_QUAL","RESULT_SNOMED","RESULT_NUM","RESULT_MODIFIER","RESULT_UNIT")) %>% 
-saveRDS(.,paste0(path_pasc_cmr_folder,"/working/raw/lab_RESULT_",version,".RDS"))
+saveRDS(.,paste0(path_pasc_cmr_folder,"/working/raw/RDS/lab_RESULT_",version,".RDS"))
 
 rm(list=ls());gc();source(".Rprofile")
 data.table::fread(file=paste0(path_pasc_proposal_folder,"/working/source/diagnosis_",version,"/","diagnosis_",version,".csv")) %>% 
-  saveRDS(.,paste0(path_pasc_cmr_folder,"/working/raw/diagnosis_",version,".RDS"))
+  saveRDS(.,paste0(path_pasc_cmr_folder,"/working/raw/RDS/diagnosis_",version,".RDS"))
