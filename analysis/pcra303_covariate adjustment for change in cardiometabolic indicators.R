@@ -11,6 +11,7 @@ ldl_weights_df <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/ip weigh
 
 w_cols = colnames(tx_weights_df)[str_detect(colnames(tx_weights_df),"W[0-9]+")]
 
+library(mice)
 library(geepack)
 library(lme4)
 bmi_fit = sbp_fit = ldl_fit = list()
@@ -105,19 +106,19 @@ for(i in 1:length(w_cols)){
   # FITTING MODELS ---------
   bmi_fit[[i]] <- geeglm(formula = paste0("bmi ~ COHORT*t + bmi_historical",
                                           demo_covariates,index_date_covariates,
-                                          comorbidity_covariates,medication_covariates,labs_covariates) %>% 
+                                          comorbidity_covariates,medication_covariates,labs_covariates,lb_hc_covariates) %>% 
                            as.formula(),
                          data = bmi_df,weights=w,id = ID,corstr="exchangeable")
   print("BMI completed")
   sbp_fit[[i]] <- geeglm(formula = paste0("SYSTOLIC ~ COHORT*t+ SYSTOLIC_historical",
                                           demo_covariates,index_date_covariates,
-                                          comorbidity_covariates,medication_covariates,labs_covariates) %>% 
+                                          comorbidity_covariates,medication_covariates,labs_covariates,lb_hc_covariates) %>% 
                            as.formula(),
                          data = sbp_df,weights=w,id = ID,corstr="exchangeable")
   print("SBP completed")
   ldl_fit[[i]] <- geeglm(formula = paste0("ldl ~ COHORT*t + ldl_historical",
                                           demo_covariates,index_date_covariates,
-                                          comorbidity_covariates,medication_covariates,labs_covariates)%>% 
+                                          comorbidity_covariates,medication_covariates,labs_covariates,lb_hc_covariates)%>% 
                            as.formula(), 
                          data = ldl_df,weights=w,id = ID,corstr="exchangeable")
   print("LDL completed")
@@ -138,6 +139,9 @@ bind_rows(
   ldl_fit_out %>% mutate(model = "PCRA203",outcome = "LDL")
 ) %>% 
   write_csv(.,"analysis/pcra203_change in cardiometabolic indicators.csv")
+
+
+
 
 
 source("C:/code/external/functions/imputation/clean_mi_contrasts.R")
@@ -181,40 +185,129 @@ bind_rows(
   write_csv(.,"analysis/pcra303_contrasts of change in cardiometabolic indicators.csv")
 
 
+# Save ----------
+source("C:/code/external/functions/imputation/save_mi_geeglm.R")
+save_mi_geeglm(bmi_fit) %>% 
+  saveRDS(paste0(path_pasc_cmr_folder,"/working/pcra303 bmi_fit.RDS"))
+save_mi_geeglm(sbp_fit) %>% 
+  saveRDS(paste0(path_pasc_cmr_folder,"/working/pcra303 sbp_fit.RDS"))
+save_mi_geeglm(ldl_fit) %>% 
+  saveRDS(paste0(path_pasc_cmr_folder,"/working/pcra303 ldl_fit.RDS"))
+
+# Marginal estimates ----------
+source("C:/code/external/functions/imputation/clean_mi_marginalprediction.R")
+
+bmi_COHORT_margin = sbp_COHORT_margin = ldl_COHORT_margin = list()
+for (margin_value in c("exposed","unexposed","historical")){
+  
+  bmi_COHORT_margin[[margin_value]] = clean_mi_marginalprediction(bmi_fit,margin_var = "COHORT",
+                                                                margin_value = margin_value,link="geeglm identity",
+                                                                modifier_var = "t",modifier_value = 0)
+  sbp_COHORT_margin[[margin_value]] = clean_mi_marginalprediction(sbp_fit,margin_var = "COHORT",
+                                                                margin_value = margin_value,link="geeglm identity",
+                                                                modifier_var = "t",modifier_value = 0)
+  ldl_COHORT_margin[[margin_value]] = clean_mi_marginalprediction(ldl_fit,margin_var = "COHORT",
+                                                                margin_value = margin_value,link="geeglm identity",
+                                                                modifier_var = "t",modifier_value = 0)
+  
+  
+}
+
+bind_rows(
+  bind_rows(bmi_COHORT_margin) %>% mutate(margin_value = c("exposed","unexposed","historical"),
+                                          outcome = "bmi"),
+bind_rows(sbp_COHORT_margin) %>% mutate(margin_value = c("exposed","unexposed","historical"),
+                                        outcome = "sbp"),
+bind_rows(ldl_COHORT_margin) %>% mutate(margin_value = c("exposed","unexposed","historical"),
+                                        outcome = "ldl") 
+) %>% 
+  mutate(coef_ci = paste0(round(theta_D,1),
+                          " (",round(L,1), ",",
+                          round(U,1),")")) %>% 
+  write_csv(.,"analysis/pcra303_COHORT margin at time 0.csv")
+
+# Time contrasts -----------
+bmi_t100_margin = sbp_t100_margin = ldl_t100_margin = list()
+
+for (margin_value in c("exposed","unexposed","historical")){
+
+
+  bmi_t100_margin[[margin_value]] = clean_mi_contrasts(model_list = bmi_fit,model_matrix = NULL,
+                                          link="geeglm identity",modifier = paste0("COHORT",margin_value),exposure = "t",vcov_type = "robust",
+                                          exposure_value = 100, modifier_value = 1,e_m_term = FALSE) %>% 
+    mutate(margin_value = margin_value)
+  
+  sbp_t100_margin[[margin_value]] = clean_mi_contrasts(model_list = sbp_fit,model_matrix = NULL,
+                                                       link="geeglm identity",modifier = paste0("COHORT",margin_value),exposure = "t",vcov_type = "robust",
+                                                       exposure_value = 100, modifier_value = 1,e_m_term = FALSE) %>% 
+    mutate(margin_value = margin_value)
+  
+  ldl_t100_margin[[margin_value]] = clean_mi_contrasts(model_list = ldl_fit,model_matrix = NULL,
+                                                       link="geeglm identity",modifier = paste0("COHORT",margin_value),exposure = "t",vcov_type = "robust",
+                                                       exposure_value = 100, modifier_value = 1,e_m_term = FALSE) %>% 
+    mutate(margin_value = margin_value)
+
+}
+
+bind_rows(
+  bind_rows(bmi_t100_margin)  %>%  mutate(outcome = "bmi"),
+  bind_rows(sbp_t100_margin) %>% mutate(outcome = "sbp"),
+  bind_rows(ldl_t100_margin) %>% mutate(outcome = "ldl") 
+) %>% 
+  write_csv(.,"analysis/pcra303_t margin at time 100.csv")
+
 # Coefficient plot ------------
+library(ggpubr)
+
 contrasts_df <- read_csv("analysis/pcra303_contrasts of change in cardiometabolic indicators.csv")
-coefs_df <- read_csv("analysis/pcra203_change in cardiometabolic indicators.csv")
+coefs_df <- read_csv("analysis/pcra303_change in cardiometabolic indicators.csv")
 source("functions/intercept_slope_plot.R")
 
 bmi_coef_plot <- intercept_slope_plot(
   contrasts_df %>% dplyr::filter(outcome == "BMI"),
   coefs_df %>% dplyr::filter(outcome == "BMI")
 ) + 
-  scale_color_discrete(limits=rev,name="",labels=c("Unexposed","Historical","Exposed"),type = c("darkgreen","blue","red")) +
+  scale_color_discrete(name="",labels=c("Exposed","Unexposed","Historical"),type = c("red","darkgreen","blue")) +
   theme_bw() +
   xlab("Body mass index (kg/m2)") +
   ylab("") +
-  geom_vline(xintercept = 0,linetype=2,col="grey20")
+  geom_vline(xintercept = 0,linetype=2,col="grey20") +
+  theme(legend.text = element_text(size = 12),
+        axis.text = element_text(size = 12))
 
 sbp_coef_plot <- intercept_slope_plot(
   contrasts_df %>% dplyr::filter(outcome == "SBP"),
   coefs_df %>% dplyr::filter(outcome == "SBP")
 ) + 
-  scale_color_discrete(limits=rev,name="",labels=c("Unexposed","Historical","Exposed"),type = c("darkgreen","blue","red")) +
+  scale_color_discrete(name="",labels=c("Exposed","Unexposed","Historical"),type = c("red","darkgreen","blue")) +
   theme_bw() +
   xlab("Systolic Blood Pressure (mm Hg)") +
   ylab("") +
-  geom_vline(xintercept = 0,linetype=2,col="grey20")
+  geom_vline(xintercept = 0,linetype=2,col="grey20")  +
+  theme(legend.text = element_text(size = 12),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_blank())
 
 ldl_coef_plot <- intercept_slope_plot(
   contrasts_df %>% dplyr::filter(outcome == "LDL"),
   coefs_df %>% dplyr::filter(outcome == "LDL")
 ) + 
-  scale_color_discrete(limits=rev,name="",labels=c("Unexposed","Historical","Exposed"),type = c("darkgreen","blue","red")) +
+  scale_color_discrete(name="",labels=c("Exposed","Unexposed","Historical"),type = c("red","darkgreen","blue")) +
   theme_bw() +
   xlab("Low Density Lipoprotein (mg/dL)") +
   ylab("") +
-  geom_vline(xintercept = 0,linetype=2,col="grey20")
+  geom_vline(xintercept = 0,linetype=2,col="grey20")  +
+  theme(legend.text = element_text(size = 12),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_blank())
+
+ggarrange(bmi_coef_plot,
+          sbp_coef_plot,
+          ldl_coef_plot,
+          # ggplot() + theme_blank(),
+          labels=c("B","C","D"),
+          nrow=1,ncol=3,widths = c(1.8,1,1),common.legend = TRUE) %>% 
+  ggsave(.,filename=paste0(path_pasc_cmr_folder,"/figures/marginal plot coefs for change.png"),width=10,height=4)
 
 # Model plot ---------------
 library(sjPlot)
@@ -247,7 +340,6 @@ ldl_plot <- plot_model(ldl_fit[[3]],type="pred",terms=c("t","COHORT"),
   ggtitle("") +
   theme_bw() 
 
-library(ggpubr)
 ggarrange(bmi_plot,
           sbp_plot,
           ldl_plot,
@@ -264,3 +356,6 @@ ggarrange(bmi_coef_plot,
           labels=LETTERS[1:6],
           nrow=3,ncol=2,common.legend = TRUE) %>% 
   ggsave(.,filename=paste0(path_pasc_cmr_folder,"/figures/marginal plot and coefs covariate adjustment for change.png"),width=12,height=8)
+
+
+test <- readRDS(paste0(path_pasc_cmr_folder,"/working/pcra303 bmi_fit.RDS"))

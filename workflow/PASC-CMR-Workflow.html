@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Varghese, Jithin Sam" />
-  <meta name="date" content="2023-06-01" />
+  <meta name="date" content="2023-07-01" />
   <title>Data Management Workflow</title>
   <style type="text/css">
 code{white-space: pre-wrap;}
@@ -1614,7 +1614,7 @@ color: #333333;
   <p class="author">
 Varghese, Jithin Sam
   </p>
-  <p class="date">2023-06-01</p>
+  <p class="date">2023-07-01</p>
 </div>
 <div id="introduction" class="slide section level1">
 <h1>Introduction</h1>
@@ -1710,8 +1710,8 @@ your keyboard.</p>
 <h1>PREPROCESSING</h1>
 <h2 id="flowchart">Flowchart</h2>
 <p>This step can be divided into sub-components</p>
-<div id="htmlwidget-d1a1a69ee64892496d84" style="width:768px;height:300px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d1a1a69ee64892496d84">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Step 1. Read and clean separately\"]\n  rec2 [label = \"Step 2. Create important variables\"]\n  rec3 [label =  \"Step 3. Clean merged datasets\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 -> rec3\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-232d10d874bbd4229dfd" style="width:768px;height:300px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-232d10d874bbd4229dfd">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Step 1. Read and clean separately\"]\n  rec2 [label = \"Step 2. Create important variables\"]\n  rec3 [label = \"Step 3. High dimensional variables\"]\n  rec4 [label =  \"Step 4. Analytic dataset creation\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 -> rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <h2 id="step-1.-read-and-clean-separately">Step 1. Read and clean
 separately</h2>
 <p>The raw data consists of 15 datasets. Majority of datasets are in a
@@ -1772,7 +1772,7 @@ patient</li>
 </ul>
 <h3 id="data-cleaning-files">Data cleaning files</h3>
 <p>This sub-step in the <strong>PREPROCESSING</strong> workflow consists
-of 2 analytic files.</p>
+of 3 analytic files.</p>
 <ul>
 <li>repo/data/pcrd02_saving data from csv to RDS.R: <em>All files in
 .csv format would be read from the source folder and saved –&gt;
@@ -1781,7 +1781,8 @@ shared/working/raw/RDS/&lt;filename&gt;.RDS</em></li>
 .csv format would be read from the source folder and saved –&gt;
 shared/working/raw/&lt;filename&gt;.parquet</em>
 <ul>
-<li>This file is better for storing and querying large datasets</li>
+<li>This file format (.parquet) is better for storing and querying large
+datasets</li>
 </ul></li>
 <li>repo/preprocessing/pcrpre01_cleaning raw data.R: <em>All files in
 .RDS format would be cleaned and deposited into a
@@ -1803,17 +1804,17 @@ corresponding repo: <a href="https::/github.com/jvargh7/pasc_diabetes">https::/g
 <h2 id="step-2.-creating-important-variables">Step 2. Creating important
 variables</h2>
 <p>This sub-step in the <strong>PREPROCESSING</strong> workflow consists
-of 4 analytic files.</p>
+of analytic files starting with <strong>pcrpre2</strong>.</p>
 <ul>
-<li>repo/preprocessing/pcrpre02_generating index date from diagnosis and
-lab.R: Replication code for index date
+<li>repo/preprocessing/pcrpre202_generating index date from diagnosis
+and lab.R: Replication code for index date
 <ul>
 <li>Verifying if diagnosis codes and test positive results for Exposed
 can be replicated</li>
 <li>Verifying if test negative results for Unexposed can be
 replicated</li>
 </ul></li>
-<li>repo/preprocessing/pcrpre03_identifying new-onset diabetes.R:
+<li>repo/preprocessing/pcrpre203_identifying new-onset diabetes.R:
 Identifying incident T2DM cases using CPiT2DM
 <ul>
 <li>Source: <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/pds.4718">Weise,
@@ -1844,7 +1845,7 @@ antidiabetic medication prescription</li>
 (percentage of blood glucose measurements &gt; 200 mg/dL: &lt;25, 25-50,
 &gt;50)</li>
 </ul></li>
-<li>repo/preprocessing/pcrpre05_clinical characteristics prior to
+<li>repo/preprocessing/pcrpre205_clinical characteristics prior to
 infection.R: Within 1 year of index date [T0-365, T0):
 <ul>
 <li>Smoking status (never, former, current)</li>
@@ -1856,8 +1857,8 @@ antipsychotics)</li>
 <li>Laboratory parameters (blood glucose, serum creatinine, HbA1c, LDLc,
 HDLc, AST, ALT)</li>
 </ul></li>
-<li>repo/preprocessing/pcrpre06_healthcare utilization during
-followup.R:
+<li>repo/preprocessing/pcrpre206_healthcare utilization during
+lookback.R:
 <ul>
 <li>Number of outpatient visits</li>
 <li>Number of telehealth encounters</li>
@@ -1865,8 +1866,8 @@ followup.R:
 <li>Number of lab visits</li>
 <li>Number of HbA1c measurements</li>
 </ul></li>
-<li>repo/data/pcrpre07_community characteristics.R</li>
-<li>repo/data/pcrpre08_negative control outcomes.R: Unrelated to
+<li>repo/data/pcrpre207_community characteristics.R</li>
+<li>repo/data/pcrpre208_negative control outcomes.R: Unrelated to
 exposure and expected to occur at all ages in the study population
 <ul>
 <li>incidence of fractures: Grouped ICD-10 codes () and procedure codes
@@ -1874,52 +1875,124 @@ exposure and expected to occur at all ages in the study population
 <li>eye infections: Grouped ICD-10 codes () and procedure codes ()</li>
 </ul></li>
 </ul>
-<h2 id="step-3.-clean-merged-datasets">Step 3. Clean merged
-datasets</h2>
+<h2 id="step-3.-high-dimensional-covariates">Step 3. High dimensional
+covariates</h2>
+<p>This sub-step in the <strong>PREPROCESSING</strong> workflow consists
+of analytic files starting with <strong>pcrpre3</strong>.</p>
+<ul>
+<li>repo/preprocessing/pcrpre301_high dimensional comorbidities
+<ul>
+<li>Extract ICD-10 codes</li>
+<li>Group them using <a href="https://hcup-us.ahrq.gov/toolssoftware/ccsr/dxccsr.jsp">HCUP
+Clinical Classification Codes</a></li>
+<li>Merge into main dataset and summarize</li>
+</ul></li>
+<li>repo/preprocessing/pcrpre302_high dimensional procedures
+<ul>
+<li>Extract LOINC codes</li>
+<li>Group them using <a href="https://hcup-us.ahrq.gov/toolssoftware/ccsr/dxccsr.jsp">HCUP
+Clinical Classification Codes</a></li>
+<li>Merge into main dataset and summarize</li>
+</ul></li>
+<li>repo/preprocessing/pcrpre303_high dimensional medication
+<ul>
+<li>Extract RxCUI codes</li>
+<li>Group them into ATC classes using <a href="https://lhncbc.nlm.nih.gov/RxNav/APIs/api-RxClass.getClassByRxNormDrugId.html">getClassByRxNormDrugId</a></li>
+<li>Merge into main dataset and summarize</li>
+<li>One drug can belong to <em>multiple classes</em></li>
+</ul></li>
+</ul>
+<h2 id="step-4.-analytic-dataset-creation">Step 4. Analytic Dataset
+Creation</h2>
+<p>This sub-step in the <strong>PREPROCESSING</strong> workflow consists
+of analytic files starting with <strong>pcrpre4</strong>.</p>
+<ul>
+<li>repo/preprocessing/pcrpre401_creating follow-up dataset.R: This is
+the longitudinal dataset in <strong>long</strong> format after index
+date.
+<ul>
+<li>We set all anthropometric observations beyond the below ranges to
+missing</li>
+<li><em>Height (inches)</em>: [48, 90]</li>
+<li><em>Weight (lbs)</em>: [50, 500]</li>
+<li><em>BMI (kg/m2)</em>: [12, 50]</li>
+</ul></li>
+<li>repo/analysis/pcra402_creating lookback dataset.R: This is the
+cross-sectional dataset before index date.
+<ul>
+<li>We set all laboratory values beyond the below ranges to missing</li>
+<li><em>HbA1c (%)</em>: [3, 20]</li>
+</ul></li>
+</ul>
 </div>
 <div id="analysis" class="slide section level1">
 <h1>ANALYSIS</h1>
 <h2 id="flowchart-1">Flowchart</h2>
 <p>This step can be divided into sub-components</p>
-<div id="htmlwidget-c68d3901260b04a5e99c" style="width:768px;height:300px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c68d3901260b04a5e99c">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Step 1. Variable preprocessing\"]\n  rec2 [label = \"Step 2. Main analysis\"]\n  rec3 [label =  \"Step 3. Sensitivity analysis\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 -> rec3\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-fae9acbec0cb8df13664" style="width:768px;height:300px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fae9acbec0cb8df13664">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Step 1. Missing Data and Participants\"]\n  rec2 [label = \"Step 2. Individual susceptibility\"]\n  rec3 [label = \"Step 3. Main analysis\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 -> rec3\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>This sub-step in the <strong>ANALYSIS</strong> workflow consists of 3
-sets of files.</p>
+sets of files. All files start with prefix <em>pcra</em>, followed by a
+number indicating file set.</p>
+<h2 id="step-1.-accounting-for-missing-data-and-missing-participants">Step
+1. Accounting for Missing Data and Missing Participants</h2>
+<p>This sub-step in the <strong>ANALYSIS</strong> workflow consists of
+analytic files starting with <strong>pcra1</strong>.</p>
 <ul>
-<li>All files start with prefix <em>pcra</em>, followed by a number
-indicating file set
-<ul>
-<li>0: Creating variables</li>
-<li>2: Aim 2 analysis</li>
-<li>We skipped 1 (Aim 1 analysis)</li>
-</ul></li>
-</ul>
-<h2 id="step-1.-variable-preprocessing">Step 1. Variable
-Preprocessing</h2>
-<ul>
-<li>repo/analysis/pcra001_creating follow-up dataset.R: This is the
-longitudinal dataset in <strong>long</strong> format after index
-date.</li>
-<li>repo/analysis/pcra002_creating lookback dataset.R: This is the
-cross-sectional dataset before index date.</li>
-<li>repo/analysis/pcra003_estimating individual susceptibility score:
-Susceptibility for T2DM prior to infection using prediction model
-developed on historical control cohort</li>
-<li>repo/analysis/pcra004_missing data in covariates: Multiple
+<li>repo/analysis/pcra101_missing data in covariates: Multiple
 imputation by chained equations using predictive mean matching</li>
-<li>repo/analysis/pcra005_estimating and assessing propensity scores.R:
-Using multinomial model for estimating propensity of membership in each
-cohort</li>
-<li>repo/analysis/pcra006_non informative censoring: Assess if censoring
+<li>repo/analysis/pcra102_ipw multiple exposure.R: Using multinomial
+model for estimating propensity of membership in each cohort</li>
+<li>repo/analysis/pcra103_ipw missing index date.R: Using logistic model
+for estimating propensity of having an index date
+<ul>
+<li>This would be deprecated once we get the actual index date</li>
+<li>Currently we are using a derived index date</li>
+<li>Source: repo/preprocessing/pcrpre02_generating index date from
+diagnosis and lab.R</li>
+</ul></li>
+<li>repo/analysis/pcra104_estimating and assessing missing outcome.R:
+Using logistic model for estimating propensity of having at least one
+outcome observation</li>
+<li>repo/analysis/pcra105_non informative censoring: Assess if censoring
 was non-informative by comparing characteristics</li>
 </ul>
-<h2 id="step-2.-main-analysis">Step 2. Main Analysis</h2>
+<h3 id="support-files">Support files:</h3>
 <ul>
-<li>repo/analysis/pcra201_change in cardiometabolic indicators.R:</li>
-<li>repo/analysis/pcra202_excess burden in exposed and unexposed
-cohorts.R:</li>
+<li>pcra_analytic dataset for change in indicators.R: Identifies which
+observations are available at each step of missingness</li>
 </ul>
-<h2 id="step-3.-sensitivity-analysis">Step 3. Sensitivity Analysis</h2>
+<h2 id="step-2.-individual-susceptibility-score-from-historical-control-cohort">Step
+2. Individual susceptibility score from historical control cohort</h2>
+<p>This sub-step in the <strong>ANALYSIS</strong> workflow consists of
+analytic files starting with <strong>pcra2</strong>.</p>
+<ul>
+<li>repo/analysis/pcra203_estimating individual susceptibility score:
+Susceptibility for T2DM prior to infection using prediction model
+developed on historical control cohort
+<ul>
+<li><em>This analysis is pending</em></li>
+</ul></li>
+</ul>
+<h2 id="step-3.-main-analysis">Step 3. Main Analysis</h2>
+<p>This sub-step in the <strong>ANALYSIS</strong> workflow consists of
+analytic files starting with <strong>pcra3</strong>.</p>
+<ul>
+<li>repo/analysis/pcra301_change in cardiometabolic indicators.R:IPW
+only</li>
+<li>repo/analysis/pcra302_excess burden in exposed and unexposed
+cohorts.R:
+<ul>
+<li><em>Pending</em></li>
+</ul></li>
+<li>repo/analysis/pcra303_covariate adjustment for change in
+cardiometabolic indicators.R: Doubly-robust</li>
+</ul>
+</div>
+<div id="sensitivity-analysis" class="slide section level1">
+<h1>SENSITIVITY ANALYSIS</h1>
+<p>This sub-step in the <strong>Sensitivity Analysis</strong> workflow
+consists of analytic files starting with <strong>pcrs</strong>.</p>
 <ul>
 <li>repo/sensitivity/pcrs201_excluding less than 6mo followup.R:
 censoring or death as possible reasons</li>

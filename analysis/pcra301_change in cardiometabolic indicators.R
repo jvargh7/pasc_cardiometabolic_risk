@@ -1,7 +1,7 @@
 rm(list=ls());gc();source(".Rprofile")
 
 tx_weights_df <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/ip weights for COHORT.RDS"))
-source("analysis/pcra_analytic dataset for change in indicators.R")
+source("analysis/pcra_analytic dataset for data availability.R")
 
 w_cols = colnames(tx_weights_df)[str_detect(colnames(tx_weights_df),"W[0-9]+")]
 

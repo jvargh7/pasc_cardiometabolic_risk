@@ -104,7 +104,9 @@ bind_rows(exposed_cohort %>% mutate(COHORT = "exposed"),
           historical_cohort %>% mutate(COHORT = "historical")) %>% 
   mutate(origin_date = index_date + 30,
          index_date_minus365 = index_date - 365,
-         index_date_minus730 = index_date - 730) %>% 
+         index_date_minus730 = index_date - 730,
+         max_followup_date = case_when(COHORT == "historical" ~ historical_followup_stop,
+                                       TRUE ~ exposed_followup_stop)) %>% 
   saveRDS(.,paste0(path_pasc_cmr_folder,"/working/cleaned/index date.RDS"))
 
 bind_rows(missing_exposed %>% mutate(COHORT = "exposed"),

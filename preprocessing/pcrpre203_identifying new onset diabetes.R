@@ -27,9 +27,9 @@ hba1c <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,".
                 NORM_MODIFIER_LOW,NORM_RANGE_LOW,NORM_MODIFIER_HIGH,NORM_RANGE_HIGH,
                 RAW_RESULT) %>% 
   right_join(index_date %>% 
-               dplyr::select(ID,index_date,origin_date,COHORT),
+               dplyr::select(ID,index_date,origin_date,max_followup_date,COHORT),
              by = c("ID"))  %>% 
-  dplyr::filter(SPECIMEN_DATE >= origin_date)  %>% 
+  dplyr::filter(SPECIMEN_DATE >= origin_date,SPECIMEN_DATE <= max_followup_date)  %>% 
   # NI: No information
   mutate(high_hba1c = case_when(
     # RESULT_QUAL %in% c("HIGH")  --> cannot use this since it counts >=6% as HIGH 
@@ -41,9 +41,9 @@ hba1c <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,".
 dm_diagnosis <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/diagnosis_",version,".parquet")) %>% 
   mutate(ID = as.character(ID)) %>% 
   right_join(index_date %>% 
-               dplyr::select(ID,index_date,origin_date,COHORT),
+               dplyr::select(ID,index_date,origin_date,max_followup_date,COHORT),
              by = c("ID")) %>% 
-  dplyr::filter(DX_DATE >= origin_date)  %>% 
+  dplyr::filter(DX_DATE >= origin_date,DX_DATE  <= max_followup_date)  %>% 
   dplyr::filter(!str_detect(DX,paste0("(",paste0(c(icd10_otherdm_excluding,
                                                    icd10_t1dm,icd10_gdm),collapse="|"),")"))) %>% 
   dplyr::filter(DX %in% icd10_dm_qualifying) %>%
@@ -62,9 +62,9 @@ rxcui_list <- readxl::read_excel("data/PASC CMR Variable List.xlsx",sheet="medic
 dm_medication <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/prescribing_",version,".parquet")) %>% 
   mutate(ID = as.character(ID)) %>% 
   right_join(index_date %>% 
-               dplyr::select(ID,index_date,origin_date,COHORT),
+               dplyr::select(ID,index_date,origin_date,max_followup_date,COHORT),
              by = c("ID")) %>% 
-  dplyr::filter(RX_ORDER_DATE >= origin_date,RXNORM_CUI %in% rxcui_list) %>% 
+  dplyr::filter(RX_ORDER_DATE >= origin_date,RXNORM_CUI %in% rxcui_list,RX_ORDER_DATE <= max_followup_date) %>% 
   collect()
 
 # CP1 --------------
@@ -150,9 +150,9 @@ labs_max = open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,
                 NORM_MODIFIER_LOW,NORM_RANGE_LOW,NORM_MODIFIER_HIGH,NORM_RANGE_HIGH,
                 RAW_RESULT) %>% 
   right_join(index_date %>% 
-               dplyr::select(ID,index_date,origin_date,COHORT),
+               dplyr::select(ID,index_date,origin_date,max_followup_date,COHORT),
              by = c("ID"))  %>% 
-  dplyr::filter(SPECIMEN_DATE >= origin_date) %>% 
+  dplyr::filter(SPECIMEN_DATE >= origin_date,SPECIMEN_DATE <= max_followup_date) %>% 
   distinct(ID,SPECIMEN_DATE) %>% 
   collect() %>% 
   group_by(ID) %>% 
@@ -163,9 +163,9 @@ diagnosis_max <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/diagnosi
   mutate(ID = as.character(ID)) %>% 
   dplyr::filter(!ID %in% cpit2dm_ID) %>% 
   right_join(index_date %>% 
-               dplyr::select(ID,index_date,origin_date,COHORT),
+               dplyr::select(ID,index_date,origin_date,max_followup_date,COHORT),
              by = c("ID")) %>% 
-  dplyr::filter(DX_DATE >= origin_date) %>%
+  dplyr::filter(DX_DATE >= origin_date,DX_DATE <= max_followup_date) %>%
   distinct(ID,DX_DATE) %>% 
   collect() %>% 
   group_by(ID) %>% 
@@ -176,9 +176,9 @@ medication_max <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/prescri
   mutate(ID = as.character(ID)) %>% 
   dplyr::filter(!ID %in% cpit2dm_ID) %>% 
   right_join(index_date %>% 
-               dplyr::select(ID,index_date,origin_date,COHORT),
+               dplyr::select(ID,index_date,origin_date,max_followup_date,COHORT),
              by = c("ID")) %>% 
-  dplyr::filter(RX_ORDER_DATE >= origin_date) %>% 
+  dplyr::filter(RX_ORDER_DATE >= origin_date,RX_ORDER_DATE <= max_followup_date) %>% 
   distinct(ID,RX_ORDER_DATE) %>% 
   collect() %>% 
   group_by(ID) %>% 

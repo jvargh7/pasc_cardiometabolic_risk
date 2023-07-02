@@ -84,10 +84,11 @@ DiagrammeR::grViz("digraph {
   node [shape = rectangle]        
   rec1 [label = 'Step 1. Read and clean separately']
   rec2 [label = 'Step 2. Create important variables']
-  rec3 [label =  'Step 3. Clean merged datasets']
+  rec3 [label = 'Step 3. High dimensional variables']
+  rec4 [label =  'Step 4. Analytic dataset creation']
   
   # edge definitions with the node IDs
-  rec1 -> rec2 -> rec3
+  rec1 -> rec2 -> rec3 -> rec4
   }",
   height = 300)
 ```
@@ -121,11 +122,11 @@ Datasets in **long** format (*\<dataset_name\>_\<version\>*):
 
 ### Data cleaning files
 
-This sub-step in the **PREPROCESSING** workflow consists of 2 analytic files.
+This sub-step in the **PREPROCESSING** workflow consists of 3 analytic files.
 
 - repo/data/pcrd02_saving data from csv to RDS.R: *All files in .csv format would be read from the source folder and saved --\> shared/working/raw/RDS/\<filename\>.RDS*
 - repo/data/pcrd02_saving data from csv to parquet.R: *All files in .csv format would be read from the source folder and saved --\> shared/working/raw/\<filename\>.parquet*
-    + This file is better for storing and querying large datasets
+    + This file format (.parquet) is better for storing and querying large datasets
 - repo/preprocessing/pcrpre01_cleaning raw data.R: *All files in .RDS format would be cleaned and deposited into a shared/working/cleaned/\<filename\>.RDS folder*
     + Each dataset has its own cleaning file of the format pcrpre_\<dataset_name\>.R
     + Cleaning would be specific to pasc_cardiometabolic_risk paper's requirements
@@ -136,12 +137,12 @@ This sub-step in the **PREPROCESSING** workflow consists of 2 analytic files.
 
 ## Step 2. Creating important variables
 
-This sub-step in the **PREPROCESSING** workflow consists of 4 analytic files.
+This sub-step in the **PREPROCESSING** workflow consists of analytic files starting with **pcrpre2**.
 
-- repo/preprocessing/pcrpre02_generating index date from diagnosis and lab.R: Replication code for index date
+- repo/preprocessing/pcrpre202_generating index date from diagnosis and lab.R: Replication code for index date
     + Verifying if diagnosis codes and test positive results for Exposed can be replicated
     + Verifying if test negative results for Unexposed can be replicated
-- repo/preprocessing/pcrpre03_identifying new-onset diabetes.R: Identifying incident T2DM cases using CPiT2DM
+- repo/preprocessing/pcrpre203_identifying new-onset diabetes.R: Identifying incident T2DM cases using CPiT2DM
     + Source: [Weise, Performance of a computable phenotype for identification of patients with diabetes within PCORnet: The Patient‐Centered Clinical Research Network, 2018](https://onlinelibrary.wiley.com/doi/abs/10.1002/pds.4718)
     + (1) inpatient/outpatient ICD-9/10 diagnosis for T2DM and an antidiabetic medication prescription within 90 days before or after the diagnosis date or 
     + (2) inpatient/outpatient ICD-9/10 diagnosis for T2DM and an outpatient glycolated hemoglobin (HbA1C) value ≥6.5% within 90 days before or after the diagnosis date or
@@ -151,26 +152,52 @@ This sub-step in the **PREPROCESSING** workflow consists of 4 analytic files.
     + Insurance Type
     + Hospitalization (Not Hospitalized, Hospitalized, ICU admission)
     + Severity of Hyperglycemia between index date and origin date (percentage of blood glucose measurements > 200 mg/dL: <25, 25-50, >50)
-- repo/preprocessing/pcrpre05_clinical characteristics prior to infection.R: Within 1 year of index date [T0-365, T0): 
+- repo/preprocessing/pcrpre205_clinical characteristics prior to infection.R: Within 1 year of index date [T0-365, T0): 
     + Smoking status (never, former, current)
     + Comorbidities (obesity, cardiovascular disease, chronic lung disease, cerebrovascular diseae, hyperlipidemia): Use grouped ICD-10 codes
     + Medication classes (immunosuppressants, antihypertensives, statins, antipsychotics)
     + Laboratory parameters (blood glucose, serum creatinine, HbA1c, LDLc, HDLc, AST, ALT)
-- repo/preprocessing/pcrpre06_healthcare utilization during followup.R: 
+- repo/preprocessing/pcrpre206_healthcare utilization during lookback.R: 
     + Number of outpatient visits
     + Number of telehealth encounters
     + Number of hospitalizations
     + Number of lab visits
     + Number of HbA1c measurements
-- repo/data/pcrpre07_community characteristics.R
-- repo/data/pcrpre08_negative control outcomes.R: Unrelated to exposure and expected to occur at all ages in the study population
+- repo/data/pcrpre207_community characteristics.R
+- repo/data/pcrpre208_negative control outcomes.R: Unrelated to exposure and expected to occur at all ages in the study population
     + incidence of fractures: Grouped ICD-10 codes () and procedure codes ()
     + eye infections: Grouped ICD-10 codes () and procedure codes ()
 
+## Step 3. High dimensional covariates 
+This sub-step in the **PREPROCESSING** workflow consists of analytic files starting with **pcrpre3**.
 
-## Step 3. Clean merged datasets
+- repo/preprocessing/pcrpre301_high dimensional comorbidities
+    + Extract ICD-10 codes
+    + Group them using [HCUP Clinical Classification Codes](https://hcup-us.ahrq.gov/toolssoftware/ccsr/dxccsr.jsp)
+    + Merge into main dataset and summarize
 
+- repo/preprocessing/pcrpre302_high dimensional procedures
+    + Extract LOINC codes
+    + Group them using [HCUP Clinical Classification Codes](https://hcup-us.ahrq.gov/toolssoftware/ccsr/dxccsr.jsp)
+    + Merge into main dataset and summarize
 
+- repo/preprocessing/pcrpre303_high dimensional medication
+    + Extract RxCUI codes
+    + Group them into ATC classes using [getClassByRxNormDrugId](https://lhncbc.nlm.nih.gov/RxNav/APIs/api-RxClass.getClassByRxNormDrugId.html)
+    + Merge into main dataset and summarize
+    + One drug can belong to *multiple classes*
+
+## Step 4. Analytic Dataset Creation
+This sub-step in the **PREPROCESSING** workflow consists of analytic files starting with **pcrpre4**.
+
+- repo/preprocessing/pcrpre401_creating follow-up dataset.R: This is the longitudinal dataset in **long** format after index date.
+    + We set all anthropometric observations beyond the below ranges to missing
+    + *Height (inches)*: [48, 90]
+    + *Weight (lbs)*: [50, 500]
+    + *BMI (kg/m2)*: [12, 50]
+- repo/analysis/pcra402_creating lookback dataset.R: This is the cross-sectional dataset before index date.
+    + We set all laboratory values beyond the below ranges to missing
+    + *HbA1c (%)*: [3, 20]
 
 # ANALYSIS
 
@@ -183,57 +210,56 @@ DiagrammeR::grViz("digraph {
   graph [layout = dot, rankdir = TB]
   
   node [shape = rectangle]        
-  rec1 [label = 'Step 1. Analytic Dataset']
-  rec2 [label = 'Step 2. Missing Data and Participants']
+  rec1 [label = 'Step 1. Missing Data and Participants']
+  rec2 [label = 'Step 2. Individual susceptibility']
   rec3 [label = 'Step 3. Main analysis']
-  rec3 [label =  'Step 4. Sensitivity analysis']
   
   # edge definitions with the node IDs
-  rec1 -> rec2 -> rec3 -> rec4
+  rec1 -> rec2 -> rec3
   }",
   height = 300)
 ```
 
-This sub-step in the **ANALYSIS** workflow consists of 4 sets of files. All files start with prefix *pcra*, followed by a number indicating file set. 
-
-## Step 1. Analytic Dataset Creation
-
-- repo/analysis/pcra101_creating follow-up dataset.R: This is the longitudinal dataset in **long** format after index date.
-    + We set all anthropometric observations beyond the below ranges to missing
-    + *Height (inches)*: [48, 90]
-    + *Weight (lbs)*: [50, 500]
-    + *BMI (kg/m2)*: [12, 50]
-- repo/analysis/pcra102_creating lookback dataset.R: This is the cross-sectional dataset before index date.
-    + We set all laboratory values beyond the below ranges to missing
-    + *HbA1c (%)*: [3, 20]
-- repo/analysis/pcra103_estimating individual susceptibility score: Susceptibility for T2DM prior to infection using
-prediction model developed on historical control cohort
-    + *This analysis is pending*
+This sub-step in the **ANALYSIS** workflow consists of 3 sets of files. All files start with prefix *pcra*, followed by a number indicating file set. 
 
 
-## Step 2. Accounting for Missing Data and Missing Participants
+## Step 1. Accounting for Missing Data and Missing Participants
 
-- repo/analysis/pcra201_missing data in covariates: Multiple imputation by chained equations using predictive mean matching
-- repo/analysis/pcra202_ipw multiple exposure.R: Using multinomial model for estimating propensity of membership in each cohort
-- repo/analysis/pcra203_ipw missing index date.R: Using logistic model for estimating propensity of having an index date
+This sub-step in the **ANALYSIS** workflow consists of analytic files starting with **pcra1**.
+
+- repo/analysis/pcra101_missing data in covariates: Multiple imputation by chained equations using predictive mean matching
+- repo/analysis/pcra102_ipw multiple exposure.R: Using multinomial model for estimating propensity of membership in each cohort
+- repo/analysis/pcra103_ipw missing index date.R: Using logistic model for estimating propensity of having an index date
     + This would be deprecated once we get the actual index date
     + Currently we are using a derived index date 
     + Source: repo/preprocessing/pcrpre02_generating index date from diagnosis and lab.R
-- repo/analysis/pcra204_estimating and assessing missing outcome.R: Using logistic model for estimating propensity of having at least one outcome observation
+- repo/analysis/pcra104_estimating and assessing missing outcome.R: Using logistic model for estimating propensity of having at least one outcome observation
 - repo/analysis/pcra105_non informative censoring: Assess if censoring was non-informative by comparing characteristics
 
 ### Support files:
 
 - pcra_analytic dataset for change in indicators.R: Identifies which observations are available at each step of missingness 
 
+
+## Step 2. Individual susceptibility score from historical control cohort
+This sub-step in the **ANALYSIS** workflow consists of analytic files starting with **pcra2**.
+
+- repo/analysis/pcra203_estimating individual susceptibility score: Susceptibility for T2DM prior to infection using
+prediction model developed on historical control cohort
+    + *This analysis is pending*
+
 ## Step 3. Main Analysis  
+This sub-step in the **ANALYSIS** workflow consists of analytic files starting with **pcra3**.
+
 
 - repo/analysis/pcra301_change in cardiometabolic indicators.R:IPW only
 - repo/analysis/pcra302_excess burden in exposed and unexposed cohorts.R: 
     + *Pending*
 - repo/analysis/pcra303_covariate adjustment for change in cardiometabolic indicators.R: Doubly-robust
 
-## Step 4. Sensitivity Analysis
+# SENSITIVITY ANALYSIS
+This sub-step in the **Sensitivity Analysis** workflow consists of analytic files starting with **pcrs**.
+
 
 - repo/sensitivity/pcrs201_excluding less than 6mo followup.R: censoring or death as possible reasons
 - repo/sensitivity/pcrs202_adjusting for pandemic healthcare utilization.R: account for differences in diabetes diagnosis due to disruptions in care seeking

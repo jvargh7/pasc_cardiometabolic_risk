@@ -6,14 +6,16 @@ index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date.R
 anthro_followup <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/vital.RDS")) %>% 
   dplyr::select(ID,MEASURE_DATE,SYSTOLIC,HT,WT) %>% 
   left_join(index_date %>% 
-              dplyr::select(ID,COHORT,index_date,origin_date),
+              dplyr::select(ID,COHORT,index_date,origin_date,max_followup_date),
             by = "ID")  %>% 
-  dplyr::filter(MEASURE_DATE >= origin_date) %>% 
-  mutate(valid_date = case_when(COHORT %in% c("exposed","unexposed") & MEASURE_DATE %in% c(exposed_followup_start:exposed_followup_stop) ~ 1,
-                                COHORT %in% c("historical") & MEASURE_DATE %in% c(historical_followup_start:historical_followup_stop) ~ 1,
-                                TRUE ~ 0
-  )) %>% 
-  dplyr::filter(valid_date == 1) %>% 
+  # Commented part used for AHA abstract
+  # dplyr::filter(MEASURE_DATE >= origin_date) %>% 
+  # mutate(valid_date = case_when(COHORT %in% c("exposed","unexposed") & MEASURE_DATE %in% c(exposed_followup_start:exposed_followup_stop) ~ 1,
+  #                               COHORT %in% c("historical") & MEASURE_DATE %in% c(historical_followup_start:historical_followup_stop) ~ 1,
+  #                               TRUE ~ 0
+  # )) %>% 
+  # dplyr::filter(valid_date == 1) %>% 
+  dplyr::filter(MEASURE_DATE >= origin_date, MEASURE_DATE <= max_followup_date) %>% 
 
   arrange(ID,MEASURE_DATE) %>% 
   mutate(t = MEASURE_DATE - origin_date) %>% 

@@ -57,6 +57,7 @@ table(facility$payer_type_secondary)
         #   rename(specimen_date = SPECIMEN_DATE)  %>% 
         #   dplyr::filter(index_date >= specimen_date, index_date < (specimen_date + days(30))) 
   
+# Hospitalization status from index date to origin date --------
 
 hospitalization <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/encounter_",version,".parquet")) %>% 
   dplyr::select(ID,ENCOUNTERID,FACILITY_LOCATION,ENC_TYPE,ADMIT_DATE,DISCHARGE_DATE) %>% 
@@ -65,7 +66,7 @@ hospitalization <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/encoun
              by = c("ID")) %>% 
   mutate(hospitalized = case_when(ENC_TYPE %in% c("EI","IP","IS","OS") ~ 1,
                                      TRUE ~ 0),
-         not_hospitalized = case_when(ENC_TYPE %in% c("ED","IC","TH","OA","NI","UN","OT") ~ 1,
+         not_hospitalized = case_when(ENC_TYPE %in% c("AV","ED","IC","TH","OA","NI","UN","OT") ~ 1,
                                       TRUE ~ 0)) %>% 
   dplyr::filter(ADMIT_DATE >= index_date, ADMIT_DATE < origin_date)  %>% 
   collect() %>% 

@@ -1,0 +1,610 @@
+---
+title: "Exploratory Data Analysis"
+format: pptx
+editor: visual
+---
+
+```{r}
+source("C:/code/external/pasc_cardiometabolic_risk/.Rprofile")
+source("C:/code/external/pasc_cardiometabolic_risk/analysis/pcra_analytic dataset for data availability.R")
+index_date = readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date.RDS"))
+lookback_df = readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/lookback dataset for analysis.RDS")) 
+noncpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/noncpit2dm last followup.RDS"))
+  cpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/cpit2dm new onset diabetes.RDS"))
+
+library(ggpubr)
+library(knitr)
+```
+
+# Proposal
+
+## Variables/Framework
+
+```{r}
+knitr::include_graphics(paste0(path_pasc_proposal_folder,"/figures/FRAMEWORK PASC and Diabetes.png"))
+
+```
+
+## Timeline of Study Populations
+
+```{r}
+knitr::include_graphics(paste0(path_pasc_proposal_folder,"/figures/TIMELINE Sample selection PASC and Diabetes.png"))
+```
+
+## Selection
+
+Patients 18-100 years of age with at least 2 encounters in the 24 months preceding the index date and at least 1 encounter in the follow-up period who also met eligibility criteria specific to any of the 3 cohorts:
+
+1.  Exposed cohort: patients with a positive COVID test or COVID-related illness between March 1, 2020 and January 29, 2022
+2.  Unexposed cohort: patients with at least 1 negative COVID test and no COVID-related illness between March 1, 2020 and January 29, 2022, and no positive COVID test during the follow-up period
+3.  Historical control cohort: patients with at least 2 encounters 2 years before the index date between March 2, 2018 and January 30, 2020 who were not subsequently part of the exposed or unexposed cohorts.
+    -   We 1:1 matched Historical control and Exposed by **age** (1-year) and **sex**
+
+## Look-back and Follow-up Period Definitions
+
+Look-back period encounters (To meet criteria for 1 AND 2, encounters needed to be \>=7 days apart):
+
+1.  At least 1 clinic (ambulatory/inpatient/obs/ED) visit in 2 years AND
+2.  At least 1 clinic visit OR At least 1 Lab visit OR At least 1 pharmacy visit
+
+Follow-up period encounter:
+
+1.  At least 1 clinic (ambulatory/inpatient/obs/ED) visit in 2 years
+
+## Cohort Look-back and Follow-up Periods
+
+| Cohort     | Identification Period          | Look-back Period                                                     | Follow-up Period                                                                                                   |
+|------------|--------------------------------|----------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| Exposed    | March 1, 2020-January 29, 2022 | 730 days prior to index COVID identification (back to March 2, 2018) | Index COVID identification +30 through the end of the follow-up period (maximum: March 31, 2020-February 28, 2022) |
+| Unexposed  | March 1, 2020-January 29, 2022 | 730 days prior to index COVID identification (back to March 2, 2018) | Index COVID identification +30 through the end of the follow-up period (maximum: March 31, 2020-February 28, 2022) |
+| Historical | March 2, 2018-January 30, 2020 | 730 days prior to index encounter (back to March 1, 2016)            | Index clinic visit \_+30 (maximum: April 1, 2018-February 29, 2020)                                                |
+
+# Cohorts
+
+```{r}
+
+  
+```
+
+## Index Date Distribution (Calendar Month)
+
+Could we request a match based on calendar month corresponding to index date as well?
+
+```{r}
+
+
+index_date %>% 
+  mutate(COHORT = factor(COHORT,levels=c("exposed","unexposed","historical"))) %>% 
+  mutate(cal_month = format(index_date,"%Y-%m")) %>%
+  group_by(cal_month,COHORT) %>% 
+  tally() %>% 
+  ggplot(data=.,aes(x=cal_month,fill=COHORT,y = n)) +
+  geom_col(position = position_dodge(width=0.9)) +
+  facet_grid(COHORT~.) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90),
+        legend.position = "none")
+
+```
+
+## Demographics on Index Date **- Univariate**
+
+```{r}
+
+lookback_df %>% 
+    mutate(COHORT = factor(COHORT,
+                           levels=c("exposed","unexposed","historical")),
+           age_5y = cut(age,
+                        breaks=c(18,seq(25,80,by=5),90,100),
+                        right = TRUE,include.lowest = TRUE)) %>% 
+  group_by(COHORT,age_5y) %>% 
+  tally() %>% 
+  ggplot(data=.,aes(x=age_5y,fill=COHORT,y = n)) +
+  geom_col(position = position_dodge(width=0.9)) +
+  facet_grid(COHORT~.) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90),
+        legend.position = "none")
+```
+
+## Demographics on Index Date **- Univariate (cont.)**
+
+```{r}
+figB = lookback_df %>% 
+    mutate(COHORT = factor(COHORT,
+                           levels=c("exposed","unexposed","historical")),
+           sex = case_when(female == 1 ~ "Female",
+                           female == 0 ~ "Male",
+                           TRUE ~ NA_character_)) %>% 
+  group_by(COHORT,sex) %>% 
+  tally() %>% 
+  group_by(COHORT) %>% 
+  mutate(p = n/sum(n)) %>% 
+  ungroup() %>% 
+  ggplot(data=.,aes(x=COHORT,fill=sex,y=p)) +
+  geom_col(position = "stack") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90),
+        legend.position = "none")
+
+
+figC = lookback_df %>% 
+    mutate(COHORT = factor(COHORT,
+                           levels=c("exposed","unexposed","historical")),
+           race_eth = case_when(nhwhite == 1 ~ "NH White",
+                           nhblack == 1 ~ "NH Black",
+                           hispanic == 1 ~ "Hispanic",
+                           nhother == 1 ~ "NH Other",
+                           TRUE ~ NA_character_)) %>% 
+  group_by(COHORT,race_eth) %>% 
+  tally() %>% 
+  group_by(COHORT) %>% 
+  mutate(p = n/sum(n)) %>% 
+  ungroup() %>% 
+  ggplot(data=.,aes(x=COHORT,fill=race_eth,y=p)) +
+  geom_col(position = "stack") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90),
+        legend.position = "bottom")
+ggarrange(figB,
+          figC,
+          nrow = 1,ncol=2)
+```
+
+## Demographics on Index Date **- Age (5y) x Sex**
+
+Sum of columns = 1
+
+```{r}
+lookback_df %>% 
+    mutate(COHORT = factor(COHORT,
+                           levels=c("exposed","unexposed","historical")),
+           age_5y = cut(age,
+                        breaks=c(18,seq(25,80,by=5),90,100),
+                        right = TRUE,include.lowest = TRUE),
+           sex = case_when(female == 1 ~ "Female",
+                           female == 0 ~ "Male",
+                           TRUE ~ NA_character_)) %>% 
+  group_by(COHORT,age_5y,sex) %>% 
+  tally() %>% 
+  ungroup() %>% 
+  group_by(COHORT,sex) %>% 
+  mutate(p = n/sum(n)) %>% 
+  ggplot(data=.,aes(x=COHORT,y=age_5y,fill=p)) +
+  geom_tile() +
+  facet_grid(~sex) +
+  scale_fill_gradient(low="white",high="darkblue") +
+  ggtitle("Proportion within COHORT and Sex groups") +
+  theme_bw() +
+  theme(legend.position = "bottom")
+  
+  
+```
+
+## Demographics on Index Date **- Race/Ethnicity x Sex**
+
+Sum of columns = 1
+
+```{r}
+lookback_df %>% 
+    mutate(COHORT = factor(COHORT,
+                           levels=c("exposed","unexposed","historical")),
+           race_eth = case_when(nhwhite == 1 ~ "NH White",
+                           nhblack == 1 ~ "NH Black",
+                           hispanic == 1 ~ "Hispanic",
+                           nhother == 1 ~ "NH Other",
+                           TRUE ~ NA_character_),
+           sex = case_when(female == 1 ~ "Female",
+                           female == 0 ~ "Male",
+                           TRUE ~ NA_character_)) %>% 
+  group_by(COHORT,race_eth,sex) %>% 
+  tally() %>% 
+  ungroup() %>% 
+  group_by(COHORT,sex) %>% 
+  mutate(p = n/sum(n)) %>% 
+  ggplot(data=.,aes(x=COHORT,y=race_eth,fill=p)) +
+  geom_tile() +
+  facet_grid(~sex) +
+  scale_fill_gradient(low="white",high="darkblue") +
+  ggtitle("Proportion within COHORT and Sex groups") +
+  theme_bw() +
+  theme(legend.position = "bottom")
+```
+
+## Encounters during Look-back Period
+
+```{r}
+open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/encounter_",version,".parquet")) %>% 
+  dplyr::select(ID,ENCOUNTERID,FACILITY_LOCATION,ENC_TYPE,
+                ADMIT_DATE,DISCHARGE_DATE)  %>% 
+  right_join(index_date %>% 
+               dplyr::select(ID,index_date,index_date_minus730,COHORT),
+             by = c("ID")) %>% 
+  dplyr::filter(ADMIT_DATE >= index_date_minus730, ADMIT_DATE < index_date)  %>% 
+  mutate(m = month(ADMIT_DATE),
+         y = year (ADMIT_DATE)) %>% 
+  group_by(COHORT,ENC_TYPE,y,m) %>% 
+  tally()  %>% 
+  collect() %>% 
+  mutate(cal_month = paste0(y,"-",sprintf("%02d",m))) %>% 
+  group_by(COHORT,cal_month) %>% 
+  mutate(p = n/sum(n)) %>% 
+  mutate(COHORT = factor(COHORT,
+                           levels=c("exposed","unexposed","historical"))) %>% 
+  ungroup()  %>% 
+  ggplot(data=.,aes(x=cal_month,y=ENC_TYPE,fill=p)) +
+  facet_grid(COHORT ~ .) +
+  geom_tile() +
+  scale_fill_gradient(low="white",high="darkblue") +
+  ggtitle("Proportion within COHORT and calendar month groups") +
+  theme_bw() +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 90))
+  
+```
+
+## Encounters during Follow-up Period
+
+```{r}
+open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/encounter_",version,".parquet")) %>% 
+  dplyr::select(ID,ENCOUNTERID,FACILITY_LOCATION,ENC_TYPE,
+                ADMIT_DATE,DISCHARGE_DATE)  %>% 
+  right_join(index_date %>% 
+               dplyr::select(ID,index_date,origin_date,COHORT),
+             by = c("ID")) %>% 
+  dplyr::filter(ADMIT_DATE >= origin_date)  %>% 
+  mutate(m = month(ADMIT_DATE),
+         y = year (ADMIT_DATE)) %>% 
+  group_by(COHORT,ENC_TYPE,y,m) %>% 
+  tally()  %>% 
+  collect() %>% 
+  mutate(cal_month = paste0(y,"-",sprintf("%02d",m))) %>% 
+  group_by(COHORT,cal_month) %>% 
+  mutate(p = n/sum(n)) %>% 
+  mutate(COHORT = factor(COHORT,
+                           levels=c("exposed","unexposed","historical"))) %>% 
+  ungroup()  %>% 
+  ggplot(data=.,aes(x=cal_month,y=ENC_TYPE,fill=p)) +
+  facet_grid(COHORT ~ .) +
+  geom_tile() +
+  scale_fill_gradient(low="white",high="darkblue") +
+  ggtitle("Proportion within COHORT and calendar month groups") +
+  theme_bw() +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 90))
+```
+
+# Outcomes
+
+## Follow-up: Incident T2DM vs No Incident T2DM
+
+```{r}
+
+t2dm_df = bind_rows(cpit2dm %>% 
+            dplyr::select(ID,criterion2_date) %>% 
+            mutate(t2dm = "Incident T2DM") %>% 
+            rename(last_followup_date = criterion2_date),
+          noncpit2dm %>% 
+            dplyr::select(ID,last_followup_date) %>% 
+              mutate(t2dm = "No Incident T2DM")) %>% 
+  left_join(index_date %>% 
+              dplyr::select(ID,index_date,COHORT,origin_date),
+            by = "ID") %>% 
+  mutate(t = as.numeric(last_followup_date - origin_date)) %>% 
+  mutate(COHORT = factor(COHORT,
+                           levels=c("exposed","unexposed","historical")))
+
+```
+
+```{r}
+t2dm_df %>% 
+  ggplot(data=.,aes(x=t,fill=t2dm)) + 
+  geom_histogram() +
+  facet_grid(t2dm~COHORT,scales = "free_y") +
+  theme_bw() +
+  theme(legend.position = "none") +
+  xlab("Time from 30 days after index date")
+
+```
+
+## Crude Incidence of T2DM
+
+```{r}
+# Borrowed from paper/text_incidence of new onset diabetes.R
+t2dm_df %>% 
+  mutate(case = case_when(t2dm == "Incident T2DM" ~ 1,
+                          TRUE ~ 0)) %>% 
+  group_by(COHORT) %>%
+  summarize(case_count = sum(case),
+            time_count = sum(t)) %>% 
+  mutate(case_per_100py = case_count/(time_count/(100*365)),
+         time_per_100py = time_count/(100*365)) %>% 
+  ungroup() %>% 
+  mutate_if(is.numeric,~round(.,2)) %>% 
+  kable()
+```
+
+## Outcome: Body Mass Index
+
+```{r warning=FALSE}
+figB = anthro_followup %>% 
+  dplyr::filter(!is.na(bmi)) %>% 
+  ggplot(data=.,aes(x=t,y=bmi,group = COHORT,col=COHORT)) +
+  geom_smooth(method = "lm") +
+  # geom_point() +
+  theme_bw() +
+  theme(legend.position = "bottom")
+
+figA = anthro_followup %>%
+  dplyr::filter(!is.na(bmi)) %>% 
+  ggplot(data=.,aes(x=t,group=COHORT,fill=COHORT)) +
+  geom_density(alpha=0.5) +
+  theme_bw() +
+  theme(legend.position = "bottom")
+
+figC = anthro_followup %>% 
+  dplyr::filter(!is.na(bmi)) %>%
+  group_by(COHORT,ID) %>% 
+  tally() %>% 
+  mutate(n_category = case_when(n %in% c(0:10) ~ 1,
+                                n %in% c(11:30) ~ 2,
+                                TRUE ~ 3)) %>%
+  mutate(n_category = factor(n_category,levels=c(1:3),labels=c("0 to 10","11 to 30",">30"))) %>% 
+  dplyr::select(-n) %>% 
+  ungroup() %>% 
+  group_by(COHORT,n_category) %>% 
+  tally() %>% 
+  ggplot(data=.,aes(x=n_category,y = n, group = COHORT,fill=COHORT)) +
+  geom_col(position = position_dodge(width=0.9)) +
+  theme_bw() +
+  theme(legend.position = "bottom")
+
+ggarrange(figA,
+          figB,
+          figC,
+          labels = c("A","B","C"),
+          nrow = 1,ncol=3)
+```
+
+## Number of observations: Body Mass Index
+
+```{r}
+anthro_followup %>% 
+  dplyr::filter(!is.na(bmi)) %>%
+  group_by(COHORT,ID) %>% 
+  tally() %>% 
+  ungroup() %>% 
+  group_by(COHORT) %>% 
+  summarize(Summary = paste0("Mean: ",round(mean(n),1),
+                       ", SD:",round(sd(n),1),
+                       ", Median: ",quantile(n,probs=0.5),
+                       ", min: ",min(n),
+                       ", max: ",max(n))) %>% 
+  kable(.)
+```
+
+## Patients with high counts of BMI (\>200)
+
+```{r warning=FALSE}
+
+high_bmi_counts_ID <- anthro_followup %>% 
+  dplyr::filter(!is.na(bmi)) %>%
+  group_by(COHORT,ID) %>% 
+  tally() %>% 
+  ungroup() %>% 
+  dplyr::filter(n > 200) %>% 
+  dplyr::select(ID) %>% 
+  pull()
+print(paste0("There are ",length(high_bmi_counts_ID)," participants with >200 observations of BMI"))
+
+figA = open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/encounter_",version,".parquet")) %>% 
+  dplyr::select(ID,ENCOUNTERID,FACILITY_LOCATION,ENC_TYPE,ADMIT_DATE,DISCHARGE_DATE) %>% 
+  right_join(index_date %>% 
+               dplyr::select(ID,index_date,origin_date,max_followup_date),
+             by = c("ID")) %>% 
+  mutate(hospitalized = case_when(ENC_TYPE %in% c("EI","IP","IS","OS") ~ 1,
+                                     TRUE ~ 0),
+         not_hospitalized = case_when(ENC_TYPE %in% c("ED","IC","TH","OA","NI","UN","OT") ~ 1,
+                                      TRUE ~ 0)) %>% 
+  dplyr::filter(ID %in% high_bmi_counts_ID[1:3],
+                ADMIT_DATE >= origin_date,
+                ADMIT_DATE <= max_followup_date)  %>% 
+  collect() %>% 
+  mutate(t = ADMIT_DATE - origin_date) %>% 
+  ggplot(data=.,aes(x = t,y=ENC_TYPE,col=ID)) +
+  geom_point(position = position_dodge(width=0.9)) +
+  theme_bw()
+
+figB = anthro_followup %>% 
+  dplyr::filter(ID %in% high_bmi_counts_ID[1:3]) %>% 
+  ggplot(data=.,aes(x=t,y=bmi,group=ID,col=ID)) +
+  geom_point(alpha=0.8) +
+  geom_line(col="grey60",alpha=0.8) +
+  theme_bw()
+
+ggarrange(figA,
+          figB,
+          nrow=2,ncol=1)
+
+```
+
+```         
+```
+
+## Outcome: Systolic Blood Pressure
+
+```{r warning=FALSE}
+figB = anthro_followup %>% 
+  dplyr::filter(!is.na(SYSTOLIC)) %>% 
+  ggplot(data=.,aes(x=t,y=SYSTOLIC,group = COHORT,col=COHORT)) +
+  geom_smooth(method = "lm") +
+  # geom_point() +
+  theme_bw() +
+  theme(legend.position = "bottom")
+
+figA = anthro_followup %>%
+  dplyr::filter(!is.na(SYSTOLIC)) %>% 
+  ggplot(data=.,aes(x=t,group=COHORT,fill=COHORT)) +
+  geom_density(alpha=0.5) +
+  theme_bw() +
+  theme(legend.position = "bottom")
+
+figC = anthro_followup %>% 
+  dplyr::filter(!is.na(SYSTOLIC)) %>%
+  group_by(COHORT,ID) %>% 
+  tally() %>% 
+  mutate(n_category = case_when(n %in% c(0:10) ~ 1,
+                                n %in% c(11:30) ~ 2,
+                                TRUE ~ 3)) %>%
+  mutate(n_category = factor(n_category,levels=c(1:3),labels=c("0 to 10","11 to 30",">30"))) %>% 
+  dplyr::select(-n) %>% 
+  ungroup() %>% 
+  group_by(COHORT,n_category) %>% 
+  tally() %>% 
+  ggplot(data=.,aes(x=n_category,y = n, group = COHORT,fill=COHORT)) +
+  geom_col(position = position_dodge(width=0.9)) +
+  theme_bw() +
+  theme(legend.position = "bottom")
+
+ggarrange(figA,
+          figB,
+          figC,
+          labels = c("A","B","C"),
+          nrow = 1,ncol=3)
+```
+
+## Number of observations: Systolic Blood Pressure
+
+```{r}
+anthro_followup %>% 
+  dplyr::filter(!is.na(SYSTOLIC)) %>%
+  group_by(COHORT,ID) %>% 
+  tally() %>% 
+  ungroup() %>% 
+  group_by(COHORT) %>% 
+  summarize(Summary = paste0("Mean: ",round(mean(n),1),
+                       ", SD:",round(sd(n),1),
+                       ", Median: ",quantile(n,probs=0.5),
+                       ", min: ",min(n),
+                       ", max: ",max(n))) %>% 
+  kable(.)
+```
+
+## Outcome: LDL Cholesterol
+
+```{r warning=FALSE}
+figB = lab_followup %>% 
+  dplyr::filter(!is.na(ldl)) %>% 
+  ggplot(data=.,aes(x=t,y=ldl,group = COHORT,col=COHORT)) +
+  geom_smooth(method = "lm") +
+  # geom_point() +
+  theme_bw() +
+  theme(legend.position = "bottom")
+
+figA = lab_followup %>% 
+  dplyr::filter(!is.na(ldl)) %>% 
+  ggplot(data=.,aes(x=t,group=COHORT,fill=COHORT)) +
+  geom_density(alpha=0.5) +
+  theme_bw() +
+  theme(legend.position = "bottom")
+
+figC = lab_followup %>% 
+  dplyr::filter(!is.na(ldl)) %>%
+  group_by(COHORT,ID) %>% 
+  tally() %>% 
+  mutate(n_category = case_when(n %in% c(0:10) ~ 1,
+                                n %in% c(11:30) ~ 2,
+                                TRUE ~ 3)) %>%
+  mutate(n_category = factor(n_category,levels=c(1:3),labels=c("0 to 10","11 to 30",">30"))) %>% 
+  dplyr::select(-n) %>% 
+  ungroup() %>% 
+  group_by(COHORT,n_category) %>% 
+  tally() %>% 
+  ggplot(data=.,aes(x=n_category,y = n, group = COHORT,fill=COHORT)) +
+  geom_col(position = position_dodge(width=0.9)) +
+  theme_bw() +
+  theme(legend.position = "bottom")
+
+ggarrange(figA,
+          figB,
+          figC,
+          labels = c("A","B","C"),
+          nrow = 1,ncol=3)
+```
+
+## Number of observations: LDL Cholesterol
+
+```{r}
+lab_followup %>% 
+  dplyr::filter(!is.na(ldl)) %>%
+  group_by(COHORT,ID) %>% 
+  tally() %>% 
+  ungroup() %>% 
+  group_by(COHORT) %>% 
+  summarize(Summary = paste0("Mean: ",round(mean(n),1),
+                       ", SD:",round(sd(n),1),
+                       ", Median: ",quantile(n,probs=0.5),
+                       ", min: ",min(n),
+                       ", max: ",max(n))) %>% 
+  kable(.)
+```
+
+# Covariates: Look-back Period
+
+## Comorbidities by Age (5-y) and Sex
+
+Proportions estimated separately for each combination of comorbidity, age category and COHORT
+
+```{r}
+lookback_df %>% 
+    mutate(COHORT = factor(COHORT,
+                           levels=c("exposed","unexposed","historical")),
+           age_5y = cut(age,
+                        breaks=c(18,seq(25,80,by=5),90,100),
+                        right = TRUE,include.lowest = TRUE),
+           sex = case_when(female == 1 ~ "Female",
+                           female == 0 ~ "Male",
+                           TRUE ~ NA_character_)) %>% 
+  group_by(COHORT,age_5y) %>% 
+  summarize_at(vars(obesity,cardiovascular,cerebrovascular,hypertension,
+                pulmonary,hyperlipidemia),~mean(.,na.rm=TRUE)) %>% 
+  pivot_longer(cols=-one_of(c("COHORT","age_5y","sex")),
+               names_to="var",values_to="val") %>% 
+  ggplot(data=.,aes(x=age_5y,y=var,fill=val)) +
+  facet_grid(~COHORT)+
+  geom_tile() +
+  scale_fill_gradient(name="Proportion", low="white",high="darkblue",limits=c(0,0.5)) +
+  ggtitle("Proportion within COHORT and 5-y age groups") +
+  theme_bw() +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 90))
+  
+  
+```
+
+## Medication use by Age (5-y) and Sex
+
+```{r}
+lookback_df %>% 
+    mutate(COHORT = factor(COHORT,
+                           levels=c("exposed","unexposed","historical")),
+           age_5y = cut(age,
+                        breaks=c(18,seq(25,80,by=5),90,100),
+                        right = TRUE,include.lowest = TRUE),
+           sex = case_when(female == 1 ~ "Female",
+                           female == 0 ~ "Male",
+                           TRUE ~ NA_character_)) %>% 
+  group_by(COHORT,age_5y) %>% 
+  summarize_at(vars(antidepressants,antipsychotics,antihypertensives,
+                    statins,immunosuppresants),~mean(.,na.rm=TRUE)) %>% 
+  pivot_longer(cols=-one_of(c("COHORT","age_5y","sex")),
+               names_to="var",values_to="val") %>% 
+  ggplot(data=.,aes(x=age_5y,y=var,fill=val)) +
+  facet_grid(~COHORT)+
+  geom_tile() +
+  scale_fill_gradient(name="Proportion", low="white",high="darkblue",limits=c(0,0.5)) +
+  ggtitle("Proportion within COHORT and 5-y age groups") +
+  theme_bw() +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 90))
+```

@@ -11,6 +11,7 @@ index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date.R
 demographic <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/demographic.RDS"))
 index_date_characteristics <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date characteristics.RDS"))
 lookback_clinical_characteristics <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/lookback clinical characteristics.RDS"))
+lb_healthcare_utilization <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/lookback healthcare utilization.RDS"))
 
 
 
@@ -37,6 +38,8 @@ lookback_df = demographic %>%
                  antidepressants,
                  antipsychotics,antihypertensives,statins,immunosuppresants),function(x) case_when(is.na(x) ~ 0,
                                                                                                    TRUE ~ x)) %>% 
+  left_join(lb_healthcare_utilization %>% dplyr::select(-COHORT),
+            by="ID") %>% 
   # Those values of HbA1c outside [3,20] are set to NA_real_
   mutate(hba1c = case_when(hba1c < 3 | hba1c > 20 ~ NA_real_,
                            TRUE ~ hba1c))
