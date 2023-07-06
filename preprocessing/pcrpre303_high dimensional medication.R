@@ -2,6 +2,8 @@ rm(list=ls());gc();source(".Rprofile")
 
 index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date.RDS"))
 
+source("preprocessing/pcrpre_encounter type.R")
+
 # unique_prescribing <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/prescribing_",version,".parquet")) %>% 
 #   group_by(RXNORM_CUI) %>% 
 #   tally() %>% 
@@ -47,21 +49,47 @@ index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date.R
 # A10BA: Biguanides (chemical subgroup)
 # A10BA02: Metformin (chemical substance)
 
+# Missingness in index date and encounter type
+missing_prescribing_encounters <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/prescribing_",version,".parquet"))  %>% 
+  mutate(ID = as.character(ID)) %>% 
+  right_join(index_date %>% 
+               dplyr::select(ID,origin_date,index_date,index_date_minus365,index_date_minus730, COHORT),
+             by = c("ID")) %>% 
+  mutate(missing_date_type = case_when(!is.na(index_date) ~ "index date available",
+                                       TRUE ~ "index date missing")) %>% 
+  left_join(encounter_type,
+            by=c("ID","ENCOUNTERID")) %>% 
+  mutate(missing_enc_inpatient = case_when(!is.na(enc_inpatient) ~ "enc_inpatient available",
+                                           TRUE ~ "enc_inpatient missing")) %>% 
+  group_by(missing_date_type,missing_enc_inpatient) %>% 
+  tally() %>% 
+  collect()
+
+
 lb_hd_prescribing <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/prescribing_",version,".parquet")) %>%
   mutate(RXNORM_CUI = as.numeric(RXNORM_CUI)) %>% 
   right_join(index_date %>% 
-               dplyr::select(ID,index_date,index_date_minus365,COHORT),
+               dplyr::select(ID,origin_date,index_date,index_date_minus365,index_date_minus730, COHORT),
              by = c("ID")) %>% 
-  dplyr::filter(RX_ORDER_DATE >= index_date_minus365,RX_ORDER_DATE < index_date) %>% 
+  mutate(date_type = case_when(RX_ORDER_DATE >= origin_date ~ "p4",
+                               RX_ORDER_DATE >= index_date ~ "p3",
+                               RX_ORDER_DATE >= index_date_minus365 ~ "p2",
+                               RX_ORDER_DATE >= index_date_minus730 ~ "p1",
+                               TRUE ~ NA_character_)) %>% 
+  dplyr::filter(!is.na(date_type)) %>% 
+  left_join(encounter_type,
+            by=c("ID","ENCOUNTERID")) %>% 
+  # dplyr::filter(RX_ORDER_DATE >= index_date_minus365,RX_ORDER_DATE < index_date) %>% 
   left_join(
     read_csv(paste0(path_pasc_cmr_folder,"/working/pcrpre303_summary high dimensional prescribing.csv")) %>% 
       mutate(atc3 = stringr::str_sub(classId,1,3)),
     by = c("RXNORM_CUI")
   ) %>% 
   dplyr::filter(!is.na(atc3)) %>% 
-  group_by(ID,atc3) %>% 
+  group_by(ID,enc_inpatient,date_type,atc3) %>% 
   tally() %>% 
   collect() %>% 
   pivot_wider(names_from="atc3",values_from="n") 
 
-saveRDS(lb_hd_prescribing,paste0(path_pasc_cmr_folder,"/working/cleaned/lookback high dimensional prescribing.RDS"))
+saveRDS(lb_hd_prescribing,paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional prescribing.RDS"))
+lb_hd_prescribing <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional prescribing.RDS"))

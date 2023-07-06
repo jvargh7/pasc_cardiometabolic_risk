@@ -2,6 +2,9 @@ rm(list=ls());gc();source(".Rprofile")
 
 index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date.RDS"))
 
+source("preprocessing/pcrpre_encounter type.R")
+
+
 prccsr_reference <- readxl::read_excel(paste0(path_pasc_cmr_folder,"/working/dictionaries/PRCCSR-Reference-File-v2023-1.xlsx"),
                                        sheet = "PR_to_CCSR_Mapping",skip = 1) %>% 
   dplyr::rename_at(vars(everything()),~c("PX","px_description","ccsr_category","ccsr_category_description")) %>% 
@@ -67,19 +70,27 @@ write_csv(unique_procedures,paste0(path_pasc_cmr_folder,"/working/pcrpre302_summ
 lb_hd_procedures <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/procedures_",version,".parquet"))  %>% 
   mutate(ID = as.character(ID)) %>% 
   right_join(index_date %>% 
-               dplyr::select(ID,index_date,index_date_minus730,COHORT),
+               dplyr::select(ID,origin_date,index_date,index_date_minus365,index_date_minus730, COHORT),
              by = c("ID")) %>% 
-  dplyr::filter(PX_DATE >= index_date_minus730,PX_DATE < index_date) %>% 
+  mutate(date_type = case_when(PX_DATE >= origin_date ~ "p4",
+                               PX_DATE >= index_date ~ "p3",
+                               PX_DATE >= index_date_minus365 ~ "p2",
+                               PX_DATE >= index_date_minus730 ~ "p1",
+                               TRUE ~ NA_character_)) %>% 
+  dplyr::filter(!is.na(date_type)) %>% 
+  left_join(encounter_type,
+            by=c("ID","ENCOUNTERID")) %>% 
+  # dplyr::filter(PX_DATE >= index_date_minus730,PX_DATE < index_date) %>% 
   left_join(
     bind_rows(prccsr_reference %>% rename(px_category = ccsr_category),
               cpt_cat1_reference,
               cpt_cat2_reference
               ),
     by = c("PX","PX_TYPE")) %>% 
-  group_by(COHORT,ID,px_category) %>% 
+  group_by(COHORT,ID,enc_inpatient, date_type, px_category) %>% 
   tally() %>% 
   dplyr::filter(!is.na(px_category)) %>% 
   collect() %>% 
   pivot_wider(names_from="px_category",values_from="n")
 
-saveRDS(lb_hd_procedures,paste0(path_pasc_cmr_folder,"/working/cleaned/lookback high dimensional procedures.RDS"))
+saveRDS(lb_hd_procedures,paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional procedures.RDS"))
