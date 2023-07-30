@@ -2,7 +2,7 @@ index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date.R
 demographic <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/demographic.RDS"))
 anthro_followup <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/anthro followup.RDS"))
 lab_followup <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/lab_followup_wide.RDS"))
-mi_dfs <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/lookback mi_dfs.RDS"))
+# mi_dfs <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/lookback mi_dfs.RDS"))
 
 
 bmi_ID = anthro_followup %>% 
@@ -31,3 +31,4 @@ outcome_availability = demographic %>%
                                TRUE ~ 0),
          in_ldl_ID = case_when(ID %in% ldl_ID ~ 1,
                                TRUE ~ 0))
+

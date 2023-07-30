@@ -15,11 +15,7 @@ open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,".parquet")
   collect() %>% 
   saveRDS(.,paste0(path_pasc_cmr_folder,"/working/cleaned/lab_RESULT_covidtests.RDS"))
 
-open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,".parquet")) %>% 
-  group_by(LAB_LOINC,RAW_LAB_NAME) %>% 
-  tally() %>% 
-  collect() %>% 
-  write_csv(.,"preprocessing/pcpre_lab LAB_LOINC counts.csv") 
+
 
 
 

@@ -2,17 +2,7 @@
 
 intercept_slope_plot <- function(contrasts_df,coefs_df){
   
-  contrasts_df <- contrasts_df %>% 
-    rename(iv = term,
-           theta_D = Estimate,
-           lci = LCI,
-           uci = UCI)
   
-  coefs_df <- coefs_df %>% 
-    rename(iv = term,
-           theta_D = estimate) %>% 
-    mutate(lci = theta_D - 1.96*std.error,
-           uci = theta_D + 1.96*std.error)
   
   is_plot_df = contrasts_df %>% 
     dplyr::filter(iv %in% c("Contrast 1","Contrast 2")) %>% 
@@ -27,9 +17,9 @@ intercept_slope_plot <- function(contrasts_df,coefs_df){
                theta_D = theta_D * unique(contrasts_df$modifier_value),
                lci = lci*unique(contrasts_df$modifier_value),
                uci = uci*unique(contrasts_df$modifier_value)
-        ) %>% 
+               ) %>% 
         dplyr::select(exposure, contrast, theta_D, lci, uci, outcome)
-      
+        
     ) %>% 
     bind_rows(
       data.frame(
@@ -53,3 +43,4 @@ intercept_slope_plot <- function(contrasts_df,coefs_df){
   
   
 }
+  

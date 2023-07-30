@@ -169,23 +169,42 @@ This sub-step in the **PREPROCESSING** workflow consists of analytic files start
     + eye infections: Grouped ICD-10 codes () and procedure codes ()
 
 ## Step 3. High dimensional covariates 
-This sub-step in the **PREPROCESSING** workflow consists of analytic files starting with **pcrpre3**.
 
-- repo/preprocessing/pcrpre301_high dimensional comorbidities
+This sub-step in the **PREPROCESSING** workflow consists of analytic files starting with **pcrpre3**. All counts are estimated for combinations of date_type and enc_inpatient variables. See preprocessing/pcpre_encounter type.R
+
+### Variables
+
+- date_type
+    + P4 : [origin_date, )
+    + P3 : [index_date, origin_date)
+    + P2 : [index_date_minus365, index_date)
+    + P1 : [index_date_minus730, index_date_minus365)
+
+- enc_inpatient
+    + Inpatient ("EI","IP","IS","OS")
+    + Outpatient ("AV","ED","IC","TH","OA","NI","UN","OT")
+
+
+### Code
+
+- repo/preprocessing/pcrpre301_high dimensional comorbidities.R
     + Extract ICD-10 codes
     + Group them using [HCUP Clinical Classification Codes](https://hcup-us.ahrq.gov/toolssoftware/ccsr/dxccsr.jsp)
     + Merge into main dataset and summarize
 
-- repo/preprocessing/pcrpre302_high dimensional procedures
+- repo/preprocessing/pcrpre302_high dimensional procedures.R
     + Extract LOINC codes
     + Group them using [HCUP Clinical Classification Codes](https://hcup-us.ahrq.gov/toolssoftware/ccsr/dxccsr.jsp)
     + Merge into main dataset and summarize
 
-- repo/preprocessing/pcrpre303_high dimensional medication
+- repo/preprocessing/pcrpre303_high dimensional medication.R
     + Extract RxCUI codes
-    + Group them into ATC classes using [getClassByRxNormDrugId](https://lhncbc.nlm.nih.gov/RxNav/APIs/api-RxClass.getClassByRxNormDrugId.html)
+    + Group them into ATC3 classes using [getClassByRxNormDrugId](https://lhncbc.nlm.nih.gov/RxNav/APIs/api-RxClass.getClassByRxNormDrugId.html)
     + Merge into main dataset and summarize
     + One drug can belong to *multiple classes*
+
+- repo/preprocessing/pcrpre304_high dimensional encounter types.R
+    + Identify number of encounters per encounter type
 
 ## Step 4. Analytic Dataset Creation
 This sub-step in the **PREPROCESSING** workflow consists of analytic files starting with **pcrpre4**.

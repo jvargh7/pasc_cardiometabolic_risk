@@ -2,8 +2,8 @@ rm(list=ls());gc();source(".Rprofile")
 source("analysis/pcra_analytic dataset for data availability.R")
 source("analysis/pcra_ipw formula for main analysis.R")
 
+
 tx_weights_df <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/ip weights for COHORT.RDS"))
-mid_weights_df <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/ip weights for missing index date.RDS"))
 bmi_weights_df <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/ip weights for missing bmi.RDS"))
 sbp_weights_df <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/ip weights for missing sbp.RDS"))
 ldl_weights_df <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/ip weights for missing ldl.RDS"))

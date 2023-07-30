@@ -11,3 +11,4 @@ ipw_missing_index = paste0("in_index_date ~ COHORT ",demo_covariates)
 ipw_missing_bmi = paste0("in_bmi_ID ~ COHORT ",demo_covariates,index_date_covariates,comorbidity_covariates,medication_covariates,labs_covariates,lb_hc_covariates)
 ipw_missing_sbp = paste0("in_sbp_ID ~ COHORT ",demo_covariates,index_date_covariates,comorbidity_covariates,medication_covariates,labs_covariates,lb_hc_covariates)
 ipw_missing_ldl = paste0("in_ldl_ID ~ COHORT ",demo_covariates,index_date_covariates,comorbidity_covariates,medication_covariates,labs_covariates,lb_hc_covariates)
+

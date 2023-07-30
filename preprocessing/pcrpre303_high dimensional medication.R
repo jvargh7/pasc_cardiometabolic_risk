@@ -92,4 +92,3 @@ lb_hd_prescribing <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/pres
   pivot_wider(names_from="atc3",values_from="n") 
 
 saveRDS(lb_hd_prescribing,paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional prescribing.RDS"))
-lb_hd_prescribing <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional prescribing.RDS"))

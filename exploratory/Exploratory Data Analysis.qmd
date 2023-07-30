@@ -608,3 +608,47 @@ lookback_df %>%
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 90))
 ```
+
+# Empirically-identified covariates
+
+## Methods
+
+1.  Identify domains of high-dimensional empirically-identified covariates: We used four from the original hdPS paper, modified the medication domain (as prescribing) and included a sixth (labs)
+2.  Refer to participant records from within **1 year** of index date
+3.  Identify **top 200 covariates** in each data domain based on their prevalence in overall dataset (n = 391,009)
+4.  For each covariate, create 3 dummy variables which are proxies of healthcare utilization
+    1.  At least once
+    2.  Sporadic: more often than median participant
+    3.  Frequent: More often than 75th percentile
+5.  To avoid instrumental variable bias, perform bivariate selection of each dummy variable (FDR adj p \< 0.1) that is associated with outcome trajectories using linear mixed models, separately for BMI, SBP and LDL.
+
+```{r include=FALSE}
+hd_dataset_availability <- read_csv(paste0(path_pasc_cmr_folder,"/working/pcrpre403_availability high dimensional dataset.csv")) %>% 
+  group_by(var_group) %>% 
+  tally()
+
+source("C:/code/external/pasc_cardiometabolic_risk/analysis/pcra_selecting high dimensional variables based on fdr.R")
+
+selected_hdvars_summary <- selected_hdvars %>% 
+  group_by(var_group,outcome) %>% 
+  tally() %>% 
+  pivot_wider(names_from=outcome,values_from=n) %>% 
+  mutate(vec = paste0("BMI: ",bmi,", SBP: ",sbp,", LDL: ",ldl))
+
+
+
+```
+
+## Variables
+
+| Category              | Generated before selecting top 200 x 6 | Dummy variables associated with outcome \[1\] (n = 3267) |
+|-----------------------|----------------------------------------|----------------------------------------------------------|
+| Inpatient diagnoses   | 537                                    | BMI: 382, SBP: 203, LDL: -                               |
+| Outpatient diagnoses  | 537                                    | BMI: 487, SBP: 472, LDL: 244                             |
+| Inpatient procedures  | 1951                                   | BMI: 448, SBP: 565, LDL: 537                             |
+| Outpatient procedures | 1951                                   | BMI: 483, SBP: 516, LDL: 493                             |
+| Prescribing           | 89                                     | BMI: 223, SBP: 238, LDL: 228                             |
+| Labs                  | 877                                    | BMI: 323, SBP: 407, LDL: 413                             |
+| **Total**             | **5942**                               | **BMI: 2346, SBP: 2401, LDL: 1915**                      |
+
+: \[1\] After false discovery rate correction, adjusted p-value \< 0.05

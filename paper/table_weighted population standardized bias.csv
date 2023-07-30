@@ -1,0 +1,61 @@
+variable,level,exposed,unexposed,historical
+female,NA,0.037,0.007,0.029
+nhblack,NA,0.089,0.023,0.044
+nhother,NA,0.002,0.008,0.004
+hispanic,NA,0.038,0.022,0.022
+hospitalization,NA,0.002,0.075,0.347
+smoking,NA,0.089,0.025,0.099
+obesity,NA,0.018,0.024,0.029
+cardiovascular,NA,0.014,0.022,0.015
+cerebrovascular,NA,0.003,0.01,0.002
+hypertension,NA,0.017,0.043,0.004
+pulmonary,NA,0.001,0.014,0.029
+hyperlipidemia,NA,0,0.034,0.016
+antidepressants,NA,0.008,0.003,0.054
+antipsychotics,NA,0.014,0,0.047
+antihypertensives,NA,0.033,0.003,0.113
+statins,NA,0.029,0.008,0.107
+immunosuppresants,NA,0.008,0.006,0.064
+age,NA,0.12,0.019,0.145
+hba1c,NA,0.001,0.014,0.059
+glucose,NA,0.005,0.002,0.056
+alt,NA,0.015,0.003,0.008
+HT,NA,0.011,0.007,0.017
+bmi,NA,0.086,0.005,0.021
+SYSTOLIC,NA,0.017,0.001,0.015
+ast,NA,0.034,0.006,0.02
+serum_creatinine,NA,0.02,0.006,0.054
+hdl,NA,0.005,0.017,0.006
+ldl,NA,0.042,0.006,0.072
+lb_hospitalized,NA,0,0.008,0.188
+lb_telehealth,NA,0.082,0.028,0.307
+lb_outpatient,NA,0.014,0.004,0.229
+lb_n_glucose,NA,0.005,0.001,0.092
+lb_n_hdl,NA,0.048,0.012,0.084
+lb_n_ldl,NA,0.035,0.013,0.092
+lb_n_serum_creatinine,NA,0.004,0,0.105
+lb_n_alt,NA,0.017,0.003,0.129
+lb_n_ast,NA,0.018,0.003,0.128
+lb_n_hba1c,NA,0.007,0.007,0.072
+lb_n_labvisits,NA,0.037,0.002,0.159
+site,Source1,0.078,0.07,0.1
+site,Source5,0.028,0.056,0.037
+site,Source7,0.098,0.098,0.087
+site,Source2,0.019,0.034,0.187
+site,Source3,0.007,0.021,0.012
+site,Source4,0.017,0.063,0.072
+site,Source6,0.011,0.011,0.005
+payer_type_primary,Private or Other,0.03,0.028,0.008
+payer_type_primary,Bluecross,0.034,0.013,0.021
+payer_type_primary,Medicare,0.027,0.028,0.017
+payer_type_primary,No Information,0.082,0.035,0.017
+payer_type_primary,No Insurance,0.019,0.03,0.009
+payer_type_primary,Medicaid,0.004,0,0.015
+payer_type_primary,Government,0.014,0.013,0.019
+payer_type_secondary,No Information,0.028,0.01,0.016
+payer_type_secondary,Private or Other,0.002,0.022,0.03
+payer_type_secondary,Government,0.01,0.002,0.009
+payer_type_secondary,Medicaid,0.003,0.002,0.025
+payer_type_secondary,No Insurance,0.045,0.02,0.021
+payer_type_secondary,Medicare,0.013,0.003,0.005
+payer_type_secondary,Bluecross,0.012,0.004,0.001

@@ -5,26 +5,31 @@ index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date.R
 
 # Facility of diagnosis -----------
 
-index_encounters = index_date$ENCOUNTERID
-
 facility <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/encounter_",version,".parquet")) %>% 
-  dplyr::select(ID,ENCOUNTERID,FACILITY_LOCATION,ENC_TYPE,FACILITYID,FACILITY_TYPE,PAYER_TYPE_PRIMARY,PAYER_TYPE_SECONDARY,site) %>% 
+  dplyr::select(ID,ADMIT_DATE,FACILITY_LOCATION,ENC_TYPE,FACILITYID,FACILITY_TYPE,PAYER_TYPE_PRIMARY,PAYER_TYPE_SECONDARY,site) %>% 
   right_join(index_date %>% 
-               dplyr::select(ID,ENCOUNTERID,index_date,COHORT),
-             by = c("ID","ENCOUNTERID")) %>% 
+               dplyr::select(ID,index_date,COHORT),
+             by = c("ID"="ID","ADMIT_DATE"="index_date")) %>% 
   # Insurance Type (No Insurance, Medicare, Medicaid, Private) -----------
   mutate(across(one_of("PAYER_TYPE_PRIMARY","PAYER_TYPE_SECONDARY"), ~case_when(. %in% c("NI","UN","") ~ "No Information",
-                                                                                           . %in% c("1","11","111","119") ~ "Medicare",
-                                                                                           . %in% c("2","21","29") ~ "Medicaid",
-                                                                                           . %in% c("3","311","32","349","382") ~ "Government",
-                                                                                           . %in% c("6","623") ~ "Bluecross",
-                                                                                           . %in% c("8","81","82","821","822") ~ "No Insurance",
-                                                                                           . %in% c("5","51","511","512","52","521",
-                                                                                                    "529") ~ "Private or Other",
-                                                                                           TRUE ~ "Private or Other"))) %>% 
+                                                                              . %in% c("1","11","111","119") ~ "Medicare",
+                                                                              . %in% c("2","21","29") ~ "Medicaid",
+                                                                              . %in% c("3","311","32","349","382") ~ "Government",
+                                                                              . %in% c("6","623") ~ "Bluecross",
+                                                                              . %in% c("8","81","82","821","822") ~ "No Insurance",
+                                                                              . %in% c("5","51","511",
+                                                                                       "512","52","521",
+                                                                                       "529") ~ "Private or Other",
+                                                                              is.na(.) ~ "Missing",
+                                                                              TRUE ~ "Private or Other"))) %>% 
   rename(payer_type_primary = PAYER_TYPE_PRIMARY,
          payer_type_secondary = PAYER_TYPE_SECONDARY) %>% 
-  collect()
+  collect() %>% 
+  dplyr::filter(!is.na(ADMIT_DATE)) %>%
+  dplyr::arrange(ID,ADMIT_DATE) %>% 
+  group_by(ID) %>% 
+  dplyr::filter(row_number() == n()) %>% 
+  ungroup()
 
 table(is.na(facility$site))
 # FALSE   TRUE 

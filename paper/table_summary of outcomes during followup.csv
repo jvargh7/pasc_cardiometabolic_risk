@@ -1,0 +1,16 @@
+var,exposed,unexposed,historical,type
+bmi,"49 [14, 131]","40 [12, 118]","89 [26, 222]",Time to first follow-up visit
+bmi,"29 [24.7, 34.4]","27.8 [23.8, 32.8]","27.8 [23.9, 32.8]",Variable at first follow-up (units)
+bmi,"2 [1, 6]","3 [1, 7]","3 [1, 6]",Number of follow-ups
+bmi,"180 [78, 353]","207 [84, 363]","411 [217, 565]",Maximum duration of follow-up (days)
+bmi,"0.7 [0, 2.3]","0.9 [0, 2.6]","1 [0, 2.5]",Maximum change in variable during follow-up (units)
+ldl,"121 [50, 234]","146 [64, 271]","224 [97, 371]",Time to first follow-up visit
+ldl,"86 [7, 117]","75 [4.1, 109]","94 [66.5, 121]",Variable at first follow-up (units)
+ldl,"1 [1, 1]","1 [1, 2]","1 [1, 2]",Number of follow-ups
+ldl,"176 [78, 320]","227 [105, 371]","368 [212, 506]",Maximum duration of follow-up (days)
+ldl,"0 [0, 0]","0 [0, 0.8]","0 [0, 8]",Maximum change in variable during follow-up (units)
+sbp,"47 [13, 125]","39 [12, 116]","100 [29, 255]",Time to first follow-up visit
+sbp,"124 [113, 136]","124 [112, 137]","124 [112, 136]",Variable at first follow-up (units)
+sbp,"3 [1, 7]","3 [1, 8]","3 [2, 7]",Number of follow-ups
+sbp,"179 [79, 353]","210 [86, 366]","434 [257, 573]",Maximum duration of follow-up (days)
+sbp,"16 [0, 35]","20 [0, 41]","19 [2, 36]",Maximum change in variable during follow-up (units)

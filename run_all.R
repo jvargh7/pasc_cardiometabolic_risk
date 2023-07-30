@@ -1,16 +1,18 @@
-source("preprocessing/pcrpre02_generating index date from diagnosis and lab.R")
+# source("preprocessing/pcrpre02_generating index date from diagnosis and lab.R")
 
-source("preprocessing/pcrpre03_identifying new onset diabetes.R")
-source("preprocessing/pcrpre04_index date characteristics.R")
-source("preprocessing/pcrpre05_clinical characteristics prior to infection.R")
-source("preprocessing/pcrpre06_healthcare utilization during lookback.R")
+source("preprocessing/pcrpre203_identifying new onset diabetes.R")
+source("preprocessing/pcrpre204_index date characteristics.R")
+source("preprocessing/pcrpre205_clinical characteristics prior to infection.R")
+source("preprocessing/pcrpre206_healthcare utilization during lookback.R")
 
 
-source("analysis/pcra101_creating follow-up dataset.R")
-source("analysis/pcra102_creating lookback dataset.R")
-source("analysis/pcra201_missing data in covariates.R")
-source("analysis/pcra202_ipw multiple exposure.R")
-source("analysis/pcra203_ipw missing index date.R")
-source("analysis/pcra204_ipw missing outcome.R")
+source("preprocessing/pcrpre401_creating follow-up dataset.R")
+source("preprocessing/pcrpre402_creating lookback dataset.R")
+
+
+source("analysis/pcra101_missing data in covariates.R")
+source("analysis/pcra102_ipw multiple exposure.R")
+# source("analysis/pcra103_ipw missing index date.R")
+source("analysis/pcra104_ipw missing outcome.R")
 
 source("analysis/pcra303_covariate adjustment for change in cardiometabolic indicators.R")

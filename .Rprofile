@@ -44,3 +44,8 @@ icd10_dm_qualifying <- c("E11.00", "E11.01", "E11.21", "E11.22", "E11.29", "E11.
 icd10_otherdm_excluding <- c("R73\\.01", "R73,02", "R73\\.0", "R81\\.", "E88\\.81", "Z13\\.1", "E13\\.", "E08\\.", "E09\\.")
 icd10_t1dm <- c("E10\\.")
 icd10_gdm <- c("O24\\.")
+
+
+# pcrpre302_high dimensional procedures
+n_hd_pro_min = 1000
+fdr_hd_pvalue = 0.05

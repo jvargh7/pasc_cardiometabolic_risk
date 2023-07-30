@@ -1,6 +1,14 @@
 rm(list=ls());gc();source(".Rprofile")
 
+# Used on 31 May to save .parquet files
+source("functions/month_replace.R")
+index_date <- read_csv(paste0(path_pasc_proposal_folder,"/working/source/Demographic_chakkalakal_v2.csv")) %>% 
+  mutate(across(ends_with("_date"), ~ymd(month_replace(.))))
+
 demographic <- read_parquet(paste0(path_pasc_cmr_folder,"/working/raw/demographic_",version,".parquet")) %>% 
+  left_join(index_date %>% 
+              dplyr::select(ID,index_date),
+            by = "ID") %>% 
   dplyr::mutate(nhwhite = case_when(HISPANIC %in% c("N","NI","OT","R","UN") & RACE == "05" ~ 1,
                              TRUE ~ 0),
          nhblack = case_when(HISPANIC %in% c("N","NI","OT","R","UN") & RACE == "03" ~ 1,
@@ -15,7 +23,7 @@ demographic <- read_parquet(paste0(path_pasc_cmr_folder,"/working/raw/demographi
                          TRUE ~ as.numeric(AGE))) %>% 
   dplyr::select(ID,female,
                 nhwhite,nhblack,hispanic,
-                nhother,age,COHORT,matchid) %>% 
+                nhother,age,COHORT,matchid,index_date) %>% 
   collect()
 
 
