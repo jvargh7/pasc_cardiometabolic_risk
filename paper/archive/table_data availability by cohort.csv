@@ -1,0 +1,7 @@
+var,exposed,unexposed,historical,type
+bmi,39773,153804,48777,Unique Patients
+sbp,40329,156605,49864,Unique Patients
+ldl,16497,51714,13975,Unique Patients
+bmi,209643,899095,272654,Observations
+sbp,278616,1248890,330456,Observations
+ldl,22206,74560,21044,Observations

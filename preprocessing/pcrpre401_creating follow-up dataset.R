@@ -25,14 +25,14 @@ anthro_followup <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/vital.R
   ungroup() %>% 
   # https://www.cdc.gov/nccdphp/dnpao/growthcharts/training/bmiage/page5_2.html
   
-  mutate(bmi = case_when(HT == 0 ~ NA_real_,
-                         !is.na(HT) ~ WT*703/(HT^2),
-                         TRUE ~ NA_real_)) %>% 
   mutate(HT = case_when(HT > 7.5*12 | HT < 4*12 ~ NA_real_,
                         TRUE ~ HT),
          WT = case_when(WT > 500 | WT < 50 ~ NA_real_,
-                        TRUE ~ WT),
-         bmi = case_when(bmi < 12 | bmi > 50 ~ NA_real_,
+                        TRUE ~ WT)) %>% 
+  mutate(bmi = case_when(HT == 0 ~ NA_real_,
+                         !is.na(HT) ~ WT*703/(HT^2),
+                         TRUE ~ NA_real_)) %>% 
+  mutate(bmi = case_when(bmi < 12 | bmi > 50 ~ NA_real_,
                          TRUE ~ bmi)) %>% 
   dplyr::filter(!is.na(bmi) | !is.na(SYSTOLIC))
 

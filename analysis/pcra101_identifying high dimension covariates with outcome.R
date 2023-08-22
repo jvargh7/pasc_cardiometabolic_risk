@@ -2,7 +2,7 @@ rm(list=ls());gc();source(".Rprofile")
 # library(glmmLasso)
 # library(glmnet)
 # library(PGEE)
-library(lme4)
+library(geepack)
 hd_dataset <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional dataset for analysis.RDS")) %>% 
   dplyr::select(ID,ends_with("gtOne"),ends_with("gtMedian"),ends_with("gtQ3")) %>% 
   rename_all(~str_replace(.,"\\-","_"))

@@ -12,7 +12,7 @@ eag_hba1c <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",versio
                 NORM_MODIFIER_LOW,NORM_RANGE_LOW,NORM_MODIFIER_HIGH,NORM_RANGE_HIGH,
                 RAW_RESULT) %>% 
   collect()
-write_csv(eag_hba1c,paste0(path_pasc_cmr_folder,"/working/issues/pcrpre03_HBA1C WITH EAG ESTIMATION.csv"))
+write_csv(eag_hba1c,paste0(path_pasc_cmr_folder,"/working/issues/pcrpre203_HBA1C WITH EAG ESTIMATION.csv"))
 
 
 hba1c <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,".parquet")) %>% 
@@ -195,6 +195,7 @@ noncpit2dm <- bind_rows(
 ) %>% 
   group_by(ID) %>% 
   dplyr::filter(last_followup_date == max(last_followup_date)) %>% 
+  slice(1) %>% 
   ungroup()
 
 noncpit2dm %>% 

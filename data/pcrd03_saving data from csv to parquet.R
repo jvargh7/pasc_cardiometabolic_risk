@@ -56,11 +56,20 @@ map(folder_names,
             u_f_name = str_extract(u_f,pattern = "[A-Z0-9a-z_]+.csv") %>% 
               str_replace("\\.csv","")
             
+            
             # https://hbs-rcs.github.io/large_data_in_R/
             # https://www.christophenicault.com/post/large_dataframe_arrow_duckdb/ >> Size of different file formats
             # If not using open_dataset but using read_csv
             df = data.table::fread(u_f) %>% 
               mutate(across(ends_with("_DATE"), ~ymd(month_replace(.))))
+            
+            if(str_detect(u_f_name,"address_history")){
+              
+              df = df %>% 
+                mutate(across(matches("_PERIOD"),~ymd(month_replace(.))))
+            }
+            
+            
             write_parquet(df,paste0(paper_dir,"/",u_f_name,".parquet"))
             
             gc();

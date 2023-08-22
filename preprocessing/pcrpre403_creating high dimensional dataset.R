@@ -116,6 +116,7 @@ hd_dataset_availability <- bind_rows(
   arrange(desc(availability))
 
 write_csv(hd_dataset_availability,paste0(path_pasc_cmr_folder,"/working/pcrpre403_availability high dimensional dataset.csv"))  
+# hd_dataset_availability <- read_csv(paste0(path_pasc_cmr_folder,"/working/pcrpre403_availability high dimensional dataset.csv"))  
 
 selected_vars <- hd_dataset_availability %>% 
   group_by(var_group) %>% 

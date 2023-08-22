@@ -5,6 +5,8 @@ path_pasc_proposal_folder <- "C:/Cloud/OneDrive - Emory University/Proposals/R01
 path_pasc_cmr_folder <- "C:/Cloud/OneDrive - Emory University/Papers/PASC Cardiometabolic Risk Factors"
 path_pasc_cmr_repo <- "C:/code/external/pasc_cardiometabolic_risk"
 
+path_community_profile_reports <- "C:/Cloud/Emory University/Patel, Shivani A - CovidHealthEquityDashboard/Data/Processed/Community Profile Reports/2022-05-02"
+
 version = "chakkalakal_v1"
 
 pandemic_start = "2020-03-01" # March 1, 2020

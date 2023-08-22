@@ -35,7 +35,9 @@ bind_rows(unique_patients %>% mutate(type = "Unique Patients"),
   write_csv(.,file="paper/table_data availability by cohort.csv")
 
 outcome_availability %>% 
-  group_by(in_bmi_ID,in_sbp_ID,in_ldl_ID) %>% tally() %>% 
+  group_by(in_bmi_ID,in_sbp_ID
+           # ,in_ldl_ID
+           ) %>% tally() %>% 
   ungroup() %>% 
   mutate(across(matches("_ID"),function(x) case_when(x==1 ~ "Available",
                                           TRUE ~ "Unavailable"))) %>% 

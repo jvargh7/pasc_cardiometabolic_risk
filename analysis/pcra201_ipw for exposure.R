@@ -55,6 +55,30 @@ fig_ow <- predicted_probability %>%
 
 ggsave(fig_ow,file=paste0(path_pasc_cmr_folder,"/figures/distribution of Overlap Weight.png"),width=10,height=4)
 
+
+# PS overlap across cohort groups ------
+
+(fig_ps_overlap <- predicted_probability %>% 
+  dplyr::select(ID,COHORT,exposed,unexposed,historical) %>% 
+  pivot_longer(cols=c("exposed","unexposed","historical"),names_to="estimator",values_to = "prob") %>% 
+   mutate(across(one_of(c("estimator","COHORT")),~factor(.,levels=c("exposed","unexposed","historical"),labels=c("Exposed","Unexposed","Historical")))) %>% 
+   ggplot(data=.,aes(x=COHORT,y=prob)) +
+   geom_boxplot() +
+   facet_grid(~estimator) +
+   theme_bw() +
+   xlab("Exposure Group") +
+   ylab("Probability of being assigned to facet group"))
+  
+ggsave(fig_ps_overlap,file=paste0(path_pasc_cmr_folder,"/figures/probability of being assigned to facet group.png"),width=8,height=4)
+
+
+
+
+
+
+
+
+
 # Adding demographic numerator ---------
 demographic <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/demographic.RDS")) %>% 
   mutate(raceeth_category = case_when(nhwhite == 1 ~ "NH White",
