@@ -5,43 +5,50 @@ index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date.R
 # Anthropometry ---------
 bmi_lookback <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/vital.RDS")) %>% 
   dplyr::select(ID,MEASURE_DATE,HT,WT) %>% 
-  left_join(index_date %>% 
-              dplyr::select(ID,COHORT,index_date,index_date_minus365),
-            by = "ID") %>% 
-  dplyr::filter(MEASURE_DATE < index_date, MEASURE_DATE >= index_date_minus365) %>% 
-  arrange(ID,MEASURE_DATE) %>% 
+  mutate(HT = case_when(HT > 7.5*12 | HT < 4*12 ~ NA_real_,
+                        TRUE ~ HT)) %>% 
   group_by(ID) %>% 
   mutate(HT = zoo::na.locf(HT,na.rm=FALSE)) %>% 
   mutate(HT = zoo::na.locf(HT,na.rm=FALSE,fromLast=TRUE)) %>% 
-  dplyr::filter(MEASURE_DATE == max(MEASURE_DATE)) %>% 
-  ungroup() %>% 
-  # https://www.cdc.gov/nccdphp/dnpao/growthcharts/training/bmiage/page5_2.html
-
-  mutate(bmi = case_when(HT == 0 ~ NA_real_,
-                         !is.na(HT) ~ WT*703/(HT^2),
-                         TRUE ~ NA_real_)) %>% 
-  mutate(HT = case_when(HT > 7.5*12 | HT < 4*12 ~ NA_real_,
-                        TRUE ~ HT),
-         WT = case_when(WT > 500 | WT < 50 ~ NA_real_,
-                        TRUE ~ WT),
-         bmi = case_when(bmi < 12 | bmi > 50 ~ NA_real_,
-                         TRUE ~ bmi)) %>% 
-  # It's ok even if there are NA_real_ in bmi and other variables
-  dplyr::select(ID, bmi, HT,WT) 
-
-sbp_lookback <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/vital.RDS")) %>% 
-  dplyr::select(ID,MEASURE_DATE,SYSTOLIC) %>% 
+  ungroup()  %>% 
   left_join(index_date %>% 
               dplyr::select(ID,COHORT,index_date,index_date_minus365),
             by = "ID") %>% 
-  dplyr::filter(MEASURE_DATE < index_date, MEASURE_DATE >= index_date_minus365) %>% 
   arrange(ID,MEASURE_DATE) %>% 
+  # https://www.cdc.gov/nccdphp/dnpao/growthcharts/training/bmiage/page5_2.html
+  mutate(WT = case_when(WT > 500 | WT < 50 ~ NA_real_,
+                        TRUE ~ WT)) %>% 
+  
+  mutate(bmi = case_when(HT == 0 ~ NA_real_,
+                         !is.na(HT) ~ WT*703/(HT^2),
+                         TRUE ~ NA_real_)) %>% 
+  mutate(bmi = case_when(bmi < 12 | bmi > 50 ~ NA_real_,
+                         TRUE ~ bmi)) %>% 
+  # It's ok even if there are NA_real_ in bmi and other variables
+  dplyr::filter(!is.na(bmi)) %>% 
+  dplyr::filter(MEASURE_DATE < index_date, MEASURE_DATE >= index_date_minus365) %>% 
+  group_by(ID) %>% 
+  dplyr::filter(MEASURE_DATE == max(MEASURE_DATE)) %>% 
+  ungroup()
+
+
+sbp_lookback <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/vital.RDS")) %>% 
+  dplyr::select(ID,MEASURE_DATE,SYSTOLIC) %>%
+  mutate(SYSTOLIC = case_when(SYSTOLIC > sbp_max_possible | SYSTOLIC < sbp_min_possible ~ NA_real_,
+                              TRUE ~ abs(SYSTOLIC))) %>% 
+  dplyr::filter(!is.na(SYSTOLIC)) %>% 
+  left_join(index_date %>% 
+              dplyr::select(ID,COHORT,index_date,index_date_minus730),
+            by = "ID") %>% 
+  dplyr::filter(MEASURE_DATE < index_date, MEASURE_DATE >= index_date_minus730) %>% 
+  arrange(ID,MEASURE_DATE)  %>% 
   group_by(ID) %>% 
   dplyr::filter(MEASURE_DATE == max(MEASURE_DATE)) %>% 
   ungroup() %>% 
-  # It's ok even if there are NA_real_ in SYSTOLIC
+  # It's nook even if there are NA_real_ in SYSTOLIC
   # dplyr::filter(!is.na(SYSTOLIC)) %>% 
   dplyr::select(ID, SYSTOLIC)
+
 
 # Smoking status (current, not current) ---------
 # vital.RDS is from preprocessing/pcpre_vital.R

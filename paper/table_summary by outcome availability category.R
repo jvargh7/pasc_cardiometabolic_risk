@@ -2,8 +2,8 @@ rm(list=ls());gc();source(".Rprofile")
 
 # Instead of taking lookback_df directly, use this
 # This does a sensible imputation of 0 for hospitalizations, diagnosis codes, medication and lookback encounter counts
-source("analysis/pcra_processing before imputation of lookback covariates.R")
-source("analysis/pcra_analytic dataset for data availability.R")
+source("analysis archive/pcra_processing before imputation of lookback covariates.R")
+source("analysis archive/pcra_analytic dataset for data availability.R")
 
 
 encounter_followup <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/encounter_followup_long.RDS")) %>% 

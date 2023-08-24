@@ -51,3 +51,6 @@ icd10_gdm <- c("O24\\.")
 # pcrpre302_high dimensional procedures
 n_hd_pro_min = 1000
 fdr_hd_pvalue = 0.05
+
+sbp_max_possible = 300
+sbp_min_possible = 50

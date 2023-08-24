@@ -38,6 +38,7 @@ hba1c <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,".
     TRUE ~ NA_real_)) %>% 
   collect() 
 
+
 dm_diagnosis <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/diagnosis_",version,".parquet")) %>% 
   mutate(ID = as.character(ID)) %>% 
   right_join(index_date %>% 

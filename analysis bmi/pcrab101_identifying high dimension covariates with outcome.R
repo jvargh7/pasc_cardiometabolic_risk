@@ -2,7 +2,7 @@ rm(list=ls());gc();source(".Rprofile")
 # library(glmmLasso)
 # library(glmnet)
 # library(PGEE)
-library(geepack)
+library(lme4)
 hd_dataset <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional dataset for analysis.RDS")) %>% 
   dplyr::select(ID,ends_with("gtOne"),ends_with("gtMedian"),ends_with("gtQ3")) %>% 
   rename_all(~str_replace(.,"\\-","_"))
@@ -52,7 +52,7 @@ sbp0_dev = deviance(sbp_m0) %>% as.numeric()
 ldl0_dev = deviance(ldl_m0) %>% as.numeric()
 
 library(furrr)
-options(future.globals.maxSize= (6*1024*1024)^3) #6GB
+options(future.globals.maxSize= 12*(1024*1024)^2) #6GB
 # https://stackoverflow.com/questions/40536067/how-to-adjust-future-global-maxsize
 plan(multisession)
 t0 = Sys.time()
