@@ -52,5 +52,19 @@ icd10_gdm <- c("O24\\.")
 n_hd_pro_min = 1000
 fdr_hd_pvalue = 0.05
 
-sbp_max_possible = 300
+sbp_max_possible = 350
 sbp_min_possible = 50
+dbp_max_possible = 300
+dbp_min_possible = 30
+
+wt_max_possible = 500
+wt_min_possible = 50
+ht_max_possible = 7.5*12
+ht_min_possible = 4*12
+
+bmi_min_possible = 12
+bmi_max_possible = 60
+
+HT_LOINCS <- c("3137-7", "8302-2", "8308-9","3138-5")
+WT_LOINCS <- c("3141-9","29463-7","8335-2","3142-7","8341-0","8340-2")
+BMI_LOINCS <- c("39156-5","89270-3")

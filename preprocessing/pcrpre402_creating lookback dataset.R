@@ -6,12 +6,12 @@ rm(list=ls());gc();source(".Rprofile")
 # preprocessing/pcrpre05_clinical characteristics prior to infection.R
 # peprocessing/pcrpre06_healthcare utilization during followup.R
 # preprocessing/pcrpre07_community characteristics.R
-index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date.RDS"))
+index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre201_index date.RDS"))
 
-demographic <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/demographic.RDS"))
-index_date_characteristics <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date characteristics.RDS"))
-lookback_clinical_characteristics <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/lookback clinical characteristics.RDS"))
-lb_healthcare_utilization <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/lookback healthcare utilization.RDS"))
+demographic <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre101_demographic.RDS"))
+index_date_characteristics <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre203_index date characteristics.RDS"))
+lookback_clinical_characteristics <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre204_lookback clinical characteristics.RDS"))
+lb_healthcare_utilization <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre205_lookback healthcare utilization.RDS"))
 
 
 
@@ -36,4 +36,4 @@ lookback_df = demographic %>%
   mutate(hba1c = case_when(hba1c < 3 | hba1c > 20 ~ NA_real_,
                            TRUE ~ hba1c))
   
-saveRDS(lookback_df,paste0(path_pasc_cmr_folder,"/working/cleaned/lookback dataset for analysis.RDS"))
+saveRDS(lookback_df,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre402_lookback dataset for analysis.RDS"))

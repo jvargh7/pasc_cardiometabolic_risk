@@ -2,9 +2,9 @@ rm(list=ls());gc();source(".Rprofile")
 
 id_variables = c("date_type","enc_inpatient","COHORT")
 
-index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date.RDS"))
+index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre201_index date.RDS"))
 
-ip_diagnosis <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional comorbidities.RDS")) %>% 
+ip_diagnosis <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre301_high dimensional comorbidities.RDS")) %>% 
   dplyr::filter(date_type == "p2",enc_inpatient == "Inpatient") %>% 
   ungroup() %>% 
   dplyr::select(-one_of(id_variables)) %>% 
@@ -19,7 +19,7 @@ ip_diagnosis_availability <- index_date %>%
   summarize(across(matches("^(ipd|opd|ipp|opp|pre|lab)"),.f=~mean(.)))
 
 
-op_diagnosis <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional comorbidities.RDS")) %>% 
+op_diagnosis <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre301_high dimensional comorbidities.RDS")) %>% 
   dplyr::filter(date_type == "p2",enc_inpatient == "Outpatient") %>% 
   ungroup() %>% 
   dplyr::select(-one_of(id_variables)) %>% 
@@ -34,7 +34,7 @@ op_diagnosis_availability <- index_date %>%
                         TRUE ~ 1)) %>% 
   summarize(across(matches("^(ipd|opd|ipp|opp|pre|lab)"),.f=~mean(.)))
 
-ip_procedures <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional procedures.RDS")) %>% 
+ip_procedures <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre302_high dimensional procedures.RDS")) %>% 
   dplyr::filter(
     # date_type == "p2",  
     enc_inpatient == "Inpatient") %>% 
@@ -50,7 +50,7 @@ ip_procedures_availability <- index_date %>%
                         TRUE ~ 1)) %>% 
   summarize(across(matches("^(ipd|opd|ipp|opp|pre|lab)"),.f=~mean(.)))
 
-op_procedures <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional procedures.RDS")) %>% 
+op_procedures <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre302_high dimensional procedures.RDS")) %>% 
   dplyr::filter(
     # date_type == "p2",  
     enc_inpatient == "Outpatient") %>% 
@@ -66,7 +66,7 @@ op_procedures_availability <- index_date %>%
                         TRUE ~ 1)) %>% 
   summarize(across(matches("^(ipd|opd|ipp|opp|pre|lab)"),.f=~mean(.)))
 
-prescribing <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional prescribing.RDS")) %>% 
+prescribing <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre303_high dimensional prescribing.RDS")) %>% 
   # Prescribing has both inpatient and outpatient for enc_inpatient
   dplyr::filter(date_type == "p2"
                 # enc_inpatient == "Outpatient"
@@ -87,7 +87,7 @@ prescribing_availability <- index_date %>%
 
 
 
-lab <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional lab.RDS")) %>% 
+lab <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre305_high dimensional lab.RDS")) %>% 
   group_by(ID) %>% 
   summarize(across(-one_of(c("ID",id_variables)),~sum(.,na.rm=TRUE))) %>% 
   ungroup() %>% 
@@ -155,6 +155,7 @@ hd_dataset <- index_date %>%
   
   mutate(across(-one_of(c("ID","COHORT")),list(gtOne = gtOne, gtMedian = gtMedian, gtQ3 = gtQ3),
                 .names="{.col}_{.fn}"))
-  
-saveRDS(hd_dataset,paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional dataset for analysis.RDS"))
+
+# Includs all ID - 391,009  
+saveRDS(hd_dataset,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre403_high dimensional dataset for analysis.RDS"))
 

@@ -14,4 +14,4 @@ encounter_followup_long <- open_dataset(paste0(path_pasc_cmr_folder,"/working/ra
   tally()  %>% 
   collect()
 
-saveRDS(encounter_followup_long,paste0(path_pasc_cmr_folder,"/working/cleaned/encounter_followup_long.RDS"))
+saveRDS(encounter_followup_long,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre404_encounters during followup_long.RDS"))

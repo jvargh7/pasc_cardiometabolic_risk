@@ -1,6 +1,6 @@
 rm(list=ls());gc();source(".Rprofile")
 
-index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date.RDS"))
+index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcpre201_index date.RDS"))
 source("preprocessing/pcrpre_encounter type.R")
 
 

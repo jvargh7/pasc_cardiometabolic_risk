@@ -7,7 +7,7 @@ index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date.R
 followup_df <- index_date %>% 
   ungroup() %>% 
   left_join(cpit2dm %>% 
-              dplyr::select(ID,criterion1_date,criterion2_date),
+              dplyr::select(ID,criterion1_date,criterion2_date,CP),
             by = "ID") %>% 
   left_join(noncpit2dm,
             by = "ID") %>% 
@@ -22,7 +22,42 @@ followup_df %>%
                           TRUE ~ 0)) %>% 
   group_by(COHORT) %>%
   summarize(case_count = sum(case),
-            time_count = sum(max_followup_t)) %>% 
+            time_count = sum(max_followup_t),
+            median_followup_t = median(max_followup_t)) %>% 
   mutate(case_per_100py = case_count/(time_count/(100*365)),
-         time_per_100py = time_count/(100*365))
+         time_per_100py = time_count/(100*365),
+         )
   
+
+followup_df %>% 
+  mutate(case = case_when(!is.na(criterion2_date) ~ 1,
+                          TRUE ~ 0)) %>% 
+  group_by(COHORT, case) %>%
+  summarize(case_count = sum(case),
+            time_count = sum(max_followup_t),
+            median_followup_t = median(max_followup_t)) %>% 
+  mutate(case_per_100py = case_count/(time_count/(100*365)),
+         time_per_100py = time_count/(100*365),
+  )
+
+followup_df %>% 
+  mutate(case = case_when(!is.na(criterion2_date) ~ 1,
+                          TRUE ~ 0)) %>% 
+  group_by(COHORT, CP) %>%
+  summarize(case_count = sum(case),
+            time_count = sum(max_followup_t),
+            median_followup_t = median(max_followup_t)) %>% 
+  mutate(case_per_100py = case_count/(time_count/(100*365)),
+         time_per_100py = time_count/(100*365),
+  )
+
+followup_df %>% 
+  mutate(case = case_when(!is.na(criterion2_date) ~ 1,
+                          TRUE ~ 0)) %>% 
+  group_by(CP) %>%
+  summarize(case_count = sum(case),
+            time_count = sum(max_followup_t),
+            median_followup_t = median(max_followup_t)) %>% 
+  mutate(case_per_100py = case_count/(time_count/(100*365)),
+         time_per_100py = time_count/(100*365),
+  )
