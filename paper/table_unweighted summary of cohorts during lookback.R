@@ -4,7 +4,8 @@ rm(list=ls());gc();source(".Rprofile")
 # This does a sensible imputation of 0 for hospitalizations, diagnosis codes, medication and lookback encounter counts
 # pcrab003_analytic dataset for data availability.R does not use imputed lookback data
 source("analysis bmi/pcrab001_processing before imputation and lookback bmi exclusion.R")
-
+lookback_cpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre209_cpit2dm diabetes during lookback period.RDS"))
+landmark_cpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre208_cpit2dm new onset diabetes during period till origin date.RDS"))
 
 lb_bmi_ID <- lookback_df %>% 
   dplyr::select(ID) %>% 
@@ -25,12 +26,16 @@ encounter_followup <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrp
 library(gtsummary)
 
 (unweighted <- lookback_df %>% 
-    dplyr::filter(!is.na(bmi)) %>% 
+    dplyr::filter(!is.na(bmi), !ID %in% lookback_cpit2dm$ID) %>% 
     mutate(bmi_category = case_when(bmi < 18.5 ~ "Underweight",
                                     bmi >= 18.5 & bmi < 25.0 ~ "Normal",
                                     bmi >= 25.0 & bmi < 30.0 ~ "Overweight",
                                     bmi >= 30.0 ~ "Obese",
-                                    TRUE ~ NA_character_)) %>% 
+                                    TRUE ~ NA_character_),
+           landmark_cpit2dm = case_when(ID %in% landmark_cpit2dm$ID ~ 1,
+                                        TRUE ~ 2)) %>% 
+    mutate(landmark_cpit2dm = factor(landmark_cpit2dm,levels=c(1,2),labels=c("New onset in Landmark",
+                                                                             "No onset in Landmark"))) %>% 
     
     left_join(encounter_followup,
               by = "ID") %>% 
@@ -50,7 +55,7 @@ library(gtsummary)
                              serum_creatinine, hdl, ldl,
                              
                              IP,OA,OT,AV,NI,TH,ED,OS,EI,UN,IS,IC,
-                             bmi_category),
+                             bmi_category,landmark_cpit2dm),
                    missing = "ifany",
                    missing_text = "Missing",
                    value = list(p_hyperglycemia = 1),
@@ -100,7 +105,7 @@ library(gtsummary)
                                OT~ "continuous2",AV~ "continuous2",NI~ "continuous2",
                                TH~ "continuous2",ED~ "continuous2",OS~ "continuous2",
                                EI~ "continuous2",UN~ "continuous2",IS~ "continuous2",IC~ "continuous2",
-                               bmi_category ~ "categorical"
+                               bmi_category ~ "categorical",landmark_cpit2dm ~ "categorical"
                    ),
                    digits = list(age ~ c(1,1),
                                  nhwhite ~ c(0,1),

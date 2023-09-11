@@ -1,0 +1,28 @@
+---
+title: "Data Quality Checks"
+format: pptx
+editor: visual
+---
+
+```{r include=FALSE}
+lookback_cpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre209_cpit2dm diabetes during lookback period.RDS"))
+```
+
+
+## Diabetes Cases in Lookback Period
+```{r}
+lookback_cpit2dm %>% 
+  group_by(COHORT,CP) %>% 
+  tally() %>% 
+  pivot_wider(names_from=CP,values_from=n) %>% 
+  mutate(Total = CP1 + CP2 + CP3)
+```
+
+## Diabetes Cases in Lookback Period
+```{r}
+lookback_cpit2dm %>% 
+  group_by(COHORT,CP) %>% 
+  tally() %>% 
+  pivot_wider(names_from=CP,values_from=n) %>% 
+  mutate(Total = CP1 + CP2 + CP3)
+```

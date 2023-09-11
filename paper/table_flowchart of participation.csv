@@ -1,0 +1,13 @@
+COHORT,n,step
+exposed,71563,Step 1
+historical,72929,Step 1
+unexposed,231248,Step 1
+exposed,41839,Step 2
+historical,39600,Step 2
+unexposed,157579,Step 2
+exposed,167971,Step 3Obs
+historical,217039,Step 3Obs
+unexposed,748381,Step 3Obs
+exposed,30270,Step 3
+historical,33850,Step 3
+unexposed,121441,Step 3

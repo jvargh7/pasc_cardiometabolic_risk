@@ -3,9 +3,10 @@ library(tidymodels)
 tidymodels_prefer()
 
 source(paste0(path_pasc_cmr_repo,"/analysis bmi/pcrab001_processing before imputation and lookback bmi exclusion.R"))
+lookback_cpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre209_cpit2dm diabetes during lookback period.RDS"))
 
 lookback_df <- lookback_df %>% 
-  dplyr::filter(!is.na(bmi))
+  dplyr::filter(!is.na(bmi), !ID %in% lookback_cpit2dm$ID)
 
 lookback_processed <- recipe(COHORT ~ .,
                              data = lookback_df) %>% 

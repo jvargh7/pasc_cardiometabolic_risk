@@ -2,24 +2,8 @@ rm(list=ls());gc();source(".Rprofile")
 
 # Instead of taking lookback_df directly, use this
 # This does a sensible imputation of 0 for hospitalizations, diagnosis codes, medication and lookback encounter counts
-source("analysis bmi/pcrab001_processing before imputation and lookback bmi exclusion.R")
-
-lb_bmi_ID <- lookback_df %>% 
-  dplyr::filter(!is.na(bmi)) %>% 
-  dplyr::select(ID) %>% 
-  pull()
-
-lookback_df %>% 
-  dplyr::filter(!is.na(bmi)) %>% 
-  dplyr::select(ID,COHORT) %>% 
-  group_by(COHORT) %>% 
-  tally()
-
-bmi_followup_ID = readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre401_anthro followup.RDS")) %>% 
-  dplyr::filter(!is.na(bmi)) %>% 
-  dplyr::select(ID) %>% 
-  pull()
-
+source(paste0(path_pasc_cmr_repo,"/analysis bmi/pcrab001_processing before imputation and lookback bmi exclusion.R"))
+lookback_cpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre209_cpit2dm diabetes during lookback period.RDS"))
 
 encounter_followup <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre404_encounters during followup_long.RDS")) %>% 
   group_by(ID,ENC_TYPE) %>% 
@@ -30,23 +14,21 @@ encounter_followup <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrp
 library(gtsummary)
 # Unweighted -----------
 (unweighted <- lookback_df %>% 
-   dplyr::filter(!is.na(bmi)) %>% 
-   mutate(bmi_category = case_when(bmi < 18.5 ~ "Underweight",
-                                   bmi >= 18.5 & bmi < 25.0 ~ "Normal",
-                                   bmi >= 25.0 & bmi < 30.0 ~ "Overweight",
-                                   bmi >= 30.0 ~ "Obese",
-                                   TRUE ~ NA_character_)) %>% 
    left_join(encounter_followup,
              by = "ID") %>% 
-   mutate(bmi_availability = case_when(ID %in% bmi_followup_ID ~ 1,
-                                       TRUE ~ 2
-                                       )
-          ) %>% 
+   mutate(bmi_lb_availability = case_when(is.na(bmi) ~ 2,
+                                          !is.na(bmi) & ! (ID %in% lookback_cpit2dm$ID) ~ 2,
+                                       TRUE ~ 1 ),
+          lb_cpit2dm_status = case_when(ID %in% lookback_cpit2dm$ID ~ 1,
+                                        TRUE ~ 2)
+   
+   ) %>% 
    mutate(
-          bmi_availability = factor(bmi_availability,levels=c(1:2),
-                                         labels=c("Lookback and Follow-up","Lookback only"))
-          ) %>% 
-   tbl_summary(by = bmi_availability,
+     bmi_lb_availability = factor(bmi_lb_availability,levels=c(1:2),
+                               labels=c("Lookback available","Excluded")),
+     lb_cpit2dm_status = factor(lb_cpit2dm_status, levels=c(1,2),labels=c("Lookback CPIT2DM","No CPIT2DM"))
+   ) %>% 
+   tbl_summary(by = bmi_lb_availability,
                include=c(COHORT, female,age,
                          nhwhite,nhblack,hispanic, nhother,
                          smoking, 
@@ -62,8 +44,8 @@ library(gtsummary)
                          serum_creatinine, hdl, ldl,
                          
                          IP,OA,OT,AV,NI,TH,ED,OS,EI,UN,IS,IC,
-                         bmi_category
-                         ),
+                         lb_cpit2dm_status
+               ),
                missing = "ifany",
                missing_text = "Missing",
                value = list(p_hyperglycemia = 1),
@@ -114,7 +96,7 @@ library(gtsummary)
                            OT~ "continuous2",AV~ "continuous2",NI~ "continuous2",
                            TH~ "continuous2",ED~ "continuous2",OS~ "continuous2",
                            EI~ "continuous2",UN~ "continuous2",IS~ "continuous2",IC~ "continuous2",
-                           bmi_category ~ "categorical"
+                           lb_cpit2dm_status ~ "categorical"
                ),
                digits = list(age ~ c(1,1),
                              nhwhite ~ c(0,1),
@@ -141,5 +123,5 @@ library(gtsummary)
    add_n() %>% 
    add_overall()) %>%
   as_gt() %>%
-  gt::gtsave(filename = "paper/table_unweighted summary lookback by followup.docx")
+  gt::gtsave(filename = "paper/table_unweighted summary overall by lookback.docx")
 

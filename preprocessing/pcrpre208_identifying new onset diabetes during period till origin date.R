@@ -1,25 +1,6 @@
 rm(list=ls());gc();source(".Rprofile")
 index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre201_index date.RDS"))
 
-death <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre102_death.RDS"))  %>% 
-  group_by(ID) %>%
-  summarize(DEATH_DATE = max(DEATH_DATE)) %>% 
-  ungroup()
-
-# EAG from HbA1c is not used for this analysis - this was just highlighting observations for which EAG is available
-eag_hba1c <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,".parquet")) %>% 
-  mutate(ID = as.character(ID)) %>% 
-  dplyr::filter(str_detect(RAW_LAB_NAME,"EAG")) %>% 
-  dplyr::filter(LAB_LOINC %in% c("4548-4","27353-2")) %>% 
-  dplyr::select(ID,ENCOUNTERID,RAW_LAB_NAME,LAB_LOINC,
-                LAB_ORDER_DATE,SPECIMEN_DATE, 
-                RESULT_NUM,RESULT_QUAL,RESULT_UNIT,
-                NORM_MODIFIER_LOW,NORM_RANGE_LOW,NORM_MODIFIER_HIGH,NORM_RANGE_HIGH,
-                RAW_RESULT) %>% 
-  collect()
-write_csv(eag_hba1c,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre202_hba1c with eag estimated.csv"))
-
-
 hba1c <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,".parquet")) %>% 
   mutate(ID = as.character(ID)) %>% 
   dplyr::filter(str_detect(RAW_LAB_NAME,"(A1C|A1c)")) %>% 
@@ -34,7 +15,7 @@ hba1c <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,".
   right_join(index_date %>% 
                dplyr::select(ID,index_date,origin_date,max_followup_date,COHORT),
              by = c("ID"))  %>% 
-  dplyr::filter(SPECIMEN_DATE >= origin_date,SPECIMEN_DATE <= max_followup_date)  %>% 
+  dplyr::filter(SPECIMEN_DATE >= index_date,SPECIMEN_DATE < origin_date)  %>% 
   # Correction
   mutate(value = case_when(RESULT_NUM > 20 ~ NA_real_,
                            TRUE ~ RESULT_NUM)) %>% 
@@ -56,7 +37,7 @@ dm_diagnosis <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/diagnosis
   right_join(index_date %>% 
                dplyr::select(ID,index_date,origin_date,max_followup_date,COHORT),
              by = c("ID")) %>% 
-  dplyr::filter(DX_DATE >= origin_date,DX_DATE  <= max_followup_date)  %>% 
+  dplyr::filter(DX_DATE >= index_date,DX_DATE  < origin_date)  %>% 
   dplyr::filter(!str_detect(DX,paste0("(",paste0(c(icd10_otherdm_excluding,
                                                    icd10_t1dm,icd10_gdm),collapse="|"),")"))) %>% 
   dplyr::filter(DX %in% icd10_dm_qualifying) %>%
@@ -77,7 +58,7 @@ dm_medication <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/prescrib
   right_join(index_date %>% 
                dplyr::select(ID,index_date,origin_date,max_followup_date,COHORT),
              by = c("ID")) %>% 
-  dplyr::filter(RX_ORDER_DATE >= origin_date,RXNORM_CUI %in% rxcui_list,RX_ORDER_DATE <= max_followup_date) %>% 
+  dplyr::filter(RX_ORDER_DATE >= index_date,RXNORM_CUI %in% rxcui_list,RX_ORDER_DATE < origin_date) %>% 
   collect()
 
 # CP1 --------------
@@ -130,15 +111,15 @@ cp3 <- hba1c %>%
 # New onset diabetes ---------
 
 cpit2dm <- bind_rows(cp1 %>% 
-            mutate(
-                   CP = "CP1"),
-          
-          cp2 %>% 
-            mutate(
-                   CP = "CP2"),
-          cp3 %>% 
-            mutate(
-                   CP = "CP3")) %>% 
+                       mutate(
+                         CP = "CP1"),
+                     
+                     cp2 %>% 
+                       mutate(
+                         CP = "CP2"),
+                     cp3 %>% 
+                       mutate(
+                         CP = "CP3")) %>% 
   group_by(ID) %>% 
   dplyr::filter(criterion2_date == min(criterion2_date)) %>% 
   slice(1) %>% 
@@ -148,81 +129,4 @@ table(cpit2dm$COHORT)
 
 cpit2dm %>% 
   # dplyr::select() %>% 
-  saveRDS(.,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre202_cpit2dm new onset diabetes.RDS"))
-
-
-# Remaining individuals duration --------------
-
-cpit2dm_ID = cpit2dm$ID
-
-# Last value before death if it is available
-
-labs_max = open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,".parquet")) %>% 
-  mutate(ID = as.character(ID)) %>% 
-  dplyr::filter(!ID %in% cpit2dm_ID) %>% 
-  dplyr::select(ID,ENCOUNTERID,RAW_LAB_NAME,LAB_LOINC,
-                LAB_ORDER_DATE,SPECIMEN_DATE, 
-                RESULT_NUM,RESULT_QUAL,RESULT_UNIT,
-                NORM_MODIFIER_LOW,NORM_RANGE_LOW,NORM_MODIFIER_HIGH,NORM_RANGE_HIGH,
-                RAW_RESULT) %>% 
-  right_join(index_date %>% 
-               dplyr::select(ID,index_date,origin_date,max_followup_date,COHORT),
-             by = c("ID"))  %>% 
-  dplyr::filter(SPECIMEN_DATE >= origin_date,SPECIMEN_DATE <= max_followup_date) %>% 
-  distinct(ID,SPECIMEN_DATE) %>% 
-  left_join(death,
-            by = "ID") %>% 
-  dplyr::filter(is.na(DEATH_DATE) | (SPECIMEN_DATE < DEATH_DATE)) %>% 
-  collect() %>% 
-  group_by(ID) %>% 
-  dplyr::filter(SPECIMEN_DATE == max(SPECIMEN_DATE)) %>% 
-  ungroup()
-
-diagnosis_max <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/diagnosis_",version,".parquet")) %>% 
-  mutate(ID = as.character(ID)) %>% 
-  dplyr::filter(!ID %in% cpit2dm_ID) %>% 
-  right_join(index_date %>% 
-               dplyr::select(ID,index_date,origin_date,max_followup_date,COHORT),
-             by = c("ID")) %>% 
-  dplyr::filter(DX_DATE >= origin_date,DX_DATE <= max_followup_date) %>%
-  distinct(ID,DX_DATE) %>% 
-  left_join(death,
-            by = "ID") %>% 
-  dplyr::filter(is.na(DEATH_DATE) | (DX_DATE < DEATH_DATE)) %>% 
-  collect() %>% 
-  group_by(ID) %>% 
-  dplyr::filter(DX_DATE == max(DX_DATE)) %>% 
-  ungroup()
-
-medication_max <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/prescribing_",version,".parquet")) %>% 
-  mutate(ID = as.character(ID)) %>% 
-  dplyr::filter(!ID %in% cpit2dm_ID) %>% 
-  right_join(index_date %>% 
-               dplyr::select(ID,index_date,origin_date,max_followup_date,COHORT),
-             by = c("ID")) %>% 
-  dplyr::filter(RX_ORDER_DATE >= origin_date,RX_ORDER_DATE <= max_followup_date) %>% 
-  distinct(ID,RX_ORDER_DATE) %>% 
-  left_join(death,
-            by = "ID") %>% 
-  dplyr::filter(is.na(DEATH_DATE) | (RX_ORDER_DATE < DEATH_DATE)) %>% 
-  collect() %>% 
-  group_by(ID) %>% 
-  dplyr::filter(RX_ORDER_DATE == max(RX_ORDER_DATE)) %>% 
-  ungroup()
-
-noncpit2dm <- bind_rows(
-  labs_max %>% 
-    mutate(last_followup_date = SPECIMEN_DATE),
-  diagnosis_max %>% 
-    mutate(last_followup_date = DX_DATE),
-  medication_max %>% 
-    mutate(last_followup_date = RX_ORDER_DATE)
-)  %>% 
-  group_by(ID) %>% 
-  dplyr::filter(last_followup_date == max(last_followup_date)) %>% 
-  slice(1) %>% 
-  ungroup()
-
-noncpit2dm %>% 
-  # dplyr::select() %>% 
-  saveRDS(.,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre202_noncpit2dm last followup.RDS"))
+  saveRDS(.,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre208_cpit2dm new onset diabetes during period till origin date.RDS"))

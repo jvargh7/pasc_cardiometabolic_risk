@@ -9,14 +9,6 @@ lrt_est <- readRDS(paste0(path_pasc_cmr_folder,"/working/models pcrab/pcrab101_h
 selected_hdvars = bind_rows(lrt_est %>%
                               dplyr::filter(pval_bmi_padj < fdr_hd_pvalue) %>% 
                               dplyr::select(var_group,variable,pval_bmi_padj) %>% 
-                              mutate(outcome = "bmi"),
-                            lrt_est %>%
-                              dplyr::filter(pval_sbp_padj < fdr_hd_pvalue) %>% 
-                              dplyr::select(var_group,variable,pval_sbp_padj) %>% 
-                              mutate(outcome = "sbp"),
-                            lrt_est %>%
-                              dplyr::filter(pval_ldl_padj < fdr_hd_pvalue) %>% 
-                              dplyr::select(var_group,variable,pval_ldl_padj) %>% 
-                              mutate(outcome = "ldl")
+                              mutate(outcome = "bmi")
 )
 

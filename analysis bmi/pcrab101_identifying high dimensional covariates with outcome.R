@@ -1,7 +1,12 @@
 rm(list=ls());gc();source(".Rprofile")
+lookback_cpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre209_cpit2dm diabetes during lookback period.RDS"))
+landmark_cpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre208_cpit2dm new onset diabetes during period till origin date.RDS"))
+
 source(paste0(path_pasc_cmr_repo,"/analysis bmi/pcrab001_processing before imputation and lookback bmi exclusion.R"))
 lookback_df <- lookback_df %>% 
-  dplyr::filter(!is.na(bmi))
+  dplyr::filter(!is.na(bmi),!ID %in% c(lookback_cpit2dm$ID))
+
+
 # library(glmmLasso)
 # library(glmnet)
 # library(PGEE)
@@ -42,12 +47,8 @@ t1 - t0
 
 bmi0_dev = deviance(bmi_m0) %>% as.numeric()
 
-library(furrr)
-options(future.globals.maxSize= 12*(1024*1024)^2) #6GB
-# https://stackoverflow.com/questions/40536067/how-to-adjust-future-global-maxsize
-plan(multisession)
-t0 = Sys.time()
-lrt_est = future_map_dfr(var_names,
+
+lrt_est = map_dfr(var_names,
                   function(v_n){
                     b_df <- bmi_df %>% 
                       left_join(hd_dataset %>% dplyr::select(ID,one_of(v_n)),
@@ -72,8 +73,6 @@ lrt_est = future_map_dfr(var_names,
                     
                     
                   })
-t1 = Sys.time()
-t1 - t0
 
 saveRDS(lrt_est,paste0(path_pasc_cmr_folder,"/working/models pcrab/pcrab101_high dimensional covariates with outcome.RDS"))
  
