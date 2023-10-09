@@ -1,7 +1,8 @@
 rm(list=ls());gc();source(".Rprofile")
 
 lookback_processed <- readRDS(paste0(path_pasc_cmr_folder,"/working/models pcrab/pcrab002_imputed lookback dataset.RDS"))
-predicted_probability <- readRDS(paste0(path_pasc_cmr_folder,"/working/models pcrab/pcrab301_ip weights for cohort membership.RDS"))
+predicted_probability <- readRDS(paste0(path_pasc_cmr_folder,"/working/models pcrab/pcrab301_ip weights for cohort membership.RDS")) %>% 
+  dplyr::select(-hospitalization)
 
 source("C:/code/external/functions/causality/population_standardized_bias.R")
 

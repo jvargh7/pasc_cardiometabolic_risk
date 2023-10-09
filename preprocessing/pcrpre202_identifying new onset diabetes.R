@@ -1,6 +1,8 @@
 rm(list=ls());gc();source(".Rprofile")
 index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre201_index date.RDS"))
 
+source(paste0(path_pasc_cmr_repo,"/functions/encounter_check_cpit2dm.R"))
+
 death <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre102_death.RDS"))  %>% 
   group_by(ID) %>%
   summarize(DEATH_DATE = max(DEATH_DATE)) %>% 
@@ -59,7 +61,7 @@ dm_diagnosis <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/diagnosis
   dplyr::filter(DX_DATE >= origin_date,DX_DATE  <= max_followup_date)  %>% 
   dplyr::filter(!str_detect(DX,paste0("(",paste0(c(icd10_otherdm_excluding,
                                                    icd10_t1dm,icd10_gdm),collapse="|"),")"))) %>% 
-  dplyr::filter(DX %in% icd10_dm_qualifying) %>%
+  dplyr::filter(DX %in% icd10_dm_qualifying,ENC_TYPE %in% permissible_enc_type) %>%
   collect()
 
 rxcui_list <- readxl::read_excel("data/PASC CMR Variable List.xlsx",sheet="medication") %>% 
@@ -78,37 +80,69 @@ dm_medication <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/prescrib
                dplyr::select(ID,index_date,origin_date,max_followup_date,COHORT),
              by = c("ID")) %>% 
   dplyr::filter(RX_ORDER_DATE >= origin_date,RXNORM_CUI %in% rxcui_list,RX_ORDER_DATE <= max_followup_date) %>% 
-  collect()
+  collect() 
 
 # CP1 --------------
 
 cp1 <- dm_diagnosis %>% 
+  group_by(ID,DX_DATE) %>% 
+  dplyr::summarize(n_dm_diagnosis = n()) %>% 
   left_join(dm_medication %>% 
-              dplyr::select(ID,RX_ORDER_DATE,RXNORM_CUI),
+              dplyr::select(ID,RX_ORDER_DATE,RXNORM_CUI) %>% 
+              group_by(ID,RX_ORDER_DATE) %>% 
+              dplyr::summarize(n_dm_medication = n()),
             by = "ID") %>% 
   dplyr::filter(DX_DATE <= (RX_ORDER_DATE + 90), DX_DATE >= (RX_ORDER_DATE-90)) %>% 
+  # Weise 2018: earliest date of the 2 criteria is t0
   mutate(criterion1_date = pmin(DX_DATE,RX_ORDER_DATE),
          criterion2_date = pmax(DX_DATE,RX_ORDER_DATE)) %>% 
-  distinct(ID,criterion2_date,.keep_all=TRUE) %>% 
   group_by(ID) %>% 
+  dplyr::filter(criterion1_date == min(criterion1_date)) %>% 
   dplyr::filter(criterion2_date == min(criterion2_date)) %>% 
-  ungroup()
+  # Exclude multiple matches between criterion1 and criterion2
+  distinct(ID,criterion1_date,criterion2_date,.keep_all = TRUE) %>% 
+  ungroup() %>% 
+  mutate(criterion1_date_minus365 = criterion1_date - days(365),
+         criterion1_date_minus730 = criterion1_date - days(730))
 
+cp1_encounter_check = encounter_check_cpit2dm(cp1) %>% 
+  dplyr::filter(!is.na(Ym1),!is.na(Ym2))
+
+cp1_valid <- cp1 %>%
+  right_join(cp1_encounter_check,
+             by="ID")
 
 # CP2 -------------
 
 cp2 <- dm_diagnosis %>% 
+  group_by(ID,DX_DATE) %>% 
+  dplyr::summarize(n_dm_diagnosis = n()) %>% 
   left_join(hba1c %>% 
               dplyr::select(ID,SPECIMEN_DATE,RESULT_NUM,RESULT_QUAL,RESULT_UNIT,high_hba1c) %>% 
-              dplyr::filter(high_hba1c == 1),
+              dplyr::filter(high_hba1c == 1) %>% 
+              group_by(ID,SPECIMEN_DATE) %>% 
+              dplyr::summarize(n_hba1c = n()),
             by = "ID") %>% 
   dplyr::filter(DX_DATE <= (SPECIMEN_DATE + 90), DX_DATE >= (SPECIMEN_DATE-90)) %>% 
+  # Weise 2018: earliest date of the 2 criteria is t0
   mutate(criterion1_date = pmin(DX_DATE,SPECIMEN_DATE),
          criterion2_date = pmax(DX_DATE,SPECIMEN_DATE)) %>% 
-  distinct(ID,criterion2_date,.keep_all=TRUE) %>% 
   group_by(ID) %>% 
+  dplyr::filter(criterion1_date == min(criterion1_date)) %>% 
   dplyr::filter(criterion2_date == min(criterion2_date)) %>% 
-  ungroup()
+  distinct(ID,criterion1_date,criterion2_date,.keep_all = TRUE) %>% 
+  
+  ungroup() %>% 
+  mutate(criterion1_date_minus365 = criterion1_date - days(365),
+         criterion1_date_minus730 = criterion1_date - days(730))
+
+
+cp2_encounter_check = encounter_check_cpit2dm(cp2) %>% 
+  dplyr::filter(!is.na(Ym1),!is.na(Ym2))
+
+cp2_valid <- cp2 %>%
+  right_join(cp2_encounter_check,
+             by="ID")
 
 # CP3 -------------
 
@@ -119,28 +153,41 @@ cp3 <- hba1c %>%
               dplyr::select(ID,RX_ORDER_DATE,RXNORM_CUI),
             by = "ID") %>% 
   dplyr::filter(RX_ORDER_DATE <= (SPECIMEN_DATE + 90), RX_ORDER_DATE >= (SPECIMEN_DATE-90)) %>% 
+  # Weise 2018: earliest date of the 2 criteria is t0
   mutate(criterion1_date = pmin(SPECIMEN_DATE,RX_ORDER_DATE),
          criterion2_date = pmax(SPECIMEN_DATE,RX_ORDER_DATE)) %>% 
-  distinct(ID,criterion2_date,.keep_all=TRUE) %>% 
   group_by(ID) %>% 
+  dplyr::filter(criterion1_date == min(criterion1_date)) %>% 
   dplyr::filter(criterion2_date == min(criterion2_date)) %>% 
-  ungroup()
+  distinct(ID,criterion1_date,criterion2_date,.keep_all = TRUE) %>% 
+  
+  ungroup() %>% 
+  mutate(criterion1_date_minus365 = criterion1_date - days(365),
+         criterion1_date_minus730 = criterion1_date - days(730))
 
+cp3_encounter_check = encounter_check_cpit2dm(cp3) %>% 
+  dplyr::filter(!is.na(Ym1),!is.na(Ym2))
+
+cp3_valid <- cp3 %>%
+  right_join(cp3_encounter_check,
+             by="ID")
+
+rm(cp1,cp1_encounter_check,cp2,cp2_encounter_check,cp3,cp3_encounter_check)
 
 # New onset diabetes ---------
 
-cpit2dm <- bind_rows(cp1 %>% 
+cpit2dm <- bind_rows(cp1_valid %>% 
             mutate(
                    CP = "CP1"),
           
-          cp2 %>% 
+          cp2_valid %>% 
             mutate(
                    CP = "CP2"),
-          cp3 %>% 
+          cp3_valid %>% 
             mutate(
                    CP = "CP3")) %>% 
   group_by(ID) %>% 
-  dplyr::filter(criterion2_date == min(criterion2_date)) %>% 
+  dplyr::filter(criterion1_date == min(criterion1_date)) %>% 
   slice(1) %>% 
   ungroup() 
 
@@ -180,7 +227,7 @@ labs_max = open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,
 
 diagnosis_max <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/diagnosis_",version,".parquet")) %>% 
   mutate(ID = as.character(ID)) %>% 
-  dplyr::filter(!ID %in% cpit2dm_ID) %>% 
+  dplyr::filter(!ID %in% cpit2dm_ID,ENC_TYPE %in% permissible_enc_type) %>% 
   right_join(index_date %>% 
                dplyr::select(ID,index_date,origin_date,max_followup_date,COHORT),
              by = c("ID")) %>% 

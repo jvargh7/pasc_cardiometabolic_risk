@@ -130,3 +130,9 @@ table(cpit2dm$COHORT)
 cpit2dm %>% 
   # dplyr::select() %>% 
   saveRDS(.,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre209_cpit2dm diabetes during lookback period.RDS"))
+
+# lookback_cpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre209_cpit2dm diabetes during lookback period.RDS"))
+
+# lookback_cpit2dm %>%
+#   dplyr::select(ID, index_date, site, CP, criterion1_date,criterion2_date, everything()) %>%
+#   write_csv(.,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre209_cpit2dm diabetes during lookback period.csv"))

@@ -6,6 +6,7 @@ editor: visual
 
 ```{r include=FALSE}
 lookback_cpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre209_cpit2dm diabetes during lookback period.RDS"))
+landmark_cpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre208_cpit2dm new onset diabetes during period till origin date.RDS"))
 ```
 
 
@@ -18,9 +19,9 @@ lookback_cpit2dm %>%
   mutate(Total = CP1 + CP2 + CP3)
 ```
 
-## Diabetes Cases in Lookback Period
+## Diabetes Cases in Landmark Period
 ```{r}
-lookback_cpit2dm %>% 
+landmark_cpit2dm %>% 
   group_by(COHORT,CP) %>% 
   tally() %>% 
   pivot_wider(names_from=CP,values_from=n) %>% 
