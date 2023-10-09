@@ -20,7 +20,7 @@ Analytic code: [https::/github.com/jvargh7/pasc_cardiometabolic_risk](https::/gi
 
 # Folder Structure
 
-- **source**: Proposals/R01S COVID x Post Acute Diabetes Diagnosis/working/raw
+- **source** secure folder contains raw data: Proposals/R01S COVID x Post Acute Diabetes Diagnosis/working/raw
     - demo_other_\<version\>
         - address_history_\<version\>.csv
         - condition_\<version\>.csv
@@ -45,20 +45,22 @@ Analytic code: [https::/github.com/jvargh7/pasc_cardiometabolic_risk](https::/gi
         - procedures_\<version\>.csv
         - vital_\<version\>.csv
 
-- **repo**: pasc_cardiometabolic_risk
-    - data
-    - workflow
-    - functions
-    - preprocessing
-    - analysis
-    - sensitivity
-    - paper
+- **repo** public folder contains cleaning code: pasc_cardiometabolic_risk
+    - data: reading data
+    - workflow: documentation of workflow
+    - functions: custom functions specific to this repository
+    - preprocessing: cleaning data and variable creation
+    - analysis bmi: descriptive statistics and modeling for BMI
+    - sensitivity: sensitivity analysis
+    - paper: figures and tables
+    - analysis archive: old descriptive statistics 
 
-- **shared**: Papers/PASC Cardiometabolic Risk 
+- **shared** secure folder contains cleaned data and model results: Papers/PASC Cardiometabolic Risk 
     - working
-        - raw
-        - cleaned
-        - dictionaries
+        - dictionaries: internal and external files
+        - raw: datasets from *repo/data* 
+        - cleaned: datasets from *repo/preprocessing*
+        - models pcrab: modeling results from *repo/analysis bmi*
     - writing
     - references
     - figures
@@ -66,34 +68,34 @@ Analytic code: [https::/github.com/jvargh7/pasc_cardiometabolic_risk](https::/gi
 
 # Workflow
 
-The workflow can be divided into **3 steps**, with the final output being tables and figures for the manuscript. The current presentation is generated separately for each of the steps in a vertical scroll. You can navigate between the steps using the 'Contents' option on the bottom left or by clicking the alphabet **C** on your keyboard.  
+The workflow can be divided into **4 steps**, with the final output being tables and figures for the manuscript. The current presentation is generated separately for each of the steps in a vertical scroll. You can navigate between the steps using the 'Contents' option on the bottom left or by clicking the alphabet **C** on your keyboard.  
 
-- PREPROCESSING: *Reading data, cleaning variables*  
+- DATA: *Reading raw data*
+- PREPROCESSING: *Cleaning data and generating variables*  
 - ANALYSIS: *Descriptive and inferential statistics*  
 - PAPER: *Figures and Tables for manuscript*  
 
-# PREPROCESSING
+# DATA
 
-## Flowchart
-This step can be divided into sub-components
+This step involves moving from the secure **source** folder of raw data shared by OneFlorida+ to the secure **shared** folder of raw data for use in these analysis
 
+- repo/data/pcrd01_extracting zip files and saving data.R: Zip files are extracted
+- repo/data/pcrd02_saving data from csv to RDS.R: *All files in .csv format would be read from the source folder and saved --\> shared/working/raw/RDS/\<filename\>.RDS*
+- repo/data/pcrd03_saving data from csv to parquet.R: *All files in .csv format would be read from the source folder and saved --\> shared/working/raw/\<filename\>.parquet*
+    + This file format (.parquet) is better for storing and querying large datasets
 ```{r}
-DiagrammeR::grViz("digraph {
-  graph [layout = dot, rankdir = TB]
-  
-  node [shape = rectangle]        
-  rec1 [label = 'Step 1. Read and clean separately']
-  rec2 [label = 'Step 2. Create important variables']
-  rec3 [label = 'Step 3. High dimensional variables']
-  rec4 [label =  'Step 4. Analytic dataset creation']
-  
-  # edge definitions with the node IDs
-  rec1 -> rec2 -> rec3 -> rec4
-  }",
-  height = 300)
+# <!- repo/preprocessing/pcrpre01_cleaning raw data.R: *All files in .RDS format would be cleaned and deposited into a shared/working/cleaned/\<filename\>.RDS folder*
+#     + Each dataset has its own cleaning file of the format pcrpre_\<dataset_name\>.R
+#     + Cleaning would be specific to pasc_cardiometabolic_risk paper's requirements
+#         - longitudinal dataset of cardiometabolic trajectories
+#         - baseline confounding adjustment
+#         - loss to follow-up or death
+#     + Additional cleaning files for pasc_diabetes paper are in the corresponding repo: [https::/github.com/jvargh7/pasc_diabetes](https::/github.com/jvargh7/pasc_diabetes)> 
 ```
 
-## Step 1. Read and clean separately
+
+## DATASETS
+
 The raw data consists of 15 datasets. Majority of datasets are in a **long** format to reflect the longitudinal nature of the data.   
 
 Datasets in **long** format (*\<dataset_name\>_\<version\>*): 
@@ -120,59 +122,202 @@ Datasets in **long** format (*\<dataset_name\>_\<version\>*):
 - **death**: mortality information
 - **demographic**: direct attributes of individual patient
 
-### Data cleaning files
 
-This sub-step in the **PREPROCESSING** workflow consists of 3 analytic files.
+# GLOBAL VARIABLES
 
-- repo/data/pcrd02_saving data from csv to RDS.R: *All files in .csv format would be read from the source folder and saved --\> shared/working/raw/RDS/\<filename\>.RDS*
-- repo/data/pcrd02_saving data from csv to parquet.R: *All files in .csv format would be read from the source folder and saved --\> shared/working/raw/\<filename\>.parquet*
-    + This file format (.parquet) is better for storing and querying large datasets
-- repo/preprocessing/pcrpre01_cleaning raw data.R: *All files in .RDS format would be cleaned and deposited into a shared/working/cleaned/\<filename\>.RDS folder*
-    + Each dataset has its own cleaning file of the format pcrpre_\<dataset_name\>.R
-    + Cleaning would be specific to pasc_cardiometabolic_risk paper's requirements
-        - longitudinal dataset of cardiometabolic trajectories
-        - baseline confounding adjustment
-        - loss to follow-up or death
-    + Additional cleaning files for pasc_diabetes paper are in the corresponding repo: [https::/github.com/jvargh7/pasc_diabetes](https::/github.com/jvargh7/pasc_diabetes)  
+See .Rprofile for updated list.   
+
+version = "chakkalakal_v1"
+
+Key Dates
+- pandemic_start = "2020-03-01" # March 1, 2020  
+- exposed_identification_start = ymd(pandemic_start)   
+- exposed_identification_stop = ymd("2022-01-29")   
+- exposed_followup_start = exposed_identification_start + days(30)  
+- exposed_followup_stop = exposed_identification_stop + days(30)   
+- historical_identification_start = ymd("2018-03-02")   
+- historical_identification_stop = ymd("2020-01-30")   
+- historical_followup_start = historical_identification_start + days(30)   
+- historical_followup_stop = historical_identification_stop + days(30)   
+
+Key Encounter Types
+- admissible_encounter_types = c('AV', 'IP', 'OS','ED','EI','IC','IS','TH')   
+- permissible_enc_type <- c("AV","IP","EI","TH")  
+
+Key LOINCs:
+- glucose_loinc <- c("2345-7","2339-0","41653-7",
+                   "2340-8","27353-2",
+                   "1547-9","1558-6")   
+- hba1c_loinc <- c("4548-4","41995-2","55454-3",
+                 "71875-9","549-2","17856-6",
+                 "59261-6","62388-4","17855-8",
+                 #10839-9 was not included in Weise 2018
+                 "10839-9")   
+- HT_LOINCS <- c("3137-7", "8302-2", "8308-9","3138-5")    
+- WT_LOINCS <- c("3141-9","29463-7","8335-2","3142-7","8341-0","8340-2")    
+- BMI_LOINCS <- c("39156-5","89270-3") 
+- covid_lab_loincs <- c("94500-6","94309-2",
+                      "94558-4","94534-5",
+                      "94759-8","95209-3",
+                      "95608-6","95380-2",
+                      "94316-7","95422-2",
+                      "94533-7","94565-9",
+                      "94756-4","94642-6",
+                      "94306-8","95406-5",
+                      "95425-5","87635") 
+
+- icd10_dm_qualifying <- c("E11.00", "E11.01", "E11.21", "E11.22", "E11.29", "E11.311", "E11.319", "E11.321",
+                         "E11.329", "E11.331", "E11.339", "E11.341", "E11.349", "E11.351", "E11.359", "E11.36",
+                         "E11.39", "E11.40", "E11.41", "E11.42", "E11.43", "E11.44", "E11.49", "E11.51", "E11.52",
+                         "E11.59", "E11.610", "E11.618", "E11.620", "E11.621", "E11.622", "E11.628", "E11.630", 
+                         "E11.638", "E11.641", "E11.649", "E11.65", "E11.69", "E11.8", "E11.9")
+- icd10_otherdm_excluding <- c("R73\\.01", "R73,02", "R73\\.0", "R81\\.", "E88\\.81", "Z13\\.1", "E13\\.", "E08\\.", "E09\\.")   
+- icd10_t1dm <- c("E10\\.")   
+- icd10_gdm <- c("O24\\.")   
+
+Key Limits
+- n_hd_pro_min = 1000    
+- fdr_hd_pvalue = 0.05    
+- sbp_max_possible = 350    
+- sbp_min_possible = 50    
+- dbp_max_possible = 300    
+- dbp_min_possible = 30    
+- wt_max_possible = 500    
+- wt_min_possible = 50    
+- ht_max_possible = 7.5*12    
+- ht_min_possible = 4*12    
+- bmi_min_possible = 12    
+- bmi_max_possible = 60    
+
+   
+ 
+
+
+
+# PREPROCESSING
+
+## Flowchart
+This step can be divided into sub-components
+
+```{r}
+DiagrammeR::grViz("digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = rectangle]        
+  rec1 [label = 'Step 1. Read and clean specific datasets']
+  rec2 [label = 'Step 2. Create important variables']
+  rec3 [label = 'Step 3. High dimensional variables']
+  rec4 [label =  'Step 4. Analytic dataset creation']
+  
+  # edge definitions with the node IDs
+  rec1 -> rec2 -> rec3 -> rec4
+  }",
+  height = 300)
+```
+
+## Step 1. Read and clean specific datasets
+
+All files begin with prefix **pcrpre1XX**
+
+- repo/preprocessing/pcrpre101_demographic.R: Create the following variables
+    + nhwhite
+    + nhblack
+    + hispanic
+    + nhother
+    + female
+    + age: IF: age > 99 ~ 99, ELSE: age
+- repo/preprocessing/pcrpre102_death.R: Extract date of death
+    + Includes QC generation *cleaned/pcrpre102_QC death multiple records.csv* for multiple death records for a patient when difference in records is greater than 1 day
+- repo/preprocessing/pcrpre103_vital.R: Create the following variables
+    + smoking: Any one of 8 levels
+    + HT: minimum of different records on MEASURE_DATE, harmonize to inches
+    + WT: minimum of different records on MEASURE_DATE, check for grams [IF unit == "g" and value >=300: grams, ELSE: kg/lbs], harmonize to lbs
+    + DIASTOLIC: minimum of different records on MEASURE_DATE
+    + SYSTOLIC: minimum of different records on MEASURE_DATE
+    + ORIGINAL_BMI: minimum of different records on MEASURE_DATE
+- repo/preprocessing/pcrpre104_lab results covid tests.R: Filters covid_lab_loincs on all dates
+- repo/preprocessing/pcrpre107_diagnosis covid.R: Filters icd10_covid codes
 
 ## Step 2. Creating important variables
 
-This sub-step in the **PREPROCESSING** workflow consists of analytic files starting with **pcrpre2**.
+This sub-step in the **PREPROCESSING** workflow consists of analytic files starting with **pcrpre2XX**.
 
-- repo/preprocessing/pcrpre202_generating index date from diagnosis and lab.R: Replication code for index date
-    + Verifying if diagnosis codes and test positive results for Exposed can be replicated
-    + Verifying if test negative results for Unexposed can be replicated
-- repo/preprocessing/pcrpre203_identifying new-onset diabetes.R: Identifying incident T2DM cases using CPiT2DM
-    + Source: [Weise, Performance of a computable phenotype for identification of patients with diabetes within PCORnet: The Patient‐Centered Clinical Research Network, 2018](https://onlinelibrary.wiley.com/doi/abs/10.1002/pds.4718)
-    + (1) inpatient/outpatient ICD-9/10 diagnosis for T2DM and an antidiabetic medication prescription within 90 days before or after the diagnosis date or 
-    + (2) inpatient/outpatient ICD-9/10 diagnosis for T2DM and an outpatient glycolated hemoglobin (HbA1C) value ≥6.5% within 90 days before or after the diagnosis date or
-    + (3) any outpatient HbA1C value ≥6.5%within 90 days before or after an antidiabetic medication prescription
-- repo/preprocessing/pcrpre04_index date characteristics.R:
-    + Facility
-    + Insurance Type
-    + Hospitalization (Not Hospitalized, Hospitalized, ICU admission)
-    + Severity of Hyperglycemia between index date and origin date (percentage of blood glucose measurements > 200 mg/dL: <25, 25-50, >50)
-- repo/preprocessing/pcrpre205_clinical characteristics prior to infection.R: Within 1 year of index date [T0-365, T0): 
-    + Smoking status (never, former, current)
-    + Comorbidities (obesity, cardiovascular disease, chronic lung disease, cerebrovascular diseae, hyperlipidemia): Use grouped ICD-10 codes
-    + Medication classes (immunosuppressants, antihypertensives, statins, antipsychotics)
-    + Laboratory parameters (blood glucose, serum creatinine, HbA1c, LDLc, HDLc, AST, ALT)
-- repo/preprocessing/pcrpre206_healthcare utilization during lookback.R: 
-    + Number of outpatient visits
-    + Number of telehealth encounters
-    + Number of hospitalizations
-    + Number of lab visits
-    + Number of HbA1c measurements
-- repo/data/pcrpre207_community characteristics.R
-- repo/data/pcrpre208_negative control outcomes.R: Unrelated to exposure and expected to occur at all ages in the study population
-    + incidence of fractures: Grouped ICD-10 codes () and procedure codes ()
-    + eye infections: Grouped ICD-10 codes () and procedure codes ()
+- repo/preprocessing/pcrpre201_index date.R: Adds new variables useful for further preprocessing
+    + origin_date = index_date + 30
+    + index_date_minus365 = index_date - 365
+    + index_date_minus730 = index_date - 730
+    + max_followup_date = historical_followup_stop OR exposed_followup_stop
+- repo/preprocessing/pcrpre202_identifying new onset diabetes.R: Creates 2 datasets
+    + pcrpre202_cpit2dm new onset diabetes.RDS
+        + hba1c identified using RAW_LAB_NAME >> hba1c_loinc >> value gt 20 is outlier
+        + dm_diagnosis restricted to permissible_enc_type
+        + dm_medication identified using PASC CMR Variable List
+        + All cp1, cp2, cp3 uses distinct(ID, criterion1_date, criterion2_date)
+        + All require at least 1 permissible_enc_type during each of last 2 years
+    + pcrpre202_noncpit2dm last followup.RDS
+        + diagnosis_max restricted to permissible_enc_type
+        + labs_max uses any lab in follow up period
+        + medication_max uses any medication in follow up period
+- repo/preprocessing/pcrpre203_index date characteristics.R: For index date and [index date, origin date)
+    + facility
+        + PAYER_TYPE_PRIMARY
+        + PAYER_TYPE_SECONDARY
+    + hospitalization
+        + hospitalized: ENC_TYPE %in% c("EI","IP","IS","OS")
+        + not_hospitalized: ENC_TYPE %in% c("AV","ED","IC","TH","OA","NI","UN","OT")
+        + n_hospitalized: number of hospitalization encounters
+        + n_not_hospitalized: number of not_hospitalized encounters
+        + **hospitalization**: IF n_hospitalized >= 1 THEN 1, ELSE 0
+    + glucose: any glucose_loinc with "HIGH" values
+- repo/preprocessing/pcrpre204_clinical characteristics prior to infection.R:
+    + bmi_lookback: [index_date_minus365, index_date)
+        + HT: closest observation carried forward or backward if missing. Only small proportion have missing HT in overall dataset but any WT available
+        + WT: After outlier screening
+        + bmi: From ORIGINAL_BMI, ELSE using WT and HT >> outliers set to missing
+    + sbp_lookback: [index_date_minus365, index_date) >> after outlier removal
+    + smoking_status: [index_date_minus365, index_date)
+    + comorbidity_diagnosis: [index_date_minus730, index_date)
+    + medication_history: [index_date_minus365, index_date)
+    + lab_history: LOINCs from PASC CMR Variable List.xlsx >> "labs"
+        + [index_date_minus365, index_date)
+        + Valid quantitative result (RESULT_NUM)
+        + distinct(ID, SPECIMEN_DATE)
+- repo/preprocessing/pcrpre205_healthcare utilization during lookback.R: [index_date_minus365, index_date) >> Any missing set to zero
+    + From encounter_<version>.parquet
+        + lb_hospitalized
+        + lb_not_hospitalized
+        + lb_telehealth
+        + lb_outpatient
+    + From lab_<version>.parquet
+        + lb_n_labvisits
+        + lb_n_glucose
+        + lb_n_serum_creatinine
+        + lb_n_hba1c
+        + lb_n_ldl
+        + lb_n_hdl
+        + lb_n_alt
+        + lb_n_ast
+- repo/preprocessing/pcrpre206_covid19 testing rates.R: Based on United_States_COVID-19_County_Level_of_Community_Transmission_Historical_Changes data
+    + cases_per_100K_7_day_count_change
+        + IF suppressed, runif(1,1,9)/10^6
+    + cases_per_100K_7_day_count_sum: Right aligned 7 day rolling sum
+- repo/preprocessing/pcrpre207_county of residence on index date.R: Using address_history_<version>.parquet
+    + Use usa::zipcodes data and dexter_2321900090_extract.csv (mcdc.missouri.edu)
+    + Approx match zcta5 with County
+- repo/preprocessing/pcrpre208_identifying new onset diabetes during period till origin date.R: Same as pcrpre202_identifying new onset diabetes.R but using [index date, origin date)
+- repo/preprocessing/pcrpre209_identifying diabetes during lookback period.R: Same as pcrpre202_identifying new onset diabetes.R but using [index_date_minus730, index date)
+
+```{r}
+# - repo/data/pcrpre207_community characteristics.R
+# - repo/data/pcrpre208_negative control outcomes.R: Unrelated to exposure and expected to occur at all ages in the study population
+#     + incidence of fractures: Grouped ICD-10 codes () and procedure codes ()
+#     + eye infections: Grouped ICD-10 codes () and procedure codes ()
+```
+
 
 ## Step 3. High dimensional covariates 
 
-This sub-step in the **PREPROCESSING** workflow consists of analytic files starting with **pcrpre3**. All counts are estimated for combinations of date_type and enc_inpatient variables. See preprocessing/pcpre_encounter type.R
-
-### Variables
+This sub-step in the **PREPROCESSING** workflow consists of analytic files starting with **pcrpre3**. All counts are estimated for combinations of date_type and enc_inpatient variables.
 
 - date_type
     + P4 : [origin_date, )
@@ -183,9 +328,6 @@ This sub-step in the **PREPROCESSING** workflow consists of analytic files start
 - enc_inpatient
     + Inpatient ("EI","IP","IS","OS")
     + Outpatient ("AV","ED","IC","TH","OA","NI","UN","OT")
-
-
-### Code
 
 - repo/preprocessing/pcrpre301_high dimensional comorbidities.R
     + Extract ICD-10 codes
@@ -205,18 +347,35 @@ This sub-step in the **PREPROCESSING** workflow consists of analytic files start
 
 - repo/preprocessing/pcrpre304_high dimensional encounter types.R
     + Identify number of encounters per encounter type
-
+    
+- repo/preprocessing/pcrpre305_high dimensional lab.R
+    + Identify number ofabnormal lab encounters for frequent labs (n > n_hd_pro_min)
+    
+    
 ## Step 4. Analytic Dataset Creation
 This sub-step in the **PREPROCESSING** workflow consists of analytic files starting with **pcrpre4**.
 
-- repo/preprocessing/pcrpre401_creating follow-up dataset.R: This is the longitudinal dataset in **long** format after index date.
-    + We set all anthropometric observations beyond the below ranges to missing
-    + *Height (inches)*: [48, 90]
-    + *Weight (lbs)*: [50, 500]
-    + *BMI (kg/m2)*: [12, 50]
-- repo/analysis/pcra402_creating lookback dataset.R: This is the cross-sectional dataset before index date.
-    + We set all laboratory values beyond the below ranges to missing
-    + *HbA1c (%)*: [3, 20]
+- repo/preprocessing/pcrpre401_creating follow-up dataset.R
+    + HT: closest observation carried forward or backward if missing. Only small proportion have missing HT in overall dataset but any WT available
+    + WT: After outlier screening
+    + bmi: From ORIGINAL_BMI, ELSE using WT and HT >> outliers set to missing
+    + lab_history: LOINCs from PASC CMR Variable List.xlsx >> "labs"
+        + [origin_date, max_followup_date]
+        + Valid quantitative result (RESULT_NUM)
+        + distinct(ID, SPECIMEN_DATE)
+- repo/preprocessing/pcrpre402_creating lookback dataset.R: Combines
+    + demographic
+    + index_date_characteristics
+    + lookback_clinical_characteristics
+    + lb_healthcare_utilization
+- repo/preprocessing/pcrpre403_creating high dimensional dataset.R: Combines
+    + ip_diagnosis
+    + op_diagnosis
+    + ip_procedures
+    + op_procedures
+    + prescribing
+    + lab
+- repo/preprocessing/pcrpre404_encounters during followup.R: Count of number of encounters between [origin_date, max_followup_date] by month-year
 
 # ANALYSIS
 
@@ -228,13 +387,16 @@ This step can be divided into sub-components
 DiagrammeR::grViz("digraph {
   graph [layout = dot, rankdir = TB]
   
-  node [shape = rectangle]        
-  rec1 [label = 'Step 1. Missing Data and Participants']
-  rec2 [label = 'Step 2. Individual susceptibility']
-  rec3 [label = 'Step 3. Main analysis']
+  node [shape = rectangle]
+  rec0 [label = 'Step 0. Core dataset and Imputation']
+  rec1 [label = 'Step 1. IPW for Cohort']
+  rec2 [label = 'Step 2. IPW for Loss to Followup']
+  rec3 [label = 'Step 3. Combining IPW']
+  rec4 [label = 'Step 4. Statistical Analysis']
   
   # edge definitions with the node IDs
-  rec1 -> rec2 -> rec3
+  rec0 -> rec1 -> rec3 -> rec4
+  rec0 -> rec2 -> rec3 -> rec4
   }",
   height = 300)
 ```
@@ -242,47 +404,109 @@ DiagrammeR::grViz("digraph {
 This sub-step in the **ANALYSIS** workflow consists of 3 sets of files. All files start with prefix *pcra*, followed by a number indicating file set. 
 
 
-## Step 1. Accounting for Missing Data and Missing Participants
+## Step 0. Core dataset and imputation
+- repo/analysis bmi/pcrab001_processing before imputation and lookback bmi exclusion.R: lookback_df where some variables which are missing are set to zero
+- repo/analysis bmi/pcrab002_imputed lookback dataset for bmi.R
+    + Calls pcrab001_processing before imputation and lookback bmi exclusion.R
+    + Excludes IDs in lookback_cpit2dm
+    + Excludes records of missing BMI
+    + Mode imputation for all nominal
+    + Linear imputation for all numeric 
+        + imputed using female, nhblack, hispanic, site, age, COHORT
+    + Dummy variables for EXPOSED, UNEXPOSED and HISTORICAL
+    + Save pcrab002_imputed lookback dataset.RDS
+- repo/analysis bmi/pcrab003_analytic dataset for data availability.R: Summary of data availability
+    + lookback_df >> excludes missing BMI and IDs in lookback_cpit2dm
+    + Dummy variables for availability of BMI in lookback and BMI in followup
+- repo/analysis bmi/pcrab004_matchid dataset.R: Restricts EXPOSED and HISTORICAL to records that are matched to each other
+- repo/analysis bmi/pcrabaux_difference grids.R: Used for pcrab4XX
+- repo/analysis bmi/pcrabaux_ipw formula and variables.R: PREVIOUSLY used for IPW 
 
-This sub-step in the **ANALYSIS** workflow consists of analytic files starting with **pcra1**.
+## Step 1. IPW for Cohort
 
-- repo/analysis/pcra101_missing data in covariates: Multiple imputation by chained equations using predictive mean matching
-- repo/analysis/pcra102_ipw multiple exposure.R: Using multinomial model for estimating propensity of membership in each cohort
-- repo/analysis/pcra103_ipw missing index date.R: Using logistic model for estimating propensity of having an index date
-    + This would be deprecated once we get the actual index date
-    + Currently we are using a derived index date 
-    + Source: repo/preprocessing/pcrpre02_generating index date from diagnosis and lab.R
-- repo/analysis/pcra104_estimating and assessing missing outcome.R: Using logistic model for estimating propensity of having at least one outcome observation
-- repo/analysis/pcra105_non informative censoring: Assess if censoring was non-informative by comparing characteristics
-
-### Support files:
-
-- pcra_analytic dataset for change in indicators.R: Identifies which observations are available at each step of missingness 
-
-
-## Step 2. Individual susceptibility score from historical control cohort
-This sub-step in the **ANALYSIS** workflow consists of analytic files starting with **pcra2**.
-
-- repo/analysis/pcra203_estimating individual susceptibility score: Susceptibility for T2DM prior to infection using
-prediction model developed on historical control cohort
-    + *This analysis is pending*
-
-## Step 3. Main Analysis  
-This sub-step in the **ANALYSIS** workflow consists of analytic files starting with **pcra3**.
+- repo/analysis bmi/pcrab101_identifying high dimensional covariates with outcome.R:
+    + Calls pcrab001_processing before imputation and lookback bmi exclusion.R
+    + lookback_df >> excludes missing BMI and IDs in lookback_cpit2dm
+    + LRT for linear mixed model adjusting for time to identify variables associated with longitudinal BMI
+- repo/analysis bmi/pcrab102_selecting high dimensional variables based on fdr.R:
+    + Uses output of pcrab101_identifying high dimensional covariates with outcome.R
+    + P-value adjustment using Benjamini-Hochberg procedure
+    + select variables at fdr_hd_pvalue
+- repo/analysis bmi/pcrab103_restricting high dimensional covariates based on frequency.R:
+    + Run sequentially after pcrab102_selecting high dimensional variables based on fdr.R
+    + Selects only those variables with at least 100 observations for each COHORT
+- repo/analysis bmi/pcrab104_creating parquet for cohort membership ps.R: 
+    + Run pcrab003_analytic dataset for data availability.R
+    + Run pcrab102_selecting high dimensional variables based on fdr.R
+    + Use pcrab002_imputed lookback dataset.RDS
+    + Run pcrab103_restricting high dimensional covariates based on frequency.R
+    + Saves pcrab104_ipw for cohort membership data.parquet for use in IPW model fit
+- repo/analysis bmi/pcrab106_predicted probability for cohort membership.ipynb:
 
 
-- repo/analysis/pcra301_change in cardiometabolic indicators.R:IPW only
-- repo/analysis/pcra302_excess burden in exposed and unexposed cohorts.R: 
-    + *Pending*
-- repo/analysis/pcra303_covariate adjustment for change in cardiometabolic indicators.R: Doubly-robust
+## Step 2. IPW for Loss to Followup
 
-# SENSITIVITY ANALYSIS
-This sub-step in the **Sensitivity Analysis** workflow consists of analytic files starting with **pcrs**.
+- repo/analysis bmi/pcrab201_identifying high dimensional covariates loss to followup.R:
+    + Run pcrab003_analytic dataset for data availability.R
+    + Run pcrab102_selecting high dimensional variables based on fdr.R
+    + Restrict model fit to variables not selected for COHORT IPW
+    
+- repo/analysis bmi/pcrab202_selecting ltfu high dimensional variables based on fdr.R:
+    + Uses output of pcrab201_identifying high dimensional covariates loss to followup.R
+    + P-value adjustment using Benjamini-Hochberg procedure
+    + select variables at fdr_hd_pvalue
+
+- repo/analysis bmi/pcrab203_restricting ltfu high dimensional covariates based on frequency.R:
+- repo/analysis bmi/pcrab204_creating parquet for loss to follow up.R:
+    + Run pcrab003_analytic dataset for data availability.R
+    + Run pcrab102_selecting high dimensional variables based on fdr.R
+    + Run pcrab202_selecting ltfu high dimensional variables based on fdr.R
+    + Use pcrab002_imputed lookback dataset.RDS
+    + Run pcrab103_restricting high dimensional covariates based on frequency.R
+    + Run pcrab203_restricting ltfu high dimensional covariates based on frequency.R
+    + Saves pcrab204_ipw for loss to followup data.parquet for use in IPW model fit
+- repo/analysis bmi/pcrab206_predicted probability for loss to followup.ipynb:
+
+## Step 3. Combining IPW
+
+- repo/analysis bmi/pcrab301_stabilized ip weights using demographics.R:
+    + Use predictions from pcrab106_predicted probability for cohort membership.ipynb
+    + Generate stabilized IPW and plots
+    + Saves pcrab301_ip weights for cohort membership.RDS
+    + Saves pcrab301_ip weights for missing outcomes.RDS
+- repo/analysis bmi/pcrab302_analytic dataset with ip weights for bmi.R:
+    + Run pcrab004_matchid dataset.R
+    + Identify imbalanced variables
+    + **MANUAL STEP**: Set analytic_dataset_lookback = before_matchid OR run commented lines
+    + Create bmi_df (not saved) for use in **Step 4. Statistical Analysis**
+- repo/analysis bmi/pcrab303_standardized mean differences of predefined covariates.R:
+    + Run [population_standardized_bias.R](https://github.com/jvargh7/functions/blob/main/causality/population_standardized_bias.R)
 
 
-- repo/sensitivity/pcrs201_excluding less than 6mo followup.R: censoring or death as possible reasons
-- repo/sensitivity/pcrs202_adjusting for pandemic healthcare utilization.R: account for differences in diabetes diagnosis due to disruptions in care seeking
-- repo/sensitivity/pcrs203_restricting to exposed and unexposed.R: include rates of testing as confounding variable
-- repo/sensitivity/pcrs204_different pandemic start.R: June 1, 2020 when testing was more widely available
+## Step 4. Statistical Analysis
+
+- repo/analysis bmi/pcrab401_change in cardiometabolic indicators.R:
+    + Run pcrab003_analytic dataset for data availability.R
+    + pcrabaux_ipw formula and variables.R
+    + pcrab302_analytic dataset with ip weights for bmi.R
+    + Save modeling results pcrab401 bmi_fit.RDS
+    + Internal function pcra401_contrast_fit()
+- repo/analysis bmi/pcrab402_change in cardiometabolic indicators sociodemographic.R:
+    + Run pcrab003_analytic dataset for data availability.R
+    + pcrabaux_ipw formula and variables.R
+    + pcrab302_analytic dataset with ip weights for bmi.R
+    + Model fit for sex_category, age_category, raceeth_category, hospitalization
+    + NH Other excluded when fitting raceeth_category models
+    + Save modeling results 
+        + pcrab402 bmi_fit_sex.RDS
+        + pcrab402 bmi_fit_age.RDS
+        + pcrab402 bmi_fit_raceeth.RDS
+        + pcrab402 bmi_fit_hospitalization.RDS
+- repo/analysis bmi/pcrab403_contrasts for cardiometabolic indicators sociodemographic.R:
+    + Internal function pcrab403_contrast_fit()
+- repo/analysis bmi/pcrab404_difference between 0 and 100 within sociodemographic.R:
+    + Internal function pcrab404_contrast_fit()
+- repo/analysis bmi/pcrab405_difference relative to exposed for difference between 0 and 100.R:
+    + Internal function pcrab405_contrast_fit()
 
 # PAPER

@@ -69,7 +69,7 @@ difference_grid = expand.grid(cohort = c("COHORThistorical","COHORTexposed","COH
                               modifier = c(0,100))
 
 
-pcra301_contrast_fit <- function(fit,x,y){
+pcra401_contrast_fit <- function(fit,x,y){
   if(x %in% names(fit$coefficients)){
     
     contrasts_geeglm(fit=fit,
@@ -106,7 +106,7 @@ pcra301_contrast_fit <- function(fit,x,y){
                           difference_grid$modifier,
                           function(x,y){
                             
-                            pcra301_contrast_fit(bmi_fit,x,y)
+                            pcra401_contrast_fit(bmi_fit,x,y)
                             
                           })
 

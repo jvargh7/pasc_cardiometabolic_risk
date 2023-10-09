@@ -40,9 +40,9 @@ sbp_lookback <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre103_
                               TRUE ~ abs(SYSTOLIC))) %>% 
   dplyr::filter(!is.na(SYSTOLIC)) %>% 
   left_join(index_date %>% 
-              dplyr::select(ID,COHORT,index_date,index_date_minus730),
+              dplyr::select(ID,COHORT,index_date,index_date_minus365),
             by = "ID") %>% 
-  dplyr::filter(MEASURE_DATE < index_date, MEASURE_DATE >= index_date_minus730) %>% 
+  dplyr::filter(MEASURE_DATE < index_date, MEASURE_DATE >= index_date_minus365) %>% 
   arrange(ID,MEASURE_DATE)  %>% 
   group_by(ID) %>% 
   dplyr::filter(MEASURE_DATE == max(MEASURE_DATE)) %>% 

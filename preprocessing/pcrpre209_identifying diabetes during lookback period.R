@@ -64,47 +64,62 @@ dm_medication <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/prescrib
 # CP1 --------------
 
 cp1 <- dm_diagnosis %>% 
+  group_by(ID,DX_DATE) %>% 
+  dplyr::summarize(n_dm_diagnosis = n()) %>% 
   left_join(dm_medication %>% 
-              dplyr::select(ID,RX_ORDER_DATE,RXNORM_CUI),
+              dplyr::select(ID,RX_ORDER_DATE,RXNORM_CUI) %>% 
+              group_by(ID,RX_ORDER_DATE) %>% 
+              dplyr::summarize(n_dm_medication = n()),
             by = "ID") %>% 
   dplyr::filter(DX_DATE <= (RX_ORDER_DATE + 90), DX_DATE >= (RX_ORDER_DATE-90)) %>% 
   mutate(criterion1_date = pmin(DX_DATE,RX_ORDER_DATE),
          criterion2_date = pmax(DX_DATE,RX_ORDER_DATE)) %>% 
-  distinct(ID,criterion2_date,.keep_all=TRUE) %>% 
   group_by(ID) %>% 
+  dplyr::filter(criterion1_date == min(criterion1_date)) %>% 
   dplyr::filter(criterion2_date == min(criterion2_date)) %>% 
+  # Exclude multiple matches between criterion1 and criterion2
+  distinct(ID,criterion1_date,criterion2_date,.keep_all = TRUE) %>% 
   ungroup()
 
 
 # CP2 -------------
 
 cp2 <- dm_diagnosis %>% 
+  group_by(ID,DX_DATE) %>% 
+  dplyr::summarize(n_dm_diagnosis = n()) %>% 
   left_join(hba1c %>% 
               dplyr::select(ID,SPECIMEN_DATE,RESULT_NUM,RESULT_QUAL,RESULT_UNIT,high_hba1c) %>% 
-              dplyr::filter(high_hba1c == 1),
+              dplyr::filter(high_hba1c == 1) %>% 
+              group_by(ID,SPECIMEN_DATE) %>% 
+              dplyr::summarize(n_hba1c = n()),
             by = "ID") %>% 
   dplyr::filter(DX_DATE <= (SPECIMEN_DATE + 90), DX_DATE >= (SPECIMEN_DATE-90)) %>% 
   mutate(criterion1_date = pmin(DX_DATE,SPECIMEN_DATE),
          criterion2_date = pmax(DX_DATE,SPECIMEN_DATE)) %>% 
-  distinct(ID,criterion2_date,.keep_all=TRUE) %>% 
   group_by(ID) %>% 
+  dplyr::filter(criterion1_date == min(criterion1_date)) %>% 
   dplyr::filter(criterion2_date == min(criterion2_date)) %>% 
+  distinct(ID,criterion1_date,criterion2_date,.keep_all = TRUE) %>% 
   ungroup()
 
 # CP3 -------------
 
 cp3 <- hba1c %>% 
-  dplyr::select(ID,SPECIMEN_DATE,RESULT_NUM,RESULT_QUAL,RESULT_UNIT,high_hba1c,COHORT) %>% 
+  dplyr::select(ID,SPECIMEN_DATE,RESULT_NUM,RESULT_QUAL,RESULT_UNIT,high_hba1c) %>% 
   dplyr::filter(high_hba1c == 1) %>% 
+  group_by(ID,SPECIMEN_DATE) %>% 
+  dplyr::summarize(n_hba1c = n()) %>% 
   left_join(dm_medication %>% 
               dplyr::select(ID,RX_ORDER_DATE,RXNORM_CUI),
             by = "ID") %>% 
   dplyr::filter(RX_ORDER_DATE <= (SPECIMEN_DATE + 90), RX_ORDER_DATE >= (SPECIMEN_DATE-90)) %>% 
   mutate(criterion1_date = pmin(SPECIMEN_DATE,RX_ORDER_DATE),
          criterion2_date = pmax(SPECIMEN_DATE,RX_ORDER_DATE)) %>% 
-  distinct(ID,criterion2_date,.keep_all=TRUE) %>% 
   group_by(ID) %>% 
+  dplyr::filter(criterion1_date == min(criterion1_date)) %>% 
   dplyr::filter(criterion2_date == min(criterion2_date)) %>% 
+  distinct(ID,criterion1_date,criterion2_date,.keep_all = TRUE) %>% 
+  
   ungroup()
 
 

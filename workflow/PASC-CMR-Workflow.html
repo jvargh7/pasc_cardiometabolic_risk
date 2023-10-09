@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Varghese, Jithin Sam" />
-  <meta name="date" content="2023-07-05" />
+  <meta name="date" content="2023-10-09" />
   <title>Data Management Workflow</title>
   <style type="text/css">
 code{white-space: pre-wrap;}
@@ -680,20 +680,18 @@ list-style-type: none;
       document.body.style.height = "100%";
       document.documentElement.style.width = "100%";
       document.documentElement.style.height = "100%";
-      if (cel) {
-        cel.style.position = "absolute";
-        var pad = unpackPadding(sizing.padding);
-        cel.style.top = pad.top + "px";
-        cel.style.right = pad.right + "px";
-        cel.style.bottom = pad.bottom + "px";
-        cel.style.left = pad.left + "px";
-        el.style.width = "100%";
-        el.style.height = "100%";
-      }
+      cel.style.position = "absolute";
+      var pad = unpackPadding(sizing.padding);
+      cel.style.top = pad.top + "px";
+      cel.style.right = pad.right + "px";
+      cel.style.bottom = pad.bottom + "px";
+      cel.style.left = pad.left + "px";
+      el.style.width = "100%";
+      el.style.height = "100%";
 
       return {
-        getWidth: function() { return cel.offsetWidth; },
-        getHeight: function() { return cel.offsetHeight; }
+        getWidth: function() { return cel.getBoundingClientRect().width; },
+        getHeight: function() { return cel.getBoundingClientRect().height; }
       };
 
     } else {
@@ -701,8 +699,8 @@ list-style-type: none;
       el.style.height = px(sizing.height);
 
       return {
-        getWidth: function() { return el.offsetWidth; },
-        getHeight: function() { return el.offsetHeight; }
+        getWidth: function() { return cel.getBoundingClientRect().width; },
+        getHeight: function() { return cel.getBoundingClientRect().height; }
       };
     }
   }
@@ -926,8 +924,8 @@ list-style-type: none;
 
           elementData(el, "initialized", true);
           if (bindingDef.initialize) {
-            var result = bindingDef.initialize(el, el.offsetWidth,
-              el.offsetHeight);
+            var rect = el.getBoundingClientRect();
+            var result = bindingDef.initialize(el, rect.width, rect.height);
             elementData(el, "init_result", result);
           }
         }
@@ -969,29 +967,30 @@ list-style-type: none;
       forEach(matches, function(el) {
         var sizeObj = initSizing(el, binding);
 
+        var getSize = function(el) {
+          if (sizeObj) {
+            return {w: sizeObj.getWidth(), h: sizeObj.getHeight()}
+          } else {
+            var rect = el.getBoundingClientRect();
+            return {w: rect.width, h: rect.height}
+          }
+        };
+
         if (hasClass(el, "html-widget-static-bound"))
           return;
         el.className = el.className + " html-widget-static-bound";
 
         var initResult;
         if (binding.initialize) {
-          initResult = binding.initialize(el,
-            sizeObj ? sizeObj.getWidth() : el.offsetWidth,
-            sizeObj ? sizeObj.getHeight() : el.offsetHeight
-          );
+          var size = getSize(el);
+          initResult = binding.initialize(el, size.w, size.h);
           elementData(el, "init_result", initResult);
         }
 
         if (binding.resize) {
-          var lastSize = {
-            w: sizeObj ? sizeObj.getWidth() : el.offsetWidth,
-            h: sizeObj ? sizeObj.getHeight() : el.offsetHeight
-          };
+          var lastSize = getSize(el);
           var resizeHandler = function(e) {
-            var size = {
-              w: sizeObj ? sizeObj.getWidth() : el.offsetWidth,
-              h: sizeObj ? sizeObj.getHeight() : el.offsetHeight
-            };
+            var size = getSize(el);
             if (size.w === 0 && size.h === 0)
               return;
             if (size.w === lastSize.w && size.h === lastSize.h)
@@ -1293,7 +1292,6 @@ list-style-type: none;
     return result;
   }
 })();
-
 </script>
   <script>/*
 Viz.js 1.8.2 (Graphviz 2.40.1, Expat 2.2.5, Emscripten 1.37.33)
@@ -1614,7 +1612,7 @@ color: #333333;
   <p class="author">
 Varghese, Jithin Sam
   </p>
-  <p class="date">2023-07-05</p>
+  <p class="date">2023-10-09</p>
 </div>
 <div id="introduction" class="slide section level1">
 <h1>Introduction</h1>
@@ -1625,8 +1623,8 @@ with the secure shared folder that contains Raw data.</p>
 <div id="folder-structure" class="slide section level1">
 <h1>Folder Structure</h1>
 <ul>
-<li><strong>source</strong>: Proposals/R01S COVID x Post Acute Diabetes
-Diagnosis/working/raw
+<li><strong>source</strong> secure folder contains raw data:
+Proposals/R01S COVID x Post Acute Diabetes Diagnosis/working/raw
 <ul>
 <li>demo_other_&lt;version&gt;
 <ul>
@@ -1666,23 +1664,27 @@ Diagnosis/working/raw
 <li>vital_&lt;version&gt;.csv</li>
 </ul></li>
 </ul></li>
-<li><strong>repo</strong>: pasc_cardiometabolic_risk
+<li><strong>repo</strong> public folder contains cleaning code:
+pasc_cardiometabolic_risk
 <ul>
-<li>data</li>
-<li>workflow</li>
-<li>functions</li>
-<li>preprocessing</li>
-<li>analysis</li>
-<li>sensitivity</li>
-<li>paper</li>
+<li>data: reading data</li>
+<li>workflow: documentation of workflow</li>
+<li>functions: custom functions specific to this repository</li>
+<li>preprocessing: cleaning data and variable creation</li>
+<li>analysis bmi: descriptive statistics and modeling for BMI</li>
+<li>sensitivity: sensitivity analysis</li>
+<li>paper: figures and tables</li>
+<li>analysis archive: old descriptive statistics</li>
 </ul></li>
-<li><strong>shared</strong>: Papers/PASC Cardiometabolic Risk
+<li><strong>shared</strong> secure folder contains cleaned data and
+model results: Papers/PASC Cardiometabolic Risk
 <ul>
 <li>working
 <ul>
-<li>raw</li>
-<li>cleaned</li>
-<li>dictionaries</li>
+<li>dictionaries: internal and external files</li>
+<li>raw: datasets from <em>repo/data</em></li>
+<li>cleaned: datasets from <em>repo/preprocessing</em></li>
+<li>models pcrab: modeling results from <em>repo/analysis bmi</em></li>
 </ul></li>
 <li>writing</li>
 <li>references</li>
@@ -1692,28 +1694,41 @@ Diagnosis/working/raw
 </div>
 <div id="workflow" class="slide section level1">
 <h1>Workflow</h1>
-<p>The workflow can be divided into <strong>3 steps</strong>, with the
+<p>The workflow can be divided into <strong>4 steps</strong>, with the
 final output being tables and figures for the manuscript. The current
 presentation is generated separately for each of the steps in a vertical
 scroll. You can navigate between the steps using the ‘Contents’ option
 on the bottom left or by clicking the alphabet <strong>C</strong> on
 your keyboard.</p>
 <ul>
-<li>PREPROCESSING: <em>Reading data, cleaning variables</em><br />
+<li>DATA: <em>Reading raw data</em></li>
+<li>PREPROCESSING: <em>Cleaning data and generating variables</em><br />
 </li>
 <li>ANALYSIS: <em>Descriptive and inferential statistics</em><br />
 </li>
 <li>PAPER: <em>Figures and Tables for manuscript</em></li>
 </ul>
 </div>
-<div id="preprocessing" class="slide section level1">
-<h1>PREPROCESSING</h1>
-<h2 id="flowchart">Flowchart</h2>
-<p>This step can be divided into sub-components</p>
-<div id="htmlwidget-b2aa3c0f22c68a1c0584" style="width:768px;height:300px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b2aa3c0f22c68a1c0584">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Step 1. Read and clean separately\"]\n  rec2 [label = \"Step 2. Create important variables\"]\n  rec3 [label = \"Step 3. High dimensional variables\"]\n  rec4 [label =  \"Step 4. Analytic dataset creation\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 -> rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-<h2 id="step-1.-read-and-clean-separately">Step 1. Read and clean
-separately</h2>
+<div id="data" class="slide section level1">
+<h1>DATA</h1>
+<p>This step involves moving from the secure <strong>source</strong>
+folder of raw data shared by OneFlorida+ to the secure
+<strong>shared</strong> folder of raw data for use in these analysis</p>
+<ul>
+<li>repo/data/pcrd01_extracting zip files and saving data.R: Zip files
+are extracted</li>
+<li>repo/data/pcrd02_saving data from csv to RDS.R: <em>All files in
+.csv format would be read from the source folder and saved –&gt;
+shared/working/raw/RDS/&lt;filename&gt;.RDS</em></li>
+<li>repo/data/pcrd03_saving data from csv to parquet.R: <em>All files in
+.csv format would be read from the source folder and saved –&gt;
+shared/working/raw/&lt;filename&gt;.parquet</em>
+<ul>
+<li>This file format (.parquet) is better for storing and querying large
+datasets</li>
+</ul></li>
+</ul>
+<h2 id="datasets">DATASETS</h2>
 <p>The raw data consists of 15 datasets. Majority of datasets are in a
 <strong>long</strong> format to reflect the longitudinal nature of the
 data.</p>
@@ -1770,118 +1785,239 @@ processes<br />
 <li><strong>demographic</strong>: direct attributes of individual
 patient</li>
 </ul>
-<h3 id="data-cleaning-files">Data cleaning files</h3>
-<p>This sub-step in the <strong>PREPROCESSING</strong> workflow consists
-of 3 analytic files.</p>
+</div>
+<div id="global-variables" class="slide section level1">
+<h1>GLOBAL VARIABLES</h1>
+<p>See .Rprofile for updated list.</p>
+<p>version = “chakkalakal_v1”</p>
+<p>Key Dates - pandemic_start = “2020-03-01” # March 1, 2020<br />
+- exposed_identification_start = ymd(pandemic_start)<br />
+- exposed_identification_stop = ymd(“2022-01-29”)<br />
+- exposed_followup_start = exposed_identification_start + days(30)<br />
+- exposed_followup_stop = exposed_identification_stop + days(30)<br />
+- historical_identification_start = ymd(“2018-03-02”)<br />
+- historical_identification_stop = ymd(“2020-01-30”)<br />
+- historical_followup_start = historical_identification_start +
+days(30)<br />
+- historical_followup_stop = historical_identification_stop +
+days(30)</p>
+<p>Key Encounter Types - admissible_encounter_types = c(‘AV’, ‘IP’,
+‘OS’,‘ED’,‘EI’,‘IC’,‘IS’,‘TH’)<br />
+- permissible_enc_type &lt;- c(“AV”,“IP”,“EI”,“TH”)</p>
+<p>Key LOINCs: - glucose_loinc &lt;- c(“2345-7”,“2339-0”,“41653-7”,
+“2340-8”,“27353-2”, “1547-9”,“1558-6”)<br />
+- hba1c_loinc &lt;- c(“4548-4”,“41995-2”,“55454-3”,
+“71875-9”,“549-2”,“17856-6”, “59261-6”,“62388-4”,“17855-8”, #10839-9 was
+not included in Weise 2018 “10839-9”)<br />
+- HT_LOINCS &lt;- c(“3137-7”, “8302-2”, “8308-9”,“3138-5”)<br />
+- WT_LOINCS &lt;-
+c(“3141-9”,“29463-7”,“8335-2”,“3142-7”,“8341-0”,“8340-2”)<br />
+- BMI_LOINCS &lt;- c(“39156-5”,“89270-3”) - covid_lab_loincs &lt;-
+c(“94500-6”,“94309-2”, “94558-4”,“94534-5”, “94759-8”,“95209-3”,
+“95608-6”,“95380-2”, “94316-7”,“95422-2”, “94533-7”,“94565-9”,
+“94756-4”,“94642-6”, “94306-8”,“95406-5”, “95425-5”,“87635”)</p>
 <ul>
-<li>repo/data/pcrd02_saving data from csv to RDS.R: <em>All files in
-.csv format would be read from the source folder and saved –&gt;
-shared/working/raw/RDS/&lt;filename&gt;.RDS</em></li>
-<li>repo/data/pcrd02_saving data from csv to parquet.R: <em>All files in
-.csv format would be read from the source folder and saved –&gt;
-shared/working/raw/&lt;filename&gt;.parquet</em>
+<li>icd10_dm_qualifying &lt;- c(“E11.00”, “E11.01”, “E11.21”, “E11.22”,
+“E11.29”, “E11.311”, “E11.319”, “E11.321”, “E11.329”, “E11.331”,
+“E11.339”, “E11.341”, “E11.349”, “E11.351”, “E11.359”, “E11.36”,
+“E11.39”, “E11.40”, “E11.41”, “E11.42”, “E11.43”, “E11.44”, “E11.49”,
+“E11.51”, “E11.52”, “E11.59”, “E11.610”, “E11.618”, “E11.620”,
+“E11.621”, “E11.622”, “E11.628”, “E11.630”, “E11.638”, “E11.641”,
+“E11.649”, “E11.65”, “E11.69”, “E11.8”, “E11.9”)</li>
+<li>icd10_otherdm_excluding &lt;- c(“R73\.01”, “R73,02”, “R73\.0”,
+“R81\.”, “E88\.81”, “Z13\.1”, “E13\.”, “E08\.”, “E09\.”)<br />
+</li>
+<li>icd10_t1dm &lt;- c(“E10\.”)<br />
+</li>
+<li>icd10_gdm &lt;- c(“O24\.”)</li>
+</ul>
+<p>Key Limits - n_hd_pro_min = 1000<br />
+- fdr_hd_pvalue = 0.05<br />
+- sbp_max_possible = 350<br />
+- sbp_min_possible = 50<br />
+- dbp_max_possible = 300<br />
+- dbp_min_possible = 30<br />
+- wt_max_possible = 500<br />
+- wt_min_possible = 50<br />
+- ht_max_possible = 7.5<em>12<br />
+- ht_min_possible = 4</em>12<br />
+- bmi_min_possible = 12<br />
+- bmi_max_possible = 60</p>
+</div>
+<div id="preprocessing" class="slide section level1">
+<h1>PREPROCESSING</h1>
+<h2 id="flowchart">Flowchart</h2>
+<p>This step can be divided into sub-components</p>
+<div id="htmlwidget-f1b78fa6931650fa322f" style="width:768px;height:300px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-f1b78fa6931650fa322f">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Step 1. Read and clean specific datasets\"]\n  rec2 [label = \"Step 2. Create important variables\"]\n  rec3 [label = \"Step 3. High dimensional variables\"]\n  rec4 [label =  \"Step 4. Analytic dataset creation\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 -> rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<h2 id="step-1.-read-and-clean-specific-datasets">Step 1. Read and clean
+specific datasets</h2>
+<p>All files begin with prefix <strong>pcrpre1XX</strong></p>
 <ul>
-<li>This file format (.parquet) is better for storing and querying large
-datasets</li>
+<li>repo/preprocessing/pcrpre101_demographic.R: Create the following
+variables
+<ul>
+<li>nhwhite</li>
+<li>nhblack</li>
+<li>hispanic</li>
+<li>nhother</li>
+<li>female</li>
+<li>age: IF: age &gt; 99 ~ 99, ELSE: age</li>
 </ul></li>
-<li>repo/preprocessing/pcrpre01_cleaning raw data.R: <em>All files in
-.RDS format would be cleaned and deposited into a
-shared/working/cleaned/&lt;filename&gt;.RDS folder</em>
+<li>repo/preprocessing/pcrpre102_death.R: Extract date of death
 <ul>
-<li>Each dataset has its own cleaning file of the format
-pcrpre_&lt;dataset_name&gt;.R</li>
-<li>Cleaning would be specific to pasc_cardiometabolic_risk paper’s
-requirements
+<li>Includes QC generation <em>cleaned/pcrpre102_QC death multiple
+records.csv</em> for multiple death records for a patient when
+difference in records is greater than 1 day</li>
+</ul></li>
+<li>repo/preprocessing/pcrpre103_vital.R: Create the following variables
 <ul>
-<li>longitudinal dataset of cardiometabolic trajectories</li>
-<li>baseline confounding adjustment</li>
-<li>loss to follow-up or death</li>
+<li>smoking: Any one of 8 levels</li>
+<li>HT: minimum of different records on MEASURE_DATE, harmonize to
+inches</li>
+<li>WT: minimum of different records on MEASURE_DATE, check for grams
+[IF unit == “g” and value &gt;=300: grams, ELSE: kg/lbs], harmonize to
+lbs</li>
+<li>DIASTOLIC: minimum of different records on MEASURE_DATE</li>
+<li>SYSTOLIC: minimum of different records on MEASURE_DATE</li>
+<li>ORIGINAL_BMI: minimum of different records on MEASURE_DATE</li>
 </ul></li>
-<li>Additional cleaning files for pasc_diabetes paper are in the
-corresponding repo: <a href="https::/github.com/jvargh7/pasc_diabetes">https::/github.com/jvargh7/pasc_diabetes</a></li>
-</ul></li>
+<li>repo/preprocessing/pcrpre104_lab results covid tests.R: Filters
+covid_lab_loincs on all dates</li>
+<li>repo/preprocessing/pcrpre107_diagnosis covid.R: Filters icd10_covid
+codes</li>
 </ul>
 <h2 id="step-2.-creating-important-variables">Step 2. Creating important
 variables</h2>
 <p>This sub-step in the <strong>PREPROCESSING</strong> workflow consists
-of analytic files starting with <strong>pcrpre2</strong>.</p>
+of analytic files starting with <strong>pcrpre2XX</strong>.</p>
 <ul>
-<li>repo/preprocessing/pcrpre202_generating index date from diagnosis
-and lab.R: Replication code for index date
+<li>repo/preprocessing/pcrpre201_index date.R: Adds new variables useful
+for further preprocessing
 <ul>
-<li>Verifying if diagnosis codes and test positive results for Exposed
-can be replicated</li>
-<li>Verifying if test negative results for Unexposed can be
-replicated</li>
+<li>origin_date = index_date + 30</li>
+<li>index_date_minus365 = index_date - 365</li>
+<li>index_date_minus730 = index_date - 730</li>
+<li>max_followup_date = historical_followup_stop OR
+exposed_followup_stop</li>
 </ul></li>
-<li>repo/preprocessing/pcrpre203_identifying new-onset diabetes.R:
-Identifying incident T2DM cases using CPiT2DM
+<li>repo/preprocessing/pcrpre202_identifying new onset diabetes.R:
+Creates 2 datasets
 <ul>
-<li>Source: <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/pds.4718">Weise,
-Performance of a computable phenotype for identification of patients
-with diabetes within PCORnet: The Patient‐Centered Clinical Research
-Network, 2018</a></li>
-<li><ol style="list-style-type: decimal">
-<li>inpatient/outpatient ICD-9/10 diagnosis for T2DM and an antidiabetic
-medication prescription within 90 days before or after the diagnosis
-date or</li>
-</ol></li>
-<li><ol start="2" style="list-style-type: decimal">
-<li>inpatient/outpatient ICD-9/10 diagnosis for T2DM and an outpatient
-glycolated hemoglobin (HbA1C) value ≥6.5% within 90 days before or after
-the diagnosis date or</li>
-</ol></li>
-<li><ol start="3" style="list-style-type: decimal">
-<li>any outpatient HbA1C value ≥6.5%within 90 days before or after an
-antidiabetic medication prescription</li>
-</ol></li>
-</ul></li>
-<li>repo/preprocessing/pcrpre04_index date characteristics.R:
+<li>pcrpre202_cpit2dm new onset diabetes.RDS
 <ul>
-<li>Facility</li>
-<li>Insurance Type</li>
-<li>Hospitalization (Not Hospitalized, Hospitalized, ICU admission)</li>
-<li>Severity of Hyperglycemia between index date and origin date
-(percentage of blood glucose measurements &gt; 200 mg/dL: &lt;25, 25-50,
-&gt;50)</li>
+<li>hba1c identified using RAW_LAB_NAME &gt;&gt; hba1c_loinc &gt;&gt;
+value gt 20 is outlier</li>
+<li>dm_diagnosis restricted to permissible_enc_type</li>
+<li>dm_medication identified using PASC CMR Variable List</li>
+<li>All cp1, cp2, cp3 uses distinct(ID, criterion1_date,
+criterion2_date)</li>
+<li>All require at least 1 permissible_enc_type during each of last 2
+years</li>
 </ul></li>
-<li>repo/preprocessing/pcrpre205_clinical characteristics prior to
-infection.R: Within 1 year of index date [T0-365, T0):
+<li>pcrpre202_noncpit2dm last followup.RDS
 <ul>
-<li>Smoking status (never, former, current)</li>
-<li>Comorbidities (obesity, cardiovascular disease, chronic lung
-disease, cerebrovascular diseae, hyperlipidemia): Use grouped ICD-10
-codes</li>
-<li>Medication classes (immunosuppressants, antihypertensives, statins,
-antipsychotics)</li>
-<li>Laboratory parameters (blood glucose, serum creatinine, HbA1c, LDLc,
-HDLc, AST, ALT)</li>
+<li>diagnosis_max restricted to permissible_enc_type</li>
+<li>labs_max uses any lab in follow up period</li>
+<li>medication_max uses any medication in follow up period</li>
 </ul></li>
-<li>repo/preprocessing/pcrpre206_healthcare utilization during
-lookback.R:
+</ul></li>
+<li>repo/preprocessing/pcrpre203_index date characteristics.R: For index
+date and [index date, origin date)
 <ul>
-<li>Number of outpatient visits</li>
-<li>Number of telehealth encounters</li>
-<li>Number of hospitalizations</li>
-<li>Number of lab visits</li>
-<li>Number of HbA1c measurements</li>
-</ul></li>
-<li>repo/data/pcrpre207_community characteristics.R</li>
-<li>repo/data/pcrpre208_negative control outcomes.R: Unrelated to
-exposure and expected to occur at all ages in the study population
+<li>facility
 <ul>
-<li>incidence of fractures: Grouped ICD-10 codes () and procedure codes
-()</li>
-<li>eye infections: Grouped ICD-10 codes () and procedure codes ()</li>
+<li>PAYER_TYPE_PRIMARY</li>
+<li>PAYER_TYPE_SECONDARY</li>
 </ul></li>
+<li>hospitalization
+<ul>
+<li>hospitalized: ENC_TYPE %in% c(“EI”,“IP”,“IS”,“OS”)</li>
+<li>not_hospitalized: ENC_TYPE %in%
+c(“AV”,“ED”,“IC”,“TH”,“OA”,“NI”,“UN”,“OT”)</li>
+<li>n_hospitalized: number of hospitalization encounters</li>
+<li>n_not_hospitalized: number of not_hospitalized encounters</li>
+<li><strong>hospitalization</strong>: IF n_hospitalized &gt;= 1 THEN 1,
+ELSE 0</li>
+</ul></li>
+<li>glucose: any glucose_loinc with “HIGH” values</li>
+</ul></li>
+<li>repo/preprocessing/pcrpre204_clinical characteristics prior to
+infection.R:
+<ul>
+<li>bmi_lookback: [index_date_minus365, index_date)
+<ul>
+<li>HT: closest observation carried forward or backward if missing. Only
+small proportion have missing HT in overall dataset but any WT
+available</li>
+<li>WT: After outlier screening</li>
+<li>bmi: From ORIGINAL_BMI, ELSE using WT and HT &gt;&gt; outliers set
+to missing</li>
+</ul></li>
+<li>sbp_lookback: [index_date_minus365, index_date) &gt;&gt; after
+outlier removal</li>
+<li>smoking_status: [index_date_minus365, index_date)</li>
+<li>comorbidity_diagnosis: [index_date_minus730, index_date)</li>
+<li>medication_history: [index_date_minus365, index_date)</li>
+<li>lab_history: LOINCs from PASC CMR Variable List.xlsx &gt;&gt; “labs”
+<ul>
+<li>[index_date_minus365, index_date)</li>
+<li>Valid quantitative result (RESULT_NUM)</li>
+<li>distinct(ID, SPECIMEN_DATE)</li>
+</ul></li>
+</ul></li>
+<li>repo/preprocessing/pcrpre205_healthcare utilization during
+lookback.R: [index_date_minus365, index_date) &gt;&gt; Any missing set
+to zero
+<ul>
+<li>From encounter_<version>.parquet
+<ul>
+<li>lb_hospitalized</li>
+<li>lb_not_hospitalized</li>
+<li>lb_telehealth</li>
+<li>lb_outpatient</li>
+</ul></li>
+<li>From lab_<version>.parquet
+<ul>
+<li>lb_n_labvisits</li>
+<li>lb_n_glucose</li>
+<li>lb_n_serum_creatinine</li>
+<li>lb_n_hba1c</li>
+<li>lb_n_ldl</li>
+<li>lb_n_hdl</li>
+<li>lb_n_alt</li>
+<li>lb_n_ast</li>
+</ul></li>
+</ul></li>
+<li>repo/preprocessing/pcrpre206_covid19 testing rates.R: Based on
+United_States_COVID-19_County_Level_of_Community_Transmission_Historical_Changes
+data
+<ul>
+<li>cases_per_100K_7_day_count_change
+<ul>
+<li>IF suppressed, runif(1,1,9)/10^6</li>
+</ul></li>
+<li>cases_per_100K_7_day_count_sum: Right aligned 7 day rolling sum</li>
+</ul></li>
+<li>repo/preprocessing/pcrpre207_county of residence on index date.R:
+Using address_history_<version>.parquet
+<ul>
+<li>Use usa::zipcodes data and dexter_2321900090_extract.csv
+(mcdc.missouri.edu)</li>
+<li>Approx match zcta5 with County</li>
+</ul></li>
+<li>repo/preprocessing/pcrpre208_identifying new onset diabetes during
+period till origin date.R: Same as pcrpre202_identifying new onset
+diabetes.R but using [index date, origin date)</li>
+<li>repo/preprocessing/pcrpre209_identifying diabetes during lookback
+period.R: Same as pcrpre202_identifying new onset diabetes.R but using
+[index_date_minus730, index date)</li>
 </ul>
 <h2 id="step-3.-high-dimensional-covariates">Step 3. High dimensional
 covariates</h2>
 <p>This sub-step in the <strong>PREPROCESSING</strong> workflow consists
 of analytic files starting with <strong>pcrpre3</strong>. All counts are
-estimated for combinations of date_type and enc_inpatient variables. See
-preprocessing/pcpre_encounter type.R</p>
-<h3 id="variables">Variables</h3>
+estimated for combinations of date_type and enc_inpatient variables.</p>
 <ul>
 <li>date_type
 <ul>
@@ -1895,9 +2031,6 @@ preprocessing/pcpre_encounter type.R</p>
 <li>Inpatient (“EI”,“IP”,“IS”,“OS”)</li>
 <li>Outpatient (“AV”,“ED”,“IC”,“TH”,“OA”,“NI”,“UN”,“OT”)</li>
 </ul></li>
-</ul>
-<h3 id="code">Code</h3>
-<ul>
 <li>repo/preprocessing/pcrpre301_high dimensional comorbidities.R
 <ul>
 <li>Extract ICD-10 codes</li>
@@ -1923,108 +2056,249 @@ Clinical Classification Codes</a></li>
 <ul>
 <li>Identify number of encounters per encounter type</li>
 </ul></li>
+<li>repo/preprocessing/pcrpre305_high dimensional lab.R
+<ul>
+<li>Identify number ofabnormal lab encounters for frequent labs (n &gt;
+n_hd_pro_min)</li>
+</ul></li>
 </ul>
 <h2 id="step-4.-analytic-dataset-creation">Step 4. Analytic Dataset
 Creation</h2>
 <p>This sub-step in the <strong>PREPROCESSING</strong> workflow consists
 of analytic files starting with <strong>pcrpre4</strong>.</p>
 <ul>
-<li>repo/preprocessing/pcrpre401_creating follow-up dataset.R: This is
-the longitudinal dataset in <strong>long</strong> format after index
-date.
+<li>repo/preprocessing/pcrpre401_creating follow-up dataset.R
 <ul>
-<li>We set all anthropometric observations beyond the below ranges to
-missing</li>
-<li><em>Height (inches)</em>: [48, 90]</li>
-<li><em>Weight (lbs)</em>: [50, 500]</li>
-<li><em>BMI (kg/m2)</em>: [12, 50]</li>
-</ul></li>
-<li>repo/analysis/pcra402_creating lookback dataset.R: This is the
-cross-sectional dataset before index date.
+<li>HT: closest observation carried forward or backward if missing. Only
+small proportion have missing HT in overall dataset but any WT
+available</li>
+<li>WT: After outlier screening</li>
+<li>bmi: From ORIGINAL_BMI, ELSE using WT and HT &gt;&gt; outliers set
+to missing</li>
+<li>lab_history: LOINCs from PASC CMR Variable List.xlsx &gt;&gt; “labs”
 <ul>
-<li>We set all laboratory values beyond the below ranges to missing</li>
-<li><em>HbA1c (%)</em>: [3, 20]</li>
+<li>[origin_date, max_followup_date]</li>
+<li>Valid quantitative result (RESULT_NUM)</li>
+<li>distinct(ID, SPECIMEN_DATE)</li>
 </ul></li>
+</ul></li>
+<li>repo/preprocessing/pcrpre402_creating lookback dataset.R: Combines
+<ul>
+<li>demographic</li>
+<li>index_date_characteristics</li>
+<li>lookback_clinical_characteristics</li>
+<li>lb_healthcare_utilization</li>
+</ul></li>
+<li>repo/preprocessing/pcrpre403_creating high dimensional dataset.R:
+Combines
+<ul>
+<li>ip_diagnosis</li>
+<li>op_diagnosis</li>
+<li>ip_procedures</li>
+<li>op_procedures</li>
+<li>prescribing</li>
+<li>lab</li>
+</ul></li>
+<li>repo/preprocessing/pcrpre404_encounters during followup.R: Count of
+number of encounters between [origin_date, max_followup_date] by
+month-year</li>
 </ul>
 </div>
 <div id="analysis" class="slide section level1">
 <h1>ANALYSIS</h1>
 <h2 id="flowchart-1">Flowchart</h2>
 <p>This step can be divided into sub-components</p>
-<div id="htmlwidget-7ab87617af252b55bf36" style="width:768px;height:300px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7ab87617af252b55bf36">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Step 1. Missing Data and Participants\"]\n  rec2 [label = \"Step 2. Individual susceptibility\"]\n  rec3 [label = \"Step 3. Main analysis\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 -> rec3\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-36819288efab61e85c08" style="width:768px;height:300px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-36819288efab61e85c08">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]\n  rec0 [label = \"Step 0. Core dataset and Imputation\"]\n  rec1 [label = \"Step 1. IPW for Cohort\"]\n  rec2 [label = \"Step 2. IPW for Loss to Followup\"]\n  rec3 [label = \"Step 3. Combining IPW\"]\n  rec4 [label = \"Step 4. Statistical Analysis\"]\n  \n  # edge definitions with the node IDs\n  rec0 -> rec1 -> rec3 -> rec4\n  rec0 -> rec2 -> rec3 -> rec4\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p>This sub-step in the <strong>ANALYSIS</strong> workflow consists of 3
 sets of files. All files start with prefix <em>pcra</em>, followed by a
 number indicating file set.</p>
-<h2 id="step-1.-accounting-for-missing-data-and-missing-participants">Step
-1. Accounting for Missing Data and Missing Participants</h2>
-<p>This sub-step in the <strong>ANALYSIS</strong> workflow consists of
-analytic files starting with <strong>pcra1</strong>.</p>
+<h2 id="step-0.-core-dataset-and-imputation">Step 0. Core dataset and
+imputation</h2>
 <ul>
-<li>repo/analysis/pcra101_missing data in covariates: Multiple
-imputation by chained equations using predictive mean matching</li>
-<li>repo/analysis/pcra102_ipw multiple exposure.R: Using multinomial
-model for estimating propensity of membership in each cohort</li>
-<li>repo/analysis/pcra103_ipw missing index date.R: Using logistic model
-for estimating propensity of having an index date
+<li>repo/analysis bmi/pcrab001_processing before imputation and lookback
+bmi exclusion.R: lookback_df where some variables which are missing are
+set to zero</li>
+<li>repo/analysis bmi/pcrab002_imputed lookback dataset for bmi.R
 <ul>
-<li>This would be deprecated once we get the actual index date</li>
-<li>Currently we are using a derived index date</li>
-<li>Source: repo/preprocessing/pcrpre02_generating index date from
-diagnosis and lab.R</li>
+<li>Calls pcrab001_processing before imputation and lookback bmi
+exclusion.R</li>
+<li>Excludes IDs in lookback_cpit2dm</li>
+<li>Excludes records of missing BMI</li>
+<li>Mode imputation for all nominal</li>
+<li>Linear imputation for all numeric
+<ul>
+<li>imputed using female, nhblack, hispanic, site, age, COHORT</li>
 </ul></li>
-<li>repo/analysis/pcra104_estimating and assessing missing outcome.R:
-Using logistic model for estimating propensity of having at least one
-outcome observation</li>
-<li>repo/analysis/pcra105_non informative censoring: Assess if censoring
-was non-informative by comparing characteristics</li>
+<li>Dummy variables for EXPOSED, UNEXPOSED and HISTORICAL</li>
+<li>Save pcrab002_imputed lookback dataset.RDS</li>
+</ul></li>
+<li>repo/analysis bmi/pcrab003_analytic dataset for data availability.R:
+Summary of data availability
+<ul>
+<li>lookback_df &gt;&gt; excludes missing BMI and IDs in
+lookback_cpit2dm</li>
+<li>Dummy variables for availability of BMI in lookback and BMI in
+followup</li>
+</ul></li>
+<li>repo/analysis bmi/pcrab004_matchid dataset.R: Restricts EXPOSED and
+HISTORICAL to records that are matched to each other</li>
+<li>repo/analysis bmi/pcrabaux_difference grids.R: Used for
+pcrab4XX</li>
+<li>repo/analysis bmi/pcrabaux_ipw formula and variables.R: PREVIOUSLY
+used for IPW</li>
 </ul>
-<h3 id="support-files">Support files:</h3>
+<h2 id="step-1.-ipw-for-cohort">Step 1. IPW for Cohort</h2>
 <ul>
-<li>pcra_analytic dataset for change in indicators.R: Identifies which
-observations are available at each step of missingness</li>
+<li>repo/analysis bmi/pcrab101_identifying high dimensional covariates
+with outcome.R:
+<ul>
+<li>Calls pcrab001_processing before imputation and lookback bmi
+exclusion.R</li>
+<li>lookback_df &gt;&gt; excludes missing BMI and IDs in
+lookback_cpit2dm</li>
+<li>LRT for linear mixed model adjusting for time to identify variables
+associated with longitudinal BMI</li>
+</ul></li>
+<li>repo/analysis bmi/pcrab102_selecting high dimensional variables
+based on fdr.R:
+<ul>
+<li>Uses output of pcrab101_identifying high dimensional covariates with
+outcome.R</li>
+<li>P-value adjustment using Benjamini-Hochberg procedure</li>
+<li>select variables at fdr_hd_pvalue</li>
+</ul></li>
+<li>repo/analysis bmi/pcrab103_restricting high dimensional covariates
+based on frequency.R:
+<ul>
+<li>Run sequentially after pcrab102_selecting high dimensional variables
+based on fdr.R</li>
+<li>Selects only those variables with at least 100 observations for each
+COHORT</li>
+</ul></li>
+<li>repo/analysis bmi/pcrab104_creating parquet for cohort membership
+ps.R:
+<ul>
+<li>Run pcrab003_analytic dataset for data availability.R</li>
+<li>Run pcrab102_selecting high dimensional variables based on
+fdr.R</li>
+<li>Use pcrab002_imputed lookback dataset.RDS</li>
+<li>Run pcrab103_restricting high dimensional covariates based on
+frequency.R</li>
+<li>Saves pcrab104_ipw for cohort membership data.parquet for use in IPW
+model fit</li>
+</ul></li>
+<li>repo/analysis bmi/pcrab106_predicted probability for cohort
+membership.ipynb:</li>
 </ul>
-<h2 id="step-2.-individual-susceptibility-score-from-historical-control-cohort">Step
-2. Individual susceptibility score from historical control cohort</h2>
-<p>This sub-step in the <strong>ANALYSIS</strong> workflow consists of
-analytic files starting with <strong>pcra2</strong>.</p>
+<h2 id="step-2.-ipw-for-loss-to-followup">Step 2. IPW for Loss to
+Followup</h2>
 <ul>
-<li>repo/analysis/pcra203_estimating individual susceptibility score:
-Susceptibility for T2DM prior to infection using prediction model
-developed on historical control cohort
+<li>repo/analysis bmi/pcrab201_identifying high dimensional covariates
+loss to followup.R:
 <ul>
-<li><em>This analysis is pending</em></li>
+<li>Run pcrab003_analytic dataset for data availability.R</li>
+<li>Run pcrab102_selecting high dimensional variables based on
+fdr.R</li>
+<li>Restrict model fit to variables not selected for COHORT IPW</li>
+</ul></li>
+<li>repo/analysis bmi/pcrab202_selecting ltfu high dimensional variables
+based on fdr.R:
+<ul>
+<li>Uses output of pcrab201_identifying high dimensional covariates loss
+to followup.R</li>
+<li>P-value adjustment using Benjamini-Hochberg procedure</li>
+<li>select variables at fdr_hd_pvalue</li>
+</ul></li>
+<li>repo/analysis bmi/pcrab203_restricting ltfu high dimensional
+covariates based on frequency.R:</li>
+<li>repo/analysis bmi/pcrab204_creating parquet for loss to follow up.R:
+<ul>
+<li>Run pcrab003_analytic dataset for data availability.R</li>
+<li>Run pcrab102_selecting high dimensional variables based on
+fdr.R</li>
+<li>Run pcrab202_selecting ltfu high dimensional variables based on
+fdr.R</li>
+<li>Use pcrab002_imputed lookback dataset.RDS</li>
+<li>Run pcrab103_restricting high dimensional covariates based on
+frequency.R</li>
+<li>Run pcrab203_restricting ltfu high dimensional covariates based on
+frequency.R</li>
+<li>Saves pcrab204_ipw for loss to followup data.parquet for use in IPW
+model fit</li>
+</ul></li>
+<li>repo/analysis bmi/pcrab206_predicted probability for loss to
+followup.ipynb:</li>
+</ul>
+<h2 id="step-3.-combining-ipw">Step 3. Combining IPW</h2>
+<ul>
+<li>repo/analysis bmi/pcrab301_stabilized ip weights using
+demographics.R:
+<ul>
+<li>Use predictions from pcrab106_predicted probability for cohort
+membership.ipynb</li>
+<li>Generate stabilized IPW and plots</li>
+<li>Saves pcrab301_ip weights for cohort membership.RDS</li>
+<li>Saves pcrab301_ip weights for missing outcomes.RDS</li>
+</ul></li>
+<li>repo/analysis bmi/pcrab302_analytic dataset with ip weights for
+bmi.R:
+<ul>
+<li>Run pcrab004_matchid dataset.R</li>
+<li>Identify imbalanced variables</li>
+<li><strong>MANUAL STEP</strong>: Set analytic_dataset_lookback =
+before_matchid OR run commented lines</li>
+<li>Create bmi_df (not saved) for use in <strong>Step 4. Statistical
+Analysis</strong></li>
+</ul></li>
+<li>repo/analysis bmi/pcrab303_standardized mean differences of
+predefined covariates.R:
+<ul>
+<li>Run <a href="https://github.com/jvargh7/functions/blob/main/causality/population_standardized_bias.R">population_standardized_bias.R</a></li>
 </ul></li>
 </ul>
-<h2 id="step-3.-main-analysis">Step 3. Main Analysis</h2>
-<p>This sub-step in the <strong>ANALYSIS</strong> workflow consists of
-analytic files starting with <strong>pcra3</strong>.</p>
+<h2 id="step-4.-statistical-analysis">Step 4. Statistical Analysis</h2>
 <ul>
-<li>repo/analysis/pcra301_change in cardiometabolic indicators.R:IPW
-only</li>
-<li>repo/analysis/pcra302_excess burden in exposed and unexposed
-cohorts.R:
+<li>repo/analysis bmi/pcrab401_change in cardiometabolic indicators.R:
 <ul>
-<li><em>Pending</em></li>
+<li>Run pcrab003_analytic dataset for data availability.R</li>
+<li>pcrabaux_ipw formula and variables.R</li>
+<li>pcrab302_analytic dataset with ip weights for bmi.R</li>
+<li>Save modeling results pcrab401 bmi_fit.RDS</li>
+<li>Internal function pcra401_contrast_fit()</li>
 </ul></li>
-<li>repo/analysis/pcra303_covariate adjustment for change in
-cardiometabolic indicators.R: Doubly-robust</li>
-</ul>
-</div>
-<div id="sensitivity-analysis" class="slide section level1">
-<h1>SENSITIVITY ANALYSIS</h1>
-<p>This sub-step in the <strong>Sensitivity Analysis</strong> workflow
-consists of analytic files starting with <strong>pcrs</strong>.</p>
+<li>repo/analysis bmi/pcrab402_change in cardiometabolic indicators
+sociodemographic.R:
 <ul>
-<li>repo/sensitivity/pcrs201_excluding less than 6mo followup.R:
-censoring or death as possible reasons</li>
-<li>repo/sensitivity/pcrs202_adjusting for pandemic healthcare
-utilization.R: account for differences in diabetes diagnosis due to
-disruptions in care seeking</li>
-<li>repo/sensitivity/pcrs203_restricting to exposed and unexposed.R:
-include rates of testing as confounding variable</li>
-<li>repo/sensitivity/pcrs204_different pandemic start.R: June 1, 2020
-when testing was more widely available</li>
+<li>Run pcrab003_analytic dataset for data availability.R</li>
+<li>pcrabaux_ipw formula and variables.R</li>
+<li>pcrab302_analytic dataset with ip weights for bmi.R</li>
+<li>Model fit for sex_category, age_category, raceeth_category,
+hospitalization</li>
+<li>NH Other excluded when fitting raceeth_category models</li>
+<li>Save modeling results
+<ul>
+<li>pcrab402 bmi_fit_sex.RDS</li>
+<li>pcrab402 bmi_fit_age.RDS</li>
+<li>pcrab402 bmi_fit_raceeth.RDS</li>
+<li>pcrab402 bmi_fit_hospitalization.RDS</li>
+</ul></li>
+</ul></li>
+<li>repo/analysis bmi/pcrab403_contrasts for cardiometabolic indicators
+sociodemographic.R:
+<ul>
+<li>Internal function pcrab403_contrast_fit()</li>
+</ul></li>
+<li>repo/analysis bmi/pcrab404_difference between 0 and 100 within
+sociodemographic.R:
+<ul>
+<li>Internal function pcrab404_contrast_fit()</li>
+</ul></li>
+<li>repo/analysis bmi/pcrab405_difference relative to exposed for
+difference between 0 and 100.R:
+<ul>
+<li>Internal function pcrab405_contrast_fit()</li>
+</ul></li>
 </ul>
 </div>
 <div id="paper" class="slide section level1">

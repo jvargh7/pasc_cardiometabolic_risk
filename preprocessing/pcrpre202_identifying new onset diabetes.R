@@ -147,10 +147,14 @@ cp2_valid <- cp2 %>%
 # CP3 -------------
 
 cp3 <- hba1c %>% 
-  dplyr::select(ID,SPECIMEN_DATE,RESULT_NUM,RESULT_QUAL,RESULT_UNIT,high_hba1c,COHORT) %>% 
+  dplyr::select(ID,SPECIMEN_DATE,RESULT_NUM,RESULT_QUAL,RESULT_UNIT,high_hba1c) %>% 
   dplyr::filter(high_hba1c == 1) %>% 
+  group_by(ID,SPECIMEN_DATE) %>% 
+  dplyr::summarize(n_hba1c = n()) %>% 
   left_join(dm_medication %>% 
-              dplyr::select(ID,RX_ORDER_DATE,RXNORM_CUI),
+              dplyr::select(ID,RX_ORDER_DATE,RXNORM_CUI) %>% 
+              group_by(ID,RX_ORDER_DATE) %>% 
+              dplyr::summarize(n_dm_medication = n()),
             by = "ID") %>% 
   dplyr::filter(RX_ORDER_DATE <= (SPECIMEN_DATE + 90), RX_ORDER_DATE >= (SPECIMEN_DATE-90)) %>% 
   # Weise 2018: earliest date of the 2 criteria is t0
