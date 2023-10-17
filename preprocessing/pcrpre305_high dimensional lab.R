@@ -1,7 +1,7 @@
 rm(list=ls());gc();source(".Rprofile")
-index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date.RDS"))
+index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre201_index date.RDS"))
 
-source("preprocessing/pcrpre_encounter type.R")
+source("preprocessing/pcrpre300_encounter type.R")
 
 unique_labs <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,".parquet")) %>% 
   group_by(LAB_LOINC,RAW_LAB_NAME) %>% 
@@ -9,7 +9,7 @@ unique_labs <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",vers
   collect() 
 
 unique_labs %>% 
-  write_csv(.,"preprocessing/pcpre_lab LAB_LOINC counts.csv") 
+  write_csv(.,"preprocessing/pcrpre305_lab LAB_LOINC counts.csv") 
 
 
 lb_hd_lab <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,".parquet"))  %>% 
@@ -47,7 +47,8 @@ lb_hd_lab <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",versio
   collect() %>%
   arrange(ID) %>% 
   # group_by(ID) %>% 
-  pivot_wider(names_from=lab_loinc,values_from="abnormal")
+  pivot_wider(names_from=lab_loinc,values_from="abnormal") %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 
-saveRDS(lb_hd_lab,paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional lab.RDS"))
+saveRDS(lb_hd_lab,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre305_high dimensional lab.RDS"))

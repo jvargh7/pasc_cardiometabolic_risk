@@ -1,0 +1,67 @@
+Estimate,SE,dfcom,LCI,UCI,term,exposure,modifier2,exposure_value,modifier2_value,outcome,modifier1,modifier1_value,modifier_var
+-0.29171112404200344,0.04131769089500018,1103859,-0.3726937981962038,-0.2107284498878031,Contrast 3,COHORThistorical,t,1,0,bmi,NA,NA,NA
+0,0,1103859,0,0,Contrast 3,COHORTexposed,t,1,0,bmi,NA,NA,NA
+-0.06114956947929781,0.03463844236781592,1103859,-0.12904091652021701,0.006741777561621393,Contrast 3,COHORTunexposed,t,1,0,bmi,NA,NA,NA
+-0.29171112404200344,0.04131769089500018,1103859,-0.3726937981962038,-0.2107284498878031,Contrast 3,COHORThistorical,t,1,100,bmi,NA,NA,NA
+0,0,1103859,0,0,Contrast 3,COHORTexposed,t,1,100,bmi,NA,NA,NA
+-0.06114956947929781,0.03463844236781592,1103859,-0.12904091652021701,0.006741777561621393,Contrast 3,COHORTunexposed,t,1,100,bmi,NA,NA,NA
+-0.07852944736989298,0.06652782710099792,1103853,-0.2089239884878489,0.051865093748062946,Contrast 3,COHORThistorical,t,1,0,bmi,sex_categoryMale,1,sex_category
+0,0,1103853,0,0,Contrast 3,COHORTexposed,t,1,0,bmi,sex_categoryMale,1,sex_category
+0.0726996455000064,0.05551615985845717,1103853,-0.03611202782256964,0.18151131882258245,Contrast 3,COHORTunexposed,t,1,0,bmi,sex_categoryMale,1,sex_category
+-0.41173492888038865,0.05236774422253628,1103853,-0.5143757075565598,-0.30909415020421754,Contrast 3,COHORThistorical,t,1,0,bmi,sex_categoryFemale,1,sex_category
+0,0,1103853,0,0,Contrast 3,COHORTexposed,t,1,0,bmi,sex_categoryFemale,1,sex_category
+-0.16017873378017605,0.04332019093453766,1103853,-0.24508630801186987,-0.07527115954848225,Contrast 3,COHORTunexposed,t,1,0,bmi,sex_categoryFemale,1,sex_category
+-0.07852944736989298,0.06652782710099792,1103853,-0.2089239884878489,0.051865093748062946,Contrast 3,COHORThistorical,t,1,100,bmi,sex_categoryMale,1,sex_category
+0,0,1103853,0,0,Contrast 3,COHORTexposed,t,1,100,bmi,sex_categoryMale,1,sex_category
+0.0726996455000064,0.05551615985845717,1103853,-0.03611202782256964,0.18151131882258245,Contrast 3,COHORTunexposed,t,1,100,bmi,sex_categoryMale,1,sex_category
+-0.41173492888038865,0.05236774422253628,1103853,-0.5143757075565598,-0.30909415020421754,Contrast 3,COHORThistorical,t,1,100,bmi,sex_categoryFemale,1,sex_category
+0,0,1103853,0,0,Contrast 3,COHORTexposed,t,1,100,bmi,sex_categoryFemale,1,sex_category
+-0.16017873378017605,0.04332019093453766,1103853,-0.24508630801186987,-0.07527115954848225,Contrast 3,COHORTunexposed,t,1,100,bmi,sex_categoryFemale,1,sex_category
+-0.32918585240933457,0.07671946336937177,1103847,-0.4795560006133032,-0.1788157042053659,Contrast 3,COHORThistorical,t,1,0,bmi,age_category18 to 39,1,age_category
+0,0,1103847,0,0,Contrast 3,COHORTexposed,t,1,0,bmi,age_category18 to 39,1,age_category
+-0.33441296480846294,0.0645040322246277,1103847,-0.46084086796873325,-0.20798506164819267,Contrast 3,COHORTunexposed,t,1,0,bmi,age_category18 to 39,1,age_category
+-0.3087724618677856,0.06199864581559606,1103847,-0.4302898076663539,-0.18725511606921735,Contrast 3,COHORThistorical,t,1,0,bmi,age_category40 to 64,1,age_category
+0,0,1103847,0,0,Contrast 3,COHORTexposed,t,1,0,bmi,age_category40 to 64,1,age_category
+-0.03134610412992494,0.05149592069146892,1103847,-0.132278108685204,0.06958590042535415,Contrast 3,COHORTunexposed,t,1,0,bmi,age_category40 to 64,1,age_category
+-0.15117904660552273,0.0749057981652346,1103847,-0.2979944110093825,-0.004363682201662916,Contrast 3,COHORThistorical,t,1,0,bmi,age_category65 plus,1,age_category
+0,0,1103847,0,0,Contrast 3,COHORTexposed,t,1,0,bmi,age_category65 plus,1,age_category
+0.06545114849393835,0.06279546650057631,1103847,-0.05762796584719122,0.1885302628350679,Contrast 3,COHORTunexposed,t,1,0,bmi,age_category65 plus,1,age_category
+-0.32918585240933457,0.07671946336937177,1103847,-0.4795560006133032,-0.1788157042053659,Contrast 3,COHORThistorical,t,1,100,bmi,age_category18 to 39,1,age_category
+0,0,1103847,0,0,Contrast 3,COHORTexposed,t,1,100,bmi,age_category18 to 39,1,age_category
+-0.33441296480846294,0.0645040322246277,1103847,-0.46084086796873325,-0.20798506164819267,Contrast 3,COHORTunexposed,t,1,100,bmi,age_category18 to 39,1,age_category
+-0.3087724618677856,0.06199864581559606,1103847,-0.4302898076663539,-0.18725511606921735,Contrast 3,COHORThistorical,t,1,100,bmi,age_category40 to 64,1,age_category
+0,0,1103847,0,0,Contrast 3,COHORTexposed,t,1,100,bmi,age_category40 to 64,1,age_category
+-0.03134610412992494,0.05149592069146892,1103847,-0.132278108685204,0.06958590042535415,Contrast 3,COHORTunexposed,t,1,100,bmi,age_category40 to 64,1,age_category
+-0.15117904660552273,0.0749057981652346,1103847,-0.2979944110093825,-0.004363682201662916,Contrast 3,COHORThistorical,t,1,100,bmi,age_category65 plus,1,age_category
+0,0,1103847,0,0,Contrast 3,COHORTexposed,t,1,100,bmi,age_category65 plus,1,age_category
+0.06545114849393835,0.06279546650057631,1103847,-0.05762796584719122,0.1885302628350679,Contrast 3,COHORTunexposed,t,1,100,bmi,age_category65 plus,1,age_category
+-0.01741651808328852,0.08781452489632352,1057728,-0.18953298688008263,0.15469995071350556,Contrast 3,COHORThistorical,t,1,0,bmi,raceeth_categoryHispanic,1,raceeth_category
+0,0,1057728,0,0,Contrast 3,COHORTexposed,t,1,0,bmi,raceeth_categoryHispanic,1,raceeth_category
+-0.012612253755284962,0.07115643966965604,1057728,-0.1520788755078108,0.12685436799724087,Contrast 3,COHORTunexposed,t,1,0,bmi,raceeth_categoryHispanic,1,raceeth_category
+-0.33245424665831946,0.05721416682121034,1057728,-0.44459401362789175,-0.2203144796887472,Contrast 3,COHORThistorical,t,1,0,bmi,raceeth_categoryNH White,1,raceeth_category
+0,0,1057728,0,0,Contrast 3,COHORTexposed,t,1,0,bmi,raceeth_categoryNH White,1,raceeth_category
+-0.09442770012298268,0.04762752511415232,1057728,-0.18777764934672125,-0.001077750899244126,Contrast 3,COHORTunexposed,t,1,0,bmi,raceeth_categoryNH White,1,raceeth_category
+-0.3871993410045334,0.08462492720099961,1057728,-0.5530641983184926,-0.22133448369057418,Contrast 3,COHORThistorical,t,1,0,bmi,raceeth_categoryNH Black,1,raceeth_category
+0,0,1057728,0,0,Contrast 3,COHORTexposed,t,1,0,bmi,raceeth_categoryNH Black,1,raceeth_category
+-0.13456469097601695,0.0699022738621522,1057728,-0.27157314774583524,0.0024437657938013446,Contrast 3,COHORTunexposed,t,1,0,bmi,raceeth_categoryNH Black,1,raceeth_category
+-0.01741651808328852,0.08781452489632352,1057728,-0.18953298688008263,0.15469995071350556,Contrast 3,COHORThistorical,t,1,100,bmi,raceeth_categoryHispanic,1,raceeth_category
+0,0,1057728,0,0,Contrast 3,COHORTexposed,t,1,100,bmi,raceeth_categoryHispanic,1,raceeth_category
+-0.012612253755284962,0.07115643966965604,1057728,-0.1520788755078108,0.12685436799724087,Contrast 3,COHORTunexposed,t,1,100,bmi,raceeth_categoryHispanic,1,raceeth_category
+-0.33245424665831946,0.05721416682121034,1057728,-0.44459401362789175,-0.2203144796887472,Contrast 3,COHORThistorical,t,1,100,bmi,raceeth_categoryNH White,1,raceeth_category
+0,0,1057728,0,0,Contrast 3,COHORTexposed,t,1,100,bmi,raceeth_categoryNH White,1,raceeth_category
+-0.09442770012298268,0.04762752511415232,1057728,-0.18777764934672125,-0.001077750899244126,Contrast 3,COHORTunexposed,t,1,100,bmi,raceeth_categoryNH White,1,raceeth_category
+-0.3871993410045334,0.08462492720099961,1057728,-0.5530641983184926,-0.22133448369057418,Contrast 3,COHORThistorical,t,1,100,bmi,raceeth_categoryNH Black,1,raceeth_category
+0,0,1057728,0,0,Contrast 3,COHORTexposed,t,1,100,bmi,raceeth_categoryNH Black,1,raceeth_category
+-0.13456469097601695,0.0699022738621522,1057728,-0.27157314774583524,0.0024437657938013446,Contrast 3,COHORTunexposed,t,1,100,bmi,raceeth_categoryNH Black,1,raceeth_category
+-0.1525380563620521,0.13036729453751528,1103854,-0.408057953655582,0.10298184093147783,Contrast 3,COHORThistorical,t,1,0,bmi,hospitalization,1,hospitalization_category
+0,0,1103854,0,0,Contrast 3,COHORTexposed,t,1,0,bmi,hospitalization,1,hospitalization_category
+-0.07714020110326314,0.07621032993469343,1103854,-0.22651244777526225,0.07223204556873597,Contrast 3,COHORTunexposed,t,1,0,bmi,hospitalization,1,hospitalization_category
+-0.2952417443240906,0.038631950132199624,1103854,-0.37096036658320186,-0.21952312206497937,Contrast 3,COHORThistorical,t,1,0,bmi,,1,hospitalization_category
+0,0,1103854,0,0,Contrast 3,COHORTexposed,t,1,0,bmi,,1,hospitalization_category
+-0.06259023776281797,0.0326316418708587,1103854,-0.12654825582970103,0.0013677803040650777,Contrast 3,COHORTunexposed,t,1,0,bmi,,1,hospitalization_category
+-0.1525380563620521,0.13036729453751528,1103854,-0.408057953655582,0.10298184093147783,Contrast 3,COHORThistorical,t,1,100,bmi,hospitalization,1,hospitalization_category
+0,0,1103854,0,0,Contrast 3,COHORTexposed,t,1,100,bmi,hospitalization,1,hospitalization_category
+-0.07714020110326314,0.07621032993469343,1103854,-0.22651244777526225,0.07223204556873597,Contrast 3,COHORTunexposed,t,1,100,bmi,hospitalization,1,hospitalization_category
+-0.2952417443240906,0.038631950132199624,1103854,-0.37096036658320186,-0.21952312206497937,Contrast 3,COHORThistorical,t,1,100,bmi,,1,hospitalization_category
+0,0,1103854,0,0,Contrast 3,COHORTexposed,t,1,100,bmi,,1,hospitalization_category
+-0.06259023776281797,0.0326316418708587,1103854,-0.12654825582970103,0.0013677803040650777,Contrast 3,COHORTunexposed,t,1,100,bmi,,1,hospitalization_category

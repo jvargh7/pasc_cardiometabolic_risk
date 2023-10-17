@@ -25,7 +25,7 @@ lookback_df = demographic %>%
             by = "ID") %>% 
   left_join(
             lookback_clinical_characteristics %>% 
-              dplyr::select(ID, bmi, HT, SYSTOLIC, smoking, obesity,cardiovascular,cerebrovascular,
+              dplyr::select(ID, bmi, HT, SYSTOLIC, DIASTOLIC, smoking, obesity,cardiovascular,cerebrovascular,
                             hypertension,pulmonary,hyperlipidemia,antidepressants,
                             antipsychotics,antihypertensives,statins,immunosuppresants,
                             hba1c,glucose,alt,ast,serum_creatinine,hdl,ldl),

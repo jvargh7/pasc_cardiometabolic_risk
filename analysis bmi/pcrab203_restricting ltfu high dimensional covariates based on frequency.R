@@ -21,3 +21,8 @@ hdvars_frequency <- hd_dataset_censoring %>%
   summarize(across(-one_of("COHORT"), ~sum(.)))
 
 restricted_hdvars_censoring = names(hdvars_frequency)[hdvars_frequency[1,]==3]
+
+selected_hdvars_censoring %>% 
+  dplyr::filter(variable %in% restricted_hdvars_censoring) %>% 
+  group_by(var_group) %>% 
+  tally()

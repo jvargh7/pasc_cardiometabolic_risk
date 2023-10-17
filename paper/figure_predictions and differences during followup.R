@@ -80,6 +80,34 @@ did100 <- read_csv("analysis bmi/pcrab405_difference relative to exposed for dif
          conf.low = LCI,
          conf.high = UCI) 
 
+did0 <- read_csv("analysis bmi/pcrab406_difference relative to exposed for time 0.csv") %>% 
+  dplyr::filter(modifier2_value %in% c(0)) %>% 
+  rename(t = modifier2_value) %>% 
+  mutate(group = str_replace(exposure,"COHORT",""),
+         facet = str_replace(modifier1,modifier_var,"")) %>% 
+  mutate(facet = case_when(is.na(modifier1) & modifier_var == "hospitalization_category" ~ "Not Hospitalized",
+                           facet == "hospitalization" ~ "Hospitalized",
+                           is.na(facet) ~ "Overall",
+                           TRUE ~ facet),
+         t = paste0("Time = ",t)) %>% 
+  mutate(facet = factor(facet,levels=c("Overall",
+                                       "Female",
+                                       "Male",
+                                       "18 to 39",
+                                       "40 to 64",
+                                       "65 plus",
+                                       "Hispanic",
+                                       "NH White",
+                                       "NH Black",
+                                       "Not Hospitalized",
+                                       "Hospitalized")),
+         group = factor(group,levels=c("historical","unexposed","exposed"),
+                        labels=c("Historical","Unexposed","Exposed"))) %>% 
+  rename(predicted = Estimate,
+         conf.low = LCI,
+         conf.high = UCI) 
+
+
 source("functions/marginal_predictions_plot.R")
 label_order <- c("Historical","Unexposed","Exposed")
 color_order <- c("blue","darkgreen","red")
@@ -132,9 +160,10 @@ ggarrange(fig_bmi_A,
 #   write_csv(.,file="paper/table_predictions and differences during followup.csv")
 
 bind_rows(predictions ,
+          did0 %>% mutate(t = str_replace(t, "Time = ","BaselineDID = ")) ,
           difference100,
           did100 %>% mutate(t = str_replace(t, "Time = ","DID = "))) %>% 
-  mutate(conf_ci = case_when(t %in% c("Time = 100","DID = 100") ~ paste0(round(predicted,2)," (",
+  mutate(conf_ci = case_when(t %in% c("Time = 100","DID = 100","BaselineDID = 0") ~ paste0(round(predicted,2)," (",
                                                                          round(conf.low,2),", ",
                                                                          round(conf.high,2),")"),
                              TRUE ~ paste0(round(predicted,1)," (",

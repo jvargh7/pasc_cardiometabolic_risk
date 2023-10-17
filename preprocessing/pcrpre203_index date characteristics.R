@@ -29,7 +29,8 @@ facility <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/encounter_",v
   dplyr::arrange(ID,ADMIT_DATE) %>% 
   group_by(ID) %>% 
   dplyr::filter(row_number() == n()) %>% 
-  ungroup()
+  ungroup() %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 table(is.na(facility$site))
 # FALSE   TRUE 
@@ -83,7 +84,8 @@ hospitalization <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/encoun
             n_not_hospitalized = sum(not_hospitalized)) %>% 
   mutate(hospitalization = case_when(n_hospitalized >= 1 ~ 1,
                                      n_hospitalized == 0 & n_not_hospitalized >=1 ~ 0,
-                                     TRUE ~ NA_real_)) 
+                                     TRUE ~ NA_real_))  %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 table(hospitalization$hospitalization,useNA = "always")
 # 
@@ -114,7 +116,8 @@ glucose <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,
   summarize(n_hyperglycemia = sum(hyperglycemia,na.rm=TRUE),
             n_total = sum(!is.na(hyperglycemia)),
             p_hyperglycemia = mean(hyperglycemia,na.rm=TRUE)) %>% 
-  collect()
+  collect() %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 # table(glucose$RESULT_QUAL,useNA = "always")
 # HIGH          LOW     NEGATIVE           NI           OT           UN UNDETECTABLE         <NA> 

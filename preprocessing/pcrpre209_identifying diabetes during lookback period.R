@@ -1,3 +1,9 @@
+# KS in email on 12th October shared an updated dataset without those individuals who have T2DM
+# We wouldn't be able to rule them out using pcrpre209 because 
+# we don't have the data for 2 years prior to cpit2dm criterion1_date to check for encounters
+# None of the analytic sample datasets should exclude using pcrpre209_cpit2dm diabetes during lookback period.RDS
+# The dataset should only be for exploratory purposes.
+
 rm(list=ls());gc();source(".Rprofile")
 index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre201_index date.RDS"))
 
@@ -26,7 +32,8 @@ hba1c <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",version,".
     value >= 6.5 ~ 1,
     RESULT_QUAL %in% c("LOW","NEGATIVE","NI","OT","UNDETECTABLE") | (value>0 & value < 6.5) ~ 0,
     TRUE ~ NA_real_)) %>% 
-  collect() 
+  collect()  %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 length(unique(hba1c$ID))
 summary(hba1c$RESULT_NUM)
@@ -40,8 +47,9 @@ dm_diagnosis <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/diagnosis
   dplyr::filter(DX_DATE >= index_date_minus730,DX_DATE  < index_date)  %>% 
   dplyr::filter(!str_detect(DX,paste0("(",paste0(c(icd10_otherdm_excluding,
                                                    icd10_t1dm,icd10_gdm),collapse="|"),")"))) %>% 
-  dplyr::filter(DX %in% icd10_dm_qualifying) %>%
-  collect()
+  dplyr::filter(DX %in% icd10_dm_qualifying, ENC_TYPE %in% permissible_enc_type) %>%
+  collect() %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 rxcui_list <- readxl::read_excel("data/PASC CMR Variable List.xlsx",sheet="medication") %>% 
   rename(drug_class = 'Drug class',
@@ -54,12 +62,18 @@ rxcui_list <- readxl::read_excel("data/PASC CMR Variable List.xlsx",sheet="medic
   na.omit()
 
 dm_medication <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/prescribing_",version,".parquet")) %>% 
-  mutate(ID = as.character(ID)) %>% 
+  mutate(ID = as.character(ID)) %>%
+  # Limit to permissible encounters
+  left_join(open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/encounter_",version,".parquet")) %>% 
+              dplyr::select(ID,ENCOUNTERID, ENC_TYPE),
+            by = c("ID","ENCOUNTERID")) %>% 
+  dplyr::filter(ENC_TYPE %in% permissible_enc_type) %>% 
   right_join(index_date %>% 
                dplyr::select(ID,index_date,index_date_minus730,COHORT),
              by = c("ID")) %>% 
   dplyr::filter(RX_ORDER_DATE >= index_date_minus730,RXNORM_CUI %in% rxcui_list,RX_ORDER_DATE < index_date) %>% 
-  collect()
+  collect() %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 # CP1 --------------
 

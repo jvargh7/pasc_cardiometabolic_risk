@@ -15,7 +15,8 @@ vital_parquet <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/vital_",
   dplyr::summarize(across(one_of("HT","WT","DIASTOLIC","SYSTOLIC","smoking","ORIGINAL_BMI"),~min(.,na.rm=TRUE))) %>% 
   collect() %>% 
   mutate(smoking = smoking*-1) %>% 
-  ungroup() 
+  ungroup() %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 # Refer: Email from Katie Shaw on 25-August >> HT_WT_LOINCS.docx
 obsclin_parquet_units <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/obsclin_",version,".parquet")) %>% 
@@ -26,8 +27,7 @@ obsclin_parquet_units <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/
   summarize(n = n(),
             min = min(OBSCLIN_RESULT_NUM,na.rm=TRUE),
             max = max(OBSCLIN_RESULT_NUM,na.rm=TRUE)) %>% 
-  collect()
-
+  collect() 
 
 obsclin_parquet <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/obsclin_",version,".parquet")) %>% 
   dplyr::select(ID, OBSCLIN_START_DATE, OBSCLIN_CODE, OBSCLIN_RESULT_TEXT, OBSCLIN_RESULT_NUM,OBSCLIN_RESULT_UNIT,
@@ -68,7 +68,8 @@ obsclin_parquet <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/obscli
   dplyr::summarize(value = mean(value,na.rm = TRUE)) %>% 
   collect() %>% 
   pivot_wider(names_from=variable,values_from=value,values_fill = NA_real_) %>% 
-  rename(MEASURE_DATE = OBSCLIN_START_DATE)
+  rename(MEASURE_DATE = OBSCLIN_START_DATE) %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 
 (vital = left_join(vital_parquet,

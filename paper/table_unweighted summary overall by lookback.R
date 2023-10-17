@@ -4,6 +4,7 @@ rm(list=ls());gc();source(".Rprofile")
 # This does a sensible imputation of 0 for hospitalizations, diagnosis codes, medication and lookback encounter counts
 source(paste0(path_pasc_cmr_repo,"/analysis bmi/pcrab001_processing before imputation and lookback bmi exclusion.R"))
 lookback_cpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre209_cpit2dm diabetes during lookback period.RDS"))
+landmark_cpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre208_cpit2dm new onset diabetes during period till origin date.RDS"))
 
 encounter_followup <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre404_encounters during followup_long.RDS")) %>% 
   group_by(ID,ENC_TYPE) %>% 
@@ -17,17 +18,18 @@ library(gtsummary)
    left_join(encounter_followup,
              by = "ID") %>% 
    mutate(bmi_lb_availability = case_when(is.na(bmi) ~ 2,
-                                          !is.na(bmi) & ! (ID %in% lookback_cpit2dm$ID) ~ 2,
-                                       TRUE ~ 1 ),
-          lb_cpit2dm_status = case_when(ID %in% lookback_cpit2dm$ID ~ 1,
-                                        TRUE ~ 2)
-   
-   ) %>% 
-   mutate(
-     bmi_lb_availability = factor(bmi_lb_availability,levels=c(1:2),
-                               labels=c("Lookback available","Excluded")),
-     lb_cpit2dm_status = factor(lb_cpit2dm_status, levels=c(1,2),labels=c("Lookback CPIT2DM","No CPIT2DM"))
-   ) %>% 
+                                       TRUE ~ 1),
+          lookback_cpit2dm = case_when(ID %in% lookback_cpit2dm$ID ~ 1,
+                                       TRUE ~ 2),
+          landmark_cpit2dm = case_when(ID %in% landmark_cpit2dm$ID ~ 1,
+                                       TRUE ~ 2)) %>% 
+   mutate(bmi_lb_availability = factor(bmi_lb_availability,levels=c(1:2),
+                                       labels=c("Lookback available","Excluded")),
+          lookback_cpit2dm = factor(lookback_cpit2dm,levels=c(1,2),labels=c("Unverified New onset in Lookback",
+                                                                            "Unverified No onset in Lookback")),
+          landmark_cpit2dm = factor(landmark_cpit2dm,levels=c(1,2),labels=c("New onset in Landmark",
+                                                                            "No onset in Landmark"))) %>% 
+     
    tbl_summary(by = bmi_lb_availability,
                include=c(COHORT, female,age,
                          nhwhite,nhblack,hispanic, nhother,
@@ -36,7 +38,7 @@ library(gtsummary)
                          payer_type_primary,payer_type_secondary,
                          hospitalization, 
                          p_hyperglycemia, 
-                         bmi, HT, SYSTOLIC, 
+                         bmi, HT, SYSTOLIC, DIASTOLIC,
                          obesity, cardiovascular, cerebrovascular, hypertension,
                          pulmonary, hyperlipidemia, antidepressants, antipsychotics,
                          antihypertensives, statins, immunosuppresants, 
@@ -44,7 +46,7 @@ library(gtsummary)
                          serum_creatinine, hdl, ldl,
                          
                          IP,OA,OT,AV,NI,TH,ED,OS,EI,UN,IS,IC,
-                         lb_cpit2dm_status
+                         landmark_cpit2dm, lookback_cpit2dm
                ),
                missing = "ifany",
                missing_text = "Missing",
@@ -71,6 +73,7 @@ library(gtsummary)
                            HT ~ "continuous",
                            bmi ~ "continuous",
                            SYSTOLIC ~ "continuous",
+                           DIASTOLIC ~ "continuous",
                            antidepressants ~ "dichotomous",
                            antipsychotics ~ "dichotomous",
                            antihypertensives ~ "dichotomous",
@@ -96,7 +99,7 @@ library(gtsummary)
                            OT~ "continuous2",AV~ "continuous2",NI~ "continuous2",
                            TH~ "continuous2",ED~ "continuous2",OS~ "continuous2",
                            EI~ "continuous2",UN~ "continuous2",IS~ "continuous2",IC~ "continuous2",
-                           lb_cpit2dm_status ~ "categorical"
+                           landmark_cpit2dm ~ "categorical", lookback_cpit2dm ~ "categorical"
                ),
                digits = list(age ~ c(1,1),
                              nhwhite ~ c(0,1),
@@ -105,6 +108,7 @@ library(gtsummary)
                              HT ~ c(1,1),
                              bmi ~ c(1,1),
                              SYSTOLIC  ~ c(1,1),
+                             DIASTOLIC  ~ c(1,1),
                              hba1c ~ c(1,1),
                              glucose ~ c(1,1),
                              alt ~ c(1,1,1,1,1),

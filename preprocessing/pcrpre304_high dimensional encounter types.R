@@ -1,6 +1,6 @@
 rm(list=ls());gc();source(".Rprofile")
 
-index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date.RDS"))
+index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre201_index date.RDS"))
 
 lb_hd_encounter_types = open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/encounter_",version,".parquet")) %>% 
   mutate(ID = as.character(ID)) %>% 
@@ -18,6 +18,7 @@ lb_hd_encounter_types = open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/e
   tally() %>% 
   dplyr::filter(!is.na(ENC_TYPE)) %>% 
   collect() %>% 
-  pivot_wider(names_from="ENC_TYPE",values_from="n")
+  pivot_wider(names_from="ENC_TYPE",values_from="n") %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
-saveRDS(lb_hd_encounter_types,paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional encounter types.RDS"))
+saveRDS(lb_hd_encounter_types,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre304_high dimensional encounter types.RDS"))

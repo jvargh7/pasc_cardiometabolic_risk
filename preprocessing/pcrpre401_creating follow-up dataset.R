@@ -33,7 +33,8 @@ anthro_followup <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre1
   dplyr::filter(MEASURE_DATE >= origin_date, MEASURE_DATE <= max_followup_date) %>% 
   ungroup() %>% 
   dplyr::filter(!is.na(bmi) | !is.na(SYSTOLIC)) %>% 
-  mutate(t = MEASURE_DATE - origin_date)
+  mutate(t = MEASURE_DATE - origin_date) %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 
 saveRDS(anthro_followup,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre401_anthro followup.RDS"))
@@ -129,7 +130,8 @@ lab_followup <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",ver
   dplyr::filter(!is.na(variable), !is.na(RESULT_NUM) & RESULT_NUM > 0) %>% 
   collect() %>% 
   # USED distinct ---------
-  distinct(ID, variable, SPECIMEN_DATE,.keep_all=TRUE)
+  distinct(ID, variable, SPECIMEN_DATE,.keep_all=TRUE) %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 lab_followup_wide = lab_followup  %>% 
   dplyr::select(ID, SPECIMEN_DATE, COHORT, origin_date,variable, RESULT_NUM) %>% 

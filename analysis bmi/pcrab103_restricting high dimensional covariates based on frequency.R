@@ -24,4 +24,7 @@ hdvars_frequency <- hd_dataset_COHORT %>%
 
 restricted_hdvars = names(hdvars_frequency)[hdvars_frequency[1,]==3]
 
-
+selected_hdvars %>% 
+  dplyr::filter(variable %in% restricted_hdvars) %>% 
+  group_by(var_group) %>% 
+  tally()

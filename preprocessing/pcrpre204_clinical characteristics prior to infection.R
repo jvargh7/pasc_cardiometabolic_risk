@@ -31,7 +31,8 @@ bmi_lookback <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre103_
   group_by(ID) %>% 
   dplyr::filter(MEASURE_DATE == max(MEASURE_DATE)) %>% 
   ungroup() %>% 
-  dplyr::select(ID,HT,WT,bmi,ORIGINAL_BMI)
+  dplyr::select(ID,HT,WT,bmi,ORIGINAL_BMI) %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 
 sbp_lookback <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre103_vital.RDS")) %>% 
@@ -49,7 +50,27 @@ sbp_lookback <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre103_
   ungroup() %>% 
   # It's nook even if there are NA_real_ in SYSTOLIC
   # dplyr::filter(!is.na(SYSTOLIC)) %>% 
-  dplyr::select(ID, SYSTOLIC)
+  dplyr::select(ID, SYSTOLIC) %>% 
+  dplyr::filter(ID %in% included_patients$ID)
+
+
+dbp_lookback <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre103_vital.RDS")) %>% 
+  dplyr::select(ID,MEASURE_DATE,DIASTOLIC) %>%
+  mutate(SYSTOLIC = case_when(DIASTOLIC > dbp_max_possible | DIASTOLIC < dbp_min_possible ~ NA_real_,
+                              TRUE ~ abs(DIASTOLIC))) %>% 
+  dplyr::filter(!is.na(DIASTOLIC)) %>% 
+  left_join(index_date %>% 
+              dplyr::select(ID,COHORT,index_date,index_date_minus365),
+            by = "ID") %>% 
+  dplyr::filter(MEASURE_DATE < index_date, MEASURE_DATE >= index_date_minus365) %>% 
+  arrange(ID,MEASURE_DATE)  %>% 
+  group_by(ID) %>% 
+  dplyr::filter(MEASURE_DATE == max(MEASURE_DATE)) %>% 
+  ungroup() %>% 
+  # It's nook even if there are NA_real_ in SYSTOLIC
+  # dplyr::filter(!is.na(SYSTOLIC)) %>% 
+  dplyr::select(ID, DIASTOLIC) %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 
 # Smoking status (current, not current) ---------
@@ -62,7 +83,8 @@ smoking_status <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre10
   dplyr::filter(MEASURE_DATE < index_date, MEASURE_DATE >= index_date_minus365) %>% 
   arrange(ID,MEASURE_DATE) %>% 
   group_by(ID) %>% 
-  summarize(smoking = max(smoking))
+  summarize(smoking = max(smoking)) %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 table(smoking_status$smoking)
 # Not everyone has vitals in last 1 year --> need to impute
 # 0      1 
@@ -135,7 +157,7 @@ comorbidity_diagnosis <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/
   right_join(index_date %>% 
                dplyr::select(ID,index_date,index_date_minus730,COHORT),
              by = c("ID")) %>% 
-  dplyr::filter(DX_DATE >= index_date_minus730,DX_DATE < index_date)  %>% 
+  dplyr::filter(DX_DATE >= index_date_minus730,DX_DATE < index_date, ENC_TYPE %in% permissible_enc_type)  %>% 
   
   mutate(obesity = as.numeric(str_detect(DX, paste0("(",paste0(icd10_obesity,collapse="|"),")"))),
          cardiovascular = as.numeric(str_detect(DX, paste0("(",paste0(icd10_cardiovascular,collapse="|"),")"))),
@@ -150,7 +172,8 @@ comorbidity_diagnosis <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/
   group_by(ID) %>% 
   summarize(across(one_of("obesity","cardiovascular","cerebrovascular",
                           "hypertension","pulmonary","hyperlipidemia"), ~max(.,na.rm=TRUE))) %>% 
-  collect() 
+  collect()  %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 
 
@@ -187,7 +210,12 @@ rxcui_immunosuppresants <- readxl::read_excel("data/PASC CMR Variable List.xlsx"
   na.omit()
 
 medication_history <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/prescribing_",version,".parquet")) %>% 
-  mutate(ID = as.character(ID)) %>% 
+  mutate(ID = as.character(ID))   %>% 
+  # Limit to permissible encounters
+  left_join(open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/encounter_",version,".parquet")) %>% 
+              dplyr::select(ID,ENCOUNTERID, ENC_TYPE),
+            by = c("ID","ENCOUNTERID")) %>% 
+  dplyr::filter(ENC_TYPE %in% permissible_enc_type) %>% 
   right_join(index_date %>% 
                dplyr::select(ID,index_date,index_date_minus365,COHORT),
              by = c("ID")) %>% 
@@ -208,7 +236,8 @@ medication_history <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/pre
   group_by(ID) %>% 
   summarize(across(one_of("antidepressants","antipsychotics",
                           "antihypertensives","statins","immunosuppresants"), ~max(.,na.rm=TRUE))) %>% 
-  collect()
+  collect() %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 
 # Laboratory parameters (blood glucose, serum creatinine, HbA1c, LDLc, HDLc, AST, ALT)
@@ -301,7 +330,8 @@ lab_history <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",vers
   dplyr::filter(SPECIMEN_DATE == max(SPECIMEN_DATE)) %>% 
   ungroup() %>% 
   # USED distinct --------
-  distinct(ID, variable, SPECIMEN_DATE,.keep_all=TRUE)
+  distinct(ID, variable, SPECIMEN_DATE,.keep_all=TRUE) %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 lab_history_wide = lab_history  %>% 
   dplyr::select(ID, variable, RESULT_NUM) %>% 
@@ -316,6 +346,8 @@ lab_history_wide = lab_history  %>%
    left_join(bmi_lookback,
              by = "ID") %>% 
    left_join(sbp_lookback,
+             by = "ID") %>% 
+   left_join(dbp_lookback,
              by = "ID") %>% 
   left_join(comorbidity_diagnosis,
             by = "ID") %>% 

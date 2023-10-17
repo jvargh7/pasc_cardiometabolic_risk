@@ -154,7 +154,8 @@ hd_dataset <- index_date %>%
                         TRUE ~ as.numeric(x)))) %>% 
   
   mutate(across(-one_of(c("ID","COHORT")),list(gtOne = gtOne, gtMedian = gtMedian, gtQ3 = gtQ3),
-                .names="{.col}_{.fn}"))
+                .names="{.col}_{.fn}")) %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 # Includs all ID - 391,009  
 saveRDS(hd_dataset,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre403_high dimensional dataset for analysis.RDS"))

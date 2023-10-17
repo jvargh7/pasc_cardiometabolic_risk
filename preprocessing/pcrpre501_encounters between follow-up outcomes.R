@@ -1,6 +1,6 @@
 rm(list=ls());gc();source(".Rprofile")
 source("analysis bmi/pcrab003_analytic dataset for data availability.R")
-source("analysis bmi/pcra_analytic dataset for change in cardiometabolic indicators.R")
+source("analysis bmi/pcrab302_analytic dataset with ip weights for bmi.R")
 
 
 bmi_df = bmi_df %>%

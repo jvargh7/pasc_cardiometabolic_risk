@@ -18,6 +18,6 @@ cdc_testing_rates <- read_csv(paste0(path_pasc_cmr_folder,"/working/raw/United_S
                                                        TRUE ~ as.numeric(cases_per_100K_7_day_count_change))) %>% 
   group_by(county_name) %>% 
   mutate(Cases_per_100k_7_day_count_sum = rollapply(cases_per_100K_7_day_count_change,7,sum,partial=TRUE,align="r")) %>% 
-  ungroup()
+  ungroup() 
 
 saveRDS(cdc_testing_rates,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre206_covid19 testing rates.RDS"))

@@ -1,8 +1,8 @@
 rm(list=ls());gc();source(".Rprofile")
 
-index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date.RDS"))
+index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre201_index date.RDS"))
 
-source("preprocessing/pcrpre_encounter type.R")
+source("preprocessing/pcrpre300_encounter type.R")
 
 # unique_prescribing <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/prescribing_",version,".parquet")) %>% 
 #   group_by(RXNORM_CUI) %>% 
@@ -89,6 +89,7 @@ lb_hd_prescribing <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/pres
   group_by(ID,enc_inpatient,date_type,atc3) %>% 
   tally() %>% 
   collect() %>% 
-  pivot_wider(names_from="atc3",values_from="n") 
+  pivot_wider(names_from="atc3",values_from="n")  %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
-saveRDS(lb_hd_prescribing,paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional prescribing.RDS"))
+saveRDS(lb_hd_prescribing,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre303_high dimensional prescribing.RDS"))

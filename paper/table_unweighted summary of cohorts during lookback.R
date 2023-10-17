@@ -26,15 +26,21 @@ encounter_followup <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrp
 library(gtsummary)
 
 (unweighted <- lookback_df %>% 
-    dplyr::filter(!is.na(bmi), !ID %in% lookback_cpit2dm$ID) %>% 
+    dplyr::filter(!is.na(bmi)
+                  # , !ID %in% lookback_cpit2dm$ID
+                  ) %>% 
     mutate(bmi_category = case_when(bmi < 18.5 ~ "Underweight",
                                     bmi >= 18.5 & bmi < 25.0 ~ "Normal",
                                     bmi >= 25.0 & bmi < 30.0 ~ "Overweight",
                                     bmi >= 30.0 ~ "Obese",
                                     TRUE ~ NA_character_),
+           lookback_cpit2dm = case_when(ID %in% lookback_cpit2dm$ID ~ 1,
+                                        TRUE ~ 2),
            landmark_cpit2dm = case_when(ID %in% landmark_cpit2dm$ID ~ 1,
                                         TRUE ~ 2)) %>% 
-    mutate(landmark_cpit2dm = factor(landmark_cpit2dm,levels=c(1,2),labels=c("New onset in Landmark",
+    mutate(lookback_cpit2dm = factor(lookback_cpit2dm,levels=c(1,2),labels=c("Unverified New onset in Lookback",
+                                                                             "Unverified No onset in Lookback")),
+           landmark_cpit2dm = factor(landmark_cpit2dm,levels=c(1,2),labels=c("New onset in Landmark",
                                                                              "No onset in Landmark"))) %>% 
     
     left_join(encounter_followup,
@@ -55,7 +61,7 @@ library(gtsummary)
                              serum_creatinine, hdl, ldl,
                              
                              IP,OA,OT,AV,NI,TH,ED,OS,EI,UN,IS,IC,
-                             bmi_category,landmark_cpit2dm),
+                             bmi_category,landmark_cpit2dm,lookback_cpit2dm),
                    missing = "ifany",
                    missing_text = "Missing",
                    value = list(p_hyperglycemia = 1),
@@ -105,7 +111,7 @@ library(gtsummary)
                                OT~ "continuous2",AV~ "continuous2",NI~ "continuous2",
                                TH~ "continuous2",ED~ "continuous2",OS~ "continuous2",
                                EI~ "continuous2",UN~ "continuous2",IS~ "continuous2",IC~ "continuous2",
-                               bmi_category ~ "categorical",landmark_cpit2dm ~ "categorical"
+                               bmi_category ~ "categorical",landmark_cpit2dm ~ "categorical",lookback_cpit2dm ~ "categorical"
                    ),
                    digits = list(age ~ c(1,1),
                                  nhwhite ~ c(0,1),

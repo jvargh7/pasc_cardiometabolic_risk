@@ -1,61 +1,61 @@
 variable,level,exposed,unexposed,historical,psb
-female,NA,0.051,0.011,0.025,0.051
-nhblack,NA,0.108,0.019,0.047,0.108
-nhother,NA,0.01,0.006,0,0.01
-hispanic,NA,0.031,0.016,0.059,0.059
-hospitalization,NA,0.025,0.058,0.36,0.36
-smoking,NA,0.032,0.022,0.162,0.162
-obesity,NA,0.025,0.015,0.038,0.038
-cardiovascular,NA,0.012,0.011,0.019,0.019
-cerebrovascular,NA,0.003,0.007,0.004,0.007
-hypertension,NA,0.015,0.027,0.006,0.027
-pulmonary,NA,0.006,0.004,0.038,0.038
-hyperlipidemia,NA,0.012,0.025,0.018,0.025
-antidepressants,NA,0.002,0.002,0.027,0.027
-antipsychotics,NA,0.004,0.001,0.035,0.035
-antihypertensives,NA,0.008,0.004,0.093,0.093
-statins,NA,0.018,0.009,0.098,0.098
-immunosuppresants,NA,0.039,0.006,0.049,0.049
-age,NA,0.142,0.029,0.186,0.186
-hba1c,NA,0.094,0.014,0.141,0.141
-glucose,NA,0.018,0.004,0.094,0.094
-alt,NA,0.032,0.011,0.019,0.032
-HT,NA,0.01,0.008,0.015,0.015
-bmi,NA,0.117,0.016,0.043,0.117
-SYSTOLIC,NA,0.017,0.001,0.005,0.017
-ast,NA,0.057,0.021,0.048,0.057
-serum_creatinine,NA,0.003,0.009,0.109,0.109
-hdl,NA,0.078,0.001,0.103,0.103
-ldl,NA,0.006,0.071,0.393,0.393
-lb_hospitalized,NA,0.033,0.001,0.166,0.166
-lb_telehealth,NA,0.09,0.028,0.311,0.311
-lb_outpatient,NA,0.03,0.005,0.194,0.194
-lb_n_glucose,NA,0.026,0,0.088,0.088
-lb_n_hdl,NA,0.052,0.013,0.072,0.072
-lb_n_ldl,NA,0.04,0.009,0.082,0.082
-lb_n_serum_creatinine,NA,0.025,0.001,0.091,0.091
-lb_n_alt,NA,0.038,0.002,0.117,0.117
-lb_n_ast,NA,0.039,0.002,0.116,0.116
-lb_n_hba1c,NA,0.01,0.006,0.064,0.064
-lb_n_labvisits,NA,0.069,0.005,0.136,0.136
-site,Source1,0.073,0.041,0.127,0.127
-site,Source5,0.001,0.062,0.05,0.062
-site,Source7,0.05,0.032,0.087,0.087
-site,Source2,0.003,0.024,0.168,0.168
-site,Source3,0.017,0.003,0.02,0.02
-site,Source4,0.038,0.046,0.057,0.057
-site,Source6,0.007,0.01,0.002,0.01
-payer_type_primary,Bluecross,0.03,0.022,0.025,0.03
-payer_type_primary,Medicare,0.014,0.01,0.013,0.014
-payer_type_primary,No Information,0.025,0.01,0.003,0.025
-payer_type_primary,Private or Other,0.014,0.008,0.016,0.016
-payer_type_primary,No Insurance,0.004,0.022,0.002,0.022
-payer_type_primary,Medicaid,0.006,0.007,0.004,0.007
-payer_type_primary,Government,0.002,0.009,0.016,0.016
-payer_type_secondary,No Information,0.015,0.014,0.009,0.015
-payer_type_secondary,Private or Other,0.034,0.004,0.022,0.034
-payer_type_secondary,Government,0.003,0.001,0.005,0.005
-payer_type_secondary,Medicaid,0.007,0.006,0.021,0.021
-payer_type_secondary,No Insurance,0.029,0.017,0.019,0.029
-payer_type_secondary,Medicare,0.005,0.006,0.005,0.006
-payer_type_secondary,Bluecross,0.008,0.002,0.002,0.008
+female,NA,0.001,0.019,0.021,0.021
+nhblack,NA,0.11,0.014,0.05,0.11
+nhother,NA,0.009,0.003,0.007,0.009
+hispanic,NA,0.032,0.018,0.026,0.032
+hospitalization,NA,0.067,0.092,0.317,0.317
+smoking,NA,0.036,0.013,0.104,0.104
+obesity,NA,0.017,0.017,0.014,0.017
+cardiovascular,NA,0.018,0.009,0.01,0.018
+cerebrovascular,NA,0.003,0.007,0.016,0.016
+hypertension,NA,0.029,0.025,0.036,0.036
+pulmonary,NA,0.001,0.004,0.022,0.022
+hyperlipidemia,NA,0.003,0.025,0.022,0.025
+antidepressants,NA,0.005,0.003,0.02,0.02
+antipsychotics,NA,0.017,0.007,0.019,0.019
+antihypertensives,NA,0.019,0.023,0.063,0.063
+statins,NA,0.004,0.02,0.067,0.067
+immunosuppresants,NA,0.043,0.002,0.059,0.059
+age,NA,0.114,0.064,0.112,0.114
+hba1c,NA,0.1,0.001,0.078,0.1
+glucose,NA,0.032,0.014,0.056,0.056
+alt,NA,0.024,0.008,0.012,0.024
+HT,NA,0.021,0.011,0,0.021
+bmi,NA,0.133,0.012,0.033,0.133
+SYSTOLIC,NA,0.012,0.007,0.011,0.012
+ast,NA,0.051,0.021,0.04,0.051
+serum_creatinine,NA,0.01,0.017,0.074,0.074
+hdl,NA,0.093,0.006,0.056,0.093
+ldl,NA,0.046,0.08,0.31,0.31
+lb_hospitalized,NA,0.092,0.022,0.123,0.123
+lb_telehealth,NA,0.115,0.037,0.311,0.311
+lb_outpatient,NA,0.052,0.018,0.173,0.173
+lb_n_glucose,NA,0.072,0.014,0.06,0.072
+lb_n_hdl,NA,0.129,0.04,0.047,0.129
+lb_n_ldl,NA,0.106,0.033,0.054,0.106
+lb_n_serum_creatinine,NA,0.083,0.02,0.045,0.083
+lb_n_alt,NA,0.102,0.024,0.081,0.102
+lb_n_ast,NA,0.103,0.024,0.078,0.103
+lb_n_hba1c,NA,0.047,0.019,0.043,0.047
+lb_n_labvisits,NA,0.144,0.019,0.093,0.144
+site,Source1,0.054,0.037,0.009,0.054
+site,Source5,0.002,0.039,0.034,0.039
+site,Source7,0.024,0.033,0.047,0.047
+site,Source2,0.053,0.028,0.127,0.127
+site,Source3,0.003,0.017,0.077,0.077
+site,Source4,0.001,0.043,0.108,0.108
+site,Source6,0.019,0.003,0.003,0.019
+payer_type_primary,Bluecross,0.013,0.005,0.019,0.019
+payer_type_primary,Medicare,0.036,0,0.03,0.036
+payer_type_primary,No Information,0.033,0.009,0.018,0.033
+payer_type_primary,Private or Other,0.011,0.003,0.006,0.011
+payer_type_primary,No Insurance,0.009,0.02,0.034,0.034
+payer_type_primary,Medicaid,0.001,0.002,0.015,0.015
+payer_type_primary,Government,0.011,0.007,0.015,0.015
+payer_type_secondary,No Information,0.024,0.027,0.099,0.099
+payer_type_secondary,Private or Other,0.006,0.016,0.06,0.06
+payer_type_secondary,Government,0.011,0.001,0.024,0.024
+payer_type_secondary,Medicaid,0.016,0.009,0.036,0.036
+payer_type_secondary,No Insurance,0.033,0.019,0.053,0.053
+payer_type_secondary,Medicare,0.012,0.007,0.017,0.017
+payer_type_secondary,Bluecross,0.01,0.001,0.013,0.013

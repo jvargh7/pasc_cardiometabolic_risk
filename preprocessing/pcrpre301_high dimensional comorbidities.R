@@ -1,7 +1,7 @@
 rm(list=ls());gc();source(".Rprofile")
 
-index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcpre201_index date.RDS"))
-source("preprocessing/pcrpre_encounter type.R")
+index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre201_index date.RDS"))
+source("preprocessing/pcrpre300_encounter type.R")
 
 
 dxccsr_reference <- readxl::read_excel(paste0(path_pasc_cmr_folder,"/working/dictionaries/DXCCSR-Reference-File-v2023-1.xlsx"),
@@ -16,7 +16,7 @@ unique_icd10 <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/diagnosis
   mutate(DX_nodec = str_replace(DX,"\\.","")) %>% 
   left_join(dxccsr_reference,
             by=c("DX_nodec"="DX")) %>% 
-  mutate(across(.cols=one_of("ccsr_category","ccsr_category_description"),.funs=function(x) case_when(is.na(x) ~ "Unknown",
+  mutate(across(.cols=one_of("ccsr_category","ccsr_category_description"),.fns=function(x) case_when(is.na(x) ~ "Unknown",
                                                                                                       TRUE ~ x)))
 write_csv(unique_icd10,paste0(path_pasc_cmr_folder,"/working/pcrpre301_summary high dimensional comorbidities.csv"))
 
@@ -58,7 +58,8 @@ lb_hd_comorbidities <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/di
   group_by(COHORT,ID,enc_inpatient,date_type,ccsr_category) %>% 
   tally() %>% 
   collect() %>% 
-  pivot_wider(names_from="ccsr_category",values_from="n")
+  pivot_wider(names_from="ccsr_category",values_from="n") %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
-saveRDS(lb_hd_comorbidities,paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional comorbidities.RDS"))
+saveRDS(lb_hd_comorbidities,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre301_high dimensional comorbidities.RDS"))
 # lb_hd_comorbidities <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional comorbidities.RDS"))

@@ -25,7 +25,8 @@ lb_n_hospitalization <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/e
   # Counts of encounters when hospitalized
   dplyr::summarize(across(one_of("lb_hospitalized","lb_telehealth","lb_outpatient"),~sum(.))) %>% 
   ungroup() %>% 
-  collect() 
+  collect() %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 # Number of lab visits -------
 
@@ -46,7 +47,8 @@ lb_n_labvisits <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",v
   group_by(ID) %>% 
   tally() %>% 
   collect() %>% 
-  rename(lb_n_labvisits = n)
+  rename(lb_n_labvisits = n) %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 # Number of HbA1c measurements -------
 
@@ -138,7 +140,8 @@ lb_n_labs <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",versio
   group_by(ID,variable) %>% 
   tally() %>% 
   ungroup() %>% 
-  pivot_wider(names_from=variable,values_from=n)
+  pivot_wider(names_from=variable,values_from=n) %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 
 (lb_healthcare_utilization <- index_date %>% 

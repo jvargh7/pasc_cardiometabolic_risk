@@ -172,5 +172,6 @@ contrast_hospitalization <- map_dfr(1:nrow(difference_grid_hospitalization),
 
 bind_rows(contrast_sex %>% mutate(modifier_var = "sex_category"),
           contrast_age %>% mutate(modifier_var = "age_category"),
-          contrast_raceeth %>% mutate(modifier_var = "raceeth_category")) %>% 
+          contrast_raceeth %>% mutate(modifier_var = "raceeth_category"),
+          contrast_hospitalization %>% mutate(modifier_var = "hospitalization_category")) %>% 
   write_csv(.,"analysis bmi/pcrab403_contrasts of change in cardiometabolic indicators sociodemographic.csv")

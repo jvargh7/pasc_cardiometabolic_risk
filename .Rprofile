@@ -82,3 +82,8 @@ covid_lab_loincs <- c("94500-6","94309-2",
                       "94306-8","95406-5",
                       "95425-5","87635")
 permissible_enc_type <- c("AV","IP","EI","TH")
+
+
+included_patients <- read_csv(paste0(path_pasc_proposal_folder,"/working/source/Demographic_chakkalakal_v3.csv")) %>% 
+  dplyr::filter(exclude == 0)
+

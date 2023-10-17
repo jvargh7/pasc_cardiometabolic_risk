@@ -1,8 +1,8 @@
 rm(list=ls());gc();source(".Rprofile")
 
-index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/index date.RDS"))
+index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre201_index date.RDS"))
 
-source("preprocessing/pcrpre_encounter type.R")
+source("preprocessing/pcrpre300_encounter type.R")
 
 
 unique_procedures <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/procedures_",version,".parquet")) %>% 
@@ -50,7 +50,8 @@ lb_hd_procedures <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/proce
   collect() %>%
   arrange(ID) %>% 
   # group_by(ID) %>% 
-  pivot_wider(names_from=c("PX_TYPE","PX"),names_sep = "_",values_from="n")
+  pivot_wider(names_from=c("PX_TYPE","PX"),names_sep = "_",values_from="n") %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 
-saveRDS(lb_hd_procedures,paste0(path_pasc_cmr_folder,"/working/cleaned/high dimensional procedures.RDS"))
+saveRDS(lb_hd_procedures,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre302_high dimensional procedures.RDS"))

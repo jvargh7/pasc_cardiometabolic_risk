@@ -5,6 +5,7 @@ source("functions/month_replace.R")
 index_date <- read_csv(paste0(path_pasc_proposal_folder,"/working/source/Demographic_chakkalakal_v2.csv")) %>% 
   mutate(across(ends_with("_date"), ~ymd(month_replace(.))))
 
+
 demographic <- read_parquet(paste0(path_pasc_cmr_folder,"/working/raw/demographic_",version,".parquet")) %>% 
   left_join(index_date %>% 
               dplyr::select(ID,index_date),
@@ -24,7 +25,8 @@ demographic <- read_parquet(paste0(path_pasc_cmr_folder,"/working/raw/demographi
   dplyr::select(ID,female,
                 nhwhite,nhblack,hispanic,
                 nhother,age,COHORT,matchid,index_date) %>% 
-  collect()
+  collect() %>% 
+  dplyr::filter(ID %in% included_patients$ID)
 
 
 saveRDS(demographic,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre101_demographic.RDS"))

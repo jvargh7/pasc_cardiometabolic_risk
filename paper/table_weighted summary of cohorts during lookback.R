@@ -19,7 +19,8 @@ lookback_svy <-  lookback_df %>%
   dplyr::filter(!is.na(bmi)) %>% 
   left_join(encounter_followup,
             by = "ID") %>% 
-  left_join(predicted_probability,
+  left_join(predicted_probability %>% 
+              dplyr::select(-hospitalization),
             by=c("ID","COHORT")) %>% 
   svydesign(data=.,~1,weights=~sipw)
 
@@ -32,7 +33,7 @@ lookback_svy <-  lookback_df %>%
                              payer_type_primary,payer_type_secondary,
                              hospitalization, 
                              p_hyperglycemia, 
-                             bmi, HT, SYSTOLIC, 
+                             bmi, HT, SYSTOLIC, DIASTOLIC,
                              obesity, cardiovascular, cerebrovascular, hypertension,
                              pulmonary, hyperlipidemia, antidepressants, antipsychotics,
                              antihypertensives, statins, immunosuppresants, 
@@ -64,6 +65,7 @@ lookback_svy <-  lookback_df %>%
                                HT ~ "continuous",
                                bmi ~ "continuous",
                                SYSTOLIC ~ "continuous",
+                               DIASTOLIC ~ "continuous",
                                antidepressants ~ "dichotomous",
                                antipsychotics ~ "dichotomous",
                                antihypertensives ~ "dichotomous",
@@ -97,6 +99,7 @@ lookback_svy <-  lookback_df %>%
                                  HT ~ c(1,1),
                                  bmi ~ c(1,1),
                                  SYSTOLIC  ~ c(1,1),
+                                 DIASTOLIC  ~ c(1,1),
                                  hba1c ~ c(1,1),
                                  glucose ~ c(1,1),
                                  alt ~ c(1,1,1,1,1),

@@ -1,10 +1,12 @@
 rm(list=ls());gc();source(".Rprofile")
-lookback_cpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre209_cpit2dm diabetes during lookback period.RDS"))
-landmark_cpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre208_cpit2dm new onset diabetes during period till origin date.RDS"))
+# lookback_cpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre209_cpit2dm diabetes during lookback period.RDS"))
+# landmark_cpit2dm <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre208_cpit2dm new onset diabetes during period till origin date.RDS"))
 
 source(paste0(path_pasc_cmr_repo,"/analysis bmi/pcrab001_processing before imputation and lookback bmi exclusion.R"))
 lookback_df <- lookback_df %>% 
-  dplyr::filter(!is.na(bmi),!ID %in% c(lookback_cpit2dm$ID))
+  dplyr::filter(!is.na(bmi)
+                # ,!ID %in% c(lookback_cpit2dm$ID)
+                )
 
 
 # library(glmmLasso)
@@ -23,7 +25,9 @@ var_names = hd_dataset %>%
   names(.)
 
 bmi_df = readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre401_anthro followup.RDS")) %>% 
-  dplyr::filter(!is.na(bmi),ID %in% lookback_df$ID) %>% 
+  dplyr::filter(!is.na(bmi)
+                # ,ID %in% lookback_df$ID
+                ) %>% 
   mutate(t = as.numeric(t)) %>% 
   arrange(ID,t) %>% 
   dplyr::select(ID,COHORT,bmi,t) 

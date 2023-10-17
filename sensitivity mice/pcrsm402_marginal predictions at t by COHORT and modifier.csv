@@ -1,0 +1,2251 @@
+x,predicted,group,facet,group_col,outcome,modifier,index
+0,29.425499717996328,historical,Female,historical,bmi,sex,1
+0,29.47219829417537,historical,Male,historical,bmi,sex,1
+0,29.633851748786167,unexposed,Female,unexposed,bmi,sex,1
+0,29.642693360448185,unexposed,Male,unexposed,bmi,sex,1
+0,29.78769294538907,exposed,Female,exposed,bmi,sex,1
+0,29.562979075411583,exposed,Male,exposed,bmi,sex,1
+50,29.449366762589023,historical,Female,historical,bmi,sex,1
+50,29.47290238501427,historical,Male,historical,bmi,sex,1
+50,29.618593580824587,unexposed,Female,unexposed,bmi,sex,1
+50,29.619692645991606,unexposed,Male,unexposed,bmi,sex,1
+50,29.77746969049197,exposed,Female,exposed,bmi,sex,1
+50,29.576602004710175,exposed,Male,exposed,bmi,sex,1
+100,29.473233807181714,historical,Female,historical,bmi,sex,1
+100,29.47360647585317,historical,Male,historical,bmi,sex,1
+100,29.603335412863004,unexposed,Female,unexposed,bmi,sex,1
+100,29.596691931535023,unexposed,Male,unexposed,bmi,sex,1
+100,29.767246435594867,exposed,Female,exposed,bmi,sex,1
+100,29.590224934008763,exposed,Male,exposed,bmi,sex,1
+150,29.49710085177441,historical,Female,historical,bmi,sex,1
+150,29.47431056669207,historical,Male,historical,bmi,sex,1
+150,29.58807724490142,unexposed,Female,unexposed,bmi,sex,1
+150,29.573691217078444,unexposed,Male,unexposed,bmi,sex,1
+150,29.757023180697765,exposed,Female,exposed,bmi,sex,1
+150,29.603847863307358,exposed,Male,exposed,bmi,sex,1
+200,29.5209678963671,historical,Female,historical,bmi,sex,1
+200,29.475014657530966,historical,Male,historical,bmi,sex,1
+200,29.57281907693984,unexposed,Female,unexposed,bmi,sex,1
+200,29.550690502621862,unexposed,Male,unexposed,bmi,sex,1
+200,29.746799925800662,exposed,Female,exposed,bmi,sex,1
+200,29.617470792605946,exposed,Male,exposed,bmi,sex,1
+250,29.544834940959795,historical,Female,historical,bmi,sex,1
+250,29.475718748369868,historical,Male,historical,bmi,sex,1
+250,29.557560908978257,unexposed,Female,unexposed,bmi,sex,1
+250,29.527689788165283,unexposed,Male,unexposed,bmi,sex,1
+250,29.736576670903556,exposed,Female,exposed,bmi,sex,1
+250,29.631093721904538,exposed,Male,exposed,bmi,sex,1
+300,29.56870198555249,historical,Female,historical,bmi,sex,1
+300,29.476422839208766,historical,Male,historical,bmi,sex,1
+300,29.542302741016673,unexposed,Female,unexposed,bmi,sex,1
+300,29.5046890737087,unexposed,Male,unexposed,bmi,sex,1
+300,29.726353416006454,exposed,Female,exposed,bmi,sex,1
+300,29.64471665120313,exposed,Male,exposed,bmi,sex,1
+350,29.59256903014518,historical,Female,historical,bmi,sex,1
+350,29.477126930047667,historical,Male,historical,bmi,sex,1
+350,29.52704457305509,unexposed,Female,unexposed,bmi,sex,1
+350,29.48168835925212,unexposed,Male,unexposed,bmi,sex,1
+350,29.71613016110935,exposed,Female,exposed,bmi,sex,1
+350,29.65833958050172,exposed,Male,exposed,bmi,sex,1
+400,29.616436074737877,historical,Female,historical,bmi,sex,1
+400,29.477831020886565,historical,Male,historical,bmi,sex,1
+400,29.51178640509351,unexposed,Female,unexposed,bmi,sex,1
+400,29.458687644795546,unexposed,Male,unexposed,bmi,sex,1
+400,29.70590690621225,exposed,Female,exposed,bmi,sex,1
+400,29.671962509800313,exposed,Male,exposed,bmi,sex,1
+450,29.640303119330568,historical,Female,historical,bmi,sex,1
+450,29.478535111725467,historical,Male,historical,bmi,sex,1
+450,29.49652823713193,unexposed,Female,unexposed,bmi,sex,1
+450,29.435686930338964,unexposed,Male,unexposed,bmi,sex,1
+450,29.695683651315147,exposed,Female,exposed,bmi,sex,1
+450,29.6855854390989,exposed,Male,exposed,bmi,sex,1
+500,29.664170163923263,historical,Female,historical,bmi,sex,1
+500,29.47923920256437,historical,Male,historical,bmi,sex,1
+500,29.481270069170343,unexposed,Female,unexposed,bmi,sex,1
+500,29.412686215882385,unexposed,Male,unexposed,bmi,sex,1
+500,29.68546039641804,exposed,Female,exposed,bmi,sex,1
+500,29.699208368397493,exposed,Male,exposed,bmi,sex,1
+550,29.688037208515954,historical,Female,historical,bmi,sex,1
+550,29.479943293403267,historical,Male,historical,bmi,sex,1
+550,29.466011901208763,unexposed,Female,unexposed,bmi,sex,1
+550,29.389685501425802,unexposed,Male,unexposed,bmi,sex,1
+550,29.67523714152094,exposed,Female,exposed,bmi,sex,1
+550,29.71283129769609,exposed,Male,exposed,bmi,sex,1
+600,29.71190425310865,historical,Female,historical,bmi,sex,1
+600,29.480647384242165,historical,Male,historical,bmi,sex,1
+600,29.45075373324718,unexposed,Female,unexposed,bmi,sex,1
+600,29.36668478696922,unexposed,Male,unexposed,bmi,sex,1
+600,29.66501388662384,exposed,Female,exposed,bmi,sex,1
+600,29.726454226994676,exposed,Male,exposed,bmi,sex,1
+650,29.735771297701344,historical,Female,historical,bmi,sex,1
+650,29.481351475081063,historical,Male,historical,bmi,sex,1
+650,29.4354955652856,unexposed,Female,unexposed,bmi,sex,1
+650,29.343684072512644,unexposed,Male,unexposed,bmi,sex,1
+650,29.654790631726733,exposed,Female,exposed,bmi,sex,1
+650,29.740077156293268,exposed,Male,exposed,bmi,sex,1
+700,29.759638342294036,historical,Female,historical,bmi,sex,1
+700,29.482055565919964,historical,Male,historical,bmi,sex,1
+700,29.420237397324016,unexposed,Female,unexposed,bmi,sex,1
+700,29.32068335805606,unexposed,Male,unexposed,bmi,sex,1
+700,29.64456737682963,exposed,Female,exposed,bmi,sex,1
+700,29.753700085591856,exposed,Male,exposed,bmi,sex,1
+0,29.28959230165504,historical,18 to 39,historical,bmi,age,1
+0,29.535956944811012,historical,65 plus,historical,bmi,age,1
+0,29.498873529036018,historical,40 to 64,historical,bmi,age,1
+0,29.272363260368348,unexposed,18 to 39,unexposed,bmi,age,1
+0,29.727703080277976,unexposed,65 plus,unexposed,bmi,age,1
+0,29.771110287058004,unexposed,40 to 64,unexposed,bmi,age,1
+0,29.585694960916673,exposed,18 to 39,exposed,bmi,age,1
+0,29.627399295519822,exposed,65 plus,exposed,bmi,age,1
+0,29.801342616013336,exposed,40 to 64,exposed,bmi,age,1
+50,29.33582755482916,historical,18 to 39,historical,bmi,age,1
+50,29.529210581334116,historical,65 plus,historical,bmi,age,1
+50,29.509073836703255,historical,40 to 64,historical,bmi,age,1
+50,29.308394714170106,unexposed,18 to 39,unexposed,bmi,age,1
+50,29.681349972696005,unexposed,65 plus,unexposed,bmi,age,1
+50,29.74880728131597,unexposed,40 to 64,unexposed,bmi,age,1
+50,29.614332035222624,exposed,18 to 39,exposed,bmi,age,1
+50,29.604922688377986,exposed,65 plus,exposed,bmi,age,1
+50,29.797979683286627,exposed,40 to 64,exposed,bmi,age,1
+100,29.382062808003276,historical,18 to 39,historical,bmi,age,1
+100,29.522464217857216,historical,65 plus,historical,bmi,age,1
+100,29.519274144370495,historical,40 to 64,historical,bmi,age,1
+100,29.344426167971864,unexposed,18 to 39,unexposed,bmi,age,1
+100,29.63499686511403,unexposed,65 plus,unexposed,bmi,age,1
+100,29.726504275573934,unexposed,40 to 64,unexposed,bmi,age,1
+100,29.642969109528575,exposed,18 to 39,exposed,bmi,age,1
+100,29.582446081236142,exposed,65 plus,exposed,bmi,age,1
+100,29.79461675055991,exposed,40 to 64,exposed,bmi,age,1
+150,29.428298061177394,historical,18 to 39,historical,bmi,age,1
+150,29.51571785438032,historical,65 plus,historical,bmi,age,1
+150,29.529474452037732,historical,40 to 64,historical,bmi,age,1
+150,29.380457621773623,unexposed,18 to 39,unexposed,bmi,age,1
+150,29.588643757532058,unexposed,65 plus,unexposed,bmi,age,1
+150,29.7042012698319,unexposed,40 to 64,unexposed,bmi,age,1
+150,29.671606183834527,exposed,18 to 39,exposed,bmi,age,1
+150,29.559969474094306,exposed,65 plus,exposed,bmi,age,1
+150,29.7912538178332,exposed,40 to 64,exposed,bmi,age,1
+200,29.47453331435151,historical,18 to 39,historical,bmi,age,1
+200,29.508971490903424,historical,65 plus,historical,bmi,age,1
+200,29.53967475970497,historical,40 to 64,historical,bmi,age,1
+200,29.41648907557538,unexposed,18 to 39,unexposed,bmi,age,1
+200,29.542290649950083,unexposed,65 plus,unexposed,bmi,age,1
+200,29.681898264089867,unexposed,40 to 64,unexposed,bmi,age,1
+200,29.700243258140475,exposed,18 to 39,exposed,bmi,age,1
+200,29.537492866952466,exposed,65 plus,exposed,bmi,age,1
+200,29.787890885106485,exposed,40 to 64,exposed,bmi,age,1
+250,29.520768567525632,historical,18 to 39,historical,bmi,age,1
+250,29.502225127426527,historical,65 plus,historical,bmi,age,1
+250,29.549875067372206,historical,40 to 64,historical,bmi,age,1
+250,29.452520529377136,unexposed,18 to 39,unexposed,bmi,age,1
+250,29.495937542368104,unexposed,65 plus,unexposed,bmi,age,1
+250,29.65959525834783,unexposed,40 to 64,unexposed,bmi,age,1
+250,29.728880332446426,exposed,18 to 39,exposed,bmi,age,1
+250,29.515016259810626,exposed,65 plus,exposed,bmi,age,1
+250,29.78452795237978,exposed,40 to 64,exposed,bmi,age,1
+300,29.56700382069975,historical,18 to 39,historical,bmi,age,1
+300,29.49547876394963,historical,65 plus,historical,bmi,age,1
+300,29.560075375039442,historical,40 to 64,historical,bmi,age,1
+300,29.488551983178894,unexposed,18 to 39,unexposed,bmi,age,1
+300,29.449584434786132,unexposed,65 plus,unexposed,bmi,age,1
+300,29.637292252605796,unexposed,40 to 64,unexposed,bmi,age,1
+300,29.757517406752374,exposed,18 to 39,exposed,bmi,age,1
+300,29.492539652668786,exposed,65 plus,exposed,bmi,age,1
+300,29.781165019653063,exposed,40 to 64,exposed,bmi,age,1
+350,29.613239073873867,historical,18 to 39,historical,bmi,age,1
+350,29.48873240047273,historical,65 plus,historical,bmi,age,1
+350,29.57027568270668,historical,40 to 64,historical,bmi,age,1
+350,29.524583436980656,unexposed,18 to 39,unexposed,bmi,age,1
+350,29.403231327204157,unexposed,65 plus,unexposed,bmi,age,1
+350,29.61498924686376,unexposed,40 to 64,unexposed,bmi,age,1
+350,29.786154481058325,exposed,18 to 39,exposed,bmi,age,1
+350,29.470063045526942,exposed,65 plus,exposed,bmi,age,1
+350,29.77780208692635,exposed,40 to 64,exposed,bmi,age,1
+400,29.659474327047985,historical,18 to 39,historical,bmi,age,1
+400,29.481986036995835,historical,65 plus,historical,bmi,age,1
+400,29.580475990373916,historical,40 to 64,historical,bmi,age,1
+400,29.56061489078241,unexposed,18 to 39,unexposed,bmi,age,1
+400,29.356878219622185,unexposed,65 plus,unexposed,bmi,age,1
+400,29.592686241121726,unexposed,40 to 64,unexposed,bmi,age,1
+400,29.81479155536428,exposed,18 to 39,exposed,bmi,age,1
+400,29.44758643838511,exposed,65 plus,exposed,bmi,age,1
+400,29.77443915419964,exposed,40 to 64,exposed,bmi,age,1
+450,29.705709580222106,historical,18 to 39,historical,bmi,age,1
+450,29.475239673518942,historical,65 plus,historical,bmi,age,1
+450,29.590676298041153,historical,40 to 64,historical,bmi,age,1
+450,29.59664634458417,unexposed,18 to 39,unexposed,bmi,age,1
+450,29.310525112040214,unexposed,65 plus,unexposed,bmi,age,1
+450,29.570383235379694,unexposed,40 to 64,unexposed,bmi,age,1
+450,29.84342862967023,exposed,18 to 39,exposed,bmi,age,1
+450,29.42510983124327,exposed,65 plus,exposed,bmi,age,1
+450,29.77107622147293,exposed,40 to 64,exposed,bmi,age,1
+500,29.751944833396223,historical,18 to 39,historical,bmi,age,1
+500,29.468493310042042,historical,65 plus,historical,bmi,age,1
+500,29.60087660570839,historical,40 to 64,historical,bmi,age,1
+500,29.632677798385927,unexposed,18 to 39,unexposed,bmi,age,1
+500,29.26417200445824,unexposed,65 plus,unexposed,bmi,age,1
+500,29.54808022963766,unexposed,40 to 64,unexposed,bmi,age,1
+500,29.87206570397618,exposed,18 to 39,exposed,bmi,age,1
+500,29.40263322410143,exposed,65 plus,exposed,bmi,age,1
+500,29.76771328874622,exposed,40 to 64,exposed,bmi,age,1
+550,29.79818008657034,historical,18 to 39,historical,bmi,age,1
+550,29.461746946565146,historical,65 plus,historical,bmi,age,1
+550,29.611076913375626,historical,40 to 64,historical,bmi,age,1
+550,29.668709252187686,unexposed,18 to 39,unexposed,bmi,age,1
+550,29.217818896876267,unexposed,65 plus,unexposed,bmi,age,1
+550,29.525777223895624,unexposed,40 to 64,unexposed,bmi,age,1
+550,29.90070277828213,exposed,18 to 39,exposed,bmi,age,1
+550,29.38015661695959,exposed,65 plus,exposed,bmi,age,1
+550,29.764350356019506,exposed,40 to 64,exposed,bmi,age,1
+600,29.844415339744458,historical,18 to 39,historical,bmi,age,1
+600,29.45500058308825,historical,65 plus,historical,bmi,age,1
+600,29.621277221042867,historical,40 to 64,historical,bmi,age,1
+600,29.704740705989444,unexposed,18 to 39,unexposed,bmi,age,1
+600,29.17146578929429,unexposed,65 plus,unexposed,bmi,age,1
+600,29.50347421815359,unexposed,40 to 64,unexposed,bmi,age,1
+600,29.929339852588082,exposed,18 to 39,exposed,bmi,age,1
+600,29.357680009817752,exposed,65 plus,exposed,bmi,age,1
+600,29.760987423292793,exposed,40 to 64,exposed,bmi,age,1
+650,29.890650592918576,historical,18 to 39,historical,bmi,age,1
+650,29.44825421961135,historical,65 plus,historical,bmi,age,1
+650,29.631477528710104,historical,40 to 64,historical,bmi,age,1
+650,29.740772159791202,unexposed,18 to 39,unexposed,bmi,age,1
+650,29.125112681712316,unexposed,65 plus,unexposed,bmi,age,1
+650,29.481171212411557,unexposed,40 to 64,unexposed,bmi,age,1
+650,29.95797692689403,exposed,18 to 39,exposed,bmi,age,1
+650,29.33520340267591,exposed,65 plus,exposed,bmi,age,1
+650,29.75762449056608,exposed,40 to 64,exposed,bmi,age,1
+700,29.936885846092697,historical,18 to 39,historical,bmi,age,1
+700,29.441507856134457,historical,65 plus,historical,bmi,age,1
+700,29.64167783637734,historical,40 to 64,historical,bmi,age,1
+700,29.776803613592957,unexposed,18 to 39,unexposed,bmi,age,1
+700,29.07875957413034,unexposed,65 plus,unexposed,bmi,age,1
+700,29.45886820666952,unexposed,40 to 64,unexposed,bmi,age,1
+700,29.986614001199982,exposed,18 to 39,exposed,bmi,age,1
+700,29.312726795534072,exposed,65 plus,exposed,bmi,age,1
+700,29.754261557839374,exposed,40 to 64,exposed,bmi,age,1
+0,29.057031790188592,historical,NH White,historical,bmi,raceeth,1
+0,29.182768910015074,historical,NH Black,historical,bmi,raceeth,1
+0,29.3834398178091,historical,Hispanic,historical,bmi,raceeth,1
+0,29.30509586246921,unexposed,NH White,unexposed,bmi,raceeth,1
+0,29.393418041695764,unexposed,NH Black,unexposed,bmi,raceeth,1
+0,29.34461390591997,unexposed,Hispanic,unexposed,bmi,raceeth,1
+0,29.378295129628214,exposed,NH White,exposed,bmi,raceeth,1
+0,29.518771613679174,exposed,NH Black,exposed,bmi,raceeth,1
+0,29.401940036286312,exposed,Hispanic,exposed,bmi,raceeth,1
+50,29.07649751461366,historical,NH White,historical,bmi,raceeth,1
+50,29.205314304953173,historical,NH Black,historical,bmi,raceeth,1
+50,29.374256599948126,historical,Hispanic,historical,bmi,raceeth,1
+50,29.283171504813257,unexposed,NH White,unexposed,bmi,raceeth,1
+50,29.376366162754625,unexposed,NH Black,unexposed,bmi,raceeth,1
+50,29.335036552398464,unexposed,Hispanic,unexposed,bmi,raceeth,1
+50,29.362902779824356,exposed,NH White,exposed,bmi,raceeth,1
+50,29.523621764119724,exposed,NH Black,exposed,bmi,raceeth,1
+50,29.415825615155672,exposed,Hispanic,exposed,bmi,raceeth,1
+100,29.095963239038724,historical,NH White,historical,bmi,raceeth,1
+100,29.227859699891273,historical,NH Black,historical,bmi,raceeth,1
+100,29.365073382087147,historical,Hispanic,historical,bmi,raceeth,1
+100,29.2612471471573,unexposed,NH White,unexposed,bmi,raceeth,1
+100,29.359314283813486,unexposed,NH Black,unexposed,bmi,raceeth,1
+100,29.325459198876956,unexposed,Hispanic,unexposed,bmi,raceeth,1
+100,29.347510430020492,exposed,NH White,exposed,bmi,raceeth,1
+100,29.528471914560278,exposed,NH Black,exposed,bmi,raceeth,1
+100,29.429711194025028,exposed,Hispanic,exposed,bmi,raceeth,1
+150,29.11542896346379,historical,NH White,historical,bmi,raceeth,1
+150,29.25040509482937,historical,NH Black,historical,bmi,raceeth,1
+150,29.35589016422617,historical,Hispanic,historical,bmi,raceeth,1
+150,29.23932278950134,unexposed,NH White,unexposed,bmi,raceeth,1
+150,29.342262404872347,unexposed,NH Black,unexposed,bmi,raceeth,1
+150,29.315881845355452,unexposed,Hispanic,unexposed,bmi,raceeth,1
+150,29.332118080216638,exposed,NH White,exposed,bmi,raceeth,1
+150,29.533322065000824,exposed,NH Black,exposed,bmi,raceeth,1
+150,29.443596772894384,exposed,Hispanic,exposed,bmi,raceeth,1
+200,29.134894687888853,historical,NH White,historical,bmi,raceeth,1
+200,29.272950489767474,historical,NH Black,historical,bmi,raceeth,1
+200,29.346706946365195,historical,Hispanic,historical,bmi,raceeth,1
+200,29.217398431845385,unexposed,NH White,unexposed,bmi,raceeth,1
+200,29.32521052593121,unexposed,NH Black,unexposed,bmi,raceeth,1
+200,29.30630449183395,unexposed,Hispanic,unexposed,bmi,raceeth,1
+200,29.316725730412774,exposed,NH White,exposed,bmi,raceeth,1
+200,29.538172215441378,exposed,NH Black,exposed,bmi,raceeth,1
+200,29.457482351763744,exposed,Hispanic,exposed,bmi,raceeth,1
+250,29.15436041231392,historical,NH White,historical,bmi,raceeth,1
+250,29.29549588470557,historical,NH Black,historical,bmi,raceeth,1
+250,29.337523728504216,historical,Hispanic,historical,bmi,raceeth,1
+250,29.19547407418943,unexposed,NH White,unexposed,bmi,raceeth,1
+250,29.30815864699007,unexposed,NH Black,unexposed,bmi,raceeth,1
+250,29.296727138312438,unexposed,Hispanic,unexposed,bmi,raceeth,1
+250,29.301333380608913,exposed,NH White,exposed,bmi,raceeth,1
+250,29.543022365881928,exposed,NH Black,exposed,bmi,raceeth,1
+250,29.4713679306331,exposed,Hispanic,exposed,bmi,raceeth,1
+300,29.173826136738985,historical,NH White,historical,bmi,raceeth,1
+300,29.31804127964367,historical,NH Black,historical,bmi,raceeth,1
+300,29.32834051064324,historical,Hispanic,historical,bmi,raceeth,1
+300,29.173549716533472,unexposed,NH White,unexposed,bmi,raceeth,1
+300,29.29110676804893,unexposed,NH Black,unexposed,bmi,raceeth,1
+300,29.287149784790934,unexposed,Hispanic,unexposed,bmi,raceeth,1
+300,29.285941030805052,exposed,NH White,exposed,bmi,raceeth,1
+300,29.547872516322474,exposed,NH Black,exposed,bmi,raceeth,1
+300,29.485253509502456,exposed,Hispanic,exposed,bmi,raceeth,1
+350,29.19329186116405,historical,NH White,historical,bmi,raceeth,1
+350,29.340586674581772,historical,NH Black,historical,bmi,raceeth,1
+350,29.319157292782265,historical,Hispanic,historical,bmi,raceeth,1
+350,29.15162535887752,unexposed,NH White,unexposed,bmi,raceeth,1
+350,29.274054889107795,unexposed,NH Black,unexposed,bmi,raceeth,1
+350,29.27757243126943,unexposed,Hispanic,unexposed,bmi,raceeth,1
+350,29.270548681001195,exposed,NH White,exposed,bmi,raceeth,1
+350,29.552722666763028,exposed,NH Black,exposed,bmi,raceeth,1
+350,29.499139088371816,exposed,Hispanic,exposed,bmi,raceeth,1
+400,29.212757585589113,historical,NH White,historical,bmi,raceeth,1
+400,29.36313206951987,historical,NH Black,historical,bmi,raceeth,1
+400,29.309974074921286,historical,Hispanic,historical,bmi,raceeth,1
+400,29.129701001221562,unexposed,NH White,unexposed,bmi,raceeth,1
+400,29.257003010166656,unexposed,NH Black,unexposed,bmi,raceeth,1
+400,29.26799507774792,unexposed,Hispanic,unexposed,bmi,raceeth,1
+400,29.255156331197334,exposed,NH White,exposed,bmi,raceeth,1
+400,29.55757281720358,exposed,NH Black,exposed,bmi,raceeth,1
+400,29.513024667241176,exposed,Hispanic,exposed,bmi,raceeth,1
+450,29.23222331001418,historical,NH White,historical,bmi,raceeth,1
+450,29.38567746445797,historical,NH Black,historical,bmi,raceeth,1
+450,29.30079085706031,historical,Hispanic,historical,bmi,raceeth,1
+450,29.107776643565604,unexposed,NH White,unexposed,bmi,raceeth,1
+450,29.239951131225517,unexposed,NH Black,unexposed,bmi,raceeth,1
+450,29.258417724226415,unexposed,Hispanic,unexposed,bmi,raceeth,1
+450,29.239763981393473,exposed,NH White,exposed,bmi,raceeth,1
+450,29.56242296764413,exposed,NH Black,exposed,bmi,raceeth,1
+450,29.52691024611053,exposed,Hispanic,exposed,bmi,raceeth,1
+500,29.25168903443924,historical,NH White,historical,bmi,raceeth,1
+500,29.40822285939607,historical,NH Black,historical,bmi,raceeth,1
+500,29.291607639199334,historical,Hispanic,historical,bmi,raceeth,1
+500,29.08585228590965,unexposed,NH White,unexposed,bmi,raceeth,1
+500,29.22289925228438,unexposed,NH Black,unexposed,bmi,raceeth,1
+500,29.24884037070491,unexposed,Hispanic,unexposed,bmi,raceeth,1
+500,29.224371631589612,exposed,NH White,exposed,bmi,raceeth,1
+500,29.567273118084678,exposed,NH Black,exposed,bmi,raceeth,1
+500,29.540795824979888,exposed,Hispanic,exposed,bmi,raceeth,1
+550,29.27115475886431,historical,NH White,historical,bmi,raceeth,1
+550,29.43076825433417,historical,NH Black,historical,bmi,raceeth,1
+550,29.28242442133836,historical,Hispanic,historical,bmi,raceeth,1
+550,29.063927928253694,unexposed,NH White,unexposed,bmi,raceeth,1
+550,29.20584737334324,unexposed,NH Black,unexposed,bmi,raceeth,1
+550,29.239263017183404,unexposed,Hispanic,unexposed,bmi,raceeth,1
+550,29.20897928178575,exposed,NH White,exposed,bmi,raceeth,1
+550,29.57212326852523,exposed,NH Black,exposed,bmi,raceeth,1
+550,29.554681403849248,exposed,Hispanic,exposed,bmi,raceeth,1
+600,29.290620483289374,historical,NH White,historical,bmi,raceeth,1
+600,29.45331364927227,historical,NH Black,historical,bmi,raceeth,1
+600,29.27324120347738,historical,Hispanic,historical,bmi,raceeth,1
+600,29.04200357059774,unexposed,NH White,unexposed,bmi,raceeth,1
+600,29.1887954944021,unexposed,NH Black,unexposed,bmi,raceeth,1
+600,29.229685663661897,unexposed,Hispanic,unexposed,bmi,raceeth,1
+600,29.193586931981887,exposed,NH White,exposed,bmi,raceeth,1
+600,29.576973418965782,exposed,NH Black,exposed,bmi,raceeth,1
+600,29.568566982718604,exposed,Hispanic,exposed,bmi,raceeth,1
+650,29.310086207714438,historical,NH White,historical,bmi,raceeth,1
+650,29.475859044210367,historical,NH Black,historical,bmi,raceeth,1
+650,29.264057985616404,historical,Hispanic,historical,bmi,raceeth,1
+650,29.020079212941784,unexposed,NH White,unexposed,bmi,raceeth,1
+650,29.17174361546096,unexposed,NH Black,unexposed,bmi,raceeth,1
+650,29.220108310140393,unexposed,Hispanic,unexposed,bmi,raceeth,1
+650,29.178194582178033,exposed,NH White,exposed,bmi,raceeth,1
+650,29.581823569406332,exposed,NH Black,exposed,bmi,raceeth,1
+650,29.58245256158796,exposed,Hispanic,exposed,bmi,raceeth,1
+700,29.329551932139502,historical,NH White,historical,bmi,raceeth,1
+700,29.49840443914847,historical,NH Black,historical,bmi,raceeth,1
+700,29.254874767755428,historical,Hispanic,historical,bmi,raceeth,1
+700,28.998154855285822,unexposed,NH White,unexposed,bmi,raceeth,1
+700,29.154691736519826,unexposed,NH Black,unexposed,bmi,raceeth,1
+700,29.210530956618886,unexposed,Hispanic,unexposed,bmi,raceeth,1
+700,29.16280223237417,exposed,NH White,exposed,bmi,raceeth,1
+700,29.586673719846885,exposed,NH Black,exposed,bmi,raceeth,1
+700,29.59633814045732,exposed,Hispanic,exposed,bmi,raceeth,1
+0,29.517954995064347,historical,hospitalization = 0,historical,bmi,hospitalization,1
+0,29.121024374799624,historical,hospitalization = 1,historical,bmi,hospitalization,1
+0,29.75502931207411,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,1
+0,29.065875159046175,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,1
+0,29.779570496393074,exposed,hospitalization = 0,exposed,bmi,hospitalization,1
+0,29.197430370439164,exposed,hospitalization = 1,exposed,bmi,hospitalization,1
+50,29.531749353287942,historical,hospitalization = 0,historical,bmi,hospitalization,1
+50,29.14523941596174,historical,hospitalization = 1,historical,bmi,hospitalization,1
+50,29.73427782236856,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,1
+50,29.057923229689784,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,1
+50,29.778429553722926,exposed,hospitalization = 0,exposed,bmi,hospitalization,1
+50,29.203713394722538,exposed,hospitalization = 1,exposed,bmi,hospitalization,1
+100,29.545543711511538,historical,hospitalization = 0,historical,bmi,hospitalization,1
+100,29.169454457123855,historical,hospitalization = 1,historical,bmi,hospitalization,1
+100,29.713526332663008,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,1
+100,29.04997130033339,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,1
+100,29.77728861105278,exposed,hospitalization = 0,exposed,bmi,hospitalization,1
+100,29.209996419005915,exposed,hospitalization = 1,exposed,bmi,hospitalization,1
+150,29.559338069735134,historical,hospitalization = 0,historical,bmi,hospitalization,1
+150,29.193669498285967,historical,hospitalization = 1,historical,bmi,hospitalization,1
+150,29.69277484295746,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,1
+150,29.04201937097699,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,1
+150,29.77614766838263,exposed,hospitalization = 0,exposed,bmi,hospitalization,1
+150,29.21627944328929,exposed,hospitalization = 1,exposed,bmi,hospitalization,1
+200,29.573132427958726,historical,hospitalization = 0,historical,bmi,hospitalization,1
+200,29.217884539448082,historical,hospitalization = 1,historical,bmi,hospitalization,1
+200,29.672023353251905,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,1
+200,29.034067441620596,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,1
+200,29.77500672571248,exposed,hospitalization = 0,exposed,bmi,hospitalization,1
+200,29.22256246757267,exposed,hospitalization = 1,exposed,bmi,hospitalization,1
+250,29.58692678618232,historical,hospitalization = 0,historical,bmi,hospitalization,1
+250,29.242099580610198,historical,hospitalization = 1,historical,bmi,hospitalization,1
+250,29.651271863546356,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,1
+250,29.026115512264205,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,1
+250,29.773865783042332,exposed,hospitalization = 0,exposed,bmi,hospitalization,1
+250,29.22884549185605,exposed,hospitalization = 1,exposed,bmi,hospitalization,1
+300,29.600721144405917,historical,hospitalization = 0,historical,bmi,hospitalization,1
+300,29.266314621772313,historical,hospitalization = 1,historical,bmi,hospitalization,1
+300,29.630520373840803,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,1
+300,29.018163582907814,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,1
+300,29.772724840372188,exposed,hospitalization = 0,exposed,bmi,hospitalization,1
+300,29.235128516139426,exposed,hospitalization = 1,exposed,bmi,hospitalization,1
+350,29.614515502629512,historical,hospitalization = 0,historical,bmi,hospitalization,1
+350,29.29052966293443,historical,hospitalization = 1,historical,bmi,hospitalization,1
+350,29.60976888413525,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,1
+350,29.010211653551416,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,1
+350,29.77158389770204,exposed,hospitalization = 0,exposed,bmi,hospitalization,1
+350,29.241411540422803,exposed,hospitalization = 1,exposed,bmi,hospitalization,1
+400,29.628309860853108,historical,hospitalization = 0,historical,bmi,hospitalization,1
+400,29.31474470409654,historical,hospitalization = 1,historical,bmi,hospitalization,1
+400,29.5890173944297,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,1
+400,29.00225972419502,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,1
+400,29.770442955031893,exposed,hospitalization = 0,exposed,bmi,hospitalization,1
+400,29.24769456470618,exposed,hospitalization = 1,exposed,bmi,hospitalization,1
+450,29.642104219076703,historical,hospitalization = 0,historical,bmi,hospitalization,1
+450,29.338959745258656,historical,hospitalization = 1,historical,bmi,hospitalization,1
+450,29.56826590472415,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,1
+450,28.99430779483863,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,1
+450,29.76930201236174,exposed,hospitalization = 0,exposed,bmi,hospitalization,1
+450,29.253977588989557,exposed,hospitalization = 1,exposed,bmi,hospitalization,1
+500,29.6558985773003,historical,hospitalization = 0,historical,bmi,hospitalization,1
+500,29.363174786420775,historical,hospitalization = 1,historical,bmi,hospitalization,1
+500,29.547514415018597,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,1
+500,28.98635586548224,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,1
+500,29.768161069691594,exposed,hospitalization = 0,exposed,bmi,hospitalization,1
+500,29.260260613272937,exposed,hospitalization = 1,exposed,bmi,hospitalization,1
+550,29.66969293552389,historical,hospitalization = 0,historical,bmi,hospitalization,1
+550,29.38738982758289,historical,hospitalization = 1,historical,bmi,hospitalization,1
+550,29.526762925313044,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,1
+550,28.978403936125844,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,1
+550,29.767020127021446,exposed,hospitalization = 0,exposed,bmi,hospitalization,1
+550,29.266543637556314,exposed,hospitalization = 1,exposed,bmi,hospitalization,1
+600,29.683487293747486,historical,hospitalization = 0,historical,bmi,hospitalization,1
+600,29.411604868745005,historical,hospitalization = 1,historical,bmi,hospitalization,1
+600,29.50601143560749,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,1
+600,28.97045200676945,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,1
+600,29.7658791843513,exposed,hospitalization = 0,exposed,bmi,hospitalization,1
+600,29.27282666183969,exposed,hospitalization = 1,exposed,bmi,hospitalization,1
+650,29.697281651971082,historical,hospitalization = 0,historical,bmi,hospitalization,1
+650,29.435819909907117,historical,hospitalization = 1,historical,bmi,hospitalization,1
+650,29.48525994590194,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,1
+650,28.962500077413058,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,1
+650,29.76473824168115,exposed,hospitalization = 0,exposed,bmi,hospitalization,1
+650,29.279109686123064,exposed,hospitalization = 1,exposed,bmi,hospitalization,1
+700,29.711076010194677,historical,hospitalization = 0,historical,bmi,hospitalization,1
+700,29.460034951069233,historical,hospitalization = 1,historical,bmi,hospitalization,1
+700,29.46450845619639,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,1
+700,28.954548148056666,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,1
+700,29.763597299011,exposed,hospitalization = 0,exposed,bmi,hospitalization,1
+700,29.28539271040644,exposed,hospitalization = 1,exposed,bmi,hospitalization,1
+0,29.439142224558253,historical,Female,historical,bmi,sex,2
+0,29.46240212693471,historical,Male,historical,bmi,sex,2
+0,29.64484598420756,unexposed,Female,unexposed,bmi,sex,2
+0,29.633280301877157,unexposed,Male,unexposed,bmi,sex,2
+0,29.794424994002078,exposed,Female,exposed,bmi,sex,2
+0,29.551068584437115,exposed,Male,exposed,bmi,sex,2
+50,29.46302145362437,historical,Female,historical,bmi,sex,2
+50,29.46309785573076,historical,Male,historical,bmi,sex,2
+50,29.62955267165416,unexposed,Female,unexposed,bmi,sex,2
+50,29.610237511347748,unexposed,Male,unexposed,bmi,sex,2
+50,29.784155679347624,exposed,Female,exposed,bmi,sex,2
+50,29.564645633246023,exposed,Male,exposed,bmi,sex,2
+100,29.48690068269049,historical,Female,historical,bmi,sex,2
+100,29.463793584526808,historical,Male,historical,bmi,sex,2
+100,29.614259359100764,unexposed,Female,unexposed,bmi,sex,2
+100,29.58719472081834,unexposed,Male,unexposed,bmi,sex,2
+100,29.773886364693162,exposed,Female,exposed,bmi,sex,2
+100,29.57822268205492,exposed,Male,exposed,bmi,sex,2
+150,29.510779911756607,historical,Female,historical,bmi,sex,2
+150,29.464489313322858,historical,Male,historical,bmi,sex,2
+150,29.598966046547368,unexposed,Female,unexposed,bmi,sex,2
+150,29.564151930288933,unexposed,Male,unexposed,bmi,sex,2
+150,29.763617050038704,exposed,Female,exposed,bmi,sex,2
+150,29.59179973086383,exposed,Male,exposed,bmi,sex,2
+200,29.534659140822725,historical,Female,historical,bmi,sex,2
+200,29.465185042118907,historical,Male,historical,bmi,sex,2
+200,29.58367273399397,unexposed,Female,unexposed,bmi,sex,2
+200,29.541109139759527,unexposed,Male,unexposed,bmi,sex,2
+200,29.753347735384246,exposed,Female,exposed,bmi,sex,2
+200,29.60537677967274,exposed,Male,exposed,bmi,sex,2
+250,29.558538369888844,historical,Female,historical,bmi,sex,2
+250,29.465880770914954,historical,Male,historical,bmi,sex,2
+250,29.56837942144057,unexposed,Female,unexposed,bmi,sex,2
+250,29.518066349230114,unexposed,Male,unexposed,bmi,sex,2
+250,29.743078420729788,exposed,Female,exposed,bmi,sex,2
+250,29.618953828481644,exposed,Male,exposed,bmi,sex,2
+300,29.58241759895496,historical,Female,historical,bmi,sex,2
+300,29.466576499711003,historical,Male,historical,bmi,sex,2
+300,29.553086108887175,unexposed,Female,unexposed,bmi,sex,2
+300,29.49502355870071,unexposed,Male,unexposed,bmi,sex,2
+300,29.732809106075326,exposed,Female,exposed,bmi,sex,2
+300,29.632530877290545,exposed,Male,exposed,bmi,sex,2
+350,29.606296828021083,historical,Female,historical,bmi,sex,2
+350,29.46727222850705,historical,Male,historical,bmi,sex,2
+350,29.537792796333775,unexposed,Female,unexposed,bmi,sex,2
+350,29.4719807681713,unexposed,Male,unexposed,bmi,sex,2
+350,29.722539791420868,exposed,Female,exposed,bmi,sex,2
+350,29.64610792609945,exposed,Male,exposed,bmi,sex,2
+400,29.6301760570872,historical,Female,historical,bmi,sex,2
+400,29.4679679573031,historical,Male,historical,bmi,sex,2
+400,29.52249948378038,unexposed,Female,unexposed,bmi,sex,2
+400,29.448937977641897,unexposed,Male,unexposed,bmi,sex,2
+400,29.71227047676641,exposed,Female,exposed,bmi,sex,2
+400,29.659684974908355,exposed,Male,exposed,bmi,sex,2
+450,29.65405528615332,historical,Female,historical,bmi,sex,2
+450,29.46866368609915,historical,Male,historical,bmi,sex,2
+450,29.50720617122698,unexposed,Female,unexposed,bmi,sex,2
+450,29.425895187112488,unexposed,Male,unexposed,bmi,sex,2
+450,29.70200116211195,exposed,Female,exposed,bmi,sex,2
+450,29.673262023717264,exposed,Male,exposed,bmi,sex,2
+500,29.677934515219437,historical,Female,historical,bmi,sex,2
+500,29.469359414895198,historical,Male,historical,bmi,sex,2
+500,29.491912858673583,unexposed,Female,unexposed,bmi,sex,2
+500,29.40285239658308,unexposed,Male,unexposed,bmi,sex,2
+500,29.69173184745749,exposed,Female,exposed,bmi,sex,2
+500,29.686839072526162,exposed,Male,exposed,bmi,sex,2
+550,29.701813744285555,historical,Female,historical,bmi,sex,2
+550,29.470055143691248,historical,Male,historical,bmi,sex,2
+550,29.476619546120187,unexposed,Female,unexposed,bmi,sex,2
+550,29.37980960605367,unexposed,Male,unexposed,bmi,sex,2
+550,29.681462532803035,exposed,Female,exposed,bmi,sex,2
+550,29.70041612133507,exposed,Male,exposed,bmi,sex,2
+600,29.725692973351673,historical,Female,historical,bmi,sex,2
+600,29.470750872487297,historical,Male,historical,bmi,sex,2
+600,29.46132623356679,unexposed,Female,unexposed,bmi,sex,2
+600,29.356766815524264,unexposed,Male,unexposed,bmi,sex,2
+600,29.671193218148577,exposed,Female,exposed,bmi,sex,2
+600,29.713993170143976,exposed,Male,exposed,bmi,sex,2
+650,29.74957220241779,historical,Female,historical,bmi,sex,2
+650,29.471446601283343,historical,Male,historical,bmi,sex,2
+650,29.44603292101339,unexposed,Female,unexposed,bmi,sex,2
+650,29.333724024994854,unexposed,Male,unexposed,bmi,sex,2
+650,29.66092390349412,exposed,Female,exposed,bmi,sex,2
+650,29.72757021895288,exposed,Male,exposed,bmi,sex,2
+700,29.77345143148391,historical,Female,historical,bmi,sex,2
+700,29.472142330079393,historical,Male,historical,bmi,sex,2
+700,29.430739608459994,unexposed,Female,unexposed,bmi,sex,2
+700,29.310681234465452,unexposed,Male,unexposed,bmi,sex,2
+700,29.650654588839657,exposed,Female,exposed,bmi,sex,2
+700,29.741147267761786,exposed,Male,exposed,bmi,sex,2
+0,29.29754973598394,historical,18 to 39,historical,bmi,age,2
+0,29.5414864862837,historical,65 plus,historical,bmi,age,2
+0,29.50191987250858,historical,40 to 64,historical,bmi,age,2
+0,29.283350914881506,unexposed,18 to 39,unexposed,bmi,age,2
+0,29.732154943828785,unexposed,65 plus,unexposed,bmi,age,2
+0,29.77280396302378,unexposed,40 to 64,unexposed,bmi,age,2
+0,29.590922780899323,exposed,18 to 39,exposed,bmi,age,2
+0,29.627344267998602,exposed,65 plus,exposed,bmi,age,2
+0,29.80094764864036,exposed,40 to 64,exposed,bmi,age,2
+50,29.343798340697422,historical,18 to 39,historical,bmi,age,2
+50,29.53474743992357,historical,65 plus,historical,bmi,age,2
+50,29.512122835620374,historical,40 to 64,historical,bmi,age,2
+50,29.319354311267606,unexposed,18 to 39,unexposed,bmi,age,2
+50,29.68579184978093,unexposed,65 plus,unexposed,bmi,age,2
+50,29.750482960964074,unexposed,40 to 64,unexposed,bmi,age,2
+50,29.61955109804214,exposed,18 to 39,exposed,bmi,age,2
+50,29.604828547479638,exposed,65 plus,exposed,bmi,age,2
+50,29.797553387037798,exposed,40 to 64,exposed,bmi,age,2
+100,29.390046945410905,historical,18 to 39,historical,bmi,age,2
+100,29.528008393563443,historical,65 plus,historical,bmi,age,2
+100,29.522325798732165,historical,40 to 64,historical,bmi,age,2
+100,29.355357707653706,unexposed,18 to 39,unexposed,bmi,age,2
+100,29.639428755733075,unexposed,65 plus,unexposed,bmi,age,2
+100,29.728161958904366,unexposed,40 to 64,unexposed,bmi,age,2
+100,29.648179415184963,exposed,18 to 39,exposed,bmi,age,2
+100,29.582312826960678,exposed,65 plus,exposed,bmi,age,2
+100,29.79415912543524,exposed,40 to 64,exposed,bmi,age,2
+150,29.436295550124388,historical,18 to 39,historical,bmi,age,2
+150,29.521269347203315,historical,65 plus,historical,bmi,age,2
+150,29.53252876184396,historical,40 to 64,historical,bmi,age,2
+150,29.391361104039802,unexposed,18 to 39,unexposed,bmi,age,2
+150,29.593065661685216,unexposed,65 plus,unexposed,bmi,age,2
+150,29.705840956844657,unexposed,40 to 64,unexposed,bmi,age,2
+150,29.67680773232778,exposed,18 to 39,exposed,bmi,age,2
+150,29.559797106441714,exposed,65 plus,exposed,bmi,age,2
+150,29.790764863832678,exposed,40 to 64,exposed,bmi,age,2
+200,29.48254415483787,historical,18 to 39,historical,bmi,age,2
+200,29.514530300843187,historical,65 plus,historical,bmi,age,2
+200,29.54273172495575,historical,40 to 64,historical,bmi,age,2
+200,29.427364500425902,unexposed,18 to 39,unexposed,bmi,age,2
+200,29.54670256763736,unexposed,65 plus,unexposed,bmi,age,2
+200,29.68351995478495,unexposed,40 to 64,unexposed,bmi,age,2
+200,29.705436049470602,exposed,18 to 39,exposed,bmi,age,2
+200,29.537281385922753,exposed,65 plus,exposed,bmi,age,2
+200,29.787370602230116,exposed,40 to 64,exposed,bmi,age,2
+250,29.528792759551354,historical,18 to 39,historical,bmi,age,2
+250,29.507791254483056,historical,65 plus,historical,bmi,age,2
+250,29.552934688067545,historical,40 to 64,historical,bmi,age,2
+250,29.463367896812002,unexposed,18 to 39,unexposed,bmi,age,2
+250,29.500339473589506,unexposed,65 plus,unexposed,bmi,age,2
+250,29.66119895272524,unexposed,40 to 64,unexposed,bmi,age,2
+250,29.73406436661342,exposed,18 to 39,exposed,bmi,age,2
+250,29.514765665403793,exposed,65 plus,exposed,bmi,age,2
+250,29.783976340627557,exposed,40 to 64,exposed,bmi,age,2
+300,29.575041364264838,historical,18 to 39,historical,bmi,age,2
+300,29.50105220812293,historical,65 plus,historical,bmi,age,2
+300,29.56313765117934,historical,40 to 64,historical,bmi,age,2
+300,29.499371293198102,unexposed,18 to 39,unexposed,bmi,age,2
+300,29.453976379541654,unexposed,65 plus,unexposed,bmi,age,2
+300,29.638877950665535,unexposed,40 to 64,unexposed,bmi,age,2
+300,29.762692683756242,exposed,18 to 39,exposed,bmi,age,2
+300,29.492249944884833,exposed,65 plus,exposed,bmi,age,2
+300,29.780582079025,exposed,40 to 64,exposed,bmi,age,2
+350,29.62128996897832,historical,18 to 39,historical,bmi,age,2
+350,29.4943131617628,historical,65 plus,historical,bmi,age,2
+350,29.57334061429113,historical,40 to 64,historical,bmi,age,2
+350,29.535374689584202,unexposed,18 to 39,unexposed,bmi,age,2
+350,29.4076132854938,unexposed,65 plus,unexposed,bmi,age,2
+350,29.616556948605826,unexposed,40 to 64,unexposed,bmi,age,2
+350,29.79132100089906,exposed,18 to 39,exposed,bmi,age,2
+350,29.46973422436587,exposed,65 plus,exposed,bmi,age,2
+350,29.777187817422437,exposed,40 to 64,exposed,bmi,age,2
+400,29.667538573691804,historical,18 to 39,historical,bmi,age,2
+400,29.487574115402673,historical,65 plus,historical,bmi,age,2
+400,29.583543577402924,historical,40 to 64,historical,bmi,age,2
+400,29.5713780859703,unexposed,18 to 39,unexposed,bmi,age,2
+400,29.36125019144594,unexposed,65 plus,unexposed,bmi,age,2
+400,29.594235946546117,unexposed,40 to 64,unexposed,bmi,age,2
+400,29.819949318041882,exposed,18 to 39,exposed,bmi,age,2
+400,29.447218503846912,exposed,65 plus,exposed,bmi,age,2
+400,29.773793555819875,exposed,40 to 64,exposed,bmi,age,2
+450,29.713787178405287,historical,18 to 39,historical,bmi,age,2
+450,29.480835069042545,historical,65 plus,historical,bmi,age,2
+450,29.593746540514715,historical,40 to 64,historical,bmi,age,2
+450,29.6073814823564,unexposed,18 to 39,unexposed,bmi,age,2
+450,29.314887097398085,unexposed,65 plus,unexposed,bmi,age,2
+450,29.57191494448641,unexposed,40 to 64,unexposed,bmi,age,2
+450,29.8485776351847,exposed,18 to 39,exposed,bmi,age,2
+450,29.424702783327948,exposed,65 plus,exposed,bmi,age,2
+450,29.77039929421731,exposed,40 to 64,exposed,bmi,age,2
+500,29.76003578311877,historical,18 to 39,historical,bmi,age,2
+500,29.474096022682417,historical,65 plus,historical,bmi,age,2
+500,29.60394950362651,historical,40 to 64,historical,bmi,age,2
+500,29.6433848787425,unexposed,18 to 39,unexposed,bmi,age,2
+500,29.26852400335023,unexposed,65 plus,unexposed,bmi,age,2
+500,29.549593942426704,unexposed,40 to 64,unexposed,bmi,age,2
+500,29.87720595232752,exposed,18 to 39,exposed,bmi,age,2
+500,29.402187062808988,exposed,65 plus,exposed,bmi,age,2
+500,29.767005032614755,exposed,40 to 64,exposed,bmi,age,2
+550,29.806284387832253,historical,18 to 39,historical,bmi,age,2
+550,29.46735697632229,historical,65 plus,historical,bmi,age,2
+550,29.6141524667383,historical,40 to 64,historical,bmi,age,2
+550,29.6793882751286,unexposed,18 to 39,unexposed,bmi,age,2
+550,29.222160909302374,unexposed,65 plus,unexposed,bmi,age,2
+550,29.527272940367,unexposed,40 to 64,unexposed,bmi,age,2
+550,29.90583426947034,exposed,18 to 39,exposed,bmi,age,2
+550,29.379671342290028,exposed,65 plus,exposed,bmi,age,2
+550,29.763610771012193,exposed,40 to 64,exposed,bmi,age,2
+600,29.852532992545736,historical,18 to 39,historical,bmi,age,2
+600,29.46061792996216,historical,65 plus,historical,bmi,age,2
+600,29.62435542985009,historical,40 to 64,historical,bmi,age,2
+600,29.715391671514695,unexposed,18 to 39,unexposed,bmi,age,2
+600,29.175797815254516,unexposed,65 plus,unexposed,bmi,age,2
+600,29.504951938307286,unexposed,40 to 64,unexposed,bmi,age,2
+600,29.93446258661316,exposed,18 to 39,exposed,bmi,age,2
+600,29.357155621771064,exposed,65 plus,exposed,bmi,age,2
+600,29.76021650940963,exposed,40 to 64,exposed,bmi,age,2
+650,29.89878159725922,historical,18 to 39,historical,bmi,age,2
+650,29.45387888360203,historical,65 plus,historical,bmi,age,2
+650,29.634558392961885,historical,40 to 64,historical,bmi,age,2
+650,29.75139506790079,unexposed,18 to 39,unexposed,bmi,age,2
+650,29.129434721206657,unexposed,65 plus,unexposed,bmi,age,2
+650,29.48263093624758,unexposed,40 to 64,unexposed,bmi,age,2
+650,29.96309090375598,exposed,18 to 39,exposed,bmi,age,2
+650,29.334639901252103,exposed,65 plus,exposed,bmi,age,2
+650,29.756822247807072,exposed,40 to 64,exposed,bmi,age,2
+700,29.945030201972703,historical,18 to 39,historical,bmi,age,2
+700,29.447139837241902,historical,65 plus,historical,bmi,age,2
+700,29.644761356073676,historical,40 to 64,historical,bmi,age,2
+700,29.78739846428689,unexposed,18 to 39,unexposed,bmi,age,2
+700,29.0830716271588,unexposed,65 plus,unexposed,bmi,age,2
+700,29.460309934187872,unexposed,40 to 64,unexposed,bmi,age,2
+700,29.991719220898798,exposed,18 to 39,exposed,bmi,age,2
+700,29.31212418073314,exposed,65 plus,exposed,bmi,age,2
+700,29.753427986204507,exposed,40 to 64,exposed,bmi,age,2
+0,29.06045996421374,historical,NH White,historical,bmi,raceeth,2
+0,29.18839291679348,historical,NH Black,historical,bmi,raceeth,2
+0,29.385574165199532,historical,Hispanic,historical,bmi,raceeth,2
+0,29.309372382904485,unexposed,NH White,unexposed,bmi,raceeth,2
+0,29.39578583753414,unexposed,NH Black,unexposed,bmi,raceeth,2
+0,29.345685948780535,unexposed,Hispanic,unexposed,bmi,raceeth,2
+0,29.379938675862682,exposed,NH White,exposed,bmi,raceeth,2
+0,29.517385342279084,exposed,NH Black,exposed,bmi,raceeth,2
+0,29.39860187586653,exposed,Hispanic,exposed,bmi,raceeth,2
+50,29.079928109366026,historical,NH White,historical,bmi,raceeth,2
+50,29.210947464941054,historical,NH Black,historical,bmi,raceeth,2
+50,29.37639115287988,historical,Hispanic,historical,bmi,raceeth,2
+50,29.287428379758463,unexposed,NH White,unexposed,bmi,raceeth,2
+50,29.378720307503453,unexposed,NH Black,unexposed,bmi,raceeth,2
+50,29.33608375450307,unexposed,Hispanic,unexposed,bmi,raceeth,2
+50,29.364507706712505,exposed,NH White,exposed,bmi,raceeth,2
+50,29.522202471014296,exposed,NH Black,exposed,bmi,raceeth,2
+50,29.412484041179344,exposed,Hispanic,exposed,bmi,raceeth,2
+100,29.099396254518318,historical,NH White,historical,bmi,raceeth,2
+100,29.233502013088625,historical,NH Black,historical,bmi,raceeth,2
+100,29.36720814056023,historical,Hispanic,historical,bmi,raceeth,2
+100,29.26548437661244,unexposed,NH White,unexposed,bmi,raceeth,2
+100,29.36165477747276,unexposed,NH Black,unexposed,bmi,raceeth,2
+100,29.326481560225602,unexposed,Hispanic,unexposed,bmi,raceeth,2
+100,29.349076737562328,exposed,NH White,exposed,bmi,raceeth,2
+100,29.527019599749504,exposed,NH Black,exposed,bmi,raceeth,2
+100,29.426366206492155,exposed,Hispanic,exposed,bmi,raceeth,2
+150,29.118864399670603,historical,NH White,historical,bmi,raceeth,2
+150,29.256056561236196,historical,NH Black,historical,bmi,raceeth,2
+150,29.358025128240577,historical,Hispanic,historical,bmi,raceeth,2
+150,29.243540373466423,unexposed,NH White,unexposed,bmi,raceeth,2
+150,29.344589247442077,unexposed,NH Black,unexposed,bmi,raceeth,2
+150,29.316879365948136,unexposed,Hispanic,unexposed,bmi,raceeth,2
+150,29.333645768412154,exposed,NH White,exposed,bmi,raceeth,2
+150,29.531836728484716,exposed,NH Black,exposed,bmi,raceeth,2
+150,29.44024837180497,exposed,Hispanic,exposed,bmi,raceeth,2
+200,29.138332544822887,historical,NH White,historical,bmi,raceeth,2
+200,29.278611109383768,historical,NH Black,historical,bmi,raceeth,2
+200,29.348842115920924,historical,Hispanic,historical,bmi,raceeth,2
+200,29.221596370320402,unexposed,NH White,unexposed,bmi,raceeth,2
+200,29.32752371741139,unexposed,NH Black,unexposed,bmi,raceeth,2
+200,29.307277171670673,unexposed,Hispanic,unexposed,bmi,raceeth,2
+200,29.31821479926198,exposed,NH White,exposed,bmi,raceeth,2
+200,29.536653857219925,exposed,NH Black,exposed,bmi,raceeth,2
+200,29.454130537117788,exposed,Hispanic,exposed,bmi,raceeth,2
+250,29.157800689975176,historical,NH White,historical,bmi,raceeth,2
+250,29.30116565753134,historical,NH Black,historical,bmi,raceeth,2
+250,29.33965910360127,historical,Hispanic,historical,bmi,raceeth,2
+250,29.199652367174384,unexposed,NH White,unexposed,bmi,raceeth,2
+250,29.310458187380693,unexposed,NH Black,unexposed,bmi,raceeth,2
+250,29.297674977393207,unexposed,Hispanic,unexposed,bmi,raceeth,2
+250,29.302783830111803,exposed,NH White,exposed,bmi,raceeth,2
+250,29.54147098595513,exposed,NH Black,exposed,bmi,raceeth,2
+250,29.4680127024306,exposed,Hispanic,exposed,bmi,raceeth,2
+300,29.177268835127464,historical,NH White,historical,bmi,raceeth,2
+300,29.32372020567891,historical,NH Black,historical,bmi,raceeth,2
+300,29.330476091281618,historical,Hispanic,historical,bmi,raceeth,2
+300,29.17770836402836,unexposed,NH White,unexposed,bmi,raceeth,2
+300,29.293392657350008,unexposed,NH Black,unexposed,bmi,raceeth,2
+300,29.28807278311574,unexposed,Hispanic,unexposed,bmi,raceeth,2
+300,29.287352860961626,exposed,NH White,exposed,bmi,raceeth,2
+300,29.54628811469034,exposed,NH Black,exposed,bmi,raceeth,2
+300,29.481894867743414,exposed,Hispanic,exposed,bmi,raceeth,2
+350,29.19673698027975,historical,NH White,historical,bmi,raceeth,2
+350,29.34627475382648,historical,NH Black,historical,bmi,raceeth,2
+350,29.32129307896197,historical,Hispanic,historical,bmi,raceeth,2
+350,29.155764360882337,unexposed,NH White,unexposed,bmi,raceeth,2
+350,29.276327127319316,unexposed,NH Black,unexposed,bmi,raceeth,2
+350,29.278470588838275,unexposed,Hispanic,unexposed,bmi,raceeth,2
+350,29.271921891811452,exposed,NH White,exposed,bmi,raceeth,2
+350,29.551105243425553,exposed,NH Black,exposed,bmi,raceeth,2
+350,29.49577703305623,exposed,Hispanic,exposed,bmi,raceeth,2
+400,29.216205125432037,historical,NH White,historical,bmi,raceeth,2
+400,29.368829301974053,historical,NH Black,historical,bmi,raceeth,2
+400,29.312110066642315,historical,Hispanic,historical,bmi,raceeth,2
+400,29.133820357736322,unexposed,NH White,unexposed,bmi,raceeth,2
+400,29.259261597288628,unexposed,NH Black,unexposed,bmi,raceeth,2
+400,29.268868394560812,unexposed,Hispanic,unexposed,bmi,raceeth,2
+400,29.25649092266128,exposed,NH White,exposed,bmi,raceeth,2
+400,29.55592237216076,exposed,NH Black,exposed,bmi,raceeth,2
+400,29.50965919836904,exposed,Hispanic,exposed,bmi,raceeth,2
+450,29.23567327058432,historical,NH White,historical,bmi,raceeth,2
+450,29.391383850121628,historical,NH Black,historical,bmi,raceeth,2
+450,29.302927054322662,historical,Hispanic,historical,bmi,raceeth,2
+450,29.1118763545903,unexposed,NH White,unexposed,bmi,raceeth,2
+450,29.24219606725794,unexposed,NH Black,unexposed,bmi,raceeth,2
+450,29.259266200283346,unexposed,Hispanic,unexposed,bmi,raceeth,2
+450,29.2410599535111,exposed,NH White,exposed,bmi,raceeth,2
+450,29.56073950089597,exposed,NH Black,exposed,bmi,raceeth,2
+450,29.523541363681858,exposed,Hispanic,exposed,bmi,raceeth,2
+500,29.255141415736606,historical,NH White,historical,bmi,raceeth,2
+500,29.4139383982692,historical,NH Black,historical,bmi,raceeth,2
+500,29.29374404200301,historical,Hispanic,historical,bmi,raceeth,2
+500,29.089932351444276,unexposed,NH White,unexposed,bmi,raceeth,2
+500,29.225130537227248,unexposed,NH Black,unexposed,bmi,raceeth,2
+500,29.24966400600588,unexposed,Hispanic,unexposed,bmi,raceeth,2
+500,29.22562898436092,exposed,NH White,exposed,bmi,raceeth,2
+500,29.56555662963118,exposed,NH Black,exposed,bmi,raceeth,2
+500,29.53742352899467,exposed,Hispanic,exposed,bmi,raceeth,2
+550,29.274609560888894,historical,NH White,historical,bmi,raceeth,2
+550,29.43649294641677,historical,NH Black,historical,bmi,raceeth,2
+550,29.28456102968336,historical,Hispanic,historical,bmi,raceeth,2
+550,29.067988348298254,unexposed,NH White,unexposed,bmi,raceeth,2
+550,29.208065007196563,unexposed,NH Black,unexposed,bmi,raceeth,2
+550,29.240061811728413,unexposed,Hispanic,unexposed,bmi,raceeth,2
+550,29.210198015210747,exposed,NH White,exposed,bmi,raceeth,2
+550,29.57037375836639,exposed,NH Black,exposed,bmi,raceeth,2
+550,29.551305694307484,exposed,Hispanic,exposed,bmi,raceeth,2
+600,29.294077706041183,historical,NH White,historical,bmi,raceeth,2
+600,29.45904749456434,historical,NH Black,historical,bmi,raceeth,2
+600,29.275378017363707,historical,Hispanic,historical,bmi,raceeth,2
+600,29.046044345152243,unexposed,NH White,unexposed,bmi,raceeth,2
+600,29.190999477165875,unexposed,NH Black,unexposed,bmi,raceeth,2
+600,29.23045961745095,unexposed,Hispanic,unexposed,bmi,raceeth,2
+600,29.194767046060576,exposed,NH White,exposed,bmi,raceeth,2
+600,29.575190887101602,exposed,NH Black,exposed,bmi,raceeth,2
+600,29.565187859620302,exposed,Hispanic,exposed,bmi,raceeth,2
+650,29.313545851193467,historical,NH White,historical,bmi,raceeth,2
+650,29.481602042711913,historical,NH Black,historical,bmi,raceeth,2
+650,29.266195005044054,historical,Hispanic,historical,bmi,raceeth,2
+650,29.024100342006218,unexposed,NH White,unexposed,bmi,raceeth,2
+650,29.173933947135186,unexposed,NH Black,unexposed,bmi,raceeth,2
+650,29.220857423173488,unexposed,Hispanic,unexposed,bmi,raceeth,2
+650,29.179336076910396,exposed,NH White,exposed,bmi,raceeth,2
+650,29.58000801583681,exposed,NH Black,exposed,bmi,raceeth,2
+650,29.579070024933113,exposed,Hispanic,exposed,bmi,raceeth,2
+700,29.333013996345755,historical,NH White,historical,bmi,raceeth,2
+700,29.504156590859484,historical,NH Black,historical,bmi,raceeth,2
+700,29.2570119927244,historical,Hispanic,historical,bmi,raceeth,2
+700,29.002156338860196,unexposed,NH White,unexposed,bmi,raceeth,2
+700,29.156868417104494,unexposed,NH Black,unexposed,bmi,raceeth,2
+700,29.21125522889602,unexposed,Hispanic,unexposed,bmi,raceeth,2
+700,29.16390510776022,exposed,NH White,exposed,bmi,raceeth,2
+700,29.584825144572015,exposed,NH Black,exposed,bmi,raceeth,2
+700,29.592952190245928,exposed,Hispanic,exposed,bmi,raceeth,2
+0,29.52310490710653,historical,hospitalization = 0,historical,bmi,hospitalization,2
+0,29.120877086907424,historical,hospitalization = 1,historical,bmi,hospitalization,2
+0,29.759327400889592,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,2
+0,29.067966330853174,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,2
+0,29.780811807154386,exposed,hospitalization = 0,exposed,bmi,hospitalization,2
+0,29.193673142918488,exposed,hospitalization = 1,exposed,bmi,hospitalization,2
+50,29.536903146987672,historical,hospitalization = 0,historical,bmi,hospitalization,2
+50,29.145151922051205,historical,hospitalization = 1,historical,bmi,hospitalization,2
+50,29.73859109540575,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,2
+50,29.060003779467504,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,2
+50,29.77966955101155,exposed,hospitalization = 0,exposed,bmi,hospitalization,2
+50,29.199904208114432,exposed,hospitalization = 1,exposed,bmi,hospitalization,2
+100,29.55070138686882,historical,hospitalization = 0,historical,bmi,hospitalization,2
+100,29.16942675719499,historical,hospitalization = 1,historical,bmi,hospitalization,2
+100,29.71785478992191,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,2
+100,29.05204122808184,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,2
+100,29.778527294868713,exposed,hospitalization = 0,exposed,bmi,hospitalization,2
+100,29.206135273310377,exposed,hospitalization = 1,exposed,bmi,hospitalization,2
+150,29.564499626749964,historical,hospitalization = 0,historical,bmi,hospitalization,2
+150,29.193701592338776,historical,hospitalization = 1,historical,bmi,hospitalization,2
+150,29.697118484438068,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,2
+150,29.04407867669617,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,2
+150,29.77738503872588,exposed,hospitalization = 0,exposed,bmi,hospitalization,2
+150,29.212366338506317,exposed,hospitalization = 1,exposed,bmi,hospitalization,2
+200,29.578297866631107,historical,hospitalization = 0,historical,bmi,hospitalization,2
+200,29.217976427482558,historical,hospitalization = 1,historical,bmi,hospitalization,2
+200,29.676382178954224,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,2
+200,29.036116125310496,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,2
+200,29.776242782583036,exposed,hospitalization = 0,exposed,bmi,hospitalization,2
+200,29.218597403702258,exposed,hospitalization = 1,exposed,bmi,hospitalization,2
+250,29.592096106512255,historical,hospitalization = 0,historical,bmi,hospitalization,2
+250,29.242251262626347,historical,hospitalization = 1,historical,bmi,hospitalization,2
+250,29.655645873470387,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,2
+250,29.028153573924836,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,2
+250,29.775100526440198,exposed,hospitalization = 0,exposed,bmi,hospitalization,2
+250,29.224828468898206,exposed,hospitalization = 1,exposed,bmi,hospitalization,2
+300,29.6058943463934,historical,hospitalization = 0,historical,bmi,hospitalization,2
+300,29.26652609777013,historical,hospitalization = 1,historical,bmi,hospitalization,2
+300,29.634909567986544,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,2
+300,29.020191022539162,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,2
+300,29.773958270297364,exposed,hospitalization = 0,exposed,bmi,hospitalization,2
+300,29.23105953409415,exposed,hospitalization = 1,exposed,bmi,hospitalization,2
+350,29.619692586274542,historical,hospitalization = 0,historical,bmi,hospitalization,2
+350,29.290800932913918,historical,hospitalization = 1,historical,bmi,hospitalization,2
+350,29.614173262502703,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,2
+350,29.012228471153495,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,2
+350,29.772816014154525,exposed,hospitalization = 0,exposed,bmi,hospitalization,2
+350,29.237290599290095,exposed,hospitalization = 1,exposed,bmi,hospitalization,2
+400,29.63349082615569,historical,hospitalization = 0,historical,bmi,hospitalization,2
+400,29.3150757680577,historical,hospitalization = 1,historical,bmi,hospitalization,2
+400,29.593436957018863,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,2
+400,29.00426591976783,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,2
+400,29.77167375801169,exposed,hospitalization = 0,exposed,bmi,hospitalization,2
+400,29.24352166448604,exposed,hospitalization = 1,exposed,bmi,hospitalization,2
+450,29.647289066036834,historical,hospitalization = 0,historical,bmi,hospitalization,2
+450,29.33935060320148,historical,hospitalization = 1,historical,bmi,hospitalization,2
+450,29.57270065153502,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,2
+450,28.996303368382158,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,2
+450,29.770531501868852,exposed,hospitalization = 0,exposed,bmi,hospitalization,2
+450,29.24975272968198,exposed,hospitalization = 1,exposed,bmi,hospitalization,2
+500,29.66108730591798,historical,hospitalization = 0,historical,bmi,hospitalization,2
+500,29.36362543834527,historical,hospitalization = 1,historical,bmi,hospitalization,2
+500,29.55196434605118,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,2
+500,28.98834081699649,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,2
+500,29.769389245726018,exposed,hospitalization = 0,exposed,bmi,hospitalization,2
+500,29.255983794877924,exposed,hospitalization = 1,exposed,bmi,hospitalization,2
+550,29.674885545799125,historical,hospitalization = 0,historical,bmi,hospitalization,2
+550,29.387900273489052,historical,hospitalization = 1,historical,bmi,hospitalization,2
+550,29.53122804056734,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,2
+550,28.980378265610824,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,2
+550,29.768246989583176,exposed,hospitalization = 0,exposed,bmi,hospitalization,2
+550,29.262214860073865,exposed,hospitalization = 1,exposed,bmi,hospitalization,2
+600,29.688683785680272,historical,hospitalization = 0,historical,bmi,hospitalization,2
+600,29.412175108632837,historical,hospitalization = 1,historical,bmi,hospitalization,2
+600,29.510491735083498,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,2
+600,28.972415714225153,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,2
+600,29.767104733440338,exposed,hospitalization = 0,exposed,bmi,hospitalization,2
+600,29.268445925269805,exposed,hospitalization = 1,exposed,bmi,hospitalization,2
+650,29.702482025561416,historical,hospitalization = 0,historical,bmi,hospitalization,2
+650,29.436449943776623,historical,hospitalization = 1,historical,bmi,hospitalization,2
+650,29.489755429599654,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,2
+650,28.964453162839487,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,2
+650,29.765962477297503,exposed,hospitalization = 0,exposed,bmi,hospitalization,2
+650,29.274676990465757,exposed,hospitalization = 1,exposed,bmi,hospitalization,2
+700,29.71628026544256,historical,hospitalization = 0,historical,bmi,hospitalization,2
+700,29.460724778920408,historical,hospitalization = 1,historical,bmi,hospitalization,2
+700,29.469019124115817,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,2
+700,28.956490611453816,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,2
+700,29.764820221154665,exposed,hospitalization = 0,exposed,bmi,hospitalization,2
+700,29.280908055661698,exposed,hospitalization = 1,exposed,bmi,hospitalization,2
+0,29.445311260190017,historical,Female,historical,bmi,sex,3
+0,29.464771774949053,historical,Male,historical,bmi,sex,3
+0,29.64921237279641,unexposed,Female,unexposed,bmi,sex,3
+0,29.62680143384824,unexposed,Male,unexposed,bmi,sex,3
+0,29.801118564243914,exposed,Female,exposed,bmi,sex,3
+0,29.551528301395418,exposed,Male,exposed,bmi,sex,3
+50,29.46918250038826,historical,Female,historical,bmi,sex,3
+50,29.465465542290804,historical,Male,historical,bmi,sex,3
+50,29.63394489644057,unexposed,Female,unexposed,bmi,sex,3
+50,29.603793272914114,unexposed,Male,unexposed,bmi,sex,3
+50,29.790894437863866,exposed,Female,exposed,bmi,sex,3
+50,29.565152803891145,exposed,Male,exposed,bmi,sex,3
+100,29.493053740586504,historical,Female,historical,bmi,sex,3
+100,29.466159309632552,historical,Male,historical,bmi,sex,3
+100,29.61867742008473,unexposed,Female,unexposed,bmi,sex,3
+100,29.58078511197998,unexposed,Male,unexposed,bmi,sex,3
+100,29.78067031148382,exposed,Female,exposed,bmi,sex,3
+100,29.578777306386865,exposed,Male,exposed,bmi,sex,3
+150,29.516924980784747,historical,Female,historical,bmi,sex,3
+150,29.466853076974303,historical,Male,historical,bmi,sex,3
+150,29.60340994372889,unexposed,Female,unexposed,bmi,sex,3
+150,29.557776951045856,unexposed,Male,unexposed,bmi,sex,3
+150,29.770446185103772,exposed,Female,exposed,bmi,sex,3
+150,29.59240180888259,exposed,Male,exposed,bmi,sex,3
+200,29.54079622098299,historical,Female,historical,bmi,sex,3
+200,29.46754684431605,historical,Male,historical,bmi,sex,3
+200,29.58814246737305,unexposed,Female,unexposed,bmi,sex,3
+200,29.534768790111727,unexposed,Male,unexposed,bmi,sex,3
+200,29.760222058723727,exposed,Female,exposed,bmi,sex,3
+200,29.60602631137832,exposed,Male,exposed,bmi,sex,3
+250,29.564667461181234,historical,Female,historical,bmi,sex,3
+250,29.468240611657798,historical,Male,historical,bmi,sex,3
+250,29.572874991017212,unexposed,Female,unexposed,bmi,sex,3
+250,29.511760629177594,unexposed,Male,unexposed,bmi,sex,3
+250,29.749997932343682,exposed,Female,exposed,bmi,sex,3
+250,29.619650813874042,exposed,Male,exposed,bmi,sex,3
+300,29.588538701379477,historical,Female,historical,bmi,sex,3
+300,29.46893437899955,historical,Male,historical,bmi,sex,3
+300,29.557607514661374,unexposed,Female,unexposed,bmi,sex,3
+300,29.48875246824347,unexposed,Male,unexposed,bmi,sex,3
+300,29.739773805963633,exposed,Female,exposed,bmi,sex,3
+300,29.633275316369765,exposed,Male,exposed,bmi,sex,3
+350,29.612409941577717,historical,Female,historical,bmi,sex,3
+350,29.4696281463413,historical,Male,historical,bmi,sex,3
+350,29.542340038305532,unexposed,Female,unexposed,bmi,sex,3
+350,29.465744307309343,unexposed,Male,unexposed,bmi,sex,3
+350,29.729549679583588,exposed,Female,exposed,bmi,sex,3
+350,29.646899818865492,exposed,Male,exposed,bmi,sex,3
+400,29.63628118177596,historical,Female,historical,bmi,sex,3
+400,29.470321913683048,historical,Male,historical,bmi,sex,3
+400,29.52707256194969,unexposed,Female,unexposed,bmi,sex,3
+400,29.442736146375214,unexposed,Male,unexposed,bmi,sex,3
+400,29.719325553203543,exposed,Female,exposed,bmi,sex,3
+400,29.660524321361216,exposed,Male,exposed,bmi,sex,3
+450,29.660152421974203,historical,Female,historical,bmi,sex,3
+450,29.4710156810248,historical,Male,historical,bmi,sex,3
+450,29.511805085593853,unexposed,Female,unexposed,bmi,sex,3
+450,29.41972798544109,unexposed,Male,unexposed,bmi,sex,3
+450,29.709101426823498,exposed,Female,exposed,bmi,sex,3
+450,29.67414882385694,exposed,Male,exposed,bmi,sex,3
+500,29.684023662172446,historical,Female,historical,bmi,sex,3
+500,29.47170944836655,historical,Male,historical,bmi,sex,3
+500,29.49653760923801,unexposed,Female,unexposed,bmi,sex,3
+500,29.39671982450696,unexposed,Male,unexposed,bmi,sex,3
+500,29.69887730044345,exposed,Female,exposed,bmi,sex,3
+500,29.687773326352666,exposed,Male,exposed,bmi,sex,3
+550,29.70789490237069,historical,Female,historical,bmi,sex,3
+550,29.472403215708297,historical,Male,historical,bmi,sex,3
+550,29.481270132882173,unexposed,Female,unexposed,bmi,sex,3
+550,29.37371166357283,unexposed,Male,unexposed,bmi,sex,3
+550,29.688653174063404,exposed,Female,exposed,bmi,sex,3
+550,29.701397828848386,exposed,Male,exposed,bmi,sex,3
+600,29.731766142568933,historical,Female,historical,bmi,sex,3
+600,29.47309698305005,historical,Male,historical,bmi,sex,3
+600,29.46600265652633,unexposed,Female,unexposed,bmi,sex,3
+600,29.3507035026387,unexposed,Male,unexposed,bmi,sex,3
+600,29.678429047683355,exposed,Female,exposed,bmi,sex,3
+600,29.715022331344112,exposed,Male,exposed,bmi,sex,3
+650,29.755637382767176,historical,Female,historical,bmi,sex,3
+650,29.4737907503918,historical,Male,historical,bmi,sex,3
+650,29.450735180170494,unexposed,Female,unexposed,bmi,sex,3
+650,29.327695341704576,unexposed,Male,unexposed,bmi,sex,3
+650,29.668204921303314,exposed,Female,exposed,bmi,sex,3
+650,29.72864683383984,exposed,Male,exposed,bmi,sex,3
+700,29.77950862296542,historical,Female,historical,bmi,sex,3
+700,29.474484517733547,historical,Male,historical,bmi,sex,3
+700,29.435467703814655,unexposed,Female,unexposed,bmi,sex,3
+700,29.304687180770447,unexposed,Male,unexposed,bmi,sex,3
+700,29.65798079492326,exposed,Female,exposed,bmi,sex,3
+700,29.74227133633556,exposed,Male,exposed,bmi,sex,3
+0,29.294034307979764,historical,18 to 39,historical,bmi,age,3
+0,29.545502349691162,historical,65 plus,historical,bmi,age,3
+0,29.51282164495204,historical,40 to 64,historical,bmi,age,3
+0,29.276442415863436,unexposed,18 to 39,unexposed,bmi,age,3
+0,29.730577955604065,unexposed,65 plus,unexposed,bmi,age,3
+0,29.779807886296023,unexposed,40 to 64,unexposed,bmi,age,3
+0,29.591368082922138,exposed,18 to 39,exposed,bmi,age,3
+0,29.628073056448642,exposed,65 plus,exposed,bmi,age,3
+0,29.808763044552347,exposed,40 to 64,exposed,bmi,age,3
+50,29.34026309230071,historical,18 to 39,historical,bmi,age,3
+50,29.53876059003386,historical,65 plus,historical,bmi,age,3
+50,29.523016225107167,historical,40 to 64,historical,bmi,age,3
+50,29.312456748475565,unexposed,18 to 39,unexposed,bmi,age,3
+50,29.684217089462134,unexposed,65 plus,unexposed,bmi,age,3
+50,29.75749252554114,unexposed,40 to 64,unexposed,bmi,age,3
+50,29.62001025182741,exposed,18 to 39,exposed,bmi,age,3
+50,29.60558511703735,exposed,65 plus,exposed,bmi,age,3
+50,29.80538924098634,exposed,40 to 64,exposed,bmi,age,3
+100,29.386491876621648,historical,18 to 39,historical,bmi,age,3
+100,29.53201883037656,historical,65 plus,historical,bmi,age,3
+100,29.533210805262296,historical,40 to 64,historical,bmi,age,3
+100,29.348471081087702,unexposed,18 to 39,unexposed,bmi,age,3
+100,29.637856223320195,unexposed,65 plus,unexposed,bmi,age,3
+100,29.735177164786258,unexposed,40 to 64,unexposed,bmi,age,3
+100,29.64865242073268,exposed,18 to 39,exposed,bmi,age,3
+100,29.583097177626062,exposed,65 plus,exposed,bmi,age,3
+100,29.80201543742034,exposed,40 to 64,exposed,bmi,age,3
+150,29.432720660942593,historical,18 to 39,historical,bmi,age,3
+150,29.52527707071926,historical,65 plus,historical,bmi,age,3
+150,29.543405385417422,historical,40 to 64,historical,bmi,age,3
+150,29.38448541369983,unexposed,18 to 39,unexposed,bmi,age,3
+150,29.591495357178257,unexposed,65 plus,unexposed,bmi,age,3
+150,29.712861804031373,unexposed,40 to 64,unexposed,bmi,age,3
+150,29.67729458963796,exposed,18 to 39,exposed,bmi,age,3
+150,29.56060923821477,exposed,65 plus,exposed,bmi,age,3
+150,29.798641633854334,exposed,40 to 64,exposed,bmi,age,3
+200,29.47894944526353,historical,18 to 39,historical,bmi,age,3
+200,29.518535311061964,historical,65 plus,historical,bmi,age,3
+200,29.55359996557255,historical,40 to 64,historical,bmi,age,3
+200,29.420499746311958,unexposed,18 to 39,unexposed,bmi,age,3
+200,29.545134491036322,unexposed,65 plus,unexposed,bmi,age,3
+200,29.69054644327649,unexposed,40 to 64,unexposed,bmi,age,3
+200,29.70593675854323,exposed,18 to 39,exposed,bmi,age,3
+200,29.538121298803485,exposed,65 plus,exposed,bmi,age,3
+200,29.795267830288335,exposed,40 to 64,exposed,bmi,age,3
+250,29.525178229584476,historical,18 to 39,historical,bmi,age,3
+250,29.511793551404658,historical,65 plus,historical,bmi,age,3
+250,29.563794545727678,historical,40 to 64,historical,bmi,age,3
+250,29.456514078924094,unexposed,18 to 39,unexposed,bmi,age,3
+250,29.49877362489438,unexposed,65 plus,unexposed,bmi,age,3
+250,29.6682310825216,unexposed,40 to 64,unexposed,bmi,age,3
+250,29.73457892744851,exposed,18 to 39,exposed,bmi,age,3
+250,29.515633359392186,exposed,65 plus,exposed,bmi,age,3
+250,29.79189402672233,exposed,40 to 64,exposed,bmi,age,3
+300,29.571407013905414,historical,18 to 39,historical,bmi,age,3
+300,29.505051791747363,historical,65 plus,historical,bmi,age,3
+300,29.573989125882804,historical,40 to 64,historical,bmi,age,3
+300,29.492528411536224,unexposed,18 to 39,unexposed,bmi,age,3
+300,29.452412758752452,unexposed,65 plus,unexposed,bmi,age,3
+300,29.645915721766723,unexposed,40 to 64,unexposed,bmi,age,3
+300,29.76322109635378,exposed,18 to 39,exposed,bmi,age,3
+300,29.493145419980902,exposed,65 plus,exposed,bmi,age,3
+300,29.788520223156322,exposed,40 to 64,exposed,bmi,age,3
+350,29.61763579822636,historical,18 to 39,historical,bmi,age,3
+350,29.49831003209006,historical,65 plus,historical,bmi,age,3
+350,29.584183706037937,historical,40 to 64,historical,bmi,age,3
+350,29.52854274414836,unexposed,18 to 39,unexposed,bmi,age,3
+350,29.406051892610513,unexposed,65 plus,unexposed,bmi,age,3
+350,29.62360036101184,unexposed,40 to 64,unexposed,bmi,age,3
+350,29.79186326525906,exposed,18 to 39,exposed,bmi,age,3
+350,29.47065748056961,exposed,65 plus,exposed,bmi,age,3
+350,29.785146419590323,exposed,40 to 64,exposed,bmi,age,3
+400,29.663864582547298,historical,18 to 39,historical,bmi,age,3
+400,29.49156827243276,historical,65 plus,historical,bmi,age,3
+400,29.59437828619306,historical,40 to 64,historical,bmi,age,3
+400,29.56455707676049,unexposed,18 to 39,unexposed,bmi,age,3
+400,29.359691026468578,unexposed,65 plus,unexposed,bmi,age,3
+400,29.60128500025695,unexposed,40 to 64,unexposed,bmi,age,3
+400,29.820505434164332,exposed,18 to 39,exposed,bmi,age,3
+400,29.44816954115832,exposed,65 plus,exposed,bmi,age,3
+400,29.781772616024313,exposed,40 to 64,exposed,bmi,age,3
+450,29.710093366868236,historical,18 to 39,historical,bmi,age,3
+450,29.48482651277546,historical,65 plus,historical,bmi,age,3
+450,29.604572866348192,historical,40 to 64,historical,bmi,age,3
+450,29.600571409372627,unexposed,18 to 39,unexposed,bmi,age,3
+450,29.313330160326643,unexposed,65 plus,unexposed,bmi,age,3
+450,29.578969639502073,unexposed,40 to 64,unexposed,bmi,age,3
+450,29.84914760306961,exposed,18 to 39,exposed,bmi,age,3
+450,29.42568160174703,exposed,65 plus,exposed,bmi,age,3
+450,29.778398812458317,exposed,40 to 64,exposed,bmi,age,3
+500,29.75632215118918,historical,18 to 39,historical,bmi,age,3
+500,29.478084753118154,historical,65 plus,historical,bmi,age,3
+500,29.614767446503315,historical,40 to 64,historical,bmi,age,3
+500,29.636585741984756,unexposed,18 to 39,unexposed,bmi,age,3
+500,29.266969294184708,unexposed,65 plus,unexposed,bmi,age,3
+500,29.55665427874718,unexposed,40 to 64,unexposed,bmi,age,3
+500,29.877789771974882,exposed,18 to 39,exposed,bmi,age,3
+500,29.40319366233574,exposed,65 plus,exposed,bmi,age,3
+500,29.775025008892307,exposed,40 to 64,exposed,bmi,age,3
+550,29.80255093551012,historical,18 to 39,historical,bmi,age,3
+550,29.47134299346086,historical,65 plus,historical,bmi,age,3
+550,29.624962026658448,historical,40 to 64,historical,bmi,age,3
+550,29.67260007459689,unexposed,18 to 39,unexposed,bmi,age,3
+550,29.220608428042766,unexposed,65 plus,unexposed,bmi,age,3
+550,29.5343389179923,unexposed,40 to 64,unexposed,bmi,age,3
+550,29.90643194088016,exposed,18 to 39,exposed,bmi,age,3
+550,29.38070572292445,exposed,65 plus,exposed,bmi,age,3
+550,29.771651205326307,exposed,40 to 64,exposed,bmi,age,3
+600,29.848779719831064,historical,18 to 39,historical,bmi,age,3
+600,29.464601233803556,historical,65 plus,historical,bmi,age,3
+600,29.635156606813574,historical,40 to 64,historical,bmi,age,3
+600,29.70861440720902,unexposed,18 to 39,unexposed,bmi,age,3
+600,29.174247561900835,unexposed,65 plus,unexposed,bmi,age,3
+600,29.512023557237416,unexposed,40 to 64,unexposed,bmi,age,3
+600,29.935074109785432,exposed,18 to 39,exposed,bmi,age,3
+600,29.358217783513158,exposed,65 plus,exposed,bmi,age,3
+600,29.768277401760304,exposed,40 to 64,exposed,bmi,age,3
+650,29.895008504152003,historical,18 to 39,historical,bmi,age,3
+650,29.457859474146257,historical,65 plus,historical,bmi,age,3
+650,29.645351186968696,historical,40 to 64,historical,bmi,age,3
+650,29.74462873982115,unexposed,18 to 39,unexposed,bmi,age,3
+650,29.127886695758896,unexposed,65 plus,unexposed,bmi,age,3
+650,29.489708196482535,unexposed,40 to 64,unexposed,bmi,age,3
+650,29.963716278690704,exposed,18 to 39,exposed,bmi,age,3
+650,29.33572984410187,exposed,65 plus,exposed,bmi,age,3
+650,29.7649035981943,exposed,40 to 64,exposed,bmi,age,3
+700,29.941237288472948,historical,18 to 39,historical,bmi,age,3
+700,29.451117714488955,historical,65 plus,historical,bmi,age,3
+700,29.65554576712383,historical,40 to 64,historical,bmi,age,3
+700,29.780643072433286,unexposed,18 to 39,unexposed,bmi,age,3
+700,29.081525829616957,unexposed,65 plus,unexposed,bmi,age,3
+700,29.46739283572765,unexposed,40 to 64,unexposed,bmi,age,3
+700,29.992358447595983,exposed,18 to 39,exposed,bmi,age,3
+700,29.313241904690575,exposed,65 plus,exposed,bmi,age,3
+700,29.761529794628295,exposed,40 to 64,exposed,bmi,age,3
+0,29.064582157833296,historical,NH White,historical,bmi,raceeth,3
+0,29.198014901005546,historical,NH Black,historical,bmi,raceeth,3
+0,29.392011047202182,historical,Hispanic,historical,bmi,raceeth,3
+0,29.309172387867537,unexposed,NH White,unexposed,bmi,raceeth,3
+0,29.405000472846698,unexposed,NH Black,unexposed,bmi,raceeth,3
+0,29.3456323497634,unexposed,Hispanic,unexposed,bmi,raceeth,3
+0,29.383238410399123,exposed,NH White,exposed,bmi,raceeth,3
+0,29.528899074971275,exposed,NH Black,exposed,bmi,raceeth,3
+0,29.402712997413705,exposed,Hispanic,exposed,bmi,raceeth,3
+50,29.084050011497247,historical,NH White,historical,bmi,raceeth,3
+50,29.22056086375847,historical,NH Black,historical,bmi,raceeth,3
+50,29.382808564226444,historical,Hispanic,historical,bmi,raceeth,3
+50,29.287240896298904,unexposed,NH White,unexposed,bmi,raceeth,3
+50,29.38794011215656,unexposed,NH Black,unexposed,bmi,raceeth,3
+50,29.33604072245679,unexposed,Hispanic,unexposed,bmi,raceeth,3
+50,29.36783932688315,exposed,NH White,exposed,bmi,raceeth,3
+50,29.533759088791776,exposed,NH Black,exposed,bmi,raceeth,3
+50,29.416590011660855,exposed,Hispanic,exposed,bmi,raceeth,3
+100,29.103517865161198,historical,NH White,historical,bmi,raceeth,3
+100,29.243106826511394,historical,NH Black,historical,bmi,raceeth,3
+100,29.373606081250703,historical,Hispanic,historical,bmi,raceeth,3
+100,29.265309404730274,unexposed,NH White,unexposed,bmi,raceeth,3
+100,29.370879751466415,unexposed,NH Black,unexposed,bmi,raceeth,3
+100,29.326449095150178,unexposed,Hispanic,unexposed,bmi,raceeth,3
+100,29.35244024336717,exposed,NH White,exposed,bmi,raceeth,3
+100,29.538619102612277,exposed,NH Black,exposed,bmi,raceeth,3
+100,29.430467025908,exposed,Hispanic,exposed,bmi,raceeth,3
+150,29.122985718825152,historical,NH White,historical,bmi,raceeth,3
+150,29.265652789264323,historical,NH Black,historical,bmi,raceeth,3
+150,29.36440359827496,historical,Hispanic,historical,bmi,raceeth,3
+150,29.243377913161645,unexposed,NH White,unexposed,bmi,raceeth,3
+150,29.35381939077628,unexposed,NH Black,unexposed,bmi,raceeth,3
+150,29.316857467843565,unexposed,Hispanic,unexposed,bmi,raceeth,3
+150,29.33704115985119,exposed,NH White,exposed,bmi,raceeth,3
+150,29.543479116432778,exposed,NH Black,exposed,bmi,raceeth,3
+150,29.444344040155155,exposed,Hispanic,exposed,bmi,raceeth,3
+200,29.142453572489103,historical,NH White,historical,bmi,raceeth,3
+200,29.288198752017248,historical,NH Black,historical,bmi,raceeth,3
+200,29.355201115299224,historical,Hispanic,historical,bmi,raceeth,3
+200,29.22144642159302,unexposed,NH White,unexposed,bmi,raceeth,3
+200,29.336759030086142,unexposed,NH Black,unexposed,bmi,raceeth,3
+200,29.30726584053696,unexposed,Hispanic,unexposed,bmi,raceeth,3
+200,29.321642076335216,exposed,NH White,exposed,bmi,raceeth,3
+200,29.548339130253282,exposed,NH Black,exposed,bmi,raceeth,3
+200,29.458221054402305,exposed,Hispanic,exposed,bmi,raceeth,3
+250,29.161921426153054,historical,NH White,historical,bmi,raceeth,3
+250,29.31074471477017,historical,NH Black,historical,bmi,raceeth,3
+250,29.345998632323482,historical,Hispanic,historical,bmi,raceeth,3
+250,29.199514930024385,unexposed,NH White,unexposed,bmi,raceeth,3
+250,29.319698669396,unexposed,NH Black,unexposed,bmi,raceeth,3
+250,29.297674213230348,unexposed,Hispanic,unexposed,bmi,raceeth,3
+250,29.306242992819236,exposed,NH White,exposed,bmi,raceeth,3
+250,29.55319914407378,exposed,NH Black,exposed,bmi,raceeth,3
+250,29.47209806864945,exposed,Hispanic,exposed,bmi,raceeth,3
+300,29.181389279817008,historical,NH White,historical,bmi,raceeth,3
+300,29.333290677523095,historical,NH Black,historical,bmi,raceeth,3
+300,29.33679614934774,historical,Hispanic,historical,bmi,raceeth,3
+300,29.177583438455756,unexposed,NH White,unexposed,bmi,raceeth,3
+300,29.30263830870586,unexposed,NH Black,unexposed,bmi,raceeth,3
+300,29.288082585923735,unexposed,Hispanic,unexposed,bmi,raceeth,3
+300,29.29084390930326,exposed,NH White,exposed,bmi,raceeth,3
+300,29.55805915789428,exposed,NH Black,exposed,bmi,raceeth,3
+300,29.485975082896605,exposed,Hispanic,exposed,bmi,raceeth,3
+350,29.20085713348096,historical,NH White,historical,bmi,raceeth,3
+350,29.35583664027602,historical,NH Black,historical,bmi,raceeth,3
+350,29.327593666372003,historical,Hispanic,historical,bmi,raceeth,3
+350,29.155651946887126,unexposed,NH White,unexposed,bmi,raceeth,3
+350,29.28557794801572,unexposed,NH Black,unexposed,bmi,raceeth,3
+350,29.278490958617127,unexposed,Hispanic,unexposed,bmi,raceeth,3
+350,29.27544482578728,exposed,NH White,exposed,bmi,raceeth,3
+350,29.56291917171478,exposed,NH Black,exposed,bmi,raceeth,3
+350,29.49985209714375,exposed,Hispanic,exposed,bmi,raceeth,3
+400,29.22032498714491,historical,NH White,historical,bmi,raceeth,3
+400,29.378382603028946,historical,NH Black,historical,bmi,raceeth,3
+400,29.318391183396262,historical,Hispanic,historical,bmi,raceeth,3
+400,29.133720455318493,unexposed,NH White,unexposed,bmi,raceeth,3
+400,29.26851758732558,unexposed,NH Black,unexposed,bmi,raceeth,3
+400,29.268899331310514,unexposed,Hispanic,unexposed,bmi,raceeth,3
+400,29.260045742271302,exposed,NH White,exposed,bmi,raceeth,3
+400,29.56777918553528,exposed,NH Black,exposed,bmi,raceeth,3
+400,29.5137291113909,exposed,Hispanic,exposed,bmi,raceeth,3
+450,29.239792840808864,historical,NH White,historical,bmi,raceeth,3
+450,29.40092856578187,historical,NH Black,historical,bmi,raceeth,3
+450,29.30918870042052,historical,Hispanic,historical,bmi,raceeth,3
+450,29.111788963749866,unexposed,NH White,unexposed,bmi,raceeth,3
+450,29.25145722663544,unexposed,NH Black,unexposed,bmi,raceeth,3
+450,29.259307704003902,unexposed,Hispanic,unexposed,bmi,raceeth,3
+450,29.244646658755325,exposed,NH White,exposed,bmi,raceeth,3
+450,29.572639199355788,exposed,NH Black,exposed,bmi,raceeth,3
+450,29.527606125638055,exposed,Hispanic,exposed,bmi,raceeth,3
+500,29.259260694472815,historical,NH White,historical,bmi,raceeth,3
+500,29.423474528534797,historical,NH Black,historical,bmi,raceeth,3
+500,29.29998621744478,historical,Hispanic,historical,bmi,raceeth,3
+500,29.089857472181233,unexposed,NH White,unexposed,bmi,raceeth,3
+500,29.234396865945303,unexposed,NH Black,unexposed,bmi,raceeth,3
+500,29.24971607669729,unexposed,Hispanic,unexposed,bmi,raceeth,3
+500,29.22924757523935,exposed,NH White,exposed,bmi,raceeth,3
+500,29.57749921317628,exposed,NH Black,exposed,bmi,raceeth,3
+500,29.5414831398852,exposed,Hispanic,exposed,bmi,raceeth,3
+550,29.278728548136765,historical,NH White,historical,bmi,raceeth,3
+550,29.446020491287722,historical,NH Black,historical,bmi,raceeth,3
+550,29.29078373446904,historical,Hispanic,historical,bmi,raceeth,3
+550,29.067925980612607,unexposed,NH White,unexposed,bmi,raceeth,3
+550,29.217336505255165,unexposed,NH Black,unexposed,bmi,raceeth,3
+550,29.240124449390684,unexposed,Hispanic,unexposed,bmi,raceeth,3
+550,29.21384849172337,exposed,NH White,exposed,bmi,raceeth,3
+550,29.582359226996786,exposed,NH Black,exposed,bmi,raceeth,3
+550,29.55536015413235,exposed,Hispanic,exposed,bmi,raceeth,3
+600,29.29819640180072,historical,NH White,historical,bmi,raceeth,3
+600,29.468566454040648,historical,NH Black,historical,bmi,raceeth,3
+600,29.2815812514933,historical,Hispanic,historical,bmi,raceeth,3
+600,29.045994489043977,unexposed,NH White,unexposed,bmi,raceeth,3
+600,29.200276144565027,unexposed,NH Black,unexposed,bmi,raceeth,3
+600,29.230532822084072,unexposed,Hispanic,unexposed,bmi,raceeth,3
+600,29.19844940820739,exposed,NH White,exposed,bmi,raceeth,3
+600,29.58721924081729,exposed,NH Black,exposed,bmi,raceeth,3
+600,29.569237168379505,exposed,Hispanic,exposed,bmi,raceeth,3
+650,29.31766425546467,historical,NH White,historical,bmi,raceeth,3
+650,29.491112416793573,historical,NH Black,historical,bmi,raceeth,3
+650,29.27237876851756,historical,Hispanic,historical,bmi,raceeth,3
+650,29.024062997475344,unexposed,NH White,unexposed,bmi,raceeth,3
+650,29.183215783874886,unexposed,NH Black,unexposed,bmi,raceeth,3
+650,29.22094119477746,unexposed,Hispanic,unexposed,bmi,raceeth,3
+650,29.18305032469141,exposed,NH White,exposed,bmi,raceeth,3
+650,29.592079254637785,exposed,NH Black,exposed,bmi,raceeth,3
+650,29.58311418262665,exposed,Hispanic,exposed,bmi,raceeth,3
+700,29.33713210912862,historical,NH White,historical,bmi,raceeth,3
+700,29.5136583795465,historical,NH Black,historical,bmi,raceeth,3
+700,29.26317628554182,historical,Hispanic,historical,bmi,raceeth,3
+700,29.002131505906714,unexposed,NH White,unexposed,bmi,raceeth,3
+700,29.166155423184748,unexposed,NH Black,unexposed,bmi,raceeth,3
+700,29.21134956747085,unexposed,Hispanic,unexposed,bmi,raceeth,3
+700,29.167651241175438,exposed,NH White,exposed,bmi,raceeth,3
+700,29.59693926845829,exposed,NH Black,exposed,bmi,raceeth,3
+700,29.5969911968738,exposed,Hispanic,exposed,bmi,raceeth,3
+0,29.52917544208727,historical,hospitalization = 0,historical,bmi,hospitalization,3
+0,29.12560077995791,historical,hospitalization = 1,historical,bmi,hospitalization,3
+0,29.76106546904487,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,3
+0,29.06355591275842,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,3
+0,29.78725967146094,exposed,hospitalization = 0,exposed,bmi,hospitalization,3
+0,29.19122803660633,exposed,hospitalization = 1,exposed,bmi,hospitalization,3
+50,29.542979775865827,historical,hospitalization = 0,historical,bmi,hospitalization,3
+50,29.149797831917468,historical,hospitalization = 1,historical,bmi,hospitalization,3
+50,29.74035177522494,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,3
+50,29.055623023808007,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,3
+50,29.786146223678443,exposed,hospitalization = 0,exposed,bmi,hospitalization,3
+50,29.197556818480717,exposed,hospitalization = 1,exposed,bmi,hospitalization,3
+100,29.556784109644386,historical,hospitalization = 0,historical,bmi,hospitalization,3
+100,29.173994883877025,historical,hospitalization = 1,historical,bmi,hospitalization,3
+100,29.71963808140501,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,3
+100,29.04769013485759,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,3
+100,29.78503277589595,exposed,hospitalization = 0,exposed,bmi,hospitalization,3
+100,29.2038856003551,exposed,hospitalization = 1,exposed,bmi,hospitalization,3
+150,29.570588443422945,historical,hospitalization = 0,historical,bmi,hospitalization,3
+150,29.198191935836586,historical,hospitalization = 1,historical,bmi,hospitalization,3
+150,29.69892438758508,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,3
+150,29.039757245907182,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,3
+150,29.783919328113452,exposed,hospitalization = 0,exposed,bmi,hospitalization,3
+150,29.210214382229488,exposed,hospitalization = 1,exposed,bmi,hospitalization,3
+200,29.584392777201504,historical,hospitalization = 0,historical,bmi,hospitalization,3
+200,29.222388987796144,historical,hospitalization = 1,historical,bmi,hospitalization,3
+200,29.67821069376515,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,3
+200,29.03182435695677,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,3
+200,29.78280588033095,exposed,hospitalization = 0,exposed,bmi,hospitalization,3
+200,29.216543164103875,exposed,hospitalization = 1,exposed,bmi,hospitalization,3
+250,29.598197110980067,historical,hospitalization = 0,historical,bmi,hospitalization,3
+250,29.246586039755698,historical,hospitalization = 1,historical,bmi,hospitalization,3
+250,29.65749699994522,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,3
+250,29.023891468006347,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,3
+250,29.781692432548457,exposed,hospitalization = 0,exposed,bmi,hospitalization,3
+250,29.222871945978255,exposed,hospitalization = 1,exposed,bmi,hospitalization,3
+300,29.612001444758626,historical,hospitalization = 0,historical,bmi,hospitalization,3
+300,29.270783091715256,historical,hospitalization = 1,historical,bmi,hospitalization,3
+300,29.636783306125288,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,3
+300,29.015958579055933,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,3
+300,29.78057898476596,exposed,hospitalization = 0,exposed,bmi,hospitalization,3
+300,29.229200727852643,exposed,hospitalization = 1,exposed,bmi,hospitalization,3
+350,29.625805778537185,historical,hospitalization = 0,historical,bmi,hospitalization,3
+350,29.294980143674817,historical,hospitalization = 1,historical,bmi,hospitalization,3
+350,29.616069612305356,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,3
+350,29.00802569010552,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,3
+350,29.779465536983462,exposed,hospitalization = 0,exposed,bmi,hospitalization,3
+350,29.23552950972703,exposed,hospitalization = 1,exposed,bmi,hospitalization,3
+400,29.639610112315747,historical,hospitalization = 0,historical,bmi,hospitalization,3
+400,29.319177195634374,historical,hospitalization = 1,historical,bmi,hospitalization,3
+400,29.595355918485424,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,3
+400,29.000092801155105,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,3
+400,29.778352089200965,exposed,hospitalization = 0,exposed,bmi,hospitalization,3
+400,29.24185829160142,exposed,hospitalization = 1,exposed,bmi,hospitalization,3
+450,29.653414446094306,historical,hospitalization = 0,historical,bmi,hospitalization,3
+450,29.343374247593932,historical,hospitalization = 1,historical,bmi,hospitalization,3
+450,29.5746422246655,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,3
+450,28.992159912204695,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,3
+450,29.777238641418467,exposed,hospitalization = 0,exposed,bmi,hospitalization,3
+450,29.248187073475805,exposed,hospitalization = 1,exposed,bmi,hospitalization,3
+500,29.667218779872865,historical,hospitalization = 0,historical,bmi,hospitalization,3
+500,29.36757129955349,historical,hospitalization = 1,historical,bmi,hospitalization,3
+500,29.553928530845567,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,3
+500,28.984227023254277,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,3
+500,29.77612519363597,exposed,hospitalization = 0,exposed,bmi,hospitalization,3
+500,29.25451585535019,exposed,hospitalization = 1,exposed,bmi,hospitalization,3
+550,29.681023113651424,historical,hospitalization = 0,historical,bmi,hospitalization,3
+550,29.39176835151305,historical,hospitalization = 1,historical,bmi,hospitalization,3
+550,29.533214837025636,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,3
+550,28.976294134303867,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,3
+550,29.775011745853472,exposed,hospitalization = 0,exposed,bmi,hospitalization,3
+550,29.260844637224576,exposed,hospitalization = 1,exposed,bmi,hospitalization,3
+600,29.694827447429983,historical,hospitalization = 0,historical,bmi,hospitalization,3
+600,29.415965403472608,historical,hospitalization = 1,historical,bmi,hospitalization,3
+600,29.512501143205704,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,3
+600,28.968361245353453,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,3
+600,29.773898298070975,exposed,hospitalization = 0,exposed,bmi,hospitalization,3
+600,29.267173419098963,exposed,hospitalization = 1,exposed,bmi,hospitalization,3
+650,29.708631781208545,historical,hospitalization = 0,historical,bmi,hospitalization,3
+650,29.440162455432162,historical,hospitalization = 1,historical,bmi,hospitalization,3
+650,29.491787449385775,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,3
+650,28.960428356403032,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,3
+650,29.77278485028848,exposed,hospitalization = 0,exposed,bmi,hospitalization,3
+650,29.273502200973347,exposed,hospitalization = 1,exposed,bmi,hospitalization,3
+700,29.722436114987104,historical,hospitalization = 0,historical,bmi,hospitalization,3
+700,29.464359507391723,historical,hospitalization = 1,historical,bmi,hospitalization,3
+700,29.471073755565843,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,3
+700,28.952495467452618,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,3
+700,29.771671402505984,exposed,hospitalization = 0,exposed,bmi,hospitalization,3
+700,29.279830982847734,exposed,hospitalization = 1,exposed,bmi,hospitalization,3
+0,29.432609221267406,historical,Female,historical,bmi,sex,4
+0,29.470612787596366,historical,Male,historical,bmi,sex,4
+0,29.636969416287336,unexposed,Female,unexposed,bmi,sex,4
+0,29.637667535681462,unexposed,Male,unexposed,bmi,sex,4
+0,29.79230246347363,exposed,Female,exposed,bmi,sex,4
+0,29.561041638726387,exposed,Male,exposed,bmi,sex,4
+50,29.456483489572612,historical,Female,historical,bmi,sex,4
+50,29.47131368209479,historical,Male,historical,bmi,sex,4
+50,29.621698393491684,unexposed,Female,unexposed,bmi,sex,4
+50,29.61464410413055,unexposed,Male,unexposed,bmi,sex,4
+50,29.78206985203373,exposed,Female,exposed,bmi,sex,4
+50,29.574647097103103,exposed,Male,exposed,bmi,sex,4
+100,29.48035775787782,historical,Female,historical,bmi,sex,4
+100,29.472014576593224,historical,Male,historical,bmi,sex,4
+100,29.60642737069604,unexposed,Female,unexposed,bmi,sex,4
+100,29.591620672579648,unexposed,Male,unexposed,bmi,sex,4
+100,29.77183724059383,exposed,Female,exposed,bmi,sex,4
+100,29.58825255547982,exposed,Male,exposed,bmi,sex,4
+150,29.504232026183026,historical,Female,historical,bmi,sex,4
+150,29.472715471091654,historical,Male,historical,bmi,sex,4
+150,29.59115634790039,unexposed,Female,unexposed,bmi,sex,4
+150,29.56859724102874,unexposed,Male,unexposed,bmi,sex,4
+150,29.76160462915393,exposed,Female,exposed,bmi,sex,4
+150,29.601858013856535,exposed,Male,exposed,bmi,sex,4
+200,29.52810629448823,historical,Female,historical,bmi,sex,4
+200,29.473416365590083,historical,Male,historical,bmi,sex,4
+200,29.57588532510474,unexposed,Female,unexposed,bmi,sex,4
+200,29.545573809477837,unexposed,Male,unexposed,bmi,sex,4
+200,29.751372017714033,exposed,Female,exposed,bmi,sex,4
+200,29.615463472233255,exposed,Male,exposed,bmi,sex,4
+250,29.551980562793435,historical,Female,historical,bmi,sex,4
+250,29.474117260088512,historical,Male,historical,bmi,sex,4
+250,29.56061430230909,unexposed,Female,unexposed,bmi,sex,4
+250,29.522550377926926,unexposed,Male,unexposed,bmi,sex,4
+250,29.74113940627413,exposed,Female,exposed,bmi,sex,4
+250,29.629068930609968,exposed,Male,exposed,bmi,sex,4
+300,29.575854831098642,historical,Female,historical,bmi,sex,4
+300,29.474818154586945,historical,Male,historical,bmi,sex,4
+300,29.545343279513446,unexposed,Female,unexposed,bmi,sex,4
+300,29.499526946376022,unexposed,Male,unexposed,bmi,sex,4
+300,29.73090679483423,exposed,Female,exposed,bmi,sex,4
+300,29.642674388986684,exposed,Male,exposed,bmi,sex,4
+350,29.599729099403845,historical,Female,historical,bmi,sex,4
+350,29.475519049085374,historical,Male,historical,bmi,sex,4
+350,29.530072256717798,unexposed,Female,unexposed,bmi,sex,4
+350,29.476503514825115,unexposed,Male,unexposed,bmi,sex,4
+350,29.720674183394333,exposed,Female,exposed,bmi,sex,4
+350,29.656279847363404,exposed,Male,exposed,bmi,sex,4
+400,29.623603367709052,historical,Female,historical,bmi,sex,4
+400,29.4762199435838,historical,Male,historical,bmi,sex,4
+400,29.514801233922146,unexposed,Female,unexposed,bmi,sex,4
+400,29.453480083274204,unexposed,Male,unexposed,bmi,sex,4
+400,29.71044157195443,exposed,Female,exposed,bmi,sex,4
+400,29.669885305740117,exposed,Male,exposed,bmi,sex,4
+450,29.64747763601426,historical,Female,historical,bmi,sex,4
+450,29.476920838082233,historical,Male,historical,bmi,sex,4
+450,29.499530211126498,unexposed,Female,unexposed,bmi,sex,4
+450,29.430456651723297,unexposed,Male,unexposed,bmi,sex,4
+450,29.700208960514534,exposed,Female,exposed,bmi,sex,4
+450,29.683490764116836,exposed,Male,exposed,bmi,sex,4
+500,29.671351904319465,historical,Female,historical,bmi,sex,4
+500,29.477621732580662,historical,Male,historical,bmi,sex,4
+500,29.484259188330853,unexposed,Female,unexposed,bmi,sex,4
+500,29.407433220172393,unexposed,Male,unexposed,bmi,sex,4
+500,29.689976349074634,exposed,Female,exposed,bmi,sex,4
+500,29.697096222493553,exposed,Male,exposed,bmi,sex,4
+550,29.69522617262467,historical,Female,historical,bmi,sex,4
+550,29.47832262707909,historical,Male,historical,bmi,sex,4
+550,29.4689881655352,unexposed,Female,unexposed,bmi,sex,4
+550,29.38440978862149,unexposed,Male,unexposed,bmi,sex,4
+550,29.679743737634734,exposed,Female,exposed,bmi,sex,4
+550,29.71070168087027,exposed,Male,exposed,bmi,sex,4
+600,29.719100440929875,historical,Female,historical,bmi,sex,4
+600,29.47902352157752,historical,Male,historical,bmi,sex,4
+600,29.453717142739553,unexposed,Female,unexposed,bmi,sex,4
+600,29.36138635707058,unexposed,Male,unexposed,bmi,sex,4
+600,29.669511126194834,exposed,Female,exposed,bmi,sex,4
+600,29.724307139246985,exposed,Male,exposed,bmi,sex,4
+650,29.74297470923508,historical,Female,historical,bmi,sex,4
+650,29.479724416075953,historical,Male,historical,bmi,sex,4
+650,29.438446119943904,unexposed,Female,unexposed,bmi,sex,4
+650,29.33836292551967,unexposed,Male,unexposed,bmi,sex,4
+650,29.659278514754934,exposed,Female,exposed,bmi,sex,4
+650,29.7379125976237,exposed,Male,exposed,bmi,sex,4
+700,29.766848977540285,historical,Female,historical,bmi,sex,4
+700,29.480425310574383,historical,Male,historical,bmi,sex,4
+700,29.42317509714826,unexposed,Female,unexposed,bmi,sex,4
+700,29.315339493968768,unexposed,Male,unexposed,bmi,sex,4
+700,29.649045903315034,exposed,Female,exposed,bmi,sex,4
+700,29.751518056000418,exposed,Male,exposed,bmi,sex,4
+0,29.28671535063553,historical,18 to 39,historical,bmi,age,4
+0,29.53830974377524,historical,65 plus,historical,bmi,age,4
+0,29.50399913898435,historical,40 to 64,historical,bmi,age,4
+0,29.269698290588348,unexposed,18 to 39,unexposed,bmi,age,4
+0,29.727267283961204,unexposed,65 plus,unexposed,bmi,age,4
+0,29.77380598136948,unexposed,40 to 64,unexposed,bmi,age,4
+0,29.584627303898476,exposed,18 to 39,exposed,bmi,age,4
+0,29.62771966529302,exposed,65 plus,exposed,bmi,age,4
+0,29.804818854003834,exposed,40 to 64,exposed,bmi,age,4
+50,29.332951822920872,historical,18 to 39,historical,bmi,age,4
+50,29.531573725780596,historical,65 plus,historical,bmi,age,4
+50,29.514197055068756,historical,40 to 64,historical,bmi,age,4
+50,29.305727812131234,unexposed,18 to 39,unexposed,bmi,age,4
+50,29.680908879629545,unexposed,65 plus,unexposed,bmi,age,4
+50,29.7514979700636,unexposed,40 to 64,unexposed,bmi,age,4
+50,29.613265119117433,exposed,18 to 39,exposed,bmi,age,4
+50,29.605234681859578,exposed,65 plus,exposed,bmi,age,4
+50,29.801454063188427,exposed,40 to 64,exposed,bmi,age,4
+100,29.379188295206216,historical,18 to 39,historical,bmi,age,4
+100,29.524837707785952,historical,65 plus,historical,bmi,age,4
+100,29.524394971153164,historical,40 to 64,historical,bmi,age,4
+100,29.341757333674114,unexposed,18 to 39,unexposed,bmi,age,4
+100,29.634550475297882,unexposed,65 plus,unexposed,bmi,age,4
+100,29.72918995875772,unexposed,40 to 64,unexposed,bmi,age,4
+100,29.641902934336386,exposed,18 to 39,exposed,bmi,age,4
+100,29.58274969842613,exposed,65 plus,exposed,bmi,age,4
+100,29.79808927237302,exposed,40 to 64,exposed,bmi,age,4
+150,29.425424767491563,historical,18 to 39,historical,bmi,age,4
+150,29.518101689791308,historical,65 plus,historical,bmi,age,4
+150,29.53459288723757,historical,40 to 64,historical,bmi,age,4
+150,29.377786855217,unexposed,18 to 39,unexposed,bmi,age,4
+150,29.58819207096622,unexposed,65 plus,unexposed,bmi,age,4
+150,29.706881947451834,unexposed,40 to 64,unexposed,bmi,age,4
+150,29.67054074955534,exposed,18 to 39,exposed,bmi,age,4
+150,29.560264714992687,exposed,65 plus,exposed,bmi,age,4
+150,29.794724481557612,exposed,40 to 64,exposed,bmi,age,4
+200,29.47166123977691,historical,18 to 39,historical,bmi,age,4
+200,29.511365671796664,historical,65 plus,historical,bmi,age,4
+200,29.544790803321977,historical,40 to 64,historical,bmi,age,4
+200,29.413816376759883,unexposed,18 to 39,unexposed,bmi,age,4
+200,29.541833666634567,unexposed,65 plus,unexposed,bmi,age,4
+200,29.68457393614595,unexposed,40 to 64,unexposed,bmi,age,4
+200,29.699178564774293,exposed,18 to 39,exposed,bmi,age,4
+200,29.537779731559244,exposed,65 plus,exposed,bmi,age,4
+200,29.79135969074221,exposed,40 to 64,exposed,bmi,age,4
+250,29.517897712062254,historical,18 to 39,historical,bmi,age,4
+250,29.50462965380202,historical,65 plus,historical,bmi,age,4
+250,29.55498871940638,historical,40 to 64,historical,bmi,age,4
+250,29.449845898302765,unexposed,18 to 39,unexposed,bmi,age,4
+250,29.495475262302904,unexposed,65 plus,unexposed,bmi,age,4
+250,29.662265924840067,unexposed,40 to 64,unexposed,bmi,age,4
+250,29.727816379993246,exposed,18 to 39,exposed,bmi,age,4
+250,29.515294748125797,exposed,65 plus,exposed,bmi,age,4
+250,29.787994899926797,exposed,40 to 64,exposed,bmi,age,4
+300,29.564134184347598,historical,18 to 39,historical,bmi,age,4
+300,29.497893635807376,historical,65 plus,historical,bmi,age,4
+300,29.56518663549079,historical,40 to 64,historical,bmi,age,4
+300,29.485875419845648,unexposed,18 to 39,unexposed,bmi,age,4
+300,29.449116857971244,unexposed,65 plus,unexposed,bmi,age,4
+300,29.639957913534186,unexposed,40 to 64,unexposed,bmi,age,4
+300,29.756454195212203,exposed,18 to 39,exposed,bmi,age,4
+300,29.492809764692353,exposed,65 plus,exposed,bmi,age,4
+300,29.78463010911139,exposed,40 to 64,exposed,bmi,age,4
+350,29.610370656632945,historical,18 to 39,historical,bmi,age,4
+350,29.491157617812732,historical,65 plus,historical,bmi,age,4
+350,29.575384551575194,historical,40 to 64,historical,bmi,age,4
+350,29.521904941388534,unexposed,18 to 39,unexposed,bmi,age,4
+350,29.40275845363958,unexposed,65 plus,unexposed,bmi,age,4
+350,29.617649902228305,unexposed,40 to 64,unexposed,bmi,age,4
+350,29.785092010431157,exposed,18 to 39,exposed,bmi,age,4
+350,29.47032478125891,exposed,65 plus,exposed,bmi,age,4
+350,29.781265318295983,exposed,40 to 64,exposed,bmi,age,4
+400,29.656607128918292,historical,18 to 39,historical,bmi,age,4
+400,29.484421599818088,historical,65 plus,historical,bmi,age,4
+400,29.585582467659602,historical,40 to 64,historical,bmi,age,4
+400,29.557934462931414,unexposed,18 to 39,unexposed,bmi,age,4
+400,29.356400049307922,unexposed,65 plus,unexposed,bmi,age,4
+400,29.595341890922416,unexposed,40 to 64,unexposed,bmi,age,4
+400,29.81372982565011,exposed,18 to 39,exposed,bmi,age,4
+400,29.447839797825463,exposed,65 plus,exposed,bmi,age,4
+400,29.77790052748058,exposed,40 to 64,exposed,bmi,age,4
+450,29.702843601203636,historical,18 to 39,historical,bmi,age,4
+450,29.477685581823444,historical,65 plus,historical,bmi,age,4
+450,29.595780383744007,historical,40 to 64,historical,bmi,age,4
+450,29.5939639844743,unexposed,18 to 39,unexposed,bmi,age,4
+450,29.310041644976263,unexposed,65 plus,unexposed,bmi,age,4
+450,29.573033879616535,unexposed,40 to 64,unexposed,bmi,age,4
+450,29.842367640869064,exposed,18 to 39,exposed,bmi,age,4
+450,29.425354814392016,exposed,65 plus,exposed,bmi,age,4
+450,29.774535736665168,exposed,40 to 64,exposed,bmi,age,4
+500,29.74908007348898,historical,18 to 39,historical,bmi,age,4
+500,29.4709495638288,historical,65 plus,historical,bmi,age,4
+500,29.605978299828415,historical,40 to 64,historical,bmi,age,4
+500,29.629993506017183,unexposed,18 to 39,unexposed,bmi,age,4
+500,29.263683240644603,unexposed,65 plus,unexposed,bmi,age,4
+500,29.550725868310654,unexposed,40 to 64,unexposed,bmi,age,4
+500,29.871005456088017,exposed,18 to 39,exposed,bmi,age,4
+500,29.402869830958572,exposed,65 plus,exposed,bmi,age,4
+500,29.771170945849764,exposed,40 to 64,exposed,bmi,age,4
+550,29.795316545774327,historical,18 to 39,historical,bmi,age,4
+550,29.464213545834156,historical,65 plus,historical,bmi,age,4
+550,29.61617621591282,historical,40 to 64,historical,bmi,age,4
+550,29.666023027560065,unexposed,18 to 39,unexposed,bmi,age,4
+550,29.217324836312937,unexposed,65 plus,unexposed,bmi,age,4
+550,29.52841785700477,unexposed,40 to 64,unexposed,bmi,age,4
+550,29.899643271306974,exposed,18 to 39,exposed,bmi,age,4
+550,29.38038484752513,exposed,65 plus,exposed,bmi,age,4
+550,29.767806155034357,exposed,40 to 64,exposed,bmi,age,4
+600,29.84155301805967,historical,18 to 39,historical,bmi,age,4
+600,29.45747752783951,historical,65 plus,historical,bmi,age,4
+600,29.626374131997228,historical,40 to 64,historical,bmi,age,4
+600,29.702052549102948,unexposed,18 to 39,unexposed,bmi,age,4
+600,29.170966431981284,unexposed,65 plus,unexposed,bmi,age,4
+600,29.506109845698884,unexposed,40 to 64,unexposed,bmi,age,4
+600,29.928281086525924,exposed,18 to 39,exposed,bmi,age,4
+600,29.35789986409168,exposed,65 plus,exposed,bmi,age,4
+600,29.76444136421895,exposed,40 to 64,exposed,bmi,age,4
+650,29.887789490345018,historical,18 to 39,historical,bmi,age,4
+650,29.450741509844867,historical,65 plus,historical,bmi,age,4
+650,29.636572048081632,historical,40 to 64,historical,bmi,age,4
+650,29.73808207064583,unexposed,18 to 39,unexposed,bmi,age,4
+650,29.124608027649618,unexposed,65 plus,unexposed,bmi,age,4
+650,29.483801834393002,unexposed,40 to 64,unexposed,bmi,age,4
+650,29.95691890174488,exposed,18 to 39,exposed,bmi,age,4
+650,29.335414880658238,exposed,65 plus,exposed,bmi,age,4
+650,29.761076573403543,exposed,40 to 64,exposed,bmi,age,4
+700,29.93402596263036,historical,18 to 39,historical,bmi,age,4
+700,29.44400549185022,historical,65 plus,historical,bmi,age,4
+700,29.64676996416604,historical,40 to 64,historical,bmi,age,4
+700,29.774111592188714,unexposed,18 to 39,unexposed,bmi,age,4
+700,29.07824962331796,unexposed,65 plus,unexposed,bmi,age,4
+700,29.461493823087114,unexposed,40 to 64,unexposed,bmi,age,4
+700,29.985556716963835,exposed,18 to 39,exposed,bmi,age,4
+700,29.31292989722479,exposed,65 plus,exposed,bmi,age,4
+700,29.757711782588135,exposed,40 to 64,exposed,bmi,age,4
+0,29.0573925425353,historical,NH White,historical,bmi,raceeth,4
+0,29.186767025399472,historical,NH Black,historical,bmi,raceeth,4
+0,29.38628674143451,historical,Hispanic,historical,bmi,raceeth,4
+0,29.304358961377545,unexposed,NH White,unexposed,bmi,raceeth,4
+0,29.39631858888808,unexposed,NH Black,unexposed,bmi,raceeth,4
+0,29.344752871033084,unexposed,Hispanic,unexposed,bmi,raceeth,4
+0,29.37838686308007,exposed,NH White,exposed,bmi,raceeth,4
+0,29.522717566139367,exposed,NH Black,exposed,bmi,raceeth,4
+0,29.403648980871342,exposed,Hispanic,exposed,bmi,raceeth,4
+50,29.076863173537703,historical,NH White,historical,bmi,raceeth,4
+50,29.20931587671781,historical,NH Black,historical,bmi,raceeth,4
+50,29.377103157717563,historical,Hispanic,historical,bmi,raceeth,4
+50,29.282434869988347,unexposed,NH White,unexposed,bmi,raceeth,4
+50,29.37926414678936,unexposed,NH Black,unexposed,bmi,raceeth,4
+50,29.335172668931406,unexposed,Hispanic,unexposed,bmi,raceeth,4
+50,29.36298300126916,exposed,NH White,exposed,bmi,raceeth,4
+50,29.527588809231414,exposed,NH Black,exposed,bmi,raceeth,4
+50,29.417530766785028,exposed,Hispanic,exposed,bmi,raceeth,4
+100,29.096333804540105,historical,NH White,historical,bmi,raceeth,4
+100,29.231864728036147,historical,NH Black,historical,bmi,raceeth,4
+100,29.367919574000616,historical,Hispanic,historical,bmi,raceeth,4
+100,29.260510778599148,unexposed,NH White,unexposed,bmi,raceeth,4
+100,29.362209704690642,unexposed,NH Black,unexposed,bmi,raceeth,4
+100,29.32559246682973,unexposed,Hispanic,unexposed,bmi,raceeth,4
+100,29.347579139458254,exposed,NH White,exposed,bmi,raceeth,4
+100,29.532460052323458,exposed,NH Black,exposed,bmi,raceeth,4
+100,29.431412552698713,exposed,Hispanic,exposed,bmi,raceeth,4
+150,29.115804435542504,historical,NH White,historical,bmi,raceeth,4
+150,29.254413579354487,historical,NH Black,historical,bmi,raceeth,4
+150,29.35873599028367,historical,Hispanic,historical,bmi,raceeth,4
+150,29.23858668720995,unexposed,NH White,unexposed,bmi,raceeth,4
+150,29.34515526259192,unexposed,NH Black,unexposed,bmi,raceeth,4
+150,29.31601226472805,unexposed,Hispanic,unexposed,bmi,raceeth,4
+150,29.332175277647345,exposed,NH White,exposed,bmi,raceeth,4
+150,29.53733129541551,exposed,NH Black,exposed,bmi,raceeth,4
+150,29.445294338612403,exposed,Hispanic,exposed,bmi,raceeth,4
+200,29.135275066544907,historical,NH White,historical,bmi,raceeth,4
+200,29.276962430672825,historical,NH Black,historical,bmi,raceeth,4
+200,29.349552406566723,historical,Hispanic,historical,bmi,raceeth,4
+200,29.21666259582075,unexposed,NH White,unexposed,bmi,raceeth,4
+200,29.3281008204932,unexposed,NH Black,unexposed,bmi,raceeth,4
+200,29.306432062626374,unexposed,Hispanic,unexposed,bmi,raceeth,4
+200,29.316771415836435,exposed,NH White,exposed,bmi,raceeth,4
+200,29.542202538507553,exposed,NH Black,exposed,bmi,raceeth,4
+200,29.45917612452609,exposed,Hispanic,exposed,bmi,raceeth,4
+250,29.154745697547305,historical,NH White,historical,bmi,raceeth,4
+250,29.299511281991165,historical,NH Black,historical,bmi,raceeth,4
+250,29.340368822849776,historical,Hispanic,historical,bmi,raceeth,4
+250,29.19473850443155,unexposed,NH White,unexposed,bmi,raceeth,4
+250,29.311046378394483,unexposed,NH Black,unexposed,bmi,raceeth,4
+250,29.296851860524697,unexposed,Hispanic,unexposed,bmi,raceeth,4
+250,29.30136755402553,exposed,NH White,exposed,bmi,raceeth,4
+250,29.5470737815996,exposed,NH Black,exposed,bmi,raceeth,4
+250,29.473057910439774,exposed,Hispanic,exposed,bmi,raceeth,4
+300,29.174216328549708,historical,NH White,historical,bmi,raceeth,4
+300,29.322060133309503,historical,NH Black,historical,bmi,raceeth,4
+300,29.33118523913283,historical,Hispanic,historical,bmi,raceeth,4
+300,29.17281441304235,unexposed,NH White,unexposed,bmi,raceeth,4
+300,29.29399193629576,unexposed,NH Black,unexposed,bmi,raceeth,4
+300,29.287271658423016,unexposed,Hispanic,unexposed,bmi,raceeth,4
+300,29.28596369221462,exposed,NH White,exposed,bmi,raceeth,4
+300,29.551945024691644,exposed,NH Black,exposed,bmi,raceeth,4
+300,29.48693969635346,exposed,Hispanic,exposed,bmi,raceeth,4
+350,29.19368695955211,historical,NH White,historical,bmi,raceeth,4
+350,29.344608984627843,historical,NH Black,historical,bmi,raceeth,4
+350,29.322001655415882,historical,Hispanic,historical,bmi,raceeth,4
+350,29.15089032165315,unexposed,NH White,unexposed,bmi,raceeth,4
+350,29.276937494197043,unexposed,NH Black,unexposed,bmi,raceeth,4
+350,29.277691456321335,unexposed,Hispanic,unexposed,bmi,raceeth,4
+350,29.270559830403712,exposed,NH White,exposed,bmi,raceeth,4
+350,29.55681626778369,exposed,NH Black,exposed,bmi,raceeth,4
+350,29.50082148226715,exposed,Hispanic,exposed,bmi,raceeth,4
+400,29.21315759055451,historical,NH White,historical,bmi,raceeth,4
+400,29.36715783594618,historical,NH Black,historical,bmi,raceeth,4
+400,29.312818071698935,historical,Hispanic,historical,bmi,raceeth,4
+400,29.12896623026395,unexposed,NH White,unexposed,bmi,raceeth,4
+400,29.259883052098324,unexposed,NH Black,unexposed,bmi,raceeth,4
+400,29.268111254219658,unexposed,Hispanic,unexposed,bmi,raceeth,4
+400,29.255155968592803,exposed,NH White,exposed,bmi,raceeth,4
+400,29.561687510875736,exposed,NH Black,exposed,bmi,raceeth,4
+400,29.514703268180835,exposed,Hispanic,exposed,bmi,raceeth,4
+450,29.23262822155691,historical,NH White,historical,bmi,raceeth,4
+450,29.38970668726452,historical,NH Black,historical,bmi,raceeth,4
+450,29.303634487981984,historical,Hispanic,historical,bmi,raceeth,4
+450,29.10704213887475,unexposed,NH White,unexposed,bmi,raceeth,4
+450,29.242828609999606,unexposed,NH Black,unexposed,bmi,raceeth,4
+450,29.25853105211798,unexposed,Hispanic,unexposed,bmi,raceeth,4
+450,29.239752106781893,exposed,NH White,exposed,bmi,raceeth,4
+450,29.566558753967787,exposed,NH Black,exposed,bmi,raceeth,4
+450,29.52858505409452,exposed,Hispanic,exposed,bmi,raceeth,4
+500,29.252098852559314,historical,NH White,historical,bmi,raceeth,4
+500,29.41225553858286,historical,NH Black,historical,bmi,raceeth,4
+500,29.294450904265037,historical,Hispanic,historical,bmi,raceeth,4
+500,29.08511804748555,unexposed,NH White,unexposed,bmi,raceeth,4
+500,29.225774167900887,unexposed,NH Black,unexposed,bmi,raceeth,4
+500,29.248950850016303,unexposed,Hispanic,unexposed,bmi,raceeth,4
+500,29.224348244970983,exposed,NH White,exposed,bmi,raceeth,4
+500,29.57142999705983,exposed,NH Black,exposed,bmi,raceeth,4
+500,29.542466840008206,exposed,Hispanic,exposed,bmi,raceeth,4
+550,29.271569483561716,historical,NH White,historical,bmi,raceeth,4
+550,29.4348043899012,historical,NH Black,historical,bmi,raceeth,4
+550,29.28526732054809,historical,Hispanic,historical,bmi,raceeth,4
+550,29.063193956096356,unexposed,NH White,unexposed,bmi,raceeth,4
+550,29.20871972580217,unexposed,NH Black,unexposed,bmi,raceeth,4
+550,29.239370647914626,unexposed,Hispanic,unexposed,bmi,raceeth,4
+550,29.208944383160073,exposed,NH White,exposed,bmi,raceeth,4
+550,29.576301240151878,exposed,NH Black,exposed,bmi,raceeth,4
+550,29.55634862592189,exposed,Hispanic,exposed,bmi,raceeth,4
+600,29.29104011456412,historical,NH White,historical,bmi,raceeth,4
+600,29.45735324121954,historical,NH Black,historical,bmi,raceeth,4
+600,29.276083736831144,historical,Hispanic,historical,bmi,raceeth,4
+600,29.041269864707157,unexposed,NH White,unexposed,bmi,raceeth,4
+600,29.191665283703454,unexposed,NH Black,unexposed,bmi,raceeth,4
+600,29.22979044581295,unexposed,Hispanic,unexposed,bmi,raceeth,4
+600,29.193540521349167,exposed,NH White,exposed,bmi,raceeth,4
+600,29.58117248324393,exposed,NH Black,exposed,bmi,raceeth,4
+600,29.570230411835578,exposed,Hispanic,exposed,bmi,raceeth,4
+650,29.310510745566518,historical,NH White,historical,bmi,raceeth,4
+650,29.479902092537877,historical,NH Black,historical,bmi,raceeth,4
+650,29.266900153114197,historical,Hispanic,historical,bmi,raceeth,4
+650,29.019345773317955,unexposed,NH White,unexposed,bmi,raceeth,4
+650,29.174610841604732,unexposed,NH Black,unexposed,bmi,raceeth,4
+650,29.22021024371127,unexposed,Hispanic,unexposed,bmi,raceeth,4
+650,29.178136659538254,exposed,NH White,exposed,bmi,raceeth,4
+650,29.586043726335973,exposed,NH Black,exposed,bmi,raceeth,4
+650,29.584112197749263,exposed,Hispanic,exposed,bmi,raceeth,4
+700,29.32998137656892,historical,NH White,historical,bmi,raceeth,4
+700,29.502450943856218,historical,NH Black,historical,bmi,raceeth,4
+700,29.25771656939725,historical,Hispanic,historical,bmi,raceeth,4
+700,28.997421681928756,unexposed,NH White,unexposed,bmi,raceeth,4
+700,29.157556399506017,unexposed,NH Black,unexposed,bmi,raceeth,4
+700,29.210630041609594,unexposed,Hispanic,unexposed,bmi,raceeth,4
+700,29.162732797727347,exposed,NH White,exposed,bmi,raceeth,4
+700,29.59091496942802,exposed,NH Black,exposed,bmi,raceeth,4
+700,29.59799398366295,exposed,Hispanic,exposed,bmi,raceeth,4
+0,29.521205319652015,historical,hospitalization = 0,historical,bmi,hospitalization,4
+0,29.119733446148782,historical,hospitalization = 1,historical,bmi,hospitalization,4
+0,29.75570468504304,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,4
+0,29.06346296840801,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,4
+0,29.781406985093206,exposed,hospitalization = 0,exposed,bmi,hospitalization,4
+0,29.19456323070781,exposed,hospitalization = 1,exposed,bmi,hospitalization,4
+50,29.53500877355987,historical,hospitalization = 0,historical,bmi,hospitalization,4
+50,29.14394767468799,historical,hospitalization = 1,historical,bmi,hospitalization,4
+50,29.734969932747635,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,4
+50,29.055519911030096,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,4
+50,29.78027478077236,exposed,hospitalization = 0,exposed,bmi,hospitalization,4
+50,29.200863549292336,exposed,hospitalization = 1,exposed,bmi,hospitalization,4
+100,29.548812227467725,historical,hospitalization = 0,historical,bmi,hospitalization,4
+100,29.168161903227194,historical,hospitalization = 1,historical,bmi,hospitalization,4
+100,29.714235180452235,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,4
+100,29.04757685365218,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,4
+100,29.779142576451513,exposed,hospitalization = 0,exposed,bmi,hospitalization,4
+100,29.207163867876858,exposed,hospitalization = 1,exposed,bmi,hospitalization,4
+150,29.56261568137558,historical,hospitalization = 0,historical,bmi,hospitalization,4
+150,29.1923761317664,historical,hospitalization = 1,historical,bmi,hospitalization,4
+150,29.69350042815683,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,4
+150,29.039633796274266,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,4
+150,29.778010372130666,exposed,hospitalization = 0,exposed,bmi,hospitalization,4
+150,29.213464186461387,exposed,hospitalization = 1,exposed,bmi,hospitalization,4
+200,29.576419135283434,historical,hospitalization = 0,historical,bmi,hospitalization,4
+200,29.21659036030561,historical,hospitalization = 1,historical,bmi,hospitalization,4
+200,29.672765675861427,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,4
+200,29.03169073889635,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,4
+200,29.77687816780982,exposed,hospitalization = 0,exposed,bmi,hospitalization,4
+200,29.219764505045912,exposed,hospitalization = 1,exposed,bmi,hospitalization,4
+250,29.59022258919129,historical,hospitalization = 0,historical,bmi,hospitalization,4
+250,29.240804588844817,historical,hospitalization = 1,historical,bmi,hospitalization,4
+250,29.652030923566027,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,4
+250,29.02374768151844,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,4
+250,29.775745963488973,exposed,hospitalization = 0,exposed,bmi,hospitalization,4
+250,29.226064823630438,exposed,hospitalization = 1,exposed,bmi,hospitalization,4
+300,29.604026043099143,historical,hospitalization = 0,historical,bmi,hospitalization,4
+300,29.26501881738402,historical,hospitalization = 1,historical,bmi,hospitalization,4
+300,29.631296171270623,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,4
+300,29.01580462414052,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,4
+300,29.774613759168126,exposed,hospitalization = 0,exposed,bmi,hospitalization,4
+300,29.23236514221496,exposed,hospitalization = 1,exposed,bmi,hospitalization,4
+350,29.617829497006998,historical,hospitalization = 0,historical,bmi,hospitalization,4
+350,29.28923304592323,historical,hospitalization = 1,historical,bmi,hospitalization,4
+350,29.61056141897522,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,4
+350,29.007861566762607,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,4
+350,29.77348155484728,exposed,hospitalization = 0,exposed,bmi,hospitalization,4
+350,29.238665460799485,exposed,hospitalization = 1,exposed,bmi,hospitalization,4
+400,29.631632950914852,historical,hospitalization = 0,historical,bmi,hospitalization,4
+400,29.313447274462437,historical,hospitalization = 1,historical,bmi,hospitalization,4
+400,29.58982666667982,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,4
+400,28.999918509384695,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,4
+400,29.772349350526433,exposed,hospitalization = 0,exposed,bmi,hospitalization,4
+400,29.244965779384014,exposed,hospitalization = 1,exposed,bmi,hospitalization,4
+450,29.645436404822707,historical,hospitalization = 0,historical,bmi,hospitalization,4
+450,29.33766150300164,historical,hospitalization = 1,historical,bmi,hospitalization,4
+450,29.569091914384416,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,4
+450,28.991975452006777,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,4
+450,29.771217146205586,exposed,hospitalization = 0,exposed,bmi,hospitalization,4
+450,29.251266097968536,exposed,hospitalization = 1,exposed,bmi,hospitalization,4
+500,29.65923985873056,historical,hospitalization = 0,historical,bmi,hospitalization,4
+500,29.36187573154085,historical,hospitalization = 1,historical,bmi,hospitalization,4
+500,29.54835716208901,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,4
+500,28.984032394628862,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,4
+500,29.77008494188474,exposed,hospitalization = 0,exposed,bmi,hospitalization,4
+500,29.25756641655306,exposed,hospitalization = 1,exposed,bmi,hospitalization,4
+550,29.673043312638416,historical,hospitalization = 0,historical,bmi,hospitalization,4
+550,29.386089960080056,historical,hospitalization = 1,historical,bmi,hospitalization,4
+550,29.52762240979361,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,4
+550,28.97608933725095,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,4
+550,29.768952737563893,exposed,hospitalization = 0,exposed,bmi,hospitalization,4
+550,29.263866735137587,exposed,hospitalization = 1,exposed,bmi,hospitalization,4
+600,29.68684676654627,historical,hospitalization = 0,historical,bmi,hospitalization,4
+600,29.410304188619264,historical,hospitalization = 1,historical,bmi,hospitalization,4
+600,29.506887657498208,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,4
+600,28.96814627987304,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,4
+600,29.767820533243047,exposed,hospitalization = 0,exposed,bmi,hospitalization,4
+600,29.270167053722112,exposed,hospitalization = 1,exposed,bmi,hospitalization,4
+650,29.700650220454126,historical,hospitalization = 0,historical,bmi,hospitalization,4
+650,29.43451841715847,historical,hospitalization = 1,historical,bmi,hospitalization,4
+650,29.486152905202804,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,4
+650,28.96020322249512,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,4
+650,29.7666883289222,exposed,hospitalization = 0,exposed,bmi,hospitalization,4
+650,29.276467372306637,exposed,hospitalization = 1,exposed,bmi,hospitalization,4
+700,29.71445367436198,historical,hospitalization = 0,historical,bmi,hospitalization,4
+700,29.458732645697676,historical,hospitalization = 1,historical,bmi,hospitalization,4
+700,29.465418152907404,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,4
+700,28.95226016511721,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,4
+700,29.765556124601353,exposed,hospitalization = 0,exposed,bmi,hospitalization,4
+700,29.282767690891163,exposed,hospitalization = 1,exposed,bmi,hospitalization,4
+0,29.43279511472749,historical,Female,historical,bmi,sex,5
+0,29.467244067670524,historical,Male,historical,bmi,sex,5
+0,29.639556244165618,unexposed,Female,unexposed,bmi,sex,5
+0,29.637533505534492,unexposed,Male,unexposed,bmi,sex,5
+0,29.792961797614097,exposed,Female,exposed,bmi,sex,5
+0,29.55897880672462,exposed,Male,exposed,bmi,sex,5
+50,29.45667084402253,historical,Female,historical,bmi,sex,5
+50,29.46794912693274,historical,Male,historical,bmi,sex,5
+50,29.62428489516652,unexposed,Female,unexposed,bmi,sex,5
+50,29.614514567734044,unexposed,Male,unexposed,bmi,sex,5
+50,29.78272338235198,exposed,Female,exposed,bmi,sex,5
+50,29.572595028480183,exposed,Male,exposed,bmi,sex,5
+100,29.480546573317568,historical,Female,historical,bmi,sex,5
+100,29.468654186194957,historical,Male,historical,bmi,sex,5
+100,29.609013546167425,unexposed,Female,unexposed,bmi,sex,5
+100,29.591495629933597,unexposed,Male,unexposed,bmi,sex,5
+100,29.77248496708986,exposed,Female,exposed,bmi,sex,5
+100,29.58621125023575,exposed,Male,exposed,bmi,sex,5
+150,29.504422302612607,historical,Female,historical,bmi,sex,5
+150,29.469359245457174,historical,Male,historical,bmi,sex,5
+150,29.59374219716833,unexposed,Female,unexposed,bmi,sex,5
+150,29.568476692133146,unexposed,Male,unexposed,bmi,sex,5
+150,29.762246551827744,exposed,Female,exposed,bmi,sex,5
+150,29.59982747199131,exposed,Male,exposed,bmi,sex,5
+200,29.528298031907646,historical,Female,historical,bmi,sex,5
+200,29.47006430471939,historical,Male,historical,bmi,sex,5
+200,29.578470848169232,unexposed,Female,unexposed,bmi,sex,5
+200,29.545457754332695,unexposed,Male,unexposed,bmi,sex,5
+200,29.752008136565625,exposed,Female,exposed,bmi,sex,5
+200,29.613443693746873,exposed,Male,exposed,bmi,sex,5
+250,29.552173761202685,historical,Female,historical,bmi,sex,5
+250,29.470769363981603,historical,Male,historical,bmi,sex,5
+250,29.56319949917014,unexposed,Female,unexposed,bmi,sex,5
+250,29.522438816532247,unexposed,Male,unexposed,bmi,sex,5
+250,29.74176972130351,exposed,Female,exposed,bmi,sex,5
+250,29.62705991550243,exposed,Male,exposed,bmi,sex,5
+300,29.576049490497724,historical,Female,historical,bmi,sex,5
+300,29.47147442324382,historical,Male,historical,bmi,sex,5
+300,29.547928150171042,unexposed,Female,unexposed,bmi,sex,5
+300,29.499419878731796,unexposed,Male,unexposed,bmi,sex,5
+300,29.73153130604139,exposed,Female,exposed,bmi,sex,5
+300,29.64067613725799,exposed,Male,exposed,bmi,sex,5
+350,29.599925219792762,historical,Female,historical,bmi,sex,5
+350,29.472179482506036,historical,Male,historical,bmi,sex,5
+350,29.532656801171946,unexposed,Female,unexposed,bmi,sex,5
+350,29.476400940931345,unexposed,Male,unexposed,bmi,sex,5
+350,29.721292890779274,exposed,Female,exposed,bmi,sex,5
+350,29.654292359013557,exposed,Male,exposed,bmi,sex,5
+400,29.6238009490878,historical,Female,historical,bmi,sex,5
+400,29.472884541768252,historical,Male,historical,bmi,sex,5
+400,29.51738545217285,unexposed,Female,unexposed,bmi,sex,5
+400,29.453382003130894,unexposed,Male,unexposed,bmi,sex,5
+400,29.711054475517155,exposed,Female,exposed,bmi,sex,5
+400,29.667908580769122,exposed,Male,exposed,bmi,sex,5
+450,29.647676678382844,historical,Female,historical,bmi,sex,5
+450,29.47358960103047,historical,Male,historical,bmi,sex,5
+450,29.502114103173753,unexposed,Female,unexposed,bmi,sex,5
+450,29.430363065330447,unexposed,Male,unexposed,bmi,sex,5
+450,29.700816060255036,exposed,Female,exposed,bmi,sex,5
+450,29.68152480252468,exposed,Male,exposed,bmi,sex,5
+500,29.67155240767788,historical,Female,historical,bmi,sex,5
+500,29.474294660292685,historical,Male,historical,bmi,sex,5
+500,29.486842754174656,unexposed,Female,unexposed,bmi,sex,5
+500,29.407344127529996,unexposed,Male,unexposed,bmi,sex,5
+500,29.69057764499292,exposed,Female,exposed,bmi,sex,5
+500,29.695141024280247,exposed,Male,exposed,bmi,sex,5
+550,29.69542813697292,historical,Female,historical,bmi,sex,5
+550,29.4749997195549,historical,Male,historical,bmi,sex,5
+550,29.47157140517556,unexposed,Female,unexposed,bmi,sex,5
+550,29.384325189729545,unexposed,Male,unexposed,bmi,sex,5
+550,29.6803392297308,exposed,Female,exposed,bmi,sex,5
+550,29.708757246035812,exposed,Male,exposed,bmi,sex,5
+600,29.71930386626796,historical,Female,historical,bmi,sex,5
+600,29.47570477881712,historical,Male,historical,bmi,sex,5
+600,29.456300056176463,unexposed,Female,unexposed,bmi,sex,5
+600,29.361306251929097,unexposed,Male,unexposed,bmi,sex,5
+600,29.670100814468682,exposed,Female,exposed,bmi,sex,5
+600,29.722373467791375,exposed,Male,exposed,bmi,sex,5
+650,29.743179595563,historical,Female,historical,bmi,sex,5
+650,29.47640983807933,historical,Male,historical,bmi,sex,5
+650,29.441028707177367,unexposed,Female,unexposed,bmi,sex,5
+650,29.338287314128642,unexposed,Male,unexposed,bmi,sex,5
+650,29.659862399206563,exposed,Female,exposed,bmi,sex,5
+650,29.73598968954693,exposed,Male,exposed,bmi,sex,5
+700,29.76705532485804,historical,Female,historical,bmi,sex,5
+700,29.47711489734155,historical,Male,historical,bmi,sex,5
+700,29.425757358178274,unexposed,Female,unexposed,bmi,sex,5
+700,29.31526837632819,unexposed,Male,unexposed,bmi,sex,5
+700,29.649623983944444,exposed,Female,exposed,bmi,sex,5
+700,29.749605911302496,exposed,Male,exposed,bmi,sex,5
+0,29.290218210801534,historical,18 to 39,historical,bmi,age,5
+0,29.537188130896087,historical,65 plus,historical,bmi,age,5
+0,29.500500834782528,historical,40 to 64,historical,bmi,age,5
+0,29.273842432153906,unexposed,18 to 39,unexposed,bmi,age,5
+0,29.730307746305183,unexposed,65 plus,unexposed,bmi,age,5
+0,29.77300150258397,unexposed,40 to 64,unexposed,bmi,age,5
+0,29.58698241823671,exposed,18 to 39,exposed,bmi,age,5
+0,29.62926162845342,exposed,65 plus,exposed,bmi,age,5
+0,29.802238944125516,exposed,40 to 64,exposed,bmi,age,5
+50,29.33645491299015,historical,18 to 39,historical,bmi,age,5
+50,29.53044977164446,historical,65 plus,historical,bmi,age,5
+50,29.510701779499783,historical,40 to 64,historical,bmi,age,5
+50,29.30986575688879,unexposed,18 to 39,unexposed,bmi,age,5
+50,29.68395155819837,unexposed,65 plus,unexposed,bmi,age,5
+50,29.750695857988873,unexposed,40 to 64,unexposed,bmi,age,5
+50,29.615637659082406,exposed,18 to 39,exposed,bmi,age,5
+50,29.60676504199234,exposed,65 plus,exposed,bmi,age,5
+50,29.798869078659035,exposed,40 to 64,exposed,bmi,age,5
+100,29.382691615178764,historical,18 to 39,historical,bmi,age,5
+100,29.52371141239283,historical,65 plus,historical,bmi,age,5
+100,29.520902724217038,historical,40 to 64,historical,bmi,age,5
+100,29.345889081623678,unexposed,18 to 39,unexposed,bmi,age,5
+100,29.637595370091557,unexposed,65 plus,unexposed,bmi,age,5
+100,29.728390213393773,unexposed,40 to 64,unexposed,bmi,age,5
+100,29.644292899928104,exposed,18 to 39,exposed,bmi,age,5
+100,29.584268455531255,exposed,65 plus,exposed,bmi,age,5
+100,29.795499213192553,exposed,40 to 64,exposed,bmi,age,5
+150,29.42892831736738,historical,18 to 39,historical,bmi,age,5
+150,29.516973053141204,historical,65 plus,historical,bmi,age,5
+150,29.531103668934296,historical,40 to 64,historical,bmi,age,5
+150,29.38191240635856,unexposed,18 to 39,unexposed,bmi,age,5
+150,29.591239181984744,unexposed,65 plus,unexposed,bmi,age,5
+150,29.706084568798676,unexposed,40 to 64,unexposed,bmi,age,5
+150,29.6729481407738,exposed,18 to 39,exposed,bmi,age,5
+150,29.56177186907017,exposed,65 plus,exposed,bmi,age,5
+150,29.79212934772607,exposed,40 to 64,exposed,bmi,age,5
+200,29.475165019555995,historical,18 to 39,historical,bmi,age,5
+200,29.510234693889576,historical,65 plus,historical,bmi,age,5
+200,29.54130461365155,historical,40 to 64,historical,bmi,age,5
+200,29.417935731093444,unexposed,18 to 39,unexposed,bmi,age,5
+200,29.54488299387793,unexposed,65 plus,unexposed,bmi,age,5
+200,29.683778924203576,unexposed,40 to 64,unexposed,bmi,age,5
+200,29.7016033816195,exposed,18 to 39,exposed,bmi,age,5
+200,29.53927528260909,exposed,65 plus,exposed,bmi,age,5
+200,29.78875948225959,exposed,40 to 64,exposed,bmi,age,5
+250,29.521401721744606,historical,18 to 39,historical,bmi,age,5
+250,29.503496334637944,historical,65 plus,historical,bmi,age,5
+250,29.55150555836881,historical,40 to 64,historical,bmi,age,5
+250,29.45395905582833,unexposed,18 to 39,unexposed,bmi,age,5
+250,29.49852680577111,unexposed,65 plus,unexposed,bmi,age,5
+250,29.66147327960848,unexposed,40 to 64,unexposed,bmi,age,5
+250,29.730258622465197,exposed,18 to 39,exposed,bmi,age,5
+250,29.516778696148002,exposed,65 plus,exposed,bmi,age,5
+250,29.785389616793104,exposed,40 to 64,exposed,bmi,age,5
+300,29.56763842393322,historical,18 to 39,historical,bmi,age,5
+300,29.496757975386316,historical,65 plus,historical,bmi,age,5
+300,29.561706503086064,historical,40 to 64,historical,bmi,age,5
+300,29.489982380563216,unexposed,18 to 39,unexposed,bmi,age,5
+300,29.452170617664297,unexposed,65 plus,unexposed,bmi,age,5
+300,29.63916763501338,unexposed,40 to 64,unexposed,bmi,age,5
+300,29.758913863310894,exposed,18 to 39,exposed,bmi,age,5
+300,29.494282109686917,exposed,65 plus,exposed,bmi,age,5
+300,29.782019751326622,exposed,40 to 64,exposed,bmi,age,5
+350,29.613875126121837,historical,18 to 39,historical,bmi,age,5
+350,29.49001961613469,historical,65 plus,historical,bmi,age,5
+350,29.571907447803323,historical,40 to 64,historical,bmi,age,5
+350,29.5260057052981,unexposed,18 to 39,unexposed,bmi,age,5
+350,29.405814429557484,unexposed,65 plus,unexposed,bmi,age,5
+350,29.616861990418283,unexposed,40 to 64,unexposed,bmi,age,5
+350,29.78756910415659,exposed,18 to 39,exposed,bmi,age,5
+350,29.471785523225837,exposed,65 plus,exposed,bmi,age,5
+350,29.778649885860137,exposed,40 to 64,exposed,bmi,age,5
+400,29.660111828310452,historical,18 to 39,historical,bmi,age,5
+400,29.483281256883057,historical,65 plus,historical,bmi,age,5
+400,29.58210839252058,historical,40 to 64,historical,bmi,age,5
+400,29.56202903003299,unexposed,18 to 39,unexposed,bmi,age,5
+400,29.35945824145067,unexposed,65 plus,unexposed,bmi,age,5
+400,29.594556345823182,unexposed,40 to 64,unexposed,bmi,age,5
+400,29.816224345002286,exposed,18 to 39,exposed,bmi,age,5
+400,29.449288936764752,exposed,65 plus,exposed,bmi,age,5
+400,29.77528002039366,exposed,40 to 64,exposed,bmi,age,5
+450,29.706348530499067,historical,18 to 39,historical,bmi,age,5
+450,29.47654289763143,historical,65 plus,historical,bmi,age,5
+450,29.592309337237836,historical,40 to 64,historical,bmi,age,5
+450,29.598052354767873,unexposed,18 to 39,unexposed,bmi,age,5
+450,29.313102053343858,unexposed,65 plus,unexposed,bmi,age,5
+450,29.572250701228082,unexposed,40 to 64,unexposed,bmi,age,5
+450,29.844879585847984,exposed,18 to 39,exposed,bmi,age,5
+450,29.42679235030367,exposed,65 plus,exposed,bmi,age,5
+450,29.771910154927173,exposed,40 to 64,exposed,bmi,age,5
+500,29.752585232687682,historical,18 to 39,historical,bmi,age,5
+500,29.4698045383798,historical,65 plus,historical,bmi,age,5
+500,29.602510281955094,historical,40 to 64,historical,bmi,age,5
+500,29.634075679502757,unexposed,18 to 39,unexposed,bmi,age,5
+500,29.26674586523704,unexposed,65 plus,unexposed,bmi,age,5
+500,29.549945056632986,unexposed,40 to 64,unexposed,bmi,age,5
+500,29.873534826693678,exposed,18 to 39,exposed,bmi,age,5
+500,29.40429576384259,exposed,65 plus,exposed,bmi,age,5
+500,29.768540289460695,exposed,40 to 64,exposed,bmi,age,5
+550,29.798821934876297,historical,18 to 39,historical,bmi,age,5
+550,29.463066179128173,historical,65 plus,historical,bmi,age,5
+550,29.612711226672346,historical,40 to 64,historical,bmi,age,5
+550,29.670099004237642,unexposed,18 to 39,unexposed,bmi,age,5
+550,29.22038967713023,unexposed,65 plus,unexposed,bmi,age,5
+550,29.527639412037885,unexposed,40 to 64,unexposed,bmi,age,5
+550,29.902190067539376,exposed,18 to 39,exposed,bmi,age,5
+550,29.381799177381506,exposed,65 plus,exposed,bmi,age,5
+550,29.76517042399421,exposed,40 to 64,exposed,bmi,age,5
+600,29.845058637064913,historical,18 to 39,historical,bmi,age,5
+600,29.456327819876545,historical,65 plus,historical,bmi,age,5
+600,29.622912171389604,historical,40 to 64,historical,bmi,age,5
+600,29.706122328972526,unexposed,18 to 39,unexposed,bmi,age,5
+600,29.17403348902342,unexposed,65 plus,unexposed,bmi,age,5
+600,29.50533376744279,unexposed,40 to 64,unexposed,bmi,age,5
+600,29.930845308385074,exposed,18 to 39,exposed,bmi,age,5
+600,29.35930259092042,exposed,65 plus,exposed,bmi,age,5
+600,29.76180055852773,exposed,40 to 64,exposed,bmi,age,5
+650,29.891295339253528,historical,18 to 39,historical,bmi,age,5
+650,29.449589460624917,historical,65 plus,historical,bmi,age,5
+650,29.63311311610686,historical,40 to 64,historical,bmi,age,5
+650,29.74214565370741,unexposed,18 to 39,unexposed,bmi,age,5
+650,29.127677300916602,unexposed,65 plus,unexposed,bmi,age,5
+650,29.48302812284769,unexposed,40 to 64,unexposed,bmi,age,5
+650,29.95950054923077,exposed,18 to 39,exposed,bmi,age,5
+650,29.33680600445934,exposed,65 plus,exposed,bmi,age,5
+650,29.758430693061246,exposed,40 to 64,exposed,bmi,age,5
+700,29.937532041442143,historical,18 to 39,historical,bmi,age,5
+700,29.442851101373286,historical,65 plus,historical,bmi,age,5
+700,29.643314060824117,historical,40 to 64,historical,bmi,age,5
+700,29.778168978442295,unexposed,18 to 39,unexposed,bmi,age,5
+700,29.081321112809785,unexposed,65 plus,unexposed,bmi,age,5
+700,29.460722478252592,unexposed,40 to 64,unexposed,bmi,age,5
+700,29.98815579007647,exposed,18 to 39,exposed,bmi,age,5
+700,29.314309417998256,exposed,65 plus,exposed,bmi,age,5
+700,29.755060827594768,exposed,40 to 64,exposed,bmi,age,5
+0,29.057551068874215,historical,NH White,historical,bmi,raceeth,5
+0,29.186951739604545,historical,NH Black,historical,bmi,raceeth,5
+0,29.382323890147568,historical,Hispanic,historical,bmi,raceeth,5
+0,29.30626322970856,unexposed,NH White,unexposed,bmi,raceeth,5
+0,29.394242206056568,unexposed,NH Black,unexposed,bmi,raceeth,5
+0,29.345986092080683,unexposed,Hispanic,unexposed,bmi,raceeth,5
+0,29.379025456630643,exposed,NH White,exposed,bmi,raceeth,5
+0,29.52034114204324,exposed,NH Black,exposed,bmi,raceeth,5
+0,29.402302794725447,exposed,Hispanic,exposed,bmi,raceeth,5
+50,29.077022754074132,historical,NH White,historical,bmi,raceeth,5
+50,29.20950019896512,historical,NH Black,historical,bmi,raceeth,5
+50,29.373136995398326,historical,Hispanic,historical,bmi,raceeth,5
+50,29.284327119350824,unexposed,NH White,unexposed,bmi,raceeth,5
+50,29.37718183787432,unexposed,NH Black,unexposed,bmi,raceeth,5
+50,29.336393738042883,unexposed,Hispanic,unexposed,bmi,raceeth,5
+50,29.363600589049693,exposed,NH White,exposed,bmi,raceeth,5
+50,29.525190142190954,exposed,NH Black,exposed,bmi,raceeth,5
+50,29.416199939981432,exposed,Hispanic,exposed,bmi,raceeth,5
+100,29.096494439274046,historical,NH White,historical,bmi,raceeth,5
+100,29.232048658325695,historical,NH Black,historical,bmi,raceeth,5
+100,29.363950100649078,historical,Hispanic,historical,bmi,raceeth,5
+100,29.262391008993085,unexposed,NH White,unexposed,bmi,raceeth,5
+100,29.36012146969207,unexposed,NH Black,unexposed,bmi,raceeth,5
+100,29.32680138400508,unexposed,Hispanic,unexposed,bmi,raceeth,5
+100,29.34817572146873,exposed,NH White,exposed,bmi,raceeth,5
+100,29.530039142338666,exposed,NH Black,exposed,bmi,raceeth,5
+100,29.430097085237414,exposed,Hispanic,exposed,bmi,raceeth,5
+150,29.115966124473964,historical,NH White,historical,bmi,raceeth,5
+150,29.25459711768627,historical,NH Black,historical,bmi,raceeth,5
+150,29.354763205899836,historical,Hispanic,historical,bmi,raceeth,5
+150,29.24045489863535,unexposed,NH White,unexposed,bmi,raceeth,5
+150,29.343061101509825,unexposed,NH Black,unexposed,bmi,raceeth,5
+150,29.31720902996728,unexposed,Hispanic,unexposed,bmi,raceeth,5
+150,29.33275085388778,exposed,NH White,exposed,bmi,raceeth,5
+150,29.534888142486377,exposed,NH Black,exposed,bmi,raceeth,5
+150,29.4439942304934,exposed,Hispanic,exposed,bmi,raceeth,5
+200,29.13543780967388,historical,NH White,historical,bmi,raceeth,5
+200,29.277145577046845,historical,NH Black,historical,bmi,raceeth,5
+200,29.345576311150587,historical,Hispanic,historical,bmi,raceeth,5
+200,29.21851878827761,unexposed,NH White,unexposed,bmi,raceeth,5
+200,29.326000733327575,unexposed,NH Black,unexposed,bmi,raceeth,5
+200,29.307616675929477,unexposed,Hispanic,unexposed,bmi,raceeth,5
+200,29.317325986306827,exposed,NH White,exposed,bmi,raceeth,5
+200,29.539737142634092,exposed,NH Black,exposed,bmi,raceeth,5
+200,29.457891375749384,exposed,Hispanic,exposed,bmi,raceeth,5
+250,29.154909494873795,historical,NH White,historical,bmi,raceeth,5
+250,29.29969403640742,historical,NH Black,historical,bmi,raceeth,5
+250,29.336389416401346,historical,Hispanic,historical,bmi,raceeth,5
+250,29.19658267791987,unexposed,NH White,unexposed,bmi,raceeth,5
+250,29.30894036514533,unexposed,NH Black,unexposed,bmi,raceeth,5
+250,29.298024321891678,unexposed,Hispanic,unexposed,bmi,raceeth,5
+250,29.30190111872587,exposed,NH White,exposed,bmi,raceeth,5
+250,29.544586142781803,exposed,NH Black,exposed,bmi,raceeth,5
+250,29.471788521005365,exposed,Hispanic,exposed,bmi,raceeth,5
+300,29.174381180073713,historical,NH White,historical,bmi,raceeth,5
+300,29.322242495767995,historical,NH Black,historical,bmi,raceeth,5
+300,29.327202521652097,historical,Hispanic,historical,bmi,raceeth,5
+300,29.17464656756214,unexposed,NH White,unexposed,bmi,raceeth,5
+300,29.29187999696308,unexposed,NH Black,unexposed,bmi,raceeth,5
+300,29.288431967853878,unexposed,Hispanic,unexposed,bmi,raceeth,5
+300,29.286476251144915,exposed,NH White,exposed,bmi,raceeth,5
+300,29.549435142929518,exposed,NH Black,exposed,bmi,raceeth,5
+300,29.48568566626135,exposed,Hispanic,exposed,bmi,raceeth,5
+350,29.19385286527363,historical,NH White,historical,bmi,raceeth,5
+350,29.34479095512857,historical,NH Black,historical,bmi,raceeth,5
+350,29.318015626902856,historical,Hispanic,historical,bmi,raceeth,5
+350,29.1527104572044,unexposed,NH White,unexposed,bmi,raceeth,5
+350,29.27481962878083,unexposed,NH Black,unexposed,bmi,raceeth,5
+350,29.278839613816075,unexposed,Hispanic,unexposed,bmi,raceeth,5
+350,29.271051383563965,exposed,NH White,exposed,bmi,raceeth,5
+350,29.55428414307723,exposed,NH Black,exposed,bmi,raceeth,5
+350,29.499582811517335,exposed,Hispanic,exposed,bmi,raceeth,5
+400,29.213324550473548,historical,NH White,historical,bmi,raceeth,5
+400,29.367339414489145,historical,NH Black,historical,bmi,raceeth,5
+400,29.30882873215361,historical,Hispanic,historical,bmi,raceeth,5
+400,29.130774346846664,unexposed,NH White,unexposed,bmi,raceeth,5
+400,29.257759260598583,unexposed,NH Black,unexposed,bmi,raceeth,5
+400,29.26924725977828,unexposed,Hispanic,unexposed,bmi,raceeth,5
+400,29.255626515983007,exposed,NH White,exposed,bmi,raceeth,5
+400,29.55913314322494,exposed,NH Black,exposed,bmi,raceeth,5
+400,29.51347995677332,exposed,Hispanic,exposed,bmi,raceeth,5
+450,29.23279623567346,historical,NH White,historical,bmi,raceeth,5
+450,29.38988787384972,historical,NH Black,historical,bmi,raceeth,5
+450,29.299641837404366,historical,Hispanic,historical,bmi,raceeth,5
+450,29.10883823648892,unexposed,NH White,unexposed,bmi,raceeth,5
+450,29.240698892416333,unexposed,NH Black,unexposed,bmi,raceeth,5
+450,29.259654905740472,unexposed,Hispanic,unexposed,bmi,raceeth,5
+450,29.240201648402053,exposed,NH White,exposed,bmi,raceeth,5
+450,29.563982143372655,exposed,NH Black,exposed,bmi,raceeth,5
+450,29.527377102029302,exposed,Hispanic,exposed,bmi,raceeth,5
+500,29.25226792087338,historical,NH White,historical,bmi,raceeth,5
+500,29.412436333210294,historical,NH Black,historical,bmi,raceeth,5
+500,29.29045494265512,historical,Hispanic,historical,bmi,raceeth,5
+500,29.08690212613119,unexposed,NH White,unexposed,bmi,raceeth,5
+500,29.223638524234087,unexposed,NH Black,unexposed,bmi,raceeth,5
+500,29.250062551702676,unexposed,Hispanic,unexposed,bmi,raceeth,5
+500,29.2247767808211,exposed,NH White,exposed,bmi,raceeth,5
+500,29.56883114352037,exposed,NH Black,exposed,bmi,raceeth,5
+500,29.54127424728529,exposed,Hispanic,exposed,bmi,raceeth,5
+550,29.271739606073297,historical,NH White,historical,bmi,raceeth,5
+550,29.43498479257087,historical,NH Black,historical,bmi,raceeth,5
+550,29.281268047905876,historical,Hispanic,historical,bmi,raceeth,5
+550,29.064966015773454,unexposed,NH White,unexposed,bmi,raceeth,5
+550,29.20657815605184,unexposed,NH Black,unexposed,bmi,raceeth,5
+550,29.240470197664873,unexposed,Hispanic,unexposed,bmi,raceeth,5
+550,29.209351913240145,exposed,NH White,exposed,bmi,raceeth,5
+550,29.573680143668078,exposed,NH Black,exposed,bmi,raceeth,5
+550,29.55517139254127,exposed,Hispanic,exposed,bmi,raceeth,5
+600,29.29121129127321,historical,NH White,historical,bmi,raceeth,5
+600,29.457533251931444,historical,NH Black,historical,bmi,raceeth,5
+600,29.27208115315663,historical,Hispanic,historical,bmi,raceeth,5
+600,29.04302990541571,unexposed,NH White,unexposed,bmi,raceeth,5
+600,29.18951778786959,unexposed,NH Black,unexposed,bmi,raceeth,5
+600,29.230877843627074,unexposed,Hispanic,unexposed,bmi,raceeth,5
+600,29.193927045659187,exposed,NH White,exposed,bmi,raceeth,5
+600,29.578529143815793,exposed,NH Black,exposed,bmi,raceeth,5
+600,29.569068537797257,exposed,Hispanic,exposed,bmi,raceeth,5
+650,29.310682976473128,historical,NH White,historical,bmi,raceeth,5
+650,29.48008171129202,historical,NH Black,historical,bmi,raceeth,5
+650,29.262894258407385,historical,Hispanic,historical,bmi,raceeth,5
+650,29.021093795057975,unexposed,NH White,unexposed,bmi,raceeth,5
+650,29.172457419687344,unexposed,NH Black,unexposed,bmi,raceeth,5
+650,29.22128548958927,unexposed,Hispanic,unexposed,bmi,raceeth,5
+650,29.178502178078237,exposed,NH White,exposed,bmi,raceeth,5
+650,29.583378143963508,exposed,NH Black,exposed,bmi,raceeth,5
+650,29.58296568305324,exposed,Hispanic,exposed,bmi,raceeth,5
+700,29.330154661673046,historical,NH White,historical,bmi,raceeth,5
+700,29.502630170652594,historical,NH Black,historical,bmi,raceeth,5
+700,29.25370736365814,historical,Hispanic,historical,bmi,raceeth,5
+700,28.99915768470024,unexposed,NH White,unexposed,bmi,raceeth,5
+700,29.155397051505094,unexposed,NH Black,unexposed,bmi,raceeth,5
+700,29.21169313555147,unexposed,Hispanic,unexposed,bmi,raceeth,5
+700,29.163077310497286,exposed,NH White,exposed,bmi,raceeth,5
+700,29.588227144111222,exposed,NH Black,exposed,bmi,raceeth,5
+700,29.596862828309227,exposed,Hispanic,exposed,bmi,raceeth,5
+0,29.520792950053266,historical,hospitalization = 0,historical,bmi,hospitalization,5
+0,29.120046157053373,historical,hospitalization = 1,historical,bmi,hospitalization,5
+0,29.75721879995102,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,5
+0,29.066123474630228,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,5
+0,29.78120891862601,exposed,hospitalization = 0,exposed,bmi,hospitalization,5
+0,29.196852230673418,exposed,hospitalization = 1,exposed,bmi,hospitalization,5
+50,29.53459348017626,historical,hospitalization = 0,historical,bmi,hospitalization,5
+50,29.1442911517571,historical,hospitalization = 1,historical,bmi,hospitalization,5
+50,29.736496159610052,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,5
+50,29.05820151162776,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,5
+50,29.780083010310264,exposed,hospitalization = 0,exposed,bmi,hospitalization,5
+50,29.20318843170813,exposed,hospitalization = 1,exposed,bmi,hospitalization,5
+100,29.54839401029925,historical,hospitalization = 0,historical,bmi,hospitalization,5
+100,29.168536146460827,historical,hospitalization = 1,historical,bmi,hospitalization,5
+100,29.715773519269085,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,5
+100,29.050279548625294,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,5
+100,29.778957101994518,exposed,hospitalization = 0,exposed,bmi,hospitalization,5
+100,29.209524632742852,exposed,hospitalization = 1,exposed,bmi,hospitalization,5
+150,29.562194540422244,historical,hospitalization = 0,historical,bmi,hospitalization,5
+150,29.192781141164552,historical,hospitalization = 1,historical,bmi,hospitalization,5
+150,29.695050878928118,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,5
+150,29.042357585622828,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,5
+150,29.777831193678775,exposed,hospitalization = 0,exposed,bmi,hospitalization,5
+150,29.215860833777565,exposed,hospitalization = 1,exposed,bmi,hospitalization,5
+200,29.57599507054524,historical,hospitalization = 0,historical,bmi,hospitalization,5
+200,29.217026135868274,historical,hospitalization = 1,historical,bmi,hospitalization,5
+200,29.67432823858715,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,5
+200,29.034435622620354,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,5
+200,29.776705285363033,exposed,hospitalization = 0,exposed,bmi,hospitalization,5
+200,29.222197034812282,exposed,hospitalization = 1,exposed,bmi,hospitalization,5
+250,29.589795600668232,historical,hospitalization = 0,historical,bmi,hospitalization,5
+250,29.241271130572,historical,hospitalization = 1,historical,bmi,hospitalization,5
+250,29.653605598246187,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,5
+250,29.026513659617883,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,5
+250,29.775579377047286,exposed,hospitalization = 0,exposed,bmi,hospitalization,5
+250,29.228533235846996,exposed,hospitalization = 1,exposed,bmi,hospitalization,5
+300,29.603596130791225,historical,hospitalization = 0,historical,bmi,hospitalization,5
+300,29.265516125275727,historical,hospitalization = 1,historical,bmi,hospitalization,5
+300,29.632882957905217,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,5
+300,29.018591696615413,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,5
+300,29.77445346873154,exposed,hospitalization = 0,exposed,bmi,hospitalization,5
+300,29.234869436881713,exposed,hospitalization = 1,exposed,bmi,hospitalization,5
+350,29.617396660914217,historical,hospitalization = 0,historical,bmi,hospitalization,5
+350,29.289761119979453,historical,hospitalization = 1,historical,bmi,hospitalization,5
+350,29.61216031756425,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,5
+350,29.01066973361295,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,5
+350,29.773327560415794,exposed,hospitalization = 0,exposed,bmi,hospitalization,5
+350,29.24120563791643,exposed,hospitalization = 1,exposed,bmi,hospitalization,5
+400,29.631197191037213,historical,hospitalization = 0,historical,bmi,hospitalization,5
+400,29.314006114683178,historical,hospitalization = 1,historical,bmi,hospitalization,5
+400,29.591437677223286,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,5
+400,29.00274777061048,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,5
+400,29.77220165210005,exposed,hospitalization = 0,exposed,bmi,hospitalization,5
+400,29.247541838951143,exposed,hospitalization = 1,exposed,bmi,hospitalization,5
+450,29.644997721160205,historical,hospitalization = 0,historical,bmi,hospitalization,5
+450,29.338251109386903,historical,hospitalization = 1,historical,bmi,hospitalization,5
+450,29.57071503688232,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,5
+450,28.994825807608013,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,5
+450,29.771075743784305,exposed,hospitalization = 0,exposed,bmi,hospitalization,5
+450,29.25387803998586,exposed,hospitalization = 1,exposed,bmi,hospitalization,5
+500,29.658798251283198,historical,hospitalization = 0,historical,bmi,hospitalization,5
+500,29.362496104090624,historical,hospitalization = 1,historical,bmi,hospitalization,5
+500,29.549992396541352,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,5
+500,28.98690384460554,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,5
+500,29.769949835468562,exposed,hospitalization = 0,exposed,bmi,hospitalization,5
+500,29.260214241020574,exposed,hospitalization = 1,exposed,bmi,hospitalization,5
+550,29.67259878140619,historical,hospitalization = 0,historical,bmi,hospitalization,5
+550,29.386741098794353,historical,hospitalization = 1,historical,bmi,hospitalization,5
+550,29.529269756200385,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,5
+550,28.978981881603076,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,5
+550,29.768823927152816,exposed,hospitalization = 0,exposed,bmi,hospitalization,5
+550,29.26655044205529,exposed,hospitalization = 1,exposed,bmi,hospitalization,5
+600,29.686399311529186,historical,hospitalization = 0,historical,bmi,hospitalization,5
+600,29.410986093498078,historical,hospitalization = 1,historical,bmi,hospitalization,5
+600,29.508547115859418,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,5
+600,28.971059918600606,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,5
+600,29.767698018837073,exposed,hospitalization = 0,exposed,bmi,hospitalization,5
+600,29.272886643090008,exposed,hospitalization = 1,exposed,bmi,hospitalization,5
+650,29.70019984165218,historical,hospitalization = 0,historical,bmi,hospitalization,5
+650,29.435231088201803,historical,hospitalization = 1,historical,bmi,hospitalization,5
+650,29.487824475518455,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,5
+650,28.96313795559814,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,5
+650,29.766572110521327,exposed,hospitalization = 0,exposed,bmi,hospitalization,5
+650,29.27922284412472,exposed,hospitalization = 1,exposed,bmi,hospitalization,5
+700,29.71400037177517,historical,hospitalization = 0,historical,bmi,hospitalization,5
+700,29.459476082905528,historical,hospitalization = 1,historical,bmi,hospitalization,5
+700,29.467101835177488,unexposed,hospitalization = 0,unexposed,bmi,hospitalization,5
+700,28.95521599259567,unexposed,hospitalization = 1,unexposed,bmi,hospitalization,5
+700,29.76544620220558,exposed,hospitalization = 0,exposed,bmi,hospitalization,5
+700,29.28555904515944,exposed,hospitalization = 1,exposed,bmi,hospitalization,5
