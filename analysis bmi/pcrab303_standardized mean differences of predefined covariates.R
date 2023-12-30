@@ -23,9 +23,11 @@ c_vars = c("age","hba1c","glucose","alt",
            "lb_n_glucose","lb_n_hdl","lb_n_ldl","lb_n_serum_creatinine",
            "lb_n_alt","lb_n_ast","lb_n_hba1c","lb_n_labvisits"
            )
-g_vars = c("site","payer_type_primary","payer_type_secondary")
+g_vars = c("site","payer_type_primary2","payer_type_secondary")
 
 df = lookback_processed %>% 
+  mutate(payer_type_primary2 = case_when(payer_type_primary %in% c("Bluecross","Private or Other") ~ "Private",
+                                         TRUE ~ payer_type_primary)) %>% 
   left_join(predicted_probability,
             by=c("ID","COHORT"))
 

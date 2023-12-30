@@ -17,6 +17,9 @@ library(gtsummary)
 
 lookback_svy <-  lookback_df %>% 
   dplyr::filter(!is.na(bmi)) %>% 
+  mutate(
+         payer_type_primary2 = case_when(payer_type_primary %in% c("Bluecross","Private or Other") ~ "Private",
+                                         TRUE ~ payer_type_primary)) %>% 
   left_join(encounter_followup,
             by = "ID") %>% 
   left_join(predicted_probability %>% 
@@ -30,7 +33,7 @@ lookback_svy <-  lookback_df %>%
                              nhwhite,nhblack,hispanic, nhother,
                              smoking, 
                              site,
-                             payer_type_primary,payer_type_secondary,
+                             payer_type_primary2,payer_type_secondary,
                              hospitalization, 
                              p_hyperglycemia, 
                              bmi, HT, SYSTOLIC, DIASTOLIC,
@@ -56,7 +59,7 @@ lookback_svy <-  lookback_df %>%
                                
                                site ~ "categorical",
                                
-                               payer_type_primary ~ "categorical",
+                               payer_type_primary2 ~ "categorical",
                                
                                payer_type_secondary ~ "categorical",
                                hospitalization ~ "dichotomous",

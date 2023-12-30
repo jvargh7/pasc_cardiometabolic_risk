@@ -25,6 +25,34 @@ predictions <- bind_rows(read_csv(file="analysis bmi/pcrab401_marginal predictio
          group = factor(group,levels=c("historical","unexposed","exposed"),
                         labels=c("Historical","Unexposed","Exposed")))
 
+
+difference0 <- read_csv("analysis bmi/pcrab406_difference relative to exposed for time 0.csv") %>% 
+  dplyr::filter(modifier2_value %in% c(0)) %>% 
+  rename(t = modifier2_value) %>% 
+  mutate(group = str_replace(exposure,"COHORT",""),
+         facet = str_replace(modifier1,modifier_var,"")) %>% 
+  mutate(facet = case_when(is.na(modifier1) & modifier_var == "hospitalization_category" ~ "Not Hospitalized",
+                           facet == "hospitalization" ~ "Hospitalized",
+                           is.na(facet) ~ "Overall",
+                           TRUE ~ facet),
+         t = paste0("Time = ",t)) %>% 
+  mutate(facet = factor(facet,levels=c("Overall",
+                                       "Female",
+                                       "Male",
+                                       "18 to 39",
+                                       "40 to 64",
+                                       "65 plus",
+                                       "Hispanic",
+                                       "NH White",
+                                       "NH Black",
+                                       "Not Hospitalized",
+                                       "Hospitalized")),
+         group = factor(group,levels=c("historical","unexposed","exposed"),
+                        labels=c("Historical","Unexposed","Exposed"))) %>% 
+  rename(predicted = Estimate,
+         conf.low = LCI,
+         conf.high = UCI)
+
 difference100 <- read_csv("analysis bmi/pcrab404_difference between 0 and 100 within sociodemographic.csv") %>% 
   dplyr::filter(modifier2_value %in% c(100)) %>% 
   rename(t = modifier2_value) %>% 
@@ -127,7 +155,18 @@ color_order <- c("blue","darkgreen","red")
     dplyr::filter(outcome == "bmi") %>% 
     marginal_predictions_plot(.,x_lab="Difference in Difference relative to Exposed\nBody mass index (kg/m2)",type="point_ci",axis_text_y=FALSE) +
     coord_cartesian(xlim = c(-0.15, 0.15)) +
-    geom_vline(xintercept=0,col="red",linetype=2))
+    geom_vline(xintercept=0,col="red",linetype=2)+
+    theme(legend.text = element_text(size=14),
+          axis.text.x = element_text(size=14)))
+
+
+(fig_bmi_D = difference0 %>% 
+    dplyr::filter(outcome == "bmi") %>% 
+    marginal_predictions_plot(.,x_lab="Difference relative to Exposed\nBody mass index (kg/m2)",type="point_ci",axis_text_y=TRUE) +
+    coord_cartesian(xlim = c(-0.5, 0.4)) +
+    geom_vline(xintercept=0,col="red",linetype=2) +
+    theme(legend.text = element_text(size=14),
+          axis.text.x = element_text(size=14)))
 
 
 library(ggpubr)
@@ -140,7 +179,21 @@ ggarrange(fig_bmi_A,
           common.legend=TRUE) %>% 
   ggsave(.,filename=paste0(path_pasc_cmr_folder,"/figures/predictions and differences during followup bmi.jpg"),width=11,height=8)
 
+ggarrange(fig_bmi_D,
+          fig_bmi_C,
+          nrow=1,ncol=2,
+          labels=LETTERS[1:2],
+          widths = c(2.2,1.5),
+          common.legend=TRUE) %>% 
+  ggsave(.,filename=paste0(path_pasc_cmr_folder,"/figures/predictions and differences during followup bmi as per table.jpg"),width=11,height=8)
 
+ggarrange(fig_bmi_D,
+          fig_bmi_C,
+          nrow=1,ncol=2,
+          labels=LETTERS[1:2],
+          widths = c(2.2,1.5),
+          common.legend=TRUE) %>% 
+  ggsave(.,filename=paste0(path_pasc_cmr_folder,"/figures/predictions and differences during followup bmi as per table.pdf"),width=11,height=8)
 
 
 # bind_rows(predictions ,

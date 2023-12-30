@@ -45,13 +45,12 @@ site,Source2,0.053,0.028,0.127,0.127
 site,Source3,0.003,0.017,0.077,0.077
 site,Source4,0.001,0.043,0.108,0.108
 site,Source6,0.019,0.003,0.003,0.019
-payer_type_primary,Bluecross,0.013,0.005,0.019,0.019
-payer_type_primary,Medicare,0.036,0,0.03,0.036
-payer_type_primary,No Information,0.033,0.009,0.018,0.033
-payer_type_primary,Private or Other,0.011,0.003,0.006,0.011
-payer_type_primary,No Insurance,0.009,0.02,0.034,0.034
-payer_type_primary,Medicaid,0.001,0.002,0.015,0.015
-payer_type_primary,Government,0.011,0.007,0.015,0.015
+payer_type_primary2,Private,0.003,0.001,0.02,0.02
+payer_type_primary2,Medicare,0.036,0,0.03,0.036
+payer_type_primary2,No Information,0.033,0.009,0.018,0.033
+payer_type_primary2,No Insurance,0.009,0.02,0.034,0.034
+payer_type_primary2,Medicaid,0.001,0.002,0.015,0.015
+payer_type_primary2,Government,0.011,0.007,0.015,0.015
 payer_type_secondary,No Information,0.024,0.027,0.099,0.099
 payer_type_secondary,Private or Other,0.006,0.016,0.06,0.06
 payer_type_secondary,Government,0.011,0.001,0.024,0.024

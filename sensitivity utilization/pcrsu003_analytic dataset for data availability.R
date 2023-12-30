@@ -38,4 +38,4 @@ outcome_availability = demographic %>%
 analytic_sample = outcome_availability %>% 
   dplyr::filter(in_bmi_lookback_ID == 1)
 
-sum(analytic_sample$in_bmi_followup_ID)
+sum(analytic_sample$in_sensitivity_utilization_ID)

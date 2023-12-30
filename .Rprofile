@@ -25,7 +25,15 @@ admissible_encounter_types = c('AV', 'IP', 'OS','ED','EI','IC','IS','TH')
 # Could alternatively use readxl::read_excel("data/PASC CMR Variable List.xlsx",sheet="labs") %>% dplyr::filter(search == "Glucose",include == "Yes")
 glucose_loinc <- c("2345-7","2339-0","41653-7",
                    "2340-8","27353-2",
-                   "1547-9","1558-6")
+                   "1547-9")
+
+fastingglucose_loinc <- c("1558-6", # Fasting glucose [Mass/volume] in Serum or Plasma
+                          "76629-5", # Fasting glucose [Moles/volume] in Blood
+                          "77145-1", # Fasting glucose [Moles/volume] in serum, plasma or blood
+                          "1556-0", # Fasting glucose [Mass/volume] in Capillary blood
+                          "35184-1", #Fasting glucose [Mass or Moles/volume] in Serum or Plasma -- Discouraged
+                          "14771-0" # Fasting glucose [Moles/volume] in serum or plasma
+                          )
 
 # Could alternatively use readxl::read_excel("data/PASC CMR Variable List.xlsx",sheet="labs") %>% dplyr::filter(search == "HbA1c",include == "Yes")
 hba1c_loinc <- c("4548-4","41995-2","55454-3",
@@ -43,7 +51,7 @@ icd10_dm_qualifying <- c("E11.00", "E11.01", "E11.21", "E11.22", "E11.29", "E11.
 
 # Used for paste0() --> str_detect()
 # Any code ending in \\. has a wildcard '*'
-icd10_otherdm_excluding <- c("R73\\.01", "R73,02", "R73\\.0", "R81\\.", "E88\\.81", "Z13\\.1", "E13\\.", "E08\\.", "E09\\.")
+icd10_otherdm_excluding <- c("R73\\.01", "R73.02", "R73\\.0", "R81\\.", "E88\\.81", "Z13\\.1", "E13\\.", "E08\\.", "E09\\.")
 icd10_t1dm <- c("E10\\.")
 icd10_gdm <- c("O24\\.")
 icd10_covid <- c("U07.1","U07.2",
