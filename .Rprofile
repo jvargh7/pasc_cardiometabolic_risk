@@ -1,8 +1,8 @@
 library(tidyverse)
 library(lubridate)
 library(arrow)
-path_pasc_proposal_folder <- "C:/Cloud/OneDrive - Emory University/Proposals/R01S COVID x Post Acute Diabetes Diagnosis"
-path_pasc_cmr_folder <- "C:/Cloud/OneDrive - Emory University/Papers/PASC Cardiometabolic Risk Factors"
+path_pasc_proposal_folder <- "C:/Cloud/OneDrive - Emory University/Proposals/_Awarded/R01S COVID x Post Acute Diabetes Diagnosis"
+path_pasc_cmr_folder <- "C:/Cloud/OneDrive - Emory University/Papers/_Published/PASC Cardiometabolic Risk Factors"
 path_pasc_cmr_repo <- "C:/code/external/pasc_cardiometabolic_risk"
 
 path_community_profile_reports <- "C:/Cloud/Emory University/Patel, Shivani A - CovidHealthEquityDashboard/Data/Processed/Community Profile Reports/2022-05-02"

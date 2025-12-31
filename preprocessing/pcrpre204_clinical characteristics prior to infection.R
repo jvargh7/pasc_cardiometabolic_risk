@@ -358,4 +358,5 @@ lab_history_wide = lab_history  %>%
   saveRDS(.,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre204_lookback clinical characteristics.RDS"))
  
 
-
+# pcrpre204 <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre204_lookback clinical characteristics.RDS"))
+# table(is.na(pcrpre204$smoking))

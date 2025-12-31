@@ -37,3 +37,5 @@ lookback_df = demographic %>%
                            TRUE ~ hba1c))
   
 saveRDS(lookback_df,paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre402_lookback dataset for analysis.RDS"))
+
+# lookback_df <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre402_lookback dataset for analysis.RDS"))

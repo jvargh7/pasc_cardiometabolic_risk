@@ -6,11 +6,13 @@ index_date <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre201_in
 
 
 anthro_followup <- readRDS(paste0(path_pasc_cmr_folder,"/working/cleaned/pcrpre103_vital.RDS")) %>% 
-  dplyr::select(ID,MEASURE_DATE,HT,WT, SYSTOLIC) %>% 
+  dplyr::select(ID,MEASURE_DATE,HT,WT, SYSTOLIC, DIASTOLIC) %>% 
   mutate(HT = case_when(HT > ht_max_possible | HT < ht_min_possible ~ NA_real_,
                         TRUE ~ HT),
          SYSTOLIC = case_when(SYSTOLIC > sbp_max_possible | SYSTOLIC < sbp_min_possible ~ NA_real_,
-                              TRUE ~ abs(SYSTOLIC))) %>% 
+                              TRUE ~ abs(SYSTOLIC)),
+         DIASTOLIC = case_when(DIASTOLIC > dbp_max_possible | DIASTOLIC < dbp_min_possible ~ NA_real_,
+                               TRUE ~ abs(DIASTOLIC))) %>% 
   group_by(ID) %>% 
   mutate(HT = zoo::na.locf(HT,na.rm=FALSE)) %>% 
   mutate(HT = zoo::na.locf(HT,na.rm=FALSE,fromLast=TRUE)) %>% 
@@ -71,6 +73,12 @@ loinc_hdl <- readxl::read_excel("data/PASC CMR Variable List.xlsx",sheet="labs")
   pull() %>% 
   na.omit()
 
+loinc_tgl <- readxl::read_excel("data/PASC CMR Variable List.xlsx",sheet="labs") %>% 
+  dplyr::filter(search == "Triglyceride",include == "Yes") %>% 
+  dplyr::select(LOINC_NUM) %>% 
+  pull() %>% 
+  na.omit()
+
 loinc_alt <- readxl::read_excel("data/PASC CMR Variable List.xlsx",sheet="labs") %>% 
   dplyr::filter(search == "ALT",include == "Yes") %>% 
   dplyr::select(LOINC_NUM) %>% 
@@ -111,6 +119,8 @@ lab_followup <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",ver
                          TRUE ~ 0),
          hdl = case_when(LAB_LOINC %in% loinc_hdl ~ 1,
                          TRUE ~ 0),
+         tgl = case_when(LAB_LOINC %in% loinc_tgl ~ 1,
+                         TRUE ~ 0),
          alt = case_when(LAB_LOINC %in% loinc_alt ~ 1,
                          LAB_LOINC == "" & RAW_LAB_NAME %in% c("ALT") ~ 1,
                          TRUE ~ 0),
@@ -124,6 +134,7 @@ lab_followup <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",ver
                               hba1c == 1 ~ "hba1c",
                               ldl == 1 ~ "ldl",
                               hdl == 1 ~ "hdl",
+                              tgl == 1 ~ "tgl",
                               alt == 1 ~ "alt",
                               ast == 1 ~ "ast",
                               TRUE ~ NA_character_))   %>% 

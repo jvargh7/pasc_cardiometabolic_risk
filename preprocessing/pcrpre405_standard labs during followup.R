@@ -33,6 +33,12 @@ loinc_hdl <- readxl::read_excel("data/PASC CMR Variable List.xlsx",sheet="labs")
   pull() %>% 
   na.omit()
 
+loinc_tgl <- readxl::read_excel("data/PASC CMR Variable List.xlsx",sheet="labs") %>% 
+  dplyr::filter(search == "Triglyceride",include == "Yes") %>% 
+  dplyr::select(LOINC_NUM) %>% 
+  pull() %>% 
+  na.omit()
+
 loinc_alt <- readxl::read_excel("data/PASC CMR Variable List.xlsx",sheet="labs") %>% 
   dplyr::filter(search == "ALT",include == "Yes") %>% 
   dplyr::select(LOINC_NUM) %>% 
@@ -70,6 +76,8 @@ lab_followup <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",ver
                          TRUE ~ 0),
          hdl = case_when(LAB_LOINC %in% loinc_hdl ~ 1,
                          TRUE ~ 0),
+         tgl = case_when(LAB_LOINC %in% loinc_tgl ~ 1,
+                         TRUE ~ 0),
          alt = case_when(LAB_LOINC %in% loinc_alt ~ 1,
                          LAB_LOINC == "" & RAW_LAB_NAME %in% c("ALT") ~ 1,
                          TRUE ~ 0),
@@ -82,6 +90,7 @@ lab_followup <- open_dataset(paste0(path_pasc_cmr_folder,"/working/raw/lab_",ver
                               serumcreatinine == 1 ~ "serum_creatinine",
                               hba1c == 1 ~ "hba1c",
                               ldl == 1 ~ "ldl",
+                              tgl == 1 ~ "tgl",
                               hdl == 1 ~ "hdl",
                               alt == 1 ~ "alt",
                               ast == 1 ~ "ast",
